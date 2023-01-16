@@ -1,0 +1,229 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+
+            <button class="btn btn-outline-dark btn-sm" type="button" (click)="back();">Back</button>
+        </div>
+        <div class="col-6 mb-2 text-end">
+            <button class="btn btn-danger btn-sm mx-1" [hidden]="readonly" (click)="fnDelete();" type="button">Delete</button>
+            <button class="btn btn-primary btn-sm mx-1" [hidden]="readonly" type="button" (click)="fnSave();">Save</button>
+
+            <button class="btn btn-warning btn-sm mx-1" type="button" [hidden]="!readonly" (click)="readonly=false">Editable</button>
+
+        </div>
+        <div class="col-12">
+            <div class="border shadow-sm rounded p-3 bg-white">
+                <div class="row">
+                    <div class="col-12">
+                        <h4>Personal Employed</h4>
+                    </div>
+                    <div class="col-6">
+                        <div class="border p-2">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>ID Employed</td>
+                                        <td><strong>X01234</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="name">Name <span class="text-danger">*</span></label></td>
+                                        <td><input type="text" [disabled]="readonly" class="form-control" id="name" required
+                                                [(ngModel)]="model.name" name="name" #name="ngModel">
+                                            <div [hidden]="name.valid || name.pristine" class="text-danger small m-1">
+                                                Name is required
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><label for="name">Phone Number <span class="text-danger">*</span></label>
+                                        </td>
+                                        <td><input type="text" [disabled]="readonly" class="form-control" id="phone" required
+                                                [(ngModel)]="model.phone" name="phone" #phone="ngModel">
+                                            <div [hidden]="phone.valid || phone.pristine" class="text-danger small m-1">
+                                                Phone is required
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><label for="email">email <span class="text-danger">*</span></label></td>
+                                        <td><input type="text" [disabled]="readonly" class="form-control" [email]="true" id="email" required
+                                                [(ngModel)]="model.email" name="email" #email="ngModel">
+                                            <div [hidden]="email.valid || email.pristine" class="text-danger small m-1">
+                                                Email is required
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> <label for="name">Gender <span class="text-danger">*</span></label></td>
+                                        <td> <select class="form-control" [disabled]="readonly" required id="gender"
+                                                [(ngModel)]="model.gender" name="gender" #gender="ngModel">
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
+                                            </select>
+                                            <div [hidden]="gender.valid || gender.pristine"
+                                                class="text-danger small m-1">
+                                                Gender is required
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><label for="name">Place of birth <span class="text-danger">*</span></label>
+                                        </td>
+                                        <td><input type="text" [disabled]="readonly" class="form-control" id="birthPlace" required
+                                                [(ngModel)]="model.birthPlace" name="birthPlace" #birthPlace="ngModel">
+                                            <div [hidden]="birthPlace.valid || birthPlace.pristine"
+                                                class="text-danger small m-1">
+                                                Birth Place is required
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> <label for="dateOfBirth">Date of birth</label></td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input id="dateOfBirth" [disabled]="readonly" class="form-control" placeholder="yyyy-mm-dd"
+                                                    name="dp" ngbDatepicker #dp="ngbDatepicker"
+                                                    [(ngModel)]="model.birthDate" />
+                                                <button class="btn btn-outline-secondary" (click)="readonly == false ? dp.toggle():false"
+                                                    type="button">
+                                                    <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> <label for="name">Marital Status <span class="text-danger">*</span></label>
+                                        </td>
+                                        <td> <select class="form-control" required id="marital"  [disabled]="readonly" 
+                                                [(ngModel)]="model.marital" name="marital" #marital="ngModel">
+                                                <option value="1">Single, married, Widow, Widower</option>
+                                                <option value="2">married</option>
+                                            </select>
+                                            <div [hidden]="marital.valid || marital.pristine"
+                                                class="text-danger small m-1">
+                                                Marital is required
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> Blood Type </td>
+                                        <td> <select class="form-control" required id="marital"  [disabled]="readonly" 
+                                                [(ngModel)]="model.marital" name="marital" #marital="ngModel">
+                                                <option value=""> - </option>
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="AB">AB</option>
+                                                <option value="O">O</option>
+
+                                            </select>
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border p-2">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>ID Type</td>
+                                        <td><select class="form-control"  [disabled]="readonly"  required id="idType" [(ngModel)]="model.idType"
+                                                name="idType" #idType="ngModel">
+                                                <option value="1">KTP</option>
+                                                <option value="2">Passport</option>
+                                                <option value="3">Other</option>
+
+                                            </select>
+                                            <div [hidden]="idType.valid || idType.pristine"
+                                                class="text-danger small m-1">
+                                                ID Type is required
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="name">ID Number <span class="text-danger">*</span></label>
+                                        </td>
+                                        <td><input type="text" class="form-control" id="idNumber"   [disabled]="model.permanent || readonly"
+                                                [(ngModel)]="model.idNumber" name="idNumber" #idNumber="ngModel">
+                                           
+                                            <div> 
+                                                <input type="checkbox" id="permanent"  [(ngModel)]="model.permanent"  [disabled]="readonly"  > 
+                                                <label for="permanent" class="mx-2">Permanent</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> <label for="expDate">Expiration Date</label></td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input id="expDate" class="form-control" placeholder="yyyy-mm-dd"  [disabled]="readonly" 
+                                                    name="expDate" ngbDatepicker #expDate="ngbDatepicker"
+                                                    [(ngModel)]="model.expDate" />
+                                                <button class="btn btn-outline-secondary" (click)="readonly == false ? expDate.toggle():false"
+                                                    type="button">
+                                                    <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><label for="postalCode">Postal Code <span class="text-danger">*</span></label>
+                                        </td>
+                                        <td><input type="text" class="form-control" id="postalCode" required  [disabled]="readonly" 
+                                                [(ngModel)]="model.postalCode" name="postalCode" #postalCode="ngModel">
+                                            <div [hidden]="postalCode.valid || postalCode.pristine"
+                                                class="text-danger small m-1">
+                                                Postal Code Place is required
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><label for="address">Address <span class="text-danger">*</span></label>
+                                        </td>
+                                        <td><textarea type="text" class="form-control" id="address" required  [disabled]="readonly"  [disabled]="readonly" 
+                                                [(ngModel)]="model.address" name="address" #address="ngModel"></textarea>
+                                            <div [hidden]="address.valid || address.pristine"
+                                                class="text-danger small m-1">
+                                                Address Place is required
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Update Date</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created Date</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <code>
+            {{model | json}} {{readonly}}
+        </code>
+
+    </div>
+</div>

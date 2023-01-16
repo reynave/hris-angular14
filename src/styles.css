@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+.nav-fixed{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+body{
+    margin-top: 70px;
+}
+
+.form-control{
+    background-color: rgb(244, 243, 243);
+}
