@@ -15,6 +15,10 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { PersonalDetailComponent } from './personal/personal-detail/personal-detail.component';
 import { DataTablesModule } from "angular-datatables";
+import { EmploymentComponent } from './employment/employment.component';
+import { PayrollComponent } from './payroll/payroll.component';
+import { EmploymentDetailComponent } from './employment/employment-detail/employment-detail.component';
+import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.component';
 
 
 @NgModule({
@@ -26,7 +30,11 @@ import { DataTablesModule } from "angular-datatables";
     HomeComponent,
     HeaderComponent,
     LoginComponent,
-    PersonalDetailComponent
+    PersonalDetailComponent,
+    EmploymentComponent,
+    PayrollComponent,
+    EmploymentDetailComponent,
+    PayrollDetailComponent
   ],
   imports: [
     BrowserModule,

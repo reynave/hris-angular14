@@ -17,18 +17,18 @@
 
         </div>
         <div class="col-12">
-            <div class="border shadow-sm rounded p-3 bg-white">
+            <div class="border shadow-sm rounded p-3 bg-white" [hidden]="loading">
                 <div class="row">
                     <div class="col-12">
                         <h4>Personal Employed</h4>
                     </div>
                     <div class="col-6">
-                        <div class="border p-2">
+                        <div class="border p-2" >
                             <table class="table">
                                 <tbody>
                                     <tr>
                                         <td>ID Employed</td>
-                                        <td><strong>X01234</strong></td>
+                                        <td><strong>{{id}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td><label for="name">Name <span class="text-danger">*</span></label></td>
@@ -45,7 +45,8 @@
                                         </td>
                                         <td><input type="text" [disabled]="readonly" class="form-control" id="phone"
                                                 required [(ngModel)]="model.phone" name="phone" #phone="ngModel">
-                                            <div [hidden]="(phone.valid || phone.pristine)" class="text-danger small m-1">
+                                            <div [hidden]="(phone.valid || phone.pristine)"
+                                                class="text-danger small m-1">
                                                 Phone is required
                                             </div>
                                         </td>
@@ -56,10 +57,11 @@
                                         <td><input type="text" [disabled]="readonly" class="form-control" [email]="true"
                                                 id="email" required [(ngModel)]="model.email" name="email"
                                                 #email="ngModel">
-                                            <div [hidden]="(email.valid || email.pristine)  " class="text-danger small m-1">
-                                               <span [hidden]="readonly"> Email is required</span>
+                                            <div [hidden]="(email.valid || email.pristine)  "
+                                                class="text-danger small m-1">
+                                                <span [hidden]="readonly"> Email is required</span>
                                             </div>
-                                     
+
                                         </td>
                                     </tr>
 
@@ -110,7 +112,8 @@
                                         </td>
                                         <td> <select class="form-control" required id="marital" [disabled]="readonly"
                                                 [(ngModel)]="model.marital" name="marital" #marital="ngModel">
-                                                <option *ngFor="let x of personal_marital" [value]="x.id"> {{x.name}}</option> 
+                                                <option *ngFor="let x of personal_marital" [value]="x.id"> {{x.name}}
+                                                </option>
                                             </select>
                                             <div [hidden]="marital.valid || marital.pristine"
                                                 class="text-danger small m-1">
@@ -121,7 +124,7 @@
 
                                     <tr>
                                         <td> Blood Type </td>
-                                        <td> <select class="form-control"   id="blood" [disabled]="readonly"
+                                        <td> <select class="form-control" id="blood" [disabled]="readonly"
                                                 [(ngModel)]="model.blood" name="blood" #blood="ngModel">
                                                 <option value=""> - </option>
                                                 <option value="A">A</option>
@@ -135,10 +138,11 @@
                                     </tr>
                                     <tr>
                                         <td> Religion </td>
-                                        <td> <select class="form-control"  id="religion" [disabled]="readonly"
+                                        <td> <select class="form-control" id="religion" [disabled]="readonly"
                                                 [(ngModel)]="model.religion" name="religion" #religion="ngModel">
-                                                <option *ngFor="let x of personal_religion" [value]="x.id"> {{x.name}}</option> 
-                                            </select> 
+                                                <option *ngFor="let x of personal_religion" [value]="x.id"> {{x.name}}
+                                                </option>
+                                            </select>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -167,11 +171,10 @@
                                     <tr>
                                         <td><label for="name">ID Number <span class="text-danger">*</span></label>
                                         </td>
-                                        <td><input type="text" class="form-control" id="idNumber"
-                                                [disabled]="readonly" [(ngModel)]="model.idNumber"
-                                                name="idNumber" #idNumber="ngModel">
+                                        <td><input type="text" class="form-control" id="idNumber" [disabled]="readonly"
+                                                [(ngModel)]="model.idNumber" name="idNumber" #idNumber="ngModel">
 
-                                           
+
                                         </td>
                                     </tr>
 
@@ -180,18 +183,19 @@
                                         <td>
                                             <div class="input-group">
                                                 <input id="expDate" class="form-control" placeholder="yyyy-mm-dd"
-                                                    [disabled]="model.permanent ||  readonly" name="expDate" ngbDatepicker
-                                                    #expDate="ngbDatepicker" [(ngModel)]="model.expDate" />
+                                                    [disabled]="model.permanent ||  readonly" name="expDate"
+                                                    ngbDatepicker #expDate="ngbDatepicker"
+                                                    [(ngModel)]="model.expDate" />
                                                 <button class="btn btn-outline-secondary"
                                                     (click)="readonly == false ? expDate.toggle():false" type="button">
                                                     <img src="./assets/img/icons8-calendar-48.png" height="20">
                                                 </button>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="permanent" [(ngModel)]="model.permanent"  
+                                                <input type="checkbox" id="permanent" [(ngModel)]="model.permanent"
                                                     [disabled]="readonly">
                                                 <label for="permanent" class="mx-2">Permanent</label>
-                                         
+
                                             </div>
                                         </td>
                                     </tr>
@@ -230,6 +234,33 @@
                                     <tr>
                                         <td>Created Date</td>
                                         <td>{{item['updateDate']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Employment </td>
+                                        <td>
+
+                                            <div *ngIf="employmentId as value; else elseBlock"> <a
+                                                    [routerLink]="[ '/employment/detail', value ]">{{value}}</a></div>
+                                            <ng-template #elseBlock>
+                                                <button type="button" class="btn btn-sm btn-primary px-4"
+                                                    (click)="fnCreateOtherForm('employment')"> Create Now</button>
+                                            </ng-template>
+
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Payroll </td>
+                                        <td>
+                                            <div *ngIf="payrollId as value; else elseBlock"> <a
+                                                    [routerLink]="[ '/payroll/detail', value ]">{{value}}</a></div>
+                                            <ng-template #elseBlock>
+                                                <button type="button" class="btn btn-sm btn-primary px-4"
+                                                    (click)="fnCreateOtherForm('payroll')"> Create Now</button>
+                                            </ng-template>
+
+
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

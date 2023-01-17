@@ -37,7 +37,10 @@ export class PersonalDetailComponent implements OnInit {
   item: any = [];
   personal_religion: any = [];
   personal_marital: any = [];
-
+  employmentId : string = "";
+  payrollId : string = "";
+  loading : boolean= false;
+  id : string = "";
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -46,14 +49,19 @@ export class PersonalDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.params['id'];
     this.httpGet();
   }
 
   httpGet() {
+    this.loading = true;
     this.http.get<any>(environment.api + "personal/detail/" + this.activatedRoute.snapshot.params['id'], {
       headers: this.configService.headers(),
     }).subscribe(
       data => {
+        this.loading = false;
+        this.employmentId =  data['employmentId'];
+        this.payrollId = data['payrollId'];
         console.log(data);
         this.personal_religion = data['personal_religion'];
         this.personal_marital = data['personal_marital'];
@@ -138,5 +146,25 @@ export class PersonalDetailComponent implements OnInit {
   back() {
     history.back();
   }
+
+  fnCreateOtherForm( val : string){
+    const body = {
+      personalId: this.activatedRoute.snapshot.params['id'],
+      value : val
+    }
+    this.http.post<any>(environment.api + "personal/fnCreateOtherForm", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate([val+'/detail/'+data['id']]);
+      },
+      e => {
+        console.log(e);
+      }
+    )
+  }
+
+  
 
 }

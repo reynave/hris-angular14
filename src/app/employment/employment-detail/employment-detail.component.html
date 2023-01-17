@@ -1,0 +1,229 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-outline-dark btn-sm" type="button" (click)="back();">Back</button>
+        </div>
+        <div class="col-6 mb-2 text-end">
+
+            <button class="btn btn-primary btn-sm mx-1" [hidden]="readonly" type="button"
+                (click)="fnSave();">Save</button>
+
+            <button class="btn btn-warning btn-sm mx-1" type="button" [hidden]="!readonly"
+                (click)="readonly=false">Editable</button>
+
+        </div>
+        <div class="col-12">
+            <div class="border shadow-sm rounded p-3 bg-white">
+                <div class="row">
+                    <div class="col-12">
+                        <h4>Employee Master - Employment Detail</h4>
+                    </div>
+                    <div class="col-6">
+                        <div class="border p-2">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>ID Employed</td>
+                                        <td><strong>{{personalId}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td><strong>{{personalName}}</strong> &nbsp;
+                                            <a [routerLink]="[ '/personal/detail/', personalId ]">Detail</a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> <label for="organizationId">Organization ID <span
+                                                    class="text-danger">*</span></label></td>
+                                        <td>
+                                            <div [hidden]="addOrganization">
+                                                <select class="form-control" [disabled]="readonly" required
+                                                    id="organizationId" [(ngModel)]="model.organizationId"
+                                                    name="organizationId" #organizationId="ngModel"
+                                                    (change)="fnSelectBranch();">
+                                                    <option [value]="x.id" *ngFor="let x of organization"> {{x.name}}
+                                                    </option>
+                                                </select>
+                                                <div [hidden]="readonly">
+                                                    <div class="text-end"><a href="javascript:;"
+                                                            (click)="addOrganization = true;">Add Organization</a></div>
+
+                                                    <div [hidden]="organizationId.valid || organizationId.pristine"
+                                                        class="text-danger small m-1">
+                                                        Organization Id is required
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div [hidden]="!addOrganization">
+                                                <input type="text" class="form-control" [disabled]="readonly"
+                                                    [(ngModel)]="inputOrganization">
+
+                                                <div class="text-end mt-2">
+                                                    <span [hidden]="inputOrganization.length > 1">required</span>
+                                                    <button type="button" class="btn btn-sm btn-outline-dark mx-2"
+                                                        (click)="addOrganization = false;"> Cancel </button>
+
+                                                    <button type="button" class="btn btn-sm btn-dark "
+                                                        [disabled]="inputOrganization.length < 1"
+                                                        (click)="insertOrganization();"> Insert </button>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> <label for="branchId">Branch ID<span class="text-danger">*</span></label>
+                                        </td>
+                                        <td>
+
+                                            <div [hidden]="!branch.length">
+
+
+
+
+
+                                                <div *ngIf="addBranch; else elseBlock">
+                                                    <input type="text" class="form-control" [disabled]="readonly"
+                                                        [(ngModel)]="inputBranch">
+                                                    <div class="text-end mt-2">
+                                                        <span [hidden]="inputBranch.length > 1">required</span>
+                                                        <button type="button" class="btn btn-sm btn-outline-dark mx-2"
+                                                            (click)="addBranch = false;"> Cancel </button>
+
+                                                        <button type="button" class="btn btn-sm btn-dark "
+                                                            [disabled]="inputBranch.length < 1"
+                                                            (click)="insertBranch();"> Insert </button>
+                                                    </div>
+
+                                                </div>
+                                                <ng-template #elseBlock>
+                                                    <select class="form-control" [disabled]="readonly" id="branchId"
+                                                        [(ngModel)]="model.branchId" name="branchId"
+                                                        #branchId="ngModel">
+                                                        <option [value]="x.id" *ngFor="let x of branch"> {{x.name}}
+                                                        </option>
+                                                    </select>
+
+                                                    <div class="text-end" [hidden]="readonly"><a href="javascript:;"
+                                                            (click)="addBranch = true;">Add Branch</a></div>
+
+                                                </ng-template>
+
+                                            </div>
+                                            <div [hidden]="branch.length">
+                                                <input type="text" class="form-control" [(ngModel)]="model.branch">
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> <label for="dateJoinStart">Join Start</label></td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input id="dateJoinStart" required [disabled]="readonly"
+                                                    class="form-control" placeholder="yyyy-mm-dd" name="dateJoinStart"
+                                                    ngbDatepicker #dateJoinStart="ngbDatepicker"
+                                                    [(ngModel)]="model.dateJoinStart" />
+                                                <button class="btn btn-outline-secondary"
+                                                    (click)="readonly == false ? dateJoinStart.toggle():false"
+                                                    type="button">
+                                                    <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                                </button>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> <label for="dateJoinEnd">Join End</label></td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input id="dateJoinEnd" [disabled]="readonly" class="form-control"
+                                                    placeholder="yyyy-mm-dd" name="dateJoinEnd" ngbDatepicker
+                                                    #dateJoinEnd="ngbDatepicker" [(ngModel)]="model.dateJoinEnd" />
+                                                <button class="btn btn-outline-secondary"
+                                                    (click)="readonly == false ? dateJoinEnd.toggle():false"
+                                                    type="button">
+                                                    <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="border p-2">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Approval Line</td>
+                                        <td><select class="form-control" [disabled]="readonly" id="approvalLineId"
+                                                [(ngModel)]="model.approvalLineId" name="approvalLineId"
+                                                #approvalLineId="ngModel">
+                                                <option *ngFor="let x of approvedLine" [value]="x.id">{{x.id}}
+                                                    {{x.name}}</option>
+                                            </select>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Employment Status</td>
+                                        <td><select class="form-control" [disabled]="readonly" id="employmentStatusId"
+                                                [(ngModel)]="model.employmentStatusId" name="employmentStatusId"
+                                                #employmentStatusId="ngModel">
+                                                <option *ngFor="let x of employmentStatus" [value]="x.id">{{x.name}}
+                                                </option>
+                                            </select>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Job Level </td>
+                                        <td><select class="form-control" [disabled]="readonly" id="jobLevelId"
+                                                [(ngModel)]="model.jobLevelId" name="jobLevelId" #jobLevelId="ngModel">
+                                                <option *ngFor="let x of jobLevel" [value]="x.id"> {{x.name}}</option>
+                                            </select>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> job Position</td>
+                                        <td><select class="form-control" [disabled]="readonly" id="jobPositionId"
+                                                [(ngModel)]="model.jobPositionId" name="jobPositionId"
+                                                #jobPositionId="ngModel">
+                                                <option *ngFor="let x of jobPosition" [value]="x.id"> {{x.name}}
+                                                </option>
+                                            </select>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Update Date</td>
+                                        <td>{{item['inputDate']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created Date</td>
+                                        <td>{{item['updateDate']}}</td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{model | json}}
+    </div>
+</div>
