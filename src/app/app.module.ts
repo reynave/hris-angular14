@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CurrencyMaskInputMode, NgxCurrencyModule } from "ngx-currency";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,21 @@ import { EmploymentComponent } from './employment/employment.component';
 import { PayrollComponent } from './payroll/payroll.component';
 import { EmploymentDetailComponent } from './employment/employment-detail/employment-detail.component';
 import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.component';
+
+export const customCurrencyMaskConfig = {
+  align: "right",
+  allowNegative: true,
+  allowZero: true,
+  decimal: ",",
+  precision: 0,
+  prefix: "Rp ",
+  suffix: "",
+  thousands: ".",
+  nullable: true,
+  min: null,
+  max: null,
+  inputMode: CurrencyMaskInputMode.FINANCIAL
+};
 
 
 @NgModule({
@@ -43,7 +59,8 @@ import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.
     CommonModule,
     FormsModule, 
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule, 
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
