@@ -1,0 +1,83 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4>Time Management</h4>
+        </div>
+        <div class="col-12">
+            <button type="button" class="btn btn-outline-dark btn-sm" (click)="back();">Back</button>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="text-danger text-center mb-2">Edit Attendance</h4>
+                <div class="border shadow-sm rounded p-4 bg-white">
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" [value]="personal.name" 
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="ida" class="form-label">Employee ID</label>
+                                <input type="text" class="form-control" id="ida"  [value]="personal.id" 
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12"> 
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Shift</label>
+                                <select name="shiftId" class="form-control" [(ngModel)]="model.shiftId">
+                                    <option *ngFor="let x of timeManagementShift" [value]="x.id">{{x.name}} ({{x.scheduleIn}} - {{x.scheduleOut}}) </option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div> 
+                    <div class="row">
+                        <div class="col"> 
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Check In</label>
+                                <input type="time" class="form-control" [(ngModel)]="model.checkIn"> 
+                            </div>
+                        </div>
+                        <div class="col"> 
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Check Out</label>
+                                <input type="time" class="form-control" [(ngModel)]="model.checkOut"> 
+                            </div>
+                        </div>
+                        <div class="col"> 
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Time Off</label>
+                                <select name="offTimeId" class="form-control" [(ngModel)]="model.offTimeId">
+                                    <option value=""> - </option>
+                                    <option *ngFor="let x of offtime" [value]="x.id">{{x.name}} </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col"> 
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Overtime</label>
+                                <input type="time" class="form-control" [(ngModel)]="model.overTime"> 
+                            </div>
+                        </div>
+                       
+                    </div>
+{{ model | json}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

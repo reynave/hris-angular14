@@ -252,9 +252,9 @@
                                     <tr>
                                         <td>Payroll </td>
                                         <td>
-                                            <div *ngIf="payrollId as value; else elseBlock"> <a
+                                            <div *ngIf="payrollId as value; else elseBlockpayroll"> <a
                                                     [routerLink]="[ '/payroll/detail', value ]">{{value}}</a></div>
-                                            <ng-template #elseBlock>
+                                            <ng-template #elseBlockpayroll>
                                                 <button type="button" class="btn btn-sm btn-primary px-4"
                                                     (click)="fnCreateOtherForm('payroll')"> Create Now</button>
                                             </ng-template>

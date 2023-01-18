@@ -20,6 +20,11 @@ import { EmploymentComponent } from './employment/employment.component';
 import { PayrollComponent } from './payroll/payroll.component';
 import { EmploymentDetailComponent } from './employment/employment-detail/employment-detail.component';
 import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { TimeManagementComponent } from './time-management/time-management.component';
+import { ReimbursementComponent } from './reimbursement/reimbursement.component'; 
+import { LoanComponent } from './loan/loan.component';
+import { TimeManagementEditComponent } from './time-management/time-management-edit/time-management-edit.component';
 
 export const customCurrencyMaskConfig = {
   align: "right",
@@ -50,7 +55,11 @@ export const customCurrencyMaskConfig = {
     EmploymentComponent,
     PayrollComponent,
     EmploymentDetailComponent,
-    PayrollDetailComponent
+    PayrollDetailComponent,
+    EmployeeComponent,
+    TimeManagementComponent,
+    ReimbursementComponent, 
+    LoanComponent, TimeManagementEditComponent
   ],
   imports: [
     BrowserModule,

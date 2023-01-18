@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api : 'http://localhost/app/hris/api/', 
+  api : 'http://128.199.94.89/api/index.php/', 
 };

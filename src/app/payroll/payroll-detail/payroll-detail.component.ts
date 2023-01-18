@@ -13,7 +13,7 @@ export class Model {
     public bankAccountNumber: string,
     public bankAccountHolderName: string,
     public hourlyRate: any,
-    public tunjangan: string,  
+    public tunjangan: string,   
   ) { }
 
 }
@@ -53,32 +53,50 @@ export class PayrollDetailComponent implements OnInit {
         this.loading = false;  
         console.log(data); 
         this.item = data['item'][0];
-        let expDate = data['item'][0]['taxableDate'].split("-"); 
 
-        console.log(data); 
+        console.log(data);  
+        let item = data['item'][0];
 
-        /*
-        public salary: string,
-        public salaryType: string,
-        public bankName: string,
-        public bankAccountNumber: string,
-        public bankAccountHolderName: string,
-        public hourlyRate: any,
-        public tunjangan: string,  */
+        this.model['salary'] = item['salary'];  
+        this.model['salaryType'] = item['salaryType'];  
+        this.model['bankName'] = item['bankName'];  
+        this.model['bankAccountNumber'] = item['bankAccountNumber'];  
+        this.model['bankAccountHolderName'] = item['bankAccountHolderName'];  
+        this.model['hourlyRate'] = item['hourlyRate'];  
+        this.model['tunjangan'] = item['tunjangan'];   
 
-        this.model['salary'] = data['item'][0]['salary'];  
-        this.model['salaryType'] = data['item'][0]['salaryType'];  
-        this.model['bankName'] = data['item'][0]['bankName'];  
-        this.model['bankAccountNumber'] = data['item'][0]['bankAccountNumber'];  
-        this.model['bankAccountHolderName'] = data['item'][0]['bankAccountHolderName'];  
-        this.model['hourlyRate'] = data['item'][0]['hourlyRate'];  
-        this.model['tunjangan'] = data['item'][0]['tunjangan'];   
+        this.model['taxNpwp'] = item['taxNpwp'];   
+        this.model['taxMethod'] = item['taxMethod'];    
+        this.model['taxHolderName'] = item['taxHolderName'];   
+        this.model['taxPtkpStatus'] = item['taxPtkpStatus'];   
+        this.model['taxSalary'] = item['taxSalary'];   
+        this.model['EmploymentTaxStatus'] = item['EmploymentTaxStatus'];   
+        this.model['taxPktpAccountHolder'] = item['taxPktpAccountHolder'];   
+        this.model['bpsjTkNo'] = item['bpsjTkNo'];   
+        this.model['bpsjKesehatanNo'] = item['bpsjKesehatanNo'];   
+        this.model['JhtCost'] = item['JhtCost'];   
+        this.model['JaminanPensiunCost'] = item['JaminanPensiunCost'];   
+        this.model['bpjsKesehatanFamily'] = item['bpjsKesehatanFamily'];   
+ 
+        let bpjsTkDate = item['bpjsTkDate'].split("-"); 
+        this.model['bpjsTkDate'] = {
+          year: parseInt(bpjsTkDate['0']),
+          month: parseInt(bpjsTkDate['1']),
+          day: parseInt(bpjsTkDate['2']),
+        }; 
+ 
+        let JaminanPensiunDate = item['JaminanPensiunDate'].split("-"); 
+        this.model['JaminanPensiunDate'] = {
+          year: parseInt(JaminanPensiunDate['0']),
+          month: parseInt(JaminanPensiunDate['1']),
+          day: parseInt(JaminanPensiunDate['2']),
+        }; 
 
-
+        let taxableDate = item['taxableDate'].split("-"); 
         this.model['taxableDate'] = {
-          year: parseInt(expDate['0']),
-          month: parseInt(expDate['1']),
-          day: parseInt(expDate['2']),
+          year: parseInt(taxableDate['0']),
+          month: parseInt(taxableDate['1']),
+          day: parseInt(taxableDate['2']),
         }; 
 
         this.readonly = true;

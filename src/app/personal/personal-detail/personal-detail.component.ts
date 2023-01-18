@@ -152,6 +152,7 @@ export class PersonalDetailComponent implements OnInit {
       personalId: this.activatedRoute.snapshot.params['id'],
       value : val
     }
+    console.log(body);
     this.http.post<any>(environment.api + "personal/fnCreateOtherForm", body, {
       headers: this.configService.headers(),
     }).subscribe(
