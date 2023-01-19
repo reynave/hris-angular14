@@ -28,6 +28,7 @@ import { TimeManagementEditComponent } from './time-management/time-management-e
 import { ReimbursementAddComponent } from './reimbursement/reimbursement-add/reimbursement-add.component';
 import { ReimbursementDetailComponent } from './reimbursement/reimbursement-detail/reimbursement-detail.component';
 import { ReimbursementHistoryComponent } from './reimbursement/reimbursement-history/reimbursement-history.component';
+import { LoadDetailComponent } from './loan/load-detail/load-detail.component';
 
 export const customCurrencyMaskConfig = {
   align: "right",
@@ -62,7 +63,7 @@ export const customCurrencyMaskConfig = {
     EmployeeComponent,
     TimeManagementComponent,
     ReimbursementComponent, 
-    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, ReimbursementDetailComponent, ReimbursementHistoryComponent
+    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, ReimbursementDetailComponent, ReimbursementHistoryComponent, LoadDetailComponent
   ],
   imports: [
     BrowserModule,

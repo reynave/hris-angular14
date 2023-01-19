@@ -5,6 +5,8 @@ import { EmploymentDetailComponent } from './employment/employment-detail/employ
 import { EmploymentComponent } from './employment/employment.component';
 import { ForbidenComponent } from './forbiden/forbiden.component';
 import { HomeComponent } from './home/home.component';
+import { LoadDetailComponent } from './loan/load-detail/load-detail.component';
+import { LoanComponent } from './loan/loan.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.component';
 import { PayrollComponent } from './payroll/payroll.component';
@@ -35,6 +37,9 @@ const routes: Routes = [
   { path: "reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "re" }, },
   { path: "reimbursement/add", component: ReimbursementAddComponent, data: { active: "re" }, },
   { path: "reimbursement/history", component: ReimbursementHistoryComponent, data: { active: "re" }, },
+ 
+  { path: "loan", component: LoanComponent, data: { active: "loan" }, },
+  { path: "loan/detail/:id", component: LoadDetailComponent, data: { active: "loan" }, },
  
 
   { path: "forbiden", component: ForbidenComponent, data: { active: "" }, },
