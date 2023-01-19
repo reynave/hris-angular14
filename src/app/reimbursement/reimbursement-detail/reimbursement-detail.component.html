@@ -1,0 +1,151 @@
+<app-header></app-header>
+
+<div class="container-fluid ">
+    <div class="row">
+
+        <div class="col-12 mt-2">
+            <button type="button" class="btn btn-outline-dark btn-sm" (click)="back();">Back</button>
+        </div>
+    </div>
+</div>
+<form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 ">
+                    <h4 class=" text-center mb-2">Detail Reimbursement</h4>
+                    <div class="border shadow-sm rounded p-4 bg-white">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Transaction ID</label>
+                                    <div class="form-control">{{item.id}}</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <div class="form-control">{{item.personalId}} {{item.name}}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="requestAmount" class="form-label">Request Amount <span
+                                            class="text-danger">*</span></label>
+                                    <input currencyMask class="form-control" id="requestAmount"
+                                        [(ngModel)]="model.requestAmount" name="requestAmount" #requestAmount="ngModel"
+                                        required>
+
+                                    <div [hidden]="requestAmount.valid || requestAmount.pristine"
+                                        class="text-danger small m-1">
+                                        Request Amount is required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="requestDate" class="form-label">Request Date <span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group">
+
+                                        <input id="requestDate" class="form-control" placeholder="yyyy-mm-dd"
+                                            name="requestDate" ngbDatepicker #requestDate="ngbDatepicker"
+                                            [(ngModel)]="model.requestDate" />
+                                        <button class="btn btn-outline-secondary" (click)="requestDate.toggle()"
+                                            type="button">
+                                            <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="reimbursementName" class="form-label">Reimbursement Name <span
+                                            class="text-danger">*</span></label>
+
+                                    <select class="form-control" [(ngModel)]="model.reimbursementNameId" required
+                                        name="reimbursementNameId" #reimbursementNameId="ngModel">
+                                        <option *ngFor="let x of reimbursementName" [value]="x.id">{{x.name}}</option>
+                                    </select>
+
+                                    <div [hidden]="reimbursementNameId.valid || reimbursementNameId.pristine"
+                                        class="text-danger small m-1">
+                                        Reimbursement Name is required
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea class="form-control" id="description" name="description"
+                                        [(ngModel)]="model.description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <hr>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="paidAmount" class="form-label"><strong>Paid Amount </strong></label>
+                                    <input currencyMask class="form-control" id="paidAmount"
+                                        [(ngModel)]="model.paidAmount" name="paidAmount" #paidAmount="ngModel">
+
+                                    <div class="text-end">
+                                        <a href="javascript:;" (click)="copyAmount();"><small>Copy from Request
+                                                Amount</small></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="mb-3" [hidden]="!model.approvedDate">
+                                    <label for="paidAmount" class="form-label"><strong>Approved Date </strong> </label>
+                                    <div class="form-control">{{item.approvedDate | date:'medium'}}, by
+                                        {{item.approvedBy}}</div>
+                                </div>
+                                <div class="mb-3" [hidden]="model.approvedDate">
+                                    <label class="form-label"><strong>Approved </strong> </label>
+                                    <div>
+                                        <input type="checkbox" id="approved" [(ngModel)]="approved" name="approved">
+                                        <label for="approved" class="mx-2"> Yes, Approve this Reimbursement
+                                            Request</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-dark btn-sm mx-2"
+                                    (click)="back();">Back</button>
+                            </div>
+                            <div class="col text-end">
+
+                                <button type="button" class="btn btn-danger btn-sm mx-2"
+                                    (click)="remove();">Remove</button>
+                                <button type="submit" class="btn btn-primary btn-sm"
+                                    [disabled]="!myForm.form.valid">Update</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</form>

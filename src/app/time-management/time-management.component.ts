@@ -56,35 +56,35 @@ export class TimeManagementComponent implements OnInit {
           title: 'Schedule In',
           data: 'scheduleIn',
           render: function (data: any, type: any, full: any) {
-            return  data.slice(0, -3);;
+            return  data != null ? data.slice(0, -3) : "";
           }
         },
         {
           title: 'Schedule Out',
           data: 'scheduleOut',
           render: function (data: any, type: any, full: any) {
-            return  data.slice(0, -3);;
+            return  data != null ? data.slice(0, -3) : "";
           }
         },
         {
           title: 'Check In',
           data: 'checkIn',
           render: function (data: any, type: any, full: any) {
-            return  data.slice(0, -3);;
+            return  data != null ? data.slice(0, -3) : "";
           }
         },
         {
           title: 'Check Out',
           data: 'checkOut',
           render: function (data: any, type: any, full: any) {
-            return  data.slice(0, -3);;
+            return  data != null ? data.slice(0, -3) : "";
           }
         },
         {
           title: 'Over Time',
           data: 'overTime',  
           render: function (data: any, type: any, full: any) {
-            return  data.slice(0, -3);;
+            return  data != null ? data.slice(0, -3) : "";
           }
         },
         {

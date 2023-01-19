@@ -8,12 +8,12 @@ import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/service/config.service'; 
 
 @Component({
-  selector: 'app-reimbursement',
-  templateUrl: './reimbursement.component.html',
-  styleUrls: ['./reimbursement.component.css']
+  selector: 'app-reimbursement-history',
+  templateUrl: './reimbursement-history.component.html',
+  styleUrls: ['./reimbursement-history.component.css']
 })
-export class ReimbursementComponent implements   OnInit  {
-  
+export class ReimbursementHistoryComponent implements OnInit {
+
   dtOptions: ADTSettings = {}; 
  
   
@@ -36,7 +36,7 @@ export class ReimbursementComponent implements   OnInit  {
   httpGet() {
    console.log("httpGet");
     this.dtOptions = {
-      ajax: environment.api + 'reimbursement',
+      ajax: environment.api + 'reimbursement/history',
       columns: [
         {
           title: 'Transaction ID',
@@ -51,8 +51,8 @@ export class ReimbursementComponent implements   OnInit  {
           }
         }, 
         {
-          title: 'Request Date',
-          data: 'requestDate',
+          title: 'Approve Date',
+          data: 'approvedDate',
         
         },
         {
@@ -65,14 +65,14 @@ export class ReimbursementComponent implements   OnInit  {
           data: 'description',
         },
         {
-          title: 'Request Amount',
-          data: 'price', 
+          title: 'Paid Amount',
+          data: 'paid', 
           render: function (data: any, type: any, full: any) { 
             return `<div class="text-end">${data}</div>`;
           }
         },
       
-        
+      
         {
           title: '',
           data: 'id',

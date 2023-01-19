@@ -26,7 +26,7 @@ export class TimeManagementEditComponent implements OnInit {
   timeManagementShift: any = [];
   item: any = [];
   offtime: any = [];
-  personal : any = [];
+  personal: any = [];
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -44,17 +44,17 @@ export class TimeManagementEditComponent implements OnInit {
     this.http.get<any>(environment.api + "timeManagement/today/" + this.activatedRoute.snapshot.params['id'], {
       headers: this.configService.headers(),
     }).subscribe(
-      data => {
+      data => { 
         this.personal = data['personal'];
         this.item = data['item'];
         this.offtime = data['offtime'];
         this.timeManagementShift = data['timeManagementShift']
-     
+
         this.model['checkIn'] = data['item']['checkIn'];
-        this.model['checkOut']= data['item']['checkOut'];
-        this.model['shiftId']= data['item']['shiftId'];
-        this.model['overTime']= data['item']['overTime'];
-        this.model['offTimeId']= data['item']['offTimeId'];
+        this.model['checkOut'] = data['item']['checkOut'];
+        this.model['shiftId'] = data['item']['shiftId'];
+        this.model['overTime'] = data['item']['overTime'];
+        this.model['offTimeId'] = data['item']['offTimeId'];
         this.loading = false;
         console.log(data);
 
@@ -65,4 +65,36 @@ export class TimeManagementEditComponent implements OnInit {
     history.back();
   }
 
+  fnDelete() {
+    if (confirm('Delete this data ? ')) {
+      const body = {
+        id: this.item['id'], 
+        model : this.model,
+      }
+      console.log(body)
+      this.http.post<any>(environment.api + "timeManagement/fnDelete", body, {
+        headers: this.configService.headers(),
+      }
+      ).subscribe(
+        data => {
+          
+         history.back();
+        }
+      )
+    }
+  }
+  fnUpdate() {
+    const body = {
+      id: this.item['id'], 
+      item: this.model,
+    }
+    this.http.post<any>(environment.api + "timeManagement/fnUpdate", body, {
+      headers: this.configService.headers(),
+    }
+    ).subscribe(
+      data => {
+        history.back();
+      }
+    )
+  }
 }

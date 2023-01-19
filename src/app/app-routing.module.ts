@@ -10,6 +10,10 @@ import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.
 import { PayrollComponent } from './payroll/payroll.component';
 import { PersonalDetailComponent } from './personal/personal-detail/personal-detail.component';
 import { PersonalComponent } from './personal/personal.component';
+import { ReimbursementAddComponent } from './reimbursement/reimbursement-add/reimbursement-add.component';
+import { ReimbursementDetailComponent } from './reimbursement/reimbursement-detail/reimbursement-detail.component';
+import { ReimbursementHistoryComponent } from './reimbursement/reimbursement-history/reimbursement-history.component';
+import { ReimbursementComponent } from './reimbursement/reimbursement.component';
 import { TimeManagementEditComponent } from './time-management/time-management-edit/time-management-edit.component';
 import { TimeManagementComponent } from './time-management/time-management.component';
 
@@ -24,8 +28,13 @@ const routes: Routes = [
   { path: "payroll", component: PayrollComponent, data: { active: "master" }, },
   { path: "payroll/detail/:id", component: PayrollDetailComponent, data: { active: "master" }, },
  
-  { path: "timeManagement", component: TimeManagementComponent, data: { active: "timeManagement" }, },
-  { path: "timeManagement/edit/:id", component: TimeManagementEditComponent, data: { active: "timeManagement" }, },
+  { path: "timeManagement", component: TimeManagementComponent, data: { active: "tm" }, },
+  { path: "timeManagement/edit/:id", component: TimeManagementEditComponent, data: { active: "tm" }, },
+ 
+  { path: "reimbursement", component: ReimbursementComponent, data: { active: "re" }, },
+  { path: "reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "re" }, },
+  { path: "reimbursement/add", component: ReimbursementAddComponent, data: { active: "re" }, },
+  { path: "reimbursement/history", component: ReimbursementHistoryComponent, data: { active: "re" }, },
  
 
   { path: "forbiden", component: ForbidenComponent, data: { active: "" }, },
