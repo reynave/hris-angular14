@@ -141,7 +141,7 @@ export class TimeManagementComponent implements OnInit {
     this.router.navigate(['timeManagement/reports'],
       { queryParams: queryParams }
     ).then(
-      () => {
+      () => { 
         this.modalService.dismissAll();
       }
     )

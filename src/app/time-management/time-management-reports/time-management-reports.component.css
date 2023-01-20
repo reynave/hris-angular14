@@ -1,20 +1,30 @@
 @media print {
+.notPrinting{
+  display: none;;
+}
+  .printing {
+    margin: 0;
+    color: #000;
+    font-size: 12px !important;
+    background-color: #fff;
+  }
+  .printing {
+    margin-top:0px;
+  }
+  .table td {
+    font-size: 10px;
+  }
+}
 
-    .printing {
-      margin: 0;
-      color: #000;
-      font-size: 12px !important;
-      background-color: #fff;
-    }
-    .table td{ 
-      font-size: 10px;
-    }
-  }
+.printing {
+  margin-top:20px;
+}
 
-  .off td{
-    text-decoration: line-through !important;
-  }
-  .table td{
-    margin: 0px;
-    padding: 0px 10px;
-  }
+.off td {
+  text-decoration: line-through !important;
+}
+
+.table td {
+  margin: 0px;
+  padding: 0px 10px;
+}

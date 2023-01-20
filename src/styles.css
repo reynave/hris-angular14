@@ -19,3 +19,13 @@ body{
     margin: 0 auto;
     margin-bottom: 50px;
 }
+
+@media print {
+
+    .nav-fixed {
+      display: none;
+    }
+    body{
+        margin-top: 0px;
+    }
+  }

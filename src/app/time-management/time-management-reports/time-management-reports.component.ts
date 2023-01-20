@@ -35,5 +35,10 @@ export class TimeManagementReportsComponent implements OnInit {
       }
     )
   }
-
+  back(){
+    history.back();
+  }
+  printing(){
+    print();
+  }
 }
