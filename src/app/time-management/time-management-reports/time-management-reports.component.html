@@ -71,16 +71,16 @@
                             <td>{{x.quickly}}</td>
                             <td>{{x.overtime}}</td>
                             <td>{{x.workingHour}}</td>
-                            <td>{{x.note}} {{x.off}}</td>  
+                            <td>{{x.note}} </td>  
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr><th></th>
                             <th colspan="5">   Jumlah   </th>
                             <th>{{summary['late']}}</th>
-                            <th>Cepat Pulang</th>
-                            <th>Lembur</th>
-                            <th>Jumlah Jam</th>
+                            <th>{{summary['quickly']}}</th>
+                            <th>{{summary['overtime']}}</th>
+                            <th>{{summary['working']}}</th>
                             <th></th>
                         </tr>
                     </tfoot>
