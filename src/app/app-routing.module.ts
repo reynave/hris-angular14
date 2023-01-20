@@ -17,6 +17,7 @@ import { ReimbursementDetailComponent } from './reimbursement/reimbursement-deta
 import { ReimbursementHistoryComponent } from './reimbursement/reimbursement-history/reimbursement-history.component';
 import { ReimbursementComponent } from './reimbursement/reimbursement.component';
 import { TimeManagementEditComponent } from './time-management/time-management-edit/time-management-edit.component';
+import { TimeManagementReportsComponent } from './time-management/time-management-reports/time-management-reports.component';
 import { TimeManagementComponent } from './time-management/time-management.component';
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
  
   { path: "timeManagement", component: TimeManagementComponent, data: { active: "tm" }, },
   { path: "timeManagement/edit/:id", component: TimeManagementEditComponent, data: { active: "tm" }, },
+  { path: "timeManagement/reports", component: TimeManagementReportsComponent, data: { active: "tm" }, },
  
   { path: "reimbursement", component: ReimbursementComponent, data: { active: "re" }, },
   { path: "reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "re" }, },

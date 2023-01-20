@@ -1,15 +1,68 @@
 <app-header></app-header>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <h4>  Time Management </h4>
+<div class="container-fluid pt-4">
+    <div class="row ">
+        <div class="col-6 ">
+            <h4>Time Management </h4>
+        </div>
+        <div class="col-6 text-end">
+
+            <a (click)="open(content)" class="{{styleBtn}}">Reports</a>
+            <a [routerLink]="[ '/timeManagement/import' ]" class="{{styleBtn}}">Imports File</a>
+
         </div>
 
         <div class="col-12">
-            <div class="border shadow-sm rounded p-2 bg-white">
+            <div class="border shadow-sm rounded p-2 bg-white mt-2">
                 <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
             </div>
         </div>
     </div>
 </div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col">
+                <label for="startDate"><b>Start Date</b></label>
+                <div class="input-group">
+                    <input id="startDate" class="form-control" placeholder="yyyy-mm-dd" name="startDate" ngbDatepicker
+                        #dp="ngbDatepicker" [(ngModel)]="startDate" [maxDate]="today" />
+                    <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">
+                        <img src="./assets/img/icons8-calendar-48.png" height="20">
+                    </button>
+                </div>
+            </div>
+
+            <div class="col">
+                <label for="endDate"><b>End date</b></label>
+                <div class="input-group">
+                    <input id="endDate" class="form-control" placeholder="yyyy-mm-dd" name="endDate" ngbDatepicker
+                        #dpx="ngbDatepicker" [(ngModel)]="endDate" [maxDate]="today" />
+                    <button class="btn btn-outline-secondary" (click)="dpx.toggle()" type="button">
+                        <img src="./assets/img/icons8-calendar-48.png" height="20">
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-12 ">
+                <div class="mt-3">
+                    <label for="personal"><b>Employee</b></label>
+                    <select class="form-control" [(ngModel)]="personalId">
+                        <option *ngFor="let x of personalSelect" [value]="x.personalId"> {{x.personalId}} {{x.name}}</option>
+                    </select>
+                </div> 
+            </div>
+        </div>
+ 
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark mx-1" (click)="modal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-primary" (click)="fnNext();" >Next</button>
+    </div>
+</ng-template>

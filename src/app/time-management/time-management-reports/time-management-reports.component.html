@@ -1,0 +1,92 @@
+<div class="printing">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td width="50%"><b>Fingerprint ID</b></td>
+                            <td>: {{employee.idx}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Kode Karaywan</b></td>
+                            <td>:  {{employee.personalId}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Nama karyawan</b></td>
+                            <td>:  {{employee.idx}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6">
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td width="50%"><b>Jabatan Karyawan</b></td>
+                            <td>: {{employee.jobPositionId}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Tanggal Gabung</b></td>
+                            <td>:  {{employee.dateJoinStart | date:'dd-MM-Y'}} </td>
+                        </tr>
+                        <!-- <tr>
+                            <td><b>Nama Departemen</b></td>
+                            <td></td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <table class="border table table-bordered mt-3">
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Tanggal</th>
+                            <th>Jam Kerja</th>
+                            <th>Kegiatan</th>
+                            <th>Jam masuk</th>
+                            <th>Jam Keluar</th>
+                            <th>Terlambat</th>
+                            <th>Cepat Pulang</th>
+                            <th>Lembur</th>
+                            <th>Jumlah Jam</th>
+                            <th>Catatan</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of items" [ngClass]="{'off': x.off == false}">
+                            <td>{{x.day}}</td>
+                            <td>{{x.date | date:'dd-MM-Y'}}</td>
+                            <td>{{x.hour}}</td>
+                            <td>{{x.job}}</td>
+                            <td>{{!x.checkIn ? "":x.checkIn}}</td>
+                            <td>{{!x.checkOut ? "":x.checkOut}}</td>
+                            <td>{{x.late}}</td>
+                            <td>{{x.quickly}}</td>
+                            <td>{{x.overtime}}</td>
+                            <td>{{x.workingHour}}</td>
+                            <td>{{x.note}} {{x.off}}</td>  
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr><th></th>
+                            <th colspan="5">   Jumlah   </th>
+                            <th>{{summary['late']}}</th>
+                            <th>Cepat Pulang</th>
+                            <th>Lembur</th>
+                            <th>Jumlah Jam</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
