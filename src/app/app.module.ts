@@ -22,7 +22,7 @@ import { EmploymentDetailComponent } from './employment/employment-detail/employ
 import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { TimeManagementComponent } from './time-management/time-management.component';
-import { ReimbursementComponent } from './reimbursement/reimbursement.component'; 
+import { ReimbursementComponent } from './reimbursement/reimbursement.component';
 import { LoanComponent } from './loan/loan.component';
 import { TimeManagementEditComponent } from './time-management/time-management-edit/time-management-edit.component';
 import { ReimbursementAddComponent } from './reimbursement/reimbursement-add/reimbursement-add.component';
@@ -30,6 +30,9 @@ import { ReimbursementDetailComponent } from './reimbursement/reimbursement-deta
 import { ReimbursementHistoryComponent } from './reimbursement/reimbursement-history/reimbursement-history.component';
 import { LoadDetailComponent } from './loan/load-detail/load-detail.component';
 import { TimeManagementReportsComponent } from './time-management/time-management-reports/time-management-reports.component';
+
+import { TimeManagementImportComponent } from './time-management/time-management-import/time-management-import.component';
+import { OrganizationComponent } from './organization/organization.component';
 
 export const customCurrencyMaskConfig = {
   align: "right",
@@ -63,17 +66,17 @@ export const customCurrencyMaskConfig = {
     PayrollDetailComponent,
     EmployeeComponent,
     TimeManagementComponent,
-    ReimbursementComponent, 
-    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, ReimbursementDetailComponent, ReimbursementHistoryComponent, LoadDetailComponent, TimeManagementReportsComponent
+    ReimbursementComponent,
+    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, ReimbursementDetailComponent, ReimbursementHistoryComponent, LoadDetailComponent, TimeManagementReportsComponent,  TimeManagementImportComponent, OrganizationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     CommonModule,
-    FormsModule, 
+    FormsModule,
     HttpClientModule,
-    DataTablesModule, 
+    DataTablesModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
   ],
   providers: [],

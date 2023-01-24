@@ -85,7 +85,9 @@
                             <td>{{x.hour}}</td>
                             <td>{{x.job}}</td>
                             <td>{{!x.checkIn ? "":x.checkIn}}</td>
-                            <td>{{!x.checkOut ? "":x.checkOut}}</td>
+                            <td>{{!x.checkOut ? "":x.checkOut}}  
+                            <span [hidden]="x.checkOut != '00:00' "><img src="./assets/img/icons8-exclamation-mark-48.png"  height="20"></span> 
+                            </td>
                             <td>{{x.late}}</td>
                             <td>{{x.quickly}}</td>
                             <td>{{x.overtime}}</td>

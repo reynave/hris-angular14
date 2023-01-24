@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { LoadDetailComponent } from './loan/load-detail/load-detail.component';
 import { LoanComponent } from './loan/loan.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { OrganizationComponent } from './organization/organization.component';
 import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.component';
 import { PayrollComponent } from './payroll/payroll.component';
 import { PersonalDetailComponent } from './personal/personal-detail/personal-detail.component';
@@ -17,6 +18,7 @@ import { ReimbursementDetailComponent } from './reimbursement/reimbursement-deta
 import { ReimbursementHistoryComponent } from './reimbursement/reimbursement-history/reimbursement-history.component';
 import { ReimbursementComponent } from './reimbursement/reimbursement.component';
 import { TimeManagementEditComponent } from './time-management/time-management-edit/time-management-edit.component';
+import { TimeManagementImportComponent } from './time-management/time-management-import/time-management-import.component';
 import { TimeManagementReportsComponent } from './time-management/time-management-reports/time-management-reports.component';
 import { TimeManagementComponent } from './time-management/time-management.component';
 
@@ -24,6 +26,9 @@ const routes: Routes = [
   { path: "", component: EmployeeComponent, data: { active: "home" }, },
   { path: "employee", component: EmployeeComponent, data: { active: "home" }, },
  
+  { path: "organization", component: OrganizationComponent, data: { active: "master" }, },
+ 
+
   { path: "personal", component: PersonalComponent, data: { active: "master" }, },
   { path: "personal/detail/:id", component: PersonalDetailComponent, data: { active: "master" }, },
   { path: "employment", component: EmploymentComponent, data: { active: "master" }, },
@@ -34,6 +39,7 @@ const routes: Routes = [
   { path: "timeManagement", component: TimeManagementComponent, data: { active: "tm" }, },
   { path: "timeManagement/edit/:id", component: TimeManagementEditComponent, data: { active: "tm" }, },
   { path: "timeManagement/reports", component: TimeManagementReportsComponent, data: { active: "tm" }, },
+  { path: "timeManagement/import", component: TimeManagementImportComponent, data: { active: "tm" }, },
  
   { path: "reimbursement", component: ReimbursementComponent, data: { active: "re" }, },
   { path: "reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "re" }, },
