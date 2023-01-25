@@ -1,30 +1,21 @@
-<app-header></app-header>
-
+ 
+ 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-6">
-
-            <button class="btn btn-outline-dark btn-sm" type="button" (click)="back();">Back</button>
-        </div>
-        <div class="col-6 mb-2 text-end">
-
-            <button class="btn btn-primary btn-sm mx-1" [hidden]="readonly" type="button"
-                (click)="fnSave();">Save</button>
-
-            <button class="btn btn-warning btn-sm mx-1" type="button" [hidden]="!readonly"
-                (click)="readonly=false">Editable</button>
-
-        </div>
-
+    <div class="row"> 
         <div class="col-12">
-            <h4>Employee Master - Payroll </h4>
-        </div>
-
-        <div class="col-12">
-            <div class="border shadow-sm rounded p-3 bg-white">
+            <div class="border border-top-0 shadow-sm  p-3 bg-white">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-6">
                         <h5>Salary </h5>
+                    </div>
+                    <div class="col-6 mb-2 text-end">
+
+                        <button class="btn btn-primary btn-sm mx-1" [hidden]="readonly" type="button"
+                            (click)="fnSave();">Save</button>
+            
+                        <button class="btn btn-warning btn-sm mx-1" type="button" [hidden]="!readonly"
+                            (click)="readonly=false">Editable</button>
+            
                     </div>
                     <div class="col-6">
                         <div class="border p-2">

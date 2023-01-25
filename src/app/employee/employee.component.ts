@@ -6,6 +6,20 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/service/config.service'; 
 
+export class Model {
+
+  constructor(
+    public name: string,
+    public phone: string,
+    public email: string,
+    public gender: string,
+    public birthPlace: string,
+    public birthDate: any,
+
+  ) { }
+
+}
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -13,6 +27,7 @@ import { ConfigService } from 'src/app/service/config.service';
 })
 export class EmployeeComponent implements OnInit {
   dtOptions: ADTSettings = {}; 
+  model: any = new Model("", "", "", "", "", { "year": 1990, "month": 1, "day": 1 });
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -35,14 +50,14 @@ export class EmployeeComponent implements OnInit {
       columns: [
         {
           title: 'Employed ID',
-          data: 'personalId',
+          data: 'id',
           render: function (data: any, type: any, full: any) {
-            return '<a  href="#/employment/detail/' + data + '">'+data+'</a>';
+            return '<a  href="#/employee/detail/' + data + '">'+data+'</a>';
           }
         },
         {
           title: 'Name',
-          data: 'personal',
+          data: 'name',
         },
         {
           title: 'Branch',
@@ -69,17 +84,31 @@ export class EmployeeComponent implements OnInit {
           title: 'Join',
           data: 'dateJoinStart',
         },
-        {
-          title: 'End',
-          data: 'dateJoinEnd',
-        },
         
       ]
     };
   }
  
+  onSubmit() {
+    const body = this.model;
+    this.http.post<any>(environment.api + "personal/insert", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate(['employee/detail/',data['id']]).then(
+          () => {
+            this.modalService.dismissAll();
+          }
+        )
+      },
+      e => {
+        console.log(e);
+      }
+    )
+
+  }
   open(content: any) {
     this.modalService.open(content, { size: 'lg' });
   }
-
 }

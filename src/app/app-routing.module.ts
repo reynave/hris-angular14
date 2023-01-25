@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EmployeeDetailComponent } from './employee/employee-detail/employee-detail.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmploymentDetailComponent } from './employment/employment-detail/employment-detail.component';
 import { EmploymentComponent } from './employment/employment.component';
@@ -24,31 +25,29 @@ import { TimeManagementComponent } from './time-management/time-management.compo
 
 const routes: Routes = [
   { path: "", component: EmployeeComponent, data: { active: "home" }, },
-  { path: "employee", component: EmployeeComponent, data: { active: "home" }, },
- 
-  { path: "organization", component: OrganizationComponent, data: { active: "master" }, },
- 
+  { path: "employee", component: EmployeeComponent, data: { active: "empl" }, },
+  { path: "employee/detail/:id", component: EmployeeDetailComponent, data: { active: "empl" }, },
 
-  { path: "personal", component: PersonalComponent, data: { active: "master" }, },
+  { path: "organization", component: OrganizationComponent, data: { active: "master" }, },
+
+
   { path: "personal/detail/:id", component: PersonalDetailComponent, data: { active: "master" }, },
-  { path: "employment", component: EmploymentComponent, data: { active: "master" }, },
   { path: "employment/detail/:id", component: EmploymentDetailComponent, data: { active: "master" }, },
-  { path: "payroll", component: PayrollComponent, data: { active: "master" }, },
   { path: "payroll/detail/:id", component: PayrollDetailComponent, data: { active: "master" }, },
- 
+
   { path: "timeManagement", component: TimeManagementComponent, data: { active: "tm" }, },
   { path: "timeManagement/edit/:id", component: TimeManagementEditComponent, data: { active: "tm" }, },
   { path: "timeManagement/reports", component: TimeManagementReportsComponent, data: { active: "tm" }, },
   { path: "timeManagement/import", component: TimeManagementImportComponent, data: { active: "tm" }, },
- 
+
   { path: "reimbursement", component: ReimbursementComponent, data: { active: "re" }, },
   { path: "reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "re" }, },
   { path: "reimbursement/add", component: ReimbursementAddComponent, data: { active: "re" }, },
   { path: "reimbursement/history", component: ReimbursementHistoryComponent, data: { active: "re" }, },
- 
+
   { path: "loan", component: LoanComponent, data: { active: "loan" }, },
   { path: "loan/detail/:id", component: LoadDetailComponent, data: { active: "loan" }, },
- 
+
 
   { path: "forbiden", component: ForbidenComponent, data: { active: "" }, },
   { path: "nofound", component: NotfoundComponent, data: { active: "" }, },
@@ -56,7 +55,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ useHash:true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

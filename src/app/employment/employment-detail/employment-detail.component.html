@@ -1,43 +1,30 @@
-<app-header></app-header>
-
 <div class="container-fluid">
     <div class="row">
-        <div class="col-6">
-            <button class="btn btn-outline-dark btn-sm" type="button" (click)="back();">Back</button>
-        </div>
-        <div class="col-6 mb-2 text-end">
 
-            <button class="btn btn-primary btn-sm mx-1" [hidden]="readonly" type="button"
-                (click)="fnSave();">Save</button>
-
-            <button class="btn btn-warning btn-sm mx-1" type="button" [hidden]="!readonly"
-                (click)="readonly=false">Editable</button>
-
-        </div>
         <div class="col-12">
-            <div class="border shadow-sm rounded p-3 bg-white">
+
+            <div class="border border-top-0 shadow-sm rounded p-3 bg-white">
                 <div class="row">
-                    <div class="col-12">
-                        <h4>Employee Master - Employment Detail</h4>
+                    <div class="col-6">
+                        <h4>Employment</h4>
+                    </div>
+
+                    <div class="col-6 mb-2 text-end">
+                        <span [hidden]="!loading" class="mx-3">Loading...</span>
+                        <button class="btn btn-primary btn-sm mx-1" [hidden]="readonly" type="button"
+                            (click)="fnSave();">Save</button>
+
+                        <button class="btn btn-warning btn-sm mx-1" type="button" [hidden]="!readonly"
+                            (click)="readonly=false">Editable</button>
+
                     </div>
                     <div class="col-6">
                         <div class="border p-2">
                             <table class="table">
-                                <tbody>
+                                <tbody> 
                                     <tr>
-                                        <td>ID Employed</td>
-                                        <td><strong>{{personalId}}</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Name</td>
-                                        <td><strong>{{personalName}}</strong> &nbsp;
-                                            <a [routerLink]="[ '/personal/detail/', personalId ]">Detail</a>
+                                        <td> <label for="organizationId">Organization ID <span  class="text-danger">*</span></label>
                                         </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td> <label for="organizationId">Organization ID <span
-                                                    class="text-danger">*</span></label></td>
                                         <td>
                                             <div [hidden]="addOrganization">
                                                 <select class="form-control" [disabled]="readonly" required
@@ -69,7 +56,8 @@
 
                                                     <button type="button" class="btn btn-sm btn-dark "
                                                         [disabled]="inputOrganization.length < 1"
-                                                        (click)="insertOrganization();"> Insert </button>
+                                                        (click)="insertOrganization();">
+                                                        Insert </button>
                                                 </div>
                                             </div>
 
@@ -77,16 +65,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td> <label for="branchId">Branch ID<span class="text-danger">*</span></label>
-                                        </td>
-                                        <td>
-
-                                            <div [hidden]="!branch.length">
-
-
-
-
-
+                                        <td> <label for="branchId">Branch ID<span class="text-danger">*</span></label> </td>
+                                        <td> 
+                                            <div [hidden]="!branch.length"> 
                                                 <div *ngIf="addBranch; else elseBlock">
                                                     <input type="text" class="form-control" [disabled]="readonly"
                                                         [(ngModel)]="inputBranch">
@@ -97,7 +78,8 @@
 
                                                         <button type="button" class="btn btn-sm btn-dark "
                                                             [disabled]="inputBranch.length < 1"
-                                                            (click)="insertBranch();"> Insert </button>
+                                                            (click)="insertBranch();"> Insert
+                                                        </button>
                                                     </div>
 
                                                 </div>
@@ -207,14 +189,7 @@
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td>Update Date</td>
-                                        <td>{{item['inputDate']}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Created Date</td>
-                                        <td>{{item['updateDate']}}</td>
-                                    </tr>
+                                  
 
 
                                 </tbody>
@@ -222,8 +197,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
-        {{model | json}}
     </div>
 </div>

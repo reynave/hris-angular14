@@ -6,14 +6,14 @@
         </div>
         <div class="col-6 ">
 
-            <a class="btn btn-sm btn-outline-dark" (click)="back();">Back</a> 
+            <a class="btn btn-sm btn-outline-dark" (click)="back();">Back</a>
 
-        </div> 
+        </div>
         <div class="col-6 text-end">
 
-            <a  class="btn btn-sm btn-success" (click)="printing()">Print</a> 
+            <a class="btn btn-sm btn-success" (click)="printing()">Print</a>
 
-        </div> 
+        </div>
     </div>
 </div>
 
@@ -30,11 +30,11 @@
                         </tr>
                         <tr>
                             <td><b>Kode Karaywan</b></td>
-                            <td>:  {{employee.personalId}} </td>
+                            <td>: {{employee.personalId}} </td>
                         </tr>
                         <tr>
                             <td><b>Nama karyawan</b></td>
-                            <td>:  {{employee.name}} </td>
+                            <td>: {{employee.name}} </td>
                         </tr>
                     </tbody>
                 </table>
@@ -48,7 +48,7 @@
                         </tr>
                         <tr>
                             <td><b>Tanggal Gabung</b></td>
-                            <td>:  {{employee.dateJoinStart | date:'dd-MM-Y'}} </td>
+                            <td>: {{employee.dateJoinStart | date:'dd-MM-Y'}} </td>
                         </tr>
                         <!-- <tr>
                             <td><b>Nama Departemen</b></td>
@@ -83,21 +83,37 @@
                             <td>{{x.day}}</td>
                             <td>{{x.date | date:'dd-MM-Y'}}</td>
                             <td>{{x.hour}}</td>
-                            <td>{{x.job}}</td>
-                            <td>{{!x.checkIn ? "":x.checkIn}}</td>
-                            <td>{{!x.checkOut ? "":x.checkOut}}  
-                            <span [hidden]="x.checkOut != '00:00' "><img src="./assets/img/icons8-exclamation-mark-48.png"  height="20"></span> 
+                            <td>{{x.job}}
+
+                                <a href="javascript:;" (click)="open(content,x)" class="notPrinting mx-2"  >
+                                    <img src="./assets/img/icons8-edit-48.png" height="15"></a>
+                            </td>
+                            <td>{{!x.checkIn ? "":x.checkIn}}
+
+                                <a href="javascript:;" (click)="open(content,x)" [hidden]="!x.hour" class="notPrinting mx-2">
+                                    <img src="./assets/img/icons8-edit-48.png" height="15"></a>
+                            </td>
+
+
+                            <td>{{!x.checkOut ? "":x.checkOut}}
+
+                                <span [hidden]="x.checkOut != '00:00' "><img
+                                        src="./assets/img/icons8-exclamation-mark-48.png" height="20"></span>
+                                <a href="javascript:;"  (click)="open(content,x)" [hidden]="!x.hour" class="notPrinting mx-2">
+                                    <img src="./assets/img/icons8-edit-48.png" height="15"></a>
+
                             </td>
                             <td>{{x.late}}</td>
                             <td>{{x.quickly}}</td>
                             <td>{{x.overtime}}</td>
                             <td>{{x.workingHour}}</td>
-                            <td>{{x.note}} </td>  
+                            <td>{{x.note}} </td>
                         </tr>
                     </tbody>
                     <tfoot>
-                        <tr><th></th>
-                            <th colspan="5">   Jumlah   </th>
+                        <tr>
+                            <th></th>
+                            <th colspan="5"> Jumlah </th>
                             <th>{{summary['late']}}</th>
                             <th>{{summary['quickly']}}</th>
                             <th>{{summary['overtime']}}</th>
@@ -111,3 +127,60 @@
     </div>
 
 </div>
+
+
+<ng-template #content let-modal>
+
+    <div class="modal-header">
+        <strong class="modal-title" id="modal-basic-title">Edit Time Management</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+
+    <div class="modal-body">
+ 
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Shift</label>
+                     <select name="shiftId" class="form-control" [(ngModel)]="model.shiftId">
+                        <option *ngFor="let x of timeManagementShift" [value]="x.id">{{x.name}}
+                            ({{x.scheduleIn}} - {{x.scheduleOut}}) </option>
+                    </select>  
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Check In</label>
+                    <input type="time" class="form-control" [(ngModel)]="model.checkIn">
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Check Out</label>
+                    <input type="time" class="form-control" [(ngModel)]="model.checkOut">
+                </div>
+            </div>
+            <!-- <div class="col">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Time Off</label>
+                    <select name="offTimeId" class="form-control" [(ngModel)]="model.offTimeId">
+                        <option value=""> - </option>
+                        <option *ngFor="let x of offtime" [value]="x.id">{{x.name}} </option>
+                    </select> 
+                </div>
+            </div> -->
+            
+
+        </div>
+         
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light mx-2" (click)="modal.close('Save click')">Cancel</button>
+        <button type="submit" class="btn btn-success" (click)="fnUpdate();">Submit</button>
+
+    </div>
+</ng-template>

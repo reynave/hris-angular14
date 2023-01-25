@@ -23,11 +23,11 @@ export class TimeManagementComponent implements OnInit {
   }
 
   startDate: any = {
-    year: parseInt(this.date.getFullYear()),
+    year: parseInt((this.date).getFullYear()),
     month: parseInt(this.date.getMonth()) + 1,
-    day: parseInt(this.date.getDate()),
+    day: 1,
   };
-  endDate: any = this.startDate;
+  endDate: any = this.today;
   personalSelect: any = [];
   constructor(
     config: NgbModalConfig,

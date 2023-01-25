@@ -49,8 +49,7 @@ export class EmploymentDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
   ) { }
 
-  ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.params['id'];
+  ngOnInit(): void { 
     this.httpGet();
   }
 
@@ -62,6 +61,7 @@ export class EmploymentDetailComponent implements OnInit {
       data => {
         this.loading = false;
         console.log(data);
+        this.id = data['id'];
         this.personalId = data['item'][0]['personalId'];
         this.personalName = data['item'][0]['name'];
         this.employmentStatus = data['employmentStatus'];
@@ -158,7 +158,7 @@ export class EmploymentDetailComponent implements OnInit {
 
   fnSave() {
     const body = {
-      id: this.activatedRoute.snapshot.params['id'],
+      id:  this.id ,
       model: this.model,
     };
     this.http.post<any>(environment.api + "employment/fnSave", body, {

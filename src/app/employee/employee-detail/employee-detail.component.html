@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 my-4">
+            <h4> Employee Detail </h4>
+            <a (click)="back();" class="btn btn-sm btn-outline-dark">Back</a>
+        </div>
+
+        <div class="col-12"> 
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link " [ngClass]="{'active': switch_expression==''}" href="javascript:;" (click)="switch_expression=''">Personal Data</a>
+                </li>
+
+
+                <li class="nav-item" [hidden]="!employmentId">
+                    <a class="nav-link" [ngClass]="{'active': switch_expression=='employment'}" href="javascript:;" (click)="switch_expression='employment'">Employment</a>
+                </li>
+                <li class="nav-item" [hidden]="employmentId">
+                    <a class="nav-link text-dark"   href="javascript:;" (click)="fnCreate('employment');"  ><em>Employment <img src="./assets/img/icons8-lock-24.png" height="20"></em></a>
+                </li>
+
+
+                <li class="nav-item" [hidden]="!payrollId">
+                    <a class="nav-link" [ngClass]="{'active': switch_expression=='payroll'}" href="javascript:;" (click)="switch_expression='payroll'">Payroll</a>
+                </li>
+                <li class="nav-item" [hidden]="payrollId">
+                    <a class="nav-link text-dark"   href="javascript:;"  (click)="fnCreate('payroll');"  ><em>Payroll <img src="./assets/img/icons8-lock-24.png" height="20"></em></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<container-element [ngSwitch]="switch_expression">
+    <div *ngSwitchCase="'employment'"><app-employment-detail></app-employment-detail></div> 
+    <div *ngSwitchCase="'payroll'"><app-payroll-detail></app-payroll-detail></div> 
+    
+    <div *ngSwitchDefault><app-personal-detail></app-personal-detail></div>
+  </container-element>
+
+
