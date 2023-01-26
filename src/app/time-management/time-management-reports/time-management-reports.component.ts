@@ -36,7 +36,9 @@ export class TimeManagementReportsComponent implements OnInit {
 
   httpGet() {
     let str = new URLSearchParams(this.activeRouter.snapshot.queryParams).toString();
-    this.http.get<any>(environment.api + "timeManagement/reports?" + str).subscribe(
+    this.http.get<any>(environment.api + "timeManagement/reports?" + str,{
+      headers: this.configService.headers(),
+    }).subscribe(
       data => {
         console.log(data);
         this.summary = data['summary'];

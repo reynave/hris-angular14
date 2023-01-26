@@ -28,7 +28,7 @@ import { TimeManagementReportsComponent } from './time-management/time-managemen
 import { TimeManagementComponent } from './time-management/time-management.component';
 
 const routes: Routes = [
-  { path: "", component: EmployeeComponent, data: { active: "_home" }, },
+  { path: "", component: LoginComponent, data: { active: "login" }, },
 
   { path: "login", component: LoginComponent, data: { active: "login" }, },
   { path: "login/relogin", component: ReloginComponent, data: { active: "login" }, },
