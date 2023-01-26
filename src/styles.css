@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-.nav-fixed{
+.nav-fixed {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -7,14 +7,15 @@
     z-index: 99;
 }
 
-body{
+body {
     margin-top: 55px;
 }
 
-.form-control{
+.form-control {
     background-color: rgb(244, 243, 243);
 }
-.wrapper{
+
+.wrapper {
     width: 800px;
     margin: 0 auto;
     margin-bottom: 50px;
@@ -23,9 +24,18 @@ body{
 @media print {
 
     .nav-fixed {
-      display: none;
+        display: none;
     }
-    body{
+
+    body {
         margin-top: 0px;
     }
-  }
+}
+
+.footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    height: auto;
+}

@@ -5,9 +5,13 @@ import { EmployeeComponent } from './employee/employee.component';
 import { EmploymentDetailComponent } from './employment/employment-detail/employment-detail.component';
 import { EmploymentComponent } from './employment/employment.component';
 import { ForbidenComponent } from './forbiden/forbiden.component';
+import { GlobalMasterdataComponent } from './global-masterdata/global-masterdata.component';
+import { AuthGuard } from './guard/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { LoadDetailComponent } from './loan/load-detail/load-detail.component';
 import { LoanComponent } from './loan/loan.component';
+import { LoginComponent } from './login/login.component';
+import { ReloginComponent } from './login/relogin/relogin.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { OrganizationComponent } from './organization/organization.component';
 import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.component';
@@ -24,32 +28,36 @@ import { TimeManagementReportsComponent } from './time-management/time-managemen
 import { TimeManagementComponent } from './time-management/time-management.component';
 
 const routes: Routes = [
-  { path: "", component: EmployeeComponent, data: { active: "home" }, },
-  { path: "employee", component: EmployeeComponent, data: { active: "empl" }, },
-  { path: "employee/detail/:id", component: EmployeeDetailComponent, data: { active: "empl" }, },
+  { path: "", component: EmployeeComponent, data: { active: "_home" }, },
 
-  { path: "organization", component: OrganizationComponent, data: { active: "master" }, },
+  { path: "login", component: LoginComponent, data: { active: "login" }, },
+  { path: "login/relogin", component: ReloginComponent, data: { active: "login" }, },
 
-
-  { path: "personal/detail/:id", component: PersonalDetailComponent, data: { active: "master" }, },
-  { path: "employment/detail/:id", component: EmploymentDetailComponent, data: { active: "master" }, },
-  { path: "payroll/detail/:id", component: PayrollDetailComponent, data: { active: "master" }, },
-
-  { path: "timeManagement", component: TimeManagementComponent, data: { active: "tm" }, },
-  { path: "timeManagement/edit/:id", component: TimeManagementEditComponent, data: { active: "tm" }, },
-  { path: "timeManagement/reports", component: TimeManagementReportsComponent, data: { active: "tm" }, },
-  { path: "timeManagement/import", component: TimeManagementImportComponent, data: { active: "tm" }, },
-
-  { path: "reimbursement", component: ReimbursementComponent, data: { active: "re" }, },
-  { path: "reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "re" }, },
-  { path: "reimbursement/add", component: ReimbursementAddComponent, data: { active: "re" }, },
-  { path: "reimbursement/history", component: ReimbursementHistoryComponent, data: { active: "re" }, },
-
-  { path: "loan", component: LoanComponent, data: { active: "loan" }, },
-  { path: "loan/detail/:id", component: LoadDetailComponent, data: { active: "loan" }, },
+  { path: "employee", component: EmployeeComponent, data: { active: "_masterData" }, canActivate:[AuthGuard] },
+  { path: "employee/detail/:id", component: EmployeeDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
+  { path: "organization", component: OrganizationComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
+  { path: "personal/detail/:id", component: PersonalDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
+  { path: "employment/detail/:id", component: EmploymentDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
+  { path: "payroll/detail/:id", component: PayrollDetailComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
+  { path: "globalMasterData", component: GlobalMasterdataComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
 
 
-  { path: "forbiden", component: ForbidenComponent, data: { active: "" }, },
+
+  { path: "timeManagement", component: TimeManagementComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
+  { path: "timeManagement/edit/:id", component: TimeManagementEditComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
+  { path: "timeManagement/reports", component: TimeManagementReportsComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
+  { path: "timeManagement/import", component: TimeManagementImportComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
+
+  { path: "reimbursement", component: ReimbursementComponent, data: { active: "_reimbursement" }, canActivate:[AuthGuard]},
+  { path: "reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "_reimbursement" }, canActivate:[AuthGuard]},
+  { path: "reimbursement/add", component: ReimbursementAddComponent, data: { active: "_reimbursement" },canActivate:[AuthGuard] },
+  { path: "reimbursement/history", component: ReimbursementHistoryComponent, data: { active: "_reimbursement" }, canActivate:[AuthGuard]},
+
+  { path: "loan", component: LoanComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
+  { path: "loan/detail/:id", component: LoadDetailComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
+
+
+  { path: "forbiden", component: ForbidenComponent, data: { active: "" },canActivate:[AuthGuard] },
   { path: "nofound", component: NotfoundComponent, data: { active: "" }, },
   { path: "**", component: NotfoundComponent, data: { active: "404" } },
 ];

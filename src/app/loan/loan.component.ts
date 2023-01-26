@@ -55,8 +55,15 @@ export class LoanComponent implements OnInit {
   }
 
   httpGet() {
-    this.dtOptions = {
-      ajax: environment.api + 'loan',
+    this.dtOptions = { 
+      ajax: {
+        url: environment.api + 'loan',
+        type: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Token': this.configService.varToken,
+        },
+      },
       columns: [
         {
           title: 'Transaction ID',

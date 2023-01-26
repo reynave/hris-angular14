@@ -1,0 +1,215 @@
+<app-header></app-header>
+
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4>Global Master Data</h4>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="border shadow-sm rounded bg-white p-3 mb-3">
+                <div class="mb-2">
+                    <strong>
+                        Master Job Level
+                    </strong>
+                </div>
+                <table class="table ">
+                    <tbody>
+                        <tr *ngFor="let x of employment_joblevel">
+                            <td> <input type="text" class="form-control" [(ngModel)]="x.name" name="name"> </td>
+                            <td width="30px"><button class="btn btn-sm btn-outline-dark"
+                                    (click)="fnDelete('employment_joblevel',x);"><img
+                                        src="./assets/img/icons8-multiply-52.png" height="20"></button></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-outline-dark mx-1"
+                                    (click)="fnInsert('employment_joblevel')">Add Item</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-success mx-1"
+                                    (click)="fnSave_employment_joblevel();">Save</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-12  col-md-8">
+            <div class="border shadow-sm rounded bg-white  p-3  mb-3">
+                <div class="mb-2">
+                    <strong>
+                        Master Job Position
+                    </strong>
+                </div>
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Master Data</th>
+                            <th>Time Management</th>
+                            <th>Reimbursement</th>
+                            <th>Loan</th>
+                            <th>Payroll</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of employment_jobposition">
+                            <td> <input type="text" class="form-control" [(ngModel)]="x.name" name="name"> </td>
+
+                            <td class="text-center"> <input type="checkbox" [(ngModel)]="x._masterData"
+                                    name="_masterData"> </td>
+                            <td class="text-center"> <input type="checkbox" [(ngModel)]="x._timeManagement"
+                                    name="_timeManagement"> </td>
+                            <td class="text-center"> <input type="checkbox" [(ngModel)]="x._reimbursement"
+                                    name="_reimbursement"> </td>
+
+                            <td class="text-center"> <input type="checkbox" [(ngModel)]="x._loan" name="_loan"> </td>
+                            <td class="text-center"> <input type="checkbox" [(ngModel)]="x._payroll" name="_payroll">
+                            </td>
+
+                            <td width="30px"><button class="btn btn-sm btn-outline-dark"
+                                    (click)="fnDelete('employment_jobposition',x);"><img
+                                        src="./assets/img/icons8-multiply-52.png" height="20"></button></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-end" colspan="6">
+                                <button class="btn btn-sm btn-outline-dark mx-1"
+                                    (click)="fnInsert('employment_jobposition')">Add Item</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-success mx-1"
+                                    (click)="fnSave_employment_jobposition();">Save</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="border shadow-sm rounded bg-white p-3 mb-3">
+                <div class="mb-2">
+                    <strong>
+                        Reimbursement Name
+                    </strong>
+                </div>
+                <table class="table ">
+                    <tbody>
+                        <tr *ngFor="let x of reimbursement_name">
+                            <td> <input type="text" class="form-control" [(ngModel)]="x.name" name="name"> </td>
+                            <td width="30px"><button class="btn btn-sm btn-outline-dark"
+                                    (click)="fnDelete('employment_joblevel',x);"><img
+                                        src="./assets/img/icons8-multiply-52.png" height="20"></button></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-outline-dark mx-1"
+                                    (click)="fnInsert('reimbursement_name')">Add Item</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-success mx-1"
+                                    (click)="fnSave_reimbursement_name();">Save</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="col-12  col-md-8">
+            <div class="border shadow-sm rounded bg-white  p-3  mb-3">
+                <strong>
+                    Time Management Shift
+                </strong>
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>ID </th>
+                            <th>Name</th>
+                            <th>scheduleIn</th>
+                            <th>scheduleOut</th>
+
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of time_management_shift">
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="x.id" name="id"> 
+                            </td>
+
+                            <td> <input type="text" class="form-control" [(ngModel)]="x.name" name="name"> </td>
+
+                            <td> <input type="time" class="form-control" [(ngModel)]="x.scheduleIn" name="scheduleIn">
+                            </td>
+                            <td> <input type="time" class="form-control" [(ngModel)]="x.scheduleOut" name="scheduleOut">
+                            </td>
+
+
+                            <td> <input type="checkbox" [(ngModel)]="x.Sun" name="Sun"> </td>
+                            <td> <input type="checkbox" [(ngModel)]="x.Mon" name="Mon"> </td>
+                            <td> <input type="checkbox" [(ngModel)]="x.Tue" name="Tue"> </td>
+                            <td> <input type="checkbox" [(ngModel)]="x.Wed" name="Wed"> </td>
+                            <td> <input type="checkbox" [(ngModel)]="x.Thu" name="Thu"> </td>
+                            <td> <input type="checkbox" [(ngModel)]="x.Fri" name="Fri"> </td>
+                            <td> <input type="checkbox" [(ngModel)]="x.Sat" name="Sat"> </td>
+
+
+                            <td width="30px"><button class="btn btn-sm btn-outline-dark"
+                                    (click)="fnDelete('time_management_shift',x);"><img
+                                        src="./assets/img/icons8-multiply-52.png" height="20"></button></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                              <b>  <small class="text-danger">ID tidak bisa diubah lagi!</small></b>
+                            </td>
+                            <td class="text-end" colspan="9">
+                               
+                               
+                                <button class="btn btn-sm btn-outline-dark mx-1"
+                                    (click)="fnInsert('time_management_shift')">Add Item</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-success mx-1"
+                                    (click)="fnSave_time_management_shift();">Save</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="footer bg-white border shadow-sm" [hidden]="!loading">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ">
+                <div class="text-center py-2">
+                    <b>Saving...</b>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

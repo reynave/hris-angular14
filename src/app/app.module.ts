@@ -34,6 +34,8 @@ import { TimeManagementReportsComponent } from './time-management/time-managemen
 import { TimeManagementImportComponent } from './time-management/time-management-import/time-management-import.component';
 import { OrganizationComponent } from './organization/organization.component';
 import { EmployeeDetailComponent } from './employee/employee-detail/employee-detail.component';
+import { ReloginComponent } from './login/relogin/relogin.component';
+import { GlobalMasterdataComponent } from './global-masterdata/global-masterdata.component';
 
 export const customCurrencyMaskConfig = {
   align: "right",
@@ -68,7 +70,7 @@ export const customCurrencyMaskConfig = {
     EmployeeComponent,
     TimeManagementComponent,
     ReimbursementComponent,
-    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, ReimbursementDetailComponent, ReimbursementHistoryComponent, LoadDetailComponent, TimeManagementReportsComponent,  TimeManagementImportComponent, OrganizationComponent, EmployeeDetailComponent
+    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, ReimbursementDetailComponent, ReimbursementHistoryComponent, LoadDetailComponent, TimeManagementReportsComponent,  TimeManagementImportComponent, OrganizationComponent, EmployeeDetailComponent, ReloginComponent, GlobalMasterdataComponent
   ],
   imports: [
     BrowserModule,

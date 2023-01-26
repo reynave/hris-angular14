@@ -83,18 +83,15 @@
                             <td>{{x.day}}</td>
                             <td>{{x.date | date:'dd-MM-Y'}}</td>
                             <td>{{x.hour}}</td>
-                            <td>{{x.job}}
-
+                            <td>{{x.job}} 
                                 <a href="javascript:;" (click)="open(content,x)" class="notPrinting mx-2"  >
                                     <img src="./assets/img/icons8-edit-48.png" height="15"></a>
                             </td>
-                            <td>{{!x.checkIn ? "":x.checkIn}}
-
+                            <td>{{!x.checkIn ? "":x.checkIn}} 
                                 <a href="javascript:;" (click)="open(content,x)" [hidden]="!x.hour" class="notPrinting mx-2">
                                     <img src="./assets/img/icons8-edit-48.png" height="15"></a>
                             </td>
-
-
+ 
                             <td>{{!x.checkOut ? "":x.checkOut}}
 
                                 <span [hidden]="x.checkOut != '00:00' "><img

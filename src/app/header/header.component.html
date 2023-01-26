@@ -11,34 +11,40 @@
         <li class="nav-item">
           <a class="nav-link " [ngClass]="{'active': active == 'home'}" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" [ngClass]="{'active': active == 'master'}" href="#"
+        <li class="nav-item dropdown" [hidden]="nav['_masterData'] == '0'">
+          <a class="nav-link dropdown-toggle" [ngClass]="{'active': active == '_masterData'}" href="#"
             data-bs-toggle="dropdown" aria-expanded="false">Master Data</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="[ '/employee' ]">Employee</a></li> 
+            <li><a class="dropdown-item" [routerLink]="[ '/employee' ]">Employee</a></li>
+            <hr>
             <li><a class="dropdown-item" [routerLink]="[ '/organization' ]">Organization and Branch</a></li>
+            <li><a class="dropdown-item" [routerLink]="[ '/globalMasterData' ]">Global Master Data</a></li>
             
+
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " [ngClass]="{'active': active == 'tm'}" aria-current="page"
+        <li class="nav-item" [hidden]="nav['_timeManagement'] == '0'">
+          <a class="nav-link " [ngClass]="{'active': active == '_timeManagement'}" aria-current="page"
             [routerLink]="[ '/timeManagement' ]">Time Management</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " [ngClass]="{'active': active == 're'}" aria-current="page"
+        <li class="nav-item" [hidden]="nav['_reimbursement'] == '0'">
+          <a class="nav-link " [ngClass]="{'active': active == '_reimbursement'}" aria-current="page"
             [routerLink]="[ '/reimbursement' ]">Reimbursement</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " [ngClass]="{'active': active == 'loan'}" aria-current="page"
+        <li class="nav-item" [hidden]="nav['_loan'] == '0'">
+          <a class="nav-link " [ngClass]="{'active': active == '_loan'}" aria-current="page"
             [routerLink]="[ '/loan' ]">Loan</a>
         </li>
+
+
+
       </ul>
       <ul class="navbar-nav ">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Herlina</a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="#">Setting</a></li>
-            <li><a class="dropdown-item" href="#">Log Out</a></li>
+            <li><a class="dropdown-item" href="javascript:;" (click)="logout();">Log Out</a></li>
           </ul>
         </li>
       </ul>

@@ -4,7 +4,7 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { ConfigService } from 'src/app/service/config.service'; 
+import { ConfigService } from 'src/app/service/config.service';
 
 export class Model {
 
@@ -26,14 +26,14 @@ export class Model {
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  dtOptions: ADTSettings = {}; 
+  dtOptions: ADTSettings = {};
   model: any = new Model("", "", "", "", "", { "year": 1990, "month": 1, "day": 1 });
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
     private router: Router,
     private http: HttpClient,
-    private configService: ConfigService, 
+    private configService: ConfigService,
 
   ) {
     config.backdrop = 'static';
@@ -44,15 +44,23 @@ export class EmployeeComponent implements OnInit {
   }
 
   httpGet() {
-   
+
     this.dtOptions = {
-      ajax: environment.api + 'employee',
+      //  ajax: environment.api + 'employee',
+      ajax: {
+        url: environment.api + 'employee',
+        type: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Token': this.configService.varToken,
+        },
+      },
       columns: [
         {
           title: 'Employed ID',
           data: 'id',
           render: function (data: any, type: any, full: any) {
-            return '<a  href="#/employee/detail/' + data + '">'+data+'</a>';
+            return '<a  href="#/employee/detail/' + data + '">' + data + '</a>';
           }
         },
         {
@@ -75,7 +83,7 @@ export class EmployeeComponent implements OnInit {
           title: 'Level',
           data: 'jobLevel',
         },
-        
+
         {
           title: 'Status',
           data: 'empyStatus',
@@ -84,11 +92,11 @@ export class EmployeeComponent implements OnInit {
           title: 'Join',
           data: 'dateJoinStart',
         },
-        
+
       ]
     };
   }
- 
+
   onSubmit() {
     const body = this.model;
     this.http.post<any>(environment.api + "personal/insert", body, {
@@ -96,7 +104,7 @@ export class EmployeeComponent implements OnInit {
     }).subscribe(
       data => {
         console.log(data);
-        this.router.navigate(['employee/detail/',data['id']]).then(
+        this.router.navigate(['employee/detail/', data['id']]).then(
           () => {
             this.modalService.dismissAll();
           }

@@ -11,14 +11,13 @@ export class Document {
   providedIn: 'root'
 })
 export class ConfigService {
-  secretKeyAccess : string = "QkSDhtCFJQ4n75Xq8Cmy4WExRU3C4r"; 
- 
+  
 
   varToken: string = "";
   varHeaders: any = [];
   rules: any;
   varData: any = [];
-  tokenName : string  = "cso1AdminToken";
+  tokenName : string  = "hris1Token";
   unsubscribe: any;
   constructor( 
     private cookies: CookiesService,  
@@ -39,7 +38,7 @@ export class ConfigService {
   }
 
   getToken() {
-    return this.cookies.getCookie(this.tokenName);
+    return  this.cookies.getCookie(this.tokenName);
   }
 
  
@@ -68,11 +67,7 @@ export class ConfigService {
     }
 
   }
-
-  secretKeyAccessGet(){
-    return this.secretKeyAccess;
-  }; 
-
+ 
 
   extenCookies() { 
     var d = new Date();
@@ -80,45 +75,8 @@ export class ConfigService {
     var expires = "expires=" + d.toUTCString();
     document.cookie = this.tokenName + "=" + this.cookies.getCookie(this.tokenName) + ";" + expires + ";path=/";  
   }
+ 
 
-  accessRightPush(data:string){
-    localStorage.setItem("SCO1Access", btoa(data));  
-  }
-
-  accessRightGet(){ 
-   
-    const obj = atob(localStorage.getItem("SCO1Access")|| ''); 
-
-    if(!obj) {
-      console.log("emtpy access right, please relogin!");
-      this.logout();
-    }else{
-      return JSON.parse(obj);
-    }
-   
-  }
-
-  _access(){ 
-    // let next : any =  ActivatedRoute;
-    // let index = this.accessRightGet().findIndex(((obj: { module: any; }) => obj.module == next.data['active'] ));
-    // if( this.accessRightGet()[index]['_access'] == 1){
-    //   return true;
-    // }else{
-    //   return false;
-    // }  
-  }
-  _modify(data:any){
-     if(data.length > 0){ 
-      let index = this.accessRightGet().findIndex(((obj: { module: any; }) => obj.module == data['active'] ));
-      if( this.accessRightGet()[index]['_modify'] == 1){
-        return true;
-      }else{
-         return false;
-      }   
-     }else{
-      return false; 
-     }
-     
-  }
+ 
  
 }

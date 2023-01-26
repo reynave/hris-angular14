@@ -35,8 +35,15 @@ export class ReimbursementComponent implements   OnInit  {
 
   httpGet() {
    console.log("httpGet");
-    this.dtOptions = {
-      ajax: environment.api + 'reimbursement',
+    this.dtOptions = { 
+      ajax: {
+        url: environment.api + 'reimbursement',
+        type: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Token': this.configService.varToken,
+        },
+      },
       columns: [
         {
           title: 'Transaction ID',
