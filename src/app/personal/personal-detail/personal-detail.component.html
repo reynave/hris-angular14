@@ -1,4 +1,4 @@
- <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
 
         <div class="col-12">
@@ -15,18 +15,54 @@
                             (click)="readonly=false">Editable</button>
                     </div>
                 </div>
-                
-                <div class="row"> 
+
+                <div class="row">
                     <div class="col-6">
-                        <div class="border p-2">
+                        <div class="border p-2 mb-2">
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td>ID Employed</td>
+                                        <td width="200">ID Employed</td>
                                         <td><strong>{{id}}</strong></td>
                                     </tr>
                                     <tr>
-                                        <td><label for="name">Name <span class="text-danger">*</span></label></td>
+                                        <td><label for="email">Email <span class="text-danger">*</span></label></td>
+                                        <td><input type="text" [readOnly]="readonly" class="form-control" [email]="true"
+                                                id="email" required [(ngModel)]="model.email" name="email"
+                                                #email="ngModel">
+                                            <div [hidden]="(email.valid || email.pristine)  "
+                                                class="text-danger small m-1">
+                                                <span [hidden]="readonly"> Email is required</span>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="password">Password <span
+                                                    class="text-danger">Generate</span></label></td>
+                                        <td>
+
+                                            <input type="text" (keypress)="fnPassword()" [readOnly]="readonly"
+                                                class="form-control" id="password" required [(ngModel)]="model.password"
+                                                name="password" #email="ngModel">
+                                            <!-- <div [hidden]="(email.valid || email.pristine)  "
+                                                class="text-danger small m-1">
+                                                <span [hidden]="readonly"> Email is required</span>
+                                            </div> -->
+                                            <div class="mt-1" [hidden]="!passwordHash"> Hash : {{passwordHash}}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="border p-2">
+                            <table class="table">
+                                <tbody>
+
+                                    <tr>
+                                        <td width="200"><label for="name">Name <span
+                                                    class="text-danger">*</span></label></td>
                                         <td><input type="text" [readOnly]="readonly" class="form-control" id="name"
                                                 required [(ngModel)]="model.name" name="name" #name="ngModel">
                                             <div [hidden]="name.valid || name.pristine" class="text-danger small m-1">
@@ -47,26 +83,15 @@
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td><label for="email">email <span class="text-danger">*</span></label></td>
-                                        <td><input type="text" [readOnly]="readonly" class="form-control" [email]="true"
-                                                id="email" required [(ngModel)]="model.email" name="email"
-                                                #email="ngModel">
-                                            <div [hidden]="(email.valid || email.pristine)  "
-                                                class="text-danger small m-1">
-                                                <span [hidden]="readonly"> Email is required</span>
-                                            </div>
 
-                                        </td>
-                                    </tr>
 
                                     <tr>
                                         <td> <label for="name">Gender <span class="text-danger">*</span></label></td>
                                         <td> <select class="form-control" [disabled]="readonly" required id="gender"
                                                 [(ngModel)]="model.gender" name="gender" #gender="ngModel">
-                                                <option value="M" >Male</option>
+                                                <option value="M">Male</option>
                                                 <option value="F">Female</option>
-                                            </select> 
+                                            </select>
                                         </td>
                                     </tr>
 
@@ -101,12 +126,12 @@
                                     <tr>
                                         <td> <label for="name">Marital Status </label>
                                         </td>
-                                        <td> <select class="form-control"   id="marital" [disabled]="readonly"
+                                        <td> <select class="form-control" id="marital" [disabled]="readonly"
                                                 [(ngModel)]="model.marital" name="marital" #marital="ngModel">
                                                 <option *ngFor="let x of personal_marital" [value]="x.id"> {{x.name}}
                                                 </option>
                                             </select>
-                                           
+
                                         </td>
                                     </tr>
 
@@ -142,6 +167,13 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
+                                        <td><label for="idx">Finger Print ID</label>
+                                        </td>
+                                        <td><input type="text" class="form-control" id="idx" [readOnly]="readonly"
+                                                [(ngModel)]="model.idx" name="idx">
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>ID Type</td>
                                         <td><select class="form-control" [disabled]="readonly" required id="idType"
                                                 [(ngModel)]="model.idType" name="idType" #idType="ngModel">
@@ -150,10 +182,11 @@
                                                 <option value="3">Other</option>
 
                                             </select>
-                                            <div [hidden]="idType.valid || idType.pristine"
-                                                class="text-danger small m-1">
-                                                ID Type is required
-                                            </div>
+                                            
+                                                <div *ngIf="!readonly" [hidden]="idType.valid || idType.pristine"
+                                                    class="text-danger small m-1">
+                                                    ID Type is required
+                                                </div> 
                                         </td>
                                     </tr>
                                     <tr>
@@ -161,8 +194,6 @@
                                         </td>
                                         <td><input type="text" class="form-control" id="idNumber" [readOnly]="readonly"
                                                 [(ngModel)]="model.idNumber" name="idNumber" #idNumber="ngModel">
-
-
                                         </td>
                                     </tr>
 
@@ -188,7 +219,7 @@
                                         </td>
                                     </tr>
 
-                                  
+
 
                                     <tr>
                                         <td><label for="address">Address <span class="text-danger">*</span></label>
@@ -205,18 +236,18 @@
                                     <tr>
                                         <td><label for="postalCode">Postal Code </label>
                                         </td>
-                                        <td><input type="text" class="form-control" id="postalCode"  
+                                        <td><input type="text" class="form-control" id="postalCode"
                                                 [readOnly]="readonly" [(ngModel)]="model.postalCode" name="postalCode"
                                                 #postalCode="ngModel">
-                                             
+
                                         </td>
                                     </tr>
 
-                                   
+
                                     <tr [hidden]="!employmentId">
                                         <td>Employment </td>
-                                        <td> 
-                                            Created ID {{employmentId}}  
+                                        <td>
+                                            Created ID {{employmentId}}
                                         </td>
                                     </tr>
                                     <tr [hidden]="!payrollId">

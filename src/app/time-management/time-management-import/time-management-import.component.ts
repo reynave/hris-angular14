@@ -88,7 +88,9 @@ export class TimeManagementImportComponent implements OnInit {
       item : data['insert'],
       id : data['id'],
     }
-    this.http.post<any>(environment.api + "timeManagement/attendanceInsert", body).subscribe(
+    this.http.post<any>(environment.api + "timeManagement/attendanceInsert", body,{
+      headers:this.configService.headers(),
+    }).subscribe(
       data => {
         this.loading = false;
         this.httpNote = "";

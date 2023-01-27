@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/service/config.service';
+import * as CryptoJS from 'crypto-js';
 
 export class Model {
 
@@ -22,6 +23,8 @@ export class Model {
     public permanent: boolean,
     public postalCode: string,
     public address: string,
+    public idx: string,
+    public password: string,
 
   ) { }
 
@@ -32,7 +35,7 @@ export class Model {
   styleUrls: ['./personal-detail.component.css']
 })
 export class PersonalDetailComponent implements OnInit {
-  model: any = new Model("", "", "", "", "", "", "", "", "", 0, "", "", false, "", "");
+  model: any = new Model("", "", "", "", "", "", "", "", "", 0, "", "", false, "", "","","");
   readonly: boolean = true;
   item: any = [];
   personal_religion: any = [];
@@ -41,6 +44,7 @@ export class PersonalDetailComponent implements OnInit {
   payrollId : string = "";
   loading : boolean= false;
   id : string = "";
+  passwordHash : string = "";
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -94,6 +98,7 @@ export class PersonalDetailComponent implements OnInit {
         };
         this.model['postalCode'] = data['item'][0]['postalCode'];
         this.model['address'] = data['item'][0]['address'];
+        this.model['idx'] = data['item'][0]['idx'];
 
         this.readonly = true;
       },
@@ -101,6 +106,13 @@ export class PersonalDetailComponent implements OnInit {
         console.log(e);
       }
     )
+  }
+
+  fnPassword(){
+    const hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(this.model['password']));
+    const md5 = hash.toString(CryptoJS.enc.Hex);
+
+    this.passwordHash = md5;
   }
 
 
@@ -128,6 +140,7 @@ export class PersonalDetailComponent implements OnInit {
     const body = {
       id: this.activatedRoute.snapshot.params['id'],
       model: this.model,
+      passwordHash : this.passwordHash,
     };
     this.http.post<any>(environment.api + "personal/fnSave", body, {
       headers: this.configService.headers(),
