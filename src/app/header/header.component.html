@@ -19,6 +19,7 @@
             <hr>
             <li><a class="dropdown-item" [routerLink]="[ '/organization' ]">Organization and Branch</a></li>
             <li><a class="dropdown-item" [routerLink]="[ '/globalMasterData' ]">Global Master Data</a></li>
+            <li><a class="dropdown-item" [routerLink]="[ '/bpjs/setting' ]">BPJS Setting</a></li>
             
 
           </ul>
@@ -35,7 +36,17 @@
           <a class="nav-link " [ngClass]="{'active': active == '_loan'}" aria-current="page"
             [routerLink]="[ '/loan' ]">Loan</a>
         </li>
+       
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"   href="#"
+            data-bs-toggle="dropdown" aria-expanded="false">Payroll</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="[ '/payroll/pph21-setting' ]">Pph21 Setting</a></li>
+             
 
+          </ul>
+        </li>
 
 
       </ul>

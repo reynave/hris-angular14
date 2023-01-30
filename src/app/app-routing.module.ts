@@ -5,6 +5,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { EmploymentDetailComponent } from './employment/employment-detail/employment-detail.component';
 import { EmploymentComponent } from './employment/employment.component';
 import { ForbidenComponent } from './forbiden/forbiden.component';
+import { BpjsSettingComponent } from './global-masterdata/bpjs-setting/bpjs-setting.component';
 import { GlobalMasterdataComponent } from './global-masterdata/global-masterdata.component';
 import { AuthGuard } from './guard/auth.guard';
 import { HomeComponent } from './home/home.component';
@@ -15,7 +16,9 @@ import { ReloginComponent } from './login/relogin/relogin.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { OrganizationComponent } from './organization/organization.component';
 import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.component';
+import { PayrollSettingComponent } from './payroll/payroll-setting/payroll-setting.component';
 import { PayrollComponent } from './payroll/payroll.component';
+import { Pph21SettingComponent } from './payroll/pph21-setting/pph21-setting.component';
 import { PersonalDetailComponent } from './personal/personal-detail/personal-detail.component';
 import { PersonalComponent } from './personal/personal.component';
 import { ReimbursementAddComponent } from './reimbursement/reimbursement-add/reimbursement-add.component';
@@ -40,6 +43,8 @@ const routes: Routes = [
   { path: "employment/detail/:id", component: EmploymentDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
   { path: "payroll/detail/:id", component: PayrollDetailComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
   { path: "globalMasterData", component: GlobalMasterdataComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
+  { path: "bpjs/setting", component: BpjsSettingComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
+
 
 
 
@@ -56,6 +61,7 @@ const routes: Routes = [
   { path: "loan", component: LoanComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
   { path: "loan/detail/:id", component: LoadDetailComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
 
+  { path: "payroll/pph21-setting", component: Pph21SettingComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
 
   { path: "forbiden", component: ForbidenComponent, data: { active: "" },canActivate:[AuthGuard] },
   { path: "nofound", component: NotfoundComponent, data: { active: "" }, },

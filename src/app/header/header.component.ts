@@ -37,7 +37,12 @@ export class HeaderComponent implements OnInit {
       headers: this.configService.headers()
     }).subscribe(
       data => {
+        const someObj : any =data;
         this.module = data;
+        console.log(data);
+        if(someObj['error'] == 400){
+          this.logout();
+        }
         this.nav._masterData = this.module['module']['_masterData'];
         this.nav._loan = this.module['module']['_loan'];
         this.nav._payroll = this.module['module']['_payroll'];

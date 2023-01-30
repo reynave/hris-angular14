@@ -182,11 +182,10 @@
                                                 <option value="3">Other</option>
 
                                             </select>
-                                            
-                                                <div *ngIf="!readonly" [hidden]="idType.valid || idType.pristine"
-                                                    class="text-danger small m-1">
-                                                    ID Type is required
-                                                </div> 
+                                            <div *ngIf="!readonly" [hidden]="idType.valid || idType.pristine"
+                                                class="text-danger small m-1">
+                                                ID Type is required
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
