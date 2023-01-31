@@ -9,20 +9,23 @@
         <div class="col-12"> 
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link " [ngClass]="{'active': switch_expression==''}" href="javascript:;" (click)="switch_expression=''">Personal Data</a>
+                    <a class="nav-link " [ngClass]="{'active': switch_expression==''}" href="javascript:;" (click)="tab('')">Personal Data</a>
                 </li>
 
 
                 <li class="nav-item" [hidden]="!employmentId">
-                    <a class="nav-link" [ngClass]="{'active': switch_expression=='employment'}" href="javascript:;" (click)="switch_expression='employment'">Employment</a>
+                    <a class="nav-link" [ngClass]="{'active': switch_expression=='employment'}" href="javascript:;" 
+                    (click)="tab('employment')">Employment</a>
                 </li>
                 <li class="nav-item" [hidden]="employmentId">
-                    <a class="nav-link text-dark"   href="javascript:;" (click)="fnCreate('employment');"  ><em>Employment <img src="./assets/img/icons8-lock-24.png" height="20"></em></a>
+                    <a class="nav-link text-dark"   href="javascript:;"  
+                    (click)="fnCreate('employment');"  ><em>Employment <img src="./assets/img/icons8-lock-24.png" height="20"></em></a>
                 </li>
 
 
                 <li class="nav-item" [hidden]="!payrollId">
-                    <a class="nav-link" [ngClass]="{'active': switch_expression=='payroll'}" href="javascript:;" (click)="switch_expression='payroll'">Payroll</a>
+                    <a class="nav-link" [ngClass]="{'active': switch_expression=='payroll'}" href="javascript:;" 
+                    (click)="tab('payroll')" >Payroll</a>
                 </li>
                 <li class="nav-item" [hidden]="payrollId">
                     <a class="nav-link text-dark"   href="javascript:;"  (click)="fnCreate('payroll');"  ><em>Payroll <img src="./assets/img/icons8-lock-24.png" height="20"></em></a>

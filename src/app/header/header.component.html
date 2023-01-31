@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark nav-fixed" aria-label="Second navbar example">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">HRIS ver 1.0</a>
+    <a class="navbar-brand" href="#">HRIS ver {{ver}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
       aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -42,6 +42,8 @@
           <a class="nav-link dropdown-toggle"   href="#"
             data-bs-toggle="dropdown" aria-expanded="false">Payroll</a>
           <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="[ '/payroll' ]">Pph21</a></li>
+           
             <li><a class="dropdown-item" [routerLink]="[ '/payroll/pph21-setting' ]">Pph21 Setting</a></li>
              
 

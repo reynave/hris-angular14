@@ -29,42 +29,157 @@ export class PayrollComponent implements OnInit {
 
   httpGet() {
 
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'decimal', 
+      // These options are needed to round to whole numbers if that's what you want.
+      minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+      //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+    });
+    
+
+    console.log(environment.api + 'pph21/employee/');
     this.dtOptions = {
-      ajax: environment.api + 'payroll',
+      ajax: {
+        url: environment.api + 'pph21/employee/',
+        type: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Token': this.configService.varToken,
+        },
+      }, 
+      scrollX: true,
+      ordering: false,
+      columnDefs: [
+        { targets: [2,3,  5, 6, 7,8,9,10,11,12,13,14,15,16,17], className: 'dt-body-right', },
+        { targets: [2,3,  5, 6, 7,8,9,10,11,12,13,14,15,16,17], className: 'dt-head-right', width: "100px" }
+   
+      ],
       columns: [
         {
-          title: 'Employed ID',
-          data: 'personalId',
+          title: 'ID',
+          data: 'id',
         },
         {
           title: 'Name',
-          data: 'personal',
+          data: 'name',
         },
         {
-          title: 'salaryType',
-          data: 'salaryType',
-        },
-
-        {
-          title: 'salary',
+          title: 'Salary',
           data: 'salary',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
         },
         {
-          title: 'bankName',
-          data: 'bankName',
+          title: 'Tunjangan',
+          data: 'tunjangan',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
         },
         {
-          title: 'taxNpwp',
-          data: 'taxNpwp',
+          title: 'PTKP',
+          data: 'taxPtkpStatus', 
+        },
+        {
+          title: 'BPJS',
+          data: 'bpjs',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
+        },
+        {
+          title: 'JKK',
+          data: 'jkk',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
+        },
+        {
+          title: 'jkm',
+          data: 'jkm',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
+        },
+        {
+          title: 'BRUTO',
+          data: 'bruto',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
+        },
+        {
+          title: 'By Jabatan',
+          data: 'byJabatan',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
+        },
+        {
+          title: 'BPJS Kes',
+          data: 'bpjsKes',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
+        },
+        {
+          title: 'JHT',
+          data: 'jht',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
+        },
+        {
+          title: 'JP',
+          data: 'jp',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
+        },
+        {
+          title: 'NETTO',
+          data: 'netto',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
+        },
+        {
+          title: 'PTKP',
+          data: 'ptkpAmount',
+          render: function (data: any, type: any, full: any) {
+            return formatter.format(data);
+         }
+        },
+        {
+          title: 'PKP',
+          data: 'pkp',
+          render: function (data: any, type: any, full: any) {
+                return formatter.format(data);
+             }
+        },
+        {
+          title: 'Pph21 Terutang setahun',
+          data: 'pph21Year',
+          render: function (data: any, type: any, full: any) {
+                return formatter.format(data);
+             }
         },
 
         {
-          title: 'Detail',
-          data: 'id',
+          title: 'Pph21 Terutang sebulan',
+          data: 'pph21Month',
           render: function (data: any, type: any, full: any) {
-            return '<a class="btn btn-sm btn-primary" href="#/payroll/detail/' + data + '">Detail</a>';
-          }
+                return formatter.format(data);
+             }
         },
+        // {
+        //   title: 'Detail',
+        //   data: 'id',
+        //   render: function (data: any, type: any, full: any) {
+        //     return '<a class="btn btn-sm btn-primary" href="#/payroll/detail/' + data + '">Detail</a>';
+        //   }
+        // },
       ]
     };
   }

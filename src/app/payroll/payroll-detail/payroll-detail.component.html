@@ -36,7 +36,7 @@
                                         <td><input type="text" [disabled]="readonly" class="form-control " id="bankName"
                                                 required [(ngModel)]="model.bankName" name="bankName"
                                                 #bankName="ngModel">
-                                            <div [hidden]="bankName.valid || bankName.pristine"
+                                            <div *ngIf="!readonly" [hidden]="bankName.valid || bankName.pristine"
                                                 class="text-danger small m-1">
                                                 Bank Name is required
                                             </div>
@@ -48,7 +48,7 @@
                                         <td><input type="text" [disabled]="readonly" class="form-control "
                                                 id="bankAccountNumber" required [(ngModel)]="model.bankAccountNumber"
                                                 name="bankAccountNumber" #bankAccountNumber="ngModel">
-                                            <div [hidden]="bankAccountNumber.valid || bankAccountNumber.pristine"
+                                            <div *ngIf="!readonly" [hidden]="bankAccountNumber.valid || bankAccountNumber.pristine"
                                                 class="text-danger small m-1">
                                                 Bank Accoun tNumber is required
                                             </div>
@@ -61,7 +61,7 @@
                                                 id="bankAccountHolderName" required
                                                 [(ngModel)]="model.bankAccountHolderName" name="bankAccountHolderName"
                                                 #bankAccountHolderName="ngModel">
-                                            <div [hidden]="bankAccountHolderName.valid || bankAccountHolderName.pristine"
+                                            <div *ngIf="!readonly" [hidden]="bankAccountHolderName.valid || bankAccountHolderName.pristine"
                                                 class="text-danger small m-1">
                                                 Bank Account Holder Name is required
                                             </div>
@@ -105,7 +105,7 @@
                                         </td>
                                         <td><input currencyMask [disabled]="readonly" class="form-control " id="salary"
                                                 required [(ngModel)]="model.salary" name="salary" #salary="ngModel">
-                                            <div [hidden]="salary.valid || salary.pristine"
+                                            <div *ngIf="!readonly" [hidden]="salary.valid || salary.pristine"
                                                 class="text-danger small m-1">
                                                 Salary is required
                                             </div>
@@ -118,7 +118,7 @@
                                         <td><input currencyMask [disabled]="readonly" class="form-control "
                                                 id="hourlyRate" required [(ngModel)]="model.hourlyRate"
                                                 name="hourlyRate" #hourlyRate="ngModel">
-                                            <div [hidden]="hourlyRate.valid || hourlyRate.pristine"
+                                            <div *ngIf="!readonly" [hidden]="hourlyRate.valid || hourlyRate.pristine"
                                                 class="text-danger small m-1">
                                                 hourly Rate is required
                                             </div>
@@ -207,9 +207,10 @@
                                     <tr>
                                         <td><label for="taxPtkpStatus">PTKP Status </label>
                                         </td>
-                                        <td><input id="taxPtkpStatus" type="text" [disabled]="readonly"
-                                                class="form-control " [(ngModel)]="model.taxPtkpStatus"
-                                                name="taxPtkpStatus" #taxPtkpStatus="ngModel">
+                                        <td> 
+                                            <select class="form-control" [(ngModel)]="model.taxPtkpStatus" [disabled]="readonly">
+                                                <option *ngFor="let x of pph21_ptkp" [value]="x.id">{{x.id}}  {{x.label}},  {{x.jumlahAnak}} Anak, Rp {{x.amount | number}} </option>
+                                            </select>
                                         </td>
                                     </tr>
                                     <tr>
@@ -244,7 +245,7 @@
             </div>
         </div>
 
-        <div class="col-12 mt-4">
+        <div class="col-12 my-4">
             <div class="border shadow-sm rounded p-3 bg-white">
                 <div class="row">
                     <div class="col-12">
@@ -342,10 +343,8 @@
             </div>
         </div>
 
-<!-- 
-        <code>
-            {{model | json}} {{readonly}}
-        </code> -->
+ 
+      
 
     </div>
 </div>

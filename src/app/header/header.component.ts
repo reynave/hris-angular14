@@ -12,6 +12,7 @@ import { ConfigService } from 'src/app/service/config.service';
 export class HeaderComponent implements OnInit {
   active: string = "";
   module: any;
+  ver : string = environment.ver;
   nav: any = {
     _masterData: 0,
     _timeManagement: 0,

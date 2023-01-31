@@ -13,41 +13,27 @@
 
         <div class="col-12 mb-3">
             <div class="border shadow-sm rounded p-2 bg-white">
-                <h4>Pph21 PTKP</h4>
+                <h5 class="my-3">Pph21 PTKP</h5>
                 <table class="table table-sm table border">
                     <thead>
                         <tr>
-                            <th width="70">Jumlah<br> Anak</th>
-                            <th>PTKP <br>Tidak Kawin</th>
-                            <th>Amount</th>
-
-                            <th>PTKP <br>Kawin</th>
-                            <th>Amount</th>
-
-                            <th>PTKP <br>Gabungan <br>Suami Istri</th>
-                            <th>Amount</th>
-                            <th></th>
+                            <th width="100">Status</th>
+                            <th width="90"> Jumlah Anak </th>
+                            <th>Description</th>
+                            <th>Amount</th> 
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr *ngFor="let x of ptkp">
-                            <td><input type="number" [disabled]="readonly" maxlength="2" class="form-control "
-                                    [(ngModel)]="x.jumlahAnak" name="jumlahAnak"></td>
-                            <td><input type="text" [disabled]="readonly" class="form-control "
-                                    [(ngModel)]="x.PTKPTidakKawinLabel" name="PTKPTidakKawinLabel"></td>
-                            <td><input type="text" [disabled]="readonly" currencyMask class="form-control "
-                                    [(ngModel)]="x.PTKPTidakKawin" name="PTKPTidakKawin"></td>
-
-                            <td><input type="text" [disabled]="readonly" class="form-control "
-                                    [(ngModel)]="x.PTKPKawinLabel" name="PTKPKawinLabel"></td>
-                            <td><input type="text" [disabled]="readonly" currencyMask class="form-control "
-                                    [(ngModel)]="x.PTKPKawin" name="PTKPKawin"></td>
-
-                            <td><input type="text" [disabled]="readonly" class="form-control "
-                                    [(ngModel)]="x.PTKPGabunganSuamiIstriLabel" name="PTKPGabunganSuamiIstriLabel"></td>
-                            <td><input type="text" [disabled]="readonly" currencyMask class="form-control "
-                                    [(ngModel)]="x.PTKPGabunganSuamiIstri" name="PTKPGabunganSuamiIstri"></td>
-                            <td></td>
+                    <tbody *ngFor="let x of ptkp; let i = index">
+                     
+                        <tr >
+                            <td> <div class="form-control">{{x.id}}</div></td> 
+                            <td><div class="form-control">{{x.jumlahAnak}}</div> </td> 
+                            <td><div class="form-control">{{x.label}}</div> </td> 
+                            <td><input type="text" currencyMask [disabled]="readonly" class="form-control" 
+                                [(ngModel)]="x.amount"  name="amount"></td> 
+                        </tr>
+                        <tr *ngIf="(i+1)%4 == 0">
+                            <td colspan="4">&nbsp;</td>
                         </tr>
                     </tbody>
                 </table>
@@ -57,19 +43,19 @@
         <div class="col-12 mb-3">
 
             <div class="border shadow-sm rounded p-2 bg-white">
-                <h4>Tarif Pajak</h4>
+                <h5 class="my-3">Pajak</h5> 
                 <table class="table table-sm table border">
                     <thead>
                         <tr>
-                            
+
                             <th class="text-end">Min Amount</th>
-                            <th  class="text-end">Max Amount</th>
+                            <th class="text-end">Max Amount</th>
                             <th width="140" class="text-end">Tax Percent (%)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let x of tarif_pajak">
-                 
+
                             <td><input type="text" [disabled]="readonly" currencyMask class="form-control "
                                     [(ngModel)]="x.minAmount" name="minAmount"></td>
                             <td><input type="text" [disabled]="readonly" currencyMask class="form-control "
@@ -84,10 +70,6 @@
 
     </div>
 </div>
-
-
-
-
 
 <div class="footer bg-white border shadow-sm" [hidden]="readonly">
     <div class="container">

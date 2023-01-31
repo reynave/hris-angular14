@@ -62,6 +62,7 @@ const routes: Routes = [
   { path: "loan/detail/:id", component: LoadDetailComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
 
   { path: "payroll/pph21-setting", component: Pph21SettingComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+  { path: "payroll", component: PayrollComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
 
   { path: "forbiden", component: ForbidenComponent, data: { active: "" },canActivate:[AuthGuard] },
   { path: "nofound", component: NotfoundComponent, data: { active: "" }, },

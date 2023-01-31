@@ -30,6 +30,7 @@ export class PayrollDetailComponent implements OnInit {
   personal_marital: any = [];
   employmentId : string = "";
   payrollId : string = "";
+  pph21_ptkp : any = [];
   loading : boolean= false;
   id : string = "";
   constructor(
@@ -56,7 +57,7 @@ export class PayrollDetailComponent implements OnInit {
 
         console.log(data);  
         let item = data['item'][0];
-
+        this.pph21_ptkp = data['pph21_ptkp'];
         this.model['salary'] = item['salary'];  
         this.model['salaryType'] = item['salaryType'];  
         this.model['bankName'] = item['bankName'];  

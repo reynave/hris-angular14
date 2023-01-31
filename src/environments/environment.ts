@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   api : 'http://localhost/app/hris/api/', 
+  ver : '1.3101'
 };
 
 /*
