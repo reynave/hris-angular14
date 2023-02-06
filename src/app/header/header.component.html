@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarsExample02">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link " [ngClass]="{'active': active == 'home'}" aria-current="page" href="#">Home</a>
+          <a class="nav-link " [ngClass]="{'active': active == '_home'}" aria-current="page"[routerLink]="[ '/home' ]">Home</a>
         </li>
         <li class="nav-item dropdown" [hidden]="nav['_masterData'] == '0'">
           <a class="nav-link dropdown-toggle" [ngClass]="{'active': active == '_masterData'}" href="#"

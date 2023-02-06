@@ -89,7 +89,47 @@
                         </div>
  
 
-                        <div class="row">
+                        <div class="row g-2">
+                            <div class="col-12">
+                                <hr>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <label for="paidAmount" class="form-label"><strong>Paid Amount </strong></label>
+                                    <input currencyMask class="form-control" id="paidAmount"
+                                        [(ngModel)]="model.paidAmount" name="paidAmount" #paidAmount="ngModel">
+
+                                    <div class="text-end">
+                                        <a href="javascript:;" (click)="copyAmount();"><small>Copy from Request
+                                                Amount</small></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-5">
+                                <div class="mb-3" >
+                                    <label for="paidAmount" class="form-label"><strong>Approved Date </strong> </label>
+                                    <div class="form-control">{{item.approvedDate | date:'medium'}}, by
+                                        {{item.approvedBy}}</div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-4">
+                                <div class="mb-3" >
+                                    <label for="paidAmount" class="form-label"><strong>Approved Status </strong> </label>
+                                    <select class="form-control" [(ngModel)]="model.approved" name="approved">
+
+                                        <option value="1">Approve</option>
+                                        <option value="4">Reject</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+
+                        <div class="row" [hidden]="!loading">
                             <div class="col">
                                 <button type="button" class="btn btn-outline-dark btn-sm mx-2"
                                     (click)="back();">Back</button>
@@ -113,3 +153,5 @@
 
     </div>
 </form>
+
+{{model | json}}

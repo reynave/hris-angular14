@@ -36,6 +36,34 @@
                     </tfoot>
                 </table>
             </div>
+
+            <div class="border shadow-sm rounded bg-white p-3 mb-3">
+                <div class="mb-2">
+                    <strong>
+                       Jabatan Amount and Percent setting
+                    </strong>
+                </div>
+                <table class="table ">
+                    <tbody>
+                        <tr *ngFor="let x of global_setting_jabatan">
+                            <td> <div class="form-control"> {{x.name}} </div>
+                            <td> <input type="number" class="form-control text-end" [(ngModel)]="x.value" name="value"> </td>
+                         
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-end" colspan="2">
+                              
+                            
+                                <button class="btn btn-sm btn-success mx-1"
+                                    (click)="fnSave_global_setting_jabatan();">Save</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
         </div>
 
         <div class="col-12  col-md-8">

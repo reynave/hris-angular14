@@ -6,14 +6,13 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/service/config.service'; 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-reimbursement-datatables',
+  templateUrl: './reimbursement-datatables.component.html',
+  styleUrls: ['./reimbursement-datatables.component.css']
 })
-export class HomeComponent implements OnInit {
-
-  dtOptionsReimbursement: ADTSettings = {}; 
-  dtOptionsLoan: ADTSettings = {}; 
+export class ReimbursementDatatablesComponent implements OnInit {
+ 
+  dtOptions: ADTSettings = {}; 
  
   
   constructor(
@@ -34,61 +33,7 @@ export class HomeComponent implements OnInit {
 
   httpGet() {
    console.log("httpGet");
-    this.dtOptionsReimbursement = { 
-      ajax: {
-        url: environment.api + 'reimbursement',
-        type: "GET",
-        headers: {
-          'Content-Type': 'application/json',
-          'Token': this.configService.varToken,
-        },
-        // success: function(data) { 
-        //   console.log(data); 
-        //  }
-      },
-      columns: [
-        {
-          title: 'Transaction ID',
-          data: 'id',
-        
-        },
-       
-        {
-          title: 'Request Date',
-          data: 'requestDate',
-        
-        },
-        {
-          title: 'Reimbursement',
-          data: 'reimbursement',
-        }, 
-       
-        {
-          title: 'Description',
-          data: 'description',
-        },
-        {
-          title: 'Request Amount',
-          data: 'price', 
-          render: function (data: any, type: any, full: any) { 
-            return `<div class="text-end">${data}</div>`;
-          }
-        },
-      
-        
-        {
-          title: '',
-          data: 'id',
-          searchable : false,
-          orderable : false,
-          render: function (data: any, type: any, full: any) {
-            return `<a href="#/home/reimbursement/detail/${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
-          }
-        }, 
-      ]
-    };
-
-    this.dtOptionsLoan = { 
+    this.dtOptions = { 
       ajax: {
         url: environment.api + 'reimbursement',
         type: "GET",
@@ -148,4 +93,5 @@ export class HomeComponent implements OnInit {
  
   
  
+
 }

@@ -1,0 +1,20 @@
+<app-header></app-header>
+<br>
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12 mb-3">
+            <button type="button" class="btn btn-outline-dark btn-sm" (click)="back();" >Back</button>
+        </div>
+
+        <div class="col-12 mb-3">
+            <div class="border bg-white p-3 rounded shadow-sm">
+                <div class="mb-3">
+                    <h5>
+                         History Reimbursement
+                    </h5>
+                </div>
+                <table datatable [dtOptions]="dtOptionsReimbursement" class="row-border hover"></table>
+            </div>
+        </div>
+    </div>
+</div>

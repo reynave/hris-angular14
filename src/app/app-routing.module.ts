@@ -8,6 +8,7 @@ import { ForbidenComponent } from './forbiden/forbiden.component';
 import { BpjsSettingComponent } from './global-masterdata/bpjs-setting/bpjs-setting.component';
 import { GlobalMasterdataComponent } from './global-masterdata/global-masterdata.component';
 import { AuthGuard } from './guard/auth.guard';
+import { HomeHistoryReimbursementComponent } from './home/home-history-reimbursement/home-history-reimbursement.component';
 import { HomeComponent } from './home/home.component';
 import { LoadDetailComponent } from './loan/load-detail/load-detail.component';
 import { LoanComponent } from './loan/loan.component';
@@ -24,6 +25,7 @@ import { PersonalComponent } from './personal/personal.component';
 import { ReimbursementAddComponent } from './reimbursement/reimbursement-add/reimbursement-add.component';
 import { ReimbursementDetailComponent } from './reimbursement/reimbursement-detail/reimbursement-detail.component';
 import { ReimbursementHistoryComponent } from './reimbursement/reimbursement-history/reimbursement-history.component';
+import { ReimbursementRequestComponent } from './reimbursement/reimbursement-request/reimbursement-request.component';
 import { ReimbursementComponent } from './reimbursement/reimbursement.component';
 import { TimeManagementEditComponent } from './time-management/time-management-edit/time-management-edit.component';
 import { TimeManagementImportComponent } from './time-management/time-management-import/time-management-import.component';
@@ -35,6 +37,13 @@ const routes: Routes = [
 
   { path: "login", component: LoginComponent, data: { active: "login" }, },
   { path: "login/relogin", component: ReloginComponent, data: { active: "login" }, },
+
+  { path: "home", component: HomeComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
+
+  { path: "home/reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "_home" }, canActivate:[AuthGuard]},
+  { path: "home/reimbursement/add", component: ReimbursementAddComponent, data: { active: "_home" },canActivate:[AuthGuard] },
+  { path: "home/reimbursement/history", component: HomeHistoryReimbursementComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
+ 
 
   { path: "employee", component: EmployeeComponent, data: { active: "_masterData" }, canActivate:[AuthGuard] },
   { path: "employee/detail/:id", component: EmployeeDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
@@ -54,9 +63,9 @@ const routes: Routes = [
   { path: "timeManagement/import", component: TimeManagementImportComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
 
   { path: "reimbursement", component: ReimbursementComponent, data: { active: "_reimbursement" }, canActivate:[AuthGuard]},
-  { path: "reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "_reimbursement" }, canActivate:[AuthGuard]},
   { path: "reimbursement/add", component: ReimbursementAddComponent, data: { active: "_reimbursement" },canActivate:[AuthGuard] },
   { path: "reimbursement/history", component: ReimbursementHistoryComponent, data: { active: "_reimbursement" }, canActivate:[AuthGuard]},
+  { path: "reimbursement/request/:id", component: ReimbursementRequestComponent, data: { active: "_reimbursement" }, canActivate:[AuthGuard]},
 
   { path: "loan", component: LoanComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
   { path: "loan/detail/:id", component: LoadDetailComponent, data: { active: "_loan" },canActivate:[AuthGuard] },

@@ -14,6 +14,7 @@ export class GlobalMasterdataComponent implements OnInit {
   employment_jobposition : any = [];
   reimbursement_name : any = [];
   time_management_shift : any = [];
+  global_setting_jabatan : any = [];
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -30,6 +31,7 @@ export class GlobalMasterdataComponent implements OnInit {
       headers: this.configService.headers(),
     }).subscribe(
       data => {
+        this.global_setting_jabatan = data["global_setting_jabatan"];
         this.employment_joblevel = data['employment_joblevel'];
         this.reimbursement_name = data['reimbursement_name']; 
         this.employment_jobposition = data['employment_jobposition'].map(function(el : any){
@@ -61,7 +63,17 @@ export class GlobalMasterdataComponent implements OnInit {
     )
   }
 
-
+  fnSave_global_setting_jabatan() {
+    this.loading = true;
+    this.http.post<any>(environment.api + "globalSetting/fnSave_global_setting_jabatan", this.global_setting_jabatan, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      () => {
+        this.loading = false;
+        this.httpGet();
+      }
+    )
+  }
   fnSave_employment_joblevel() {
     this.loading = true;
     this.http.post<any>(environment.api + "globalSetting/fnSave_employment_joblevel", this.employment_joblevel, {

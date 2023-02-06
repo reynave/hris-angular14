@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/service/config.service'; 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-home-history-reimbursement',
+  templateUrl: './home-history-reimbursement.component.html',
+  styleUrls: ['./home-history-reimbursement.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeHistoryReimbursementComponent implements OnInit {
 
   dtOptionsReimbursement: ADTSettings = {}; 
   dtOptionsLoan: ADTSettings = {}; 
@@ -31,12 +31,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.httpGet();
   }
-
+  back(){
+    history.back();
+  }
   httpGet() {
    console.log("httpGet");
     this.dtOptionsReimbursement = { 
       ajax: {
-        url: environment.api + 'reimbursement',
+        url: environment.api + 'reimbursement/history',
         type: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -54,8 +56,8 @@ export class HomeComponent implements OnInit {
         },
        
         {
-          title: 'Request Date',
-          data: 'requestDate',
+          title: 'Paid Date',
+          data: 'approvedDate',
         
         },
         {
@@ -68,22 +70,8 @@ export class HomeComponent implements OnInit {
           data: 'description',
         },
         {
-          title: 'Request Amount',
-          data: 'price', 
-          render: function (data: any, type: any, full: any) { 
-            return `<div class="text-end">${data}</div>`;
-          }
-        },
-      
-        
-        {
-          title: '',
-          data: 'id',
-          searchable : false,
-          orderable : false,
-          render: function (data: any, type: any, full: any) {
-            return `<a href="#/home/reimbursement/detail/${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
-          }
+          title: 'Amount',
+          data: 'paid',  
         }, 
       ]
     };
@@ -147,5 +135,5 @@ export class HomeComponent implements OnInit {
   }
  
   
- 
+
 }

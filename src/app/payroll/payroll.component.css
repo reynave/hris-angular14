@@ -1,0 +1,10 @@
+thead th{
+    font-size: 12px;
+    text-align: end;
+    text-transform: uppercase;
+}
+
+tbody td{
+    font-size: 14px;
+    text-align: end;
+}

@@ -37,7 +37,7 @@ export class ReimbursementComponent implements   OnInit  {
    console.log("httpGet");
     this.dtOptions = { 
       ajax: {
-        url: environment.api + 'reimbursement',
+        url: environment.api + 'reimbursement/approvedLineList',
         type: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export class ReimbursementComponent implements   OnInit  {
           searchable : false,
           orderable : false,
           render: function (data: any, type: any, full: any) {
-            return `<a href="#/reimbursement/detail/${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
+            return `<a href="#/reimbursement/request/${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
           }
         }, 
       ]

@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   active: string = "";
   module: any;
   ver : string = environment.ver;
+
   nav: any = {
     _masterData: 0,
     _timeManagement: 0,
@@ -40,7 +41,7 @@ export class HeaderComponent implements OnInit {
       data => {
         const someObj : any =data;
         this.module = data;
-        console.log(data);
+        
         if(someObj['error'] == 400){
           this.logout();
         }
@@ -69,8 +70,7 @@ export class HeaderComponent implements OnInit {
       headers : this.configService.headers(),
     }).subscribe(
       
-      data=>{
-        console.log(data);
+      data=>{ 
        this.configService.logout();
         location.reload();
       }

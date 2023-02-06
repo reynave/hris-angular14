@@ -132,11 +132,14 @@
                         </div> -->
 
                         <div class="row">
-                            <div class="col text-end">
+                            <div class="col text-end" [hidden]="loading">
                                 <button type="button" class="btn btn-outline-dark btn-sm mx-2"
                                     (click)="back();">Back</button>
                                 <button type="submit" class="btn btn-primary btn-sm"
                                     [disabled]="!myForm.form.valid">Submit</button>
+                            </div>
+                            <div class="col text-end" [hidden]="!loading">
+                                Loading...
                             </div>
                         </div>
 

@@ -39,6 +39,9 @@ import { GlobalMasterdataComponent } from './global-masterdata/global-masterdata
 import { PayrollSettingComponent } from './payroll/payroll-setting/payroll-setting.component';
 import { Pph21SettingComponent } from './payroll/pph21-setting/pph21-setting.component';
 import { BpjsSettingComponent } from './global-masterdata/bpjs-setting/bpjs-setting.component';
+import { ReimbursementDatatablesComponent } from './reimbursement/reimbursement-datatables/reimbursement-datatables.component';
+import { HomeHistoryReimbursementComponent } from './home/home-history-reimbursement/home-history-reimbursement.component';
+import { ReimbursementRequestComponent } from './reimbursement/reimbursement-request/reimbursement-request.component';
 
 export const customCurrencyMaskConfig = {
   align: "right",
@@ -73,7 +76,7 @@ export const customCurrencyMaskConfig = {
     EmployeeComponent,
     TimeManagementComponent,
     ReimbursementComponent,
-    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, ReimbursementDetailComponent, ReimbursementHistoryComponent, LoadDetailComponent, TimeManagementReportsComponent,  TimeManagementImportComponent, OrganizationComponent, EmployeeDetailComponent, ReloginComponent, GlobalMasterdataComponent, PayrollSettingComponent, Pph21SettingComponent, BpjsSettingComponent
+    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, ReimbursementDetailComponent, ReimbursementHistoryComponent, LoadDetailComponent, TimeManagementReportsComponent,  TimeManagementImportComponent, OrganizationComponent, EmployeeDetailComponent, ReloginComponent, GlobalMasterdataComponent, PayrollSettingComponent, Pph21SettingComponent, BpjsSettingComponent, ReimbursementDatatablesComponent, HomeHistoryReimbursementComponent, ReimbursementRequestComponent
   ],
   imports: [
     BrowserModule,

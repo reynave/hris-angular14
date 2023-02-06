@@ -12,6 +12,8 @@ import { ConfigService } from 'src/app/service/config.service';
 })
 export class PayrollComponent implements OnInit {
   dtOptions: ADTSettings = {};
+  thead : any =  [];
+  items : any = [];
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -25,9 +27,21 @@ export class PayrollComponent implements OnInit {
   }
   ngOnInit(): void {
     this.httpGet();
+   this.datatables();
   }
 
-  httpGet() {
+  httpGet(){
+    this.http.get<any>(environment.api+"pph21/employee").subscribe(
+      data=>{ 
+        console.log(data);
+        this.thead = data['thead'];
+        this.items = data['data'];
+       
+      }
+    )
+  }
+
+  datatables() {
 
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'decimal', 
@@ -82,7 +96,7 @@ export class PayrollComponent implements OnInit {
           data: 'taxPtkpStatus', 
         },
         {
-          title: 'BPJS',
+          title: 'BPJS '+this.thead.bpsj,
           data: 'bpjs',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);

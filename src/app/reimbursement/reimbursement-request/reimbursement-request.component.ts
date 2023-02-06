@@ -13,18 +13,21 @@ export class Model {
     public paidAmount: string,
     public approvedBy: string,
     public approvedDate: string,
+    public approved: string,
+   
   ) { }
 }
 
 @Component({
-  selector: 'app-reimbursement-detail',
-  templateUrl: './reimbursement-detail.component.html',
-  styleUrls: ['./reimbursement-detail.component.css']
+  selector: 'app-reimbursement-request',
+  templateUrl: './reimbursement-request.component.html',
+  styleUrls: ['./reimbursement-request.component.css']
 })
-export class ReimbursementDetailComponent implements OnInit {
+export class ReimbursementRequestComponent implements OnInit {
+
   id: string = "";
   loading: boolean = false;
-  model: any = new Model("", "", "", "","","",""); 
+  model: any = new Model("", "", "", "","","","",""); 
   reimbursementName: any = []; 
   item : any = [];
   approved : boolean = false;
@@ -57,7 +60,7 @@ export class ReimbursementDetailComponent implements OnInit {
         this.model['paidAmount'] = data['item']['paidAmount']; 
         this.model['approvedBy'] = data['item']['approvedBy']; 
         this.model['approvedDate'] = data['item']['approvedDate']; 
-        this.approved = this.model['approvedBy']  == "" ? false : true;
+        this.model['approved'] = data['item']['approved'];  
         this.model['requestDate'] = {
           year: parseInt(requestDate['0']),
           month: parseInt(requestDate['1']),
@@ -73,6 +76,7 @@ export class ReimbursementDetailComponent implements OnInit {
     this.model.paidAmount = this.model.requestAmount;
   }
   onSubmit() {
+    this.loading = true;
     console.log("onSubmit");
     const body = {
       model: this.model,
@@ -83,6 +87,7 @@ export class ReimbursementDetailComponent implements OnInit {
       headers: this.configService.headers(),
     }).subscribe(
       data => {
+        this.loading = false;
         // if( this.approved == true){
         //   history.back();
         // }else{

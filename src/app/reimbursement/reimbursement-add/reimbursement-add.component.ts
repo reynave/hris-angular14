@@ -61,7 +61,7 @@ export class ReimbursementAddComponent implements OnInit {
   }
 
   onSubmit(){
-   
+    this.loading = true;
     const body = {
       item : this.model,
     }
@@ -69,6 +69,7 @@ export class ReimbursementAddComponent implements OnInit {
       headers : this.configService.headers(),
     }).subscribe(
       data=>{
+        this.loading = false;
         console.log(data);
         this.newData.push(data['insert'][0]);
         this.model = new Model("", "", "", "", ""); 
