@@ -28,7 +28,7 @@ import { TimeManagementEditComponent } from './time-management/time-management-e
 import { ReimbursementAddComponent } from './reimbursement/reimbursement-add/reimbursement-add.component';
 import { ReimbursementDetailComponent } from './reimbursement/reimbursement-detail/reimbursement-detail.component';
 import { ReimbursementHistoryComponent } from './reimbursement/reimbursement-history/reimbursement-history.component';
-import { LoadDetailComponent } from './loan/load-detail/load-detail.component';
+ 
 import { TimeManagementReportsComponent } from './time-management/time-management-reports/time-management-reports.component';
 
 import { TimeManagementImportComponent } from './time-management/time-management-import/time-management-import.component';
@@ -42,6 +42,14 @@ import { BpjsSettingComponent } from './global-masterdata/bpjs-setting/bpjs-sett
 import { ReimbursementDatatablesComponent } from './reimbursement/reimbursement-datatables/reimbursement-datatables.component';
 import { HomeHistoryReimbursementComponent } from './home/home-history-reimbursement/home-history-reimbursement.component';
 import { ReimbursementRequestComponent } from './reimbursement/reimbursement-request/reimbursement-request.component';
+import { LoanAddComponent } from './loan/loan-add/loan-add.component';
+import { LoanDetailComponent } from './loan/loan-detail/loan-detail.component'; 
+import { HomeHistoryLoanComponent } from './home/home-history-loan/home-history-loan.component';
+import { HomeHistoryLoanLogComponent } from './home/home-history-loan/home-history-loan-log/home-history-loan-log.component';
+import { HomeLoanDetailComponent } from './home/home-loan-detail/home-loan-detail.component';
+import { LoanApproveLineComponent } from './loan/loan-approve-line/loan-approve-line.component';
+import { LoanHistoryComponent } from './loan/loan-history/loan-history.component'; 
+
 
 export const customCurrencyMaskConfig = {
   align: "right",
@@ -76,7 +84,13 @@ export const customCurrencyMaskConfig = {
     EmployeeComponent,
     TimeManagementComponent,
     ReimbursementComponent,
-    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, ReimbursementDetailComponent, ReimbursementHistoryComponent, LoadDetailComponent, TimeManagementReportsComponent,  TimeManagementImportComponent, OrganizationComponent, EmployeeDetailComponent, ReloginComponent, GlobalMasterdataComponent, PayrollSettingComponent, Pph21SettingComponent, BpjsSettingComponent, ReimbursementDatatablesComponent, HomeHistoryReimbursementComponent, ReimbursementRequestComponent
+    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, 
+    ReimbursementDetailComponent, ReimbursementHistoryComponent,  
+    TimeManagementReportsComponent, TimeManagementImportComponent, OrganizationComponent, 
+    EmployeeDetailComponent, ReloginComponent, GlobalMasterdataComponent, PayrollSettingComponent, 
+    Pph21SettingComponent, BpjsSettingComponent, ReimbursementDatatablesComponent, HomeHistoryReimbursementComponent, 
+    ReimbursementRequestComponent, LoanAddComponent, LoanDetailComponent, HomeHistoryLoanComponent, 
+    HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,9 +8,15 @@ import { ForbidenComponent } from './forbiden/forbiden.component';
 import { BpjsSettingComponent } from './global-masterdata/bpjs-setting/bpjs-setting.component';
 import { GlobalMasterdataComponent } from './global-masterdata/global-masterdata.component';
 import { AuthGuard } from './guard/auth.guard';
+import { HomeHistoryLoanLogComponent } from './home/home-history-loan/home-history-loan-log/home-history-loan-log.component';
+import { HomeHistoryLoanComponent } from './home/home-history-loan/home-history-loan.component';
 import { HomeHistoryReimbursementComponent } from './home/home-history-reimbursement/home-history-reimbursement.component';
-import { HomeComponent } from './home/home.component';
-import { LoadDetailComponent } from './loan/load-detail/load-detail.component';
+import { HomeLoanDetailComponent } from './home/home-loan-detail/home-loan-detail.component';
+import { HomeComponent } from './home/home.component'; 
+import { LoanAddComponent } from './loan/loan-add/loan-add.component';
+import { LoanApproveLineComponent } from './loan/loan-approve-line/loan-approve-line.component';
+import { LoanDetailComponent } from './loan/loan-detail/loan-detail.component';
+import { LoanHistoryComponent } from './loan/loan-history/loan-history.component';
 import { LoanComponent } from './loan/loan.component';
 import { LoginComponent } from './login/login.component';
 import { ReloginComponent } from './login/relogin/relogin.component';
@@ -43,7 +49,11 @@ const routes: Routes = [
   { path: "home/reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "_home" }, canActivate:[AuthGuard]},
   { path: "home/reimbursement/add", component: ReimbursementAddComponent, data: { active: "_home" },canActivate:[AuthGuard] },
   { path: "home/reimbursement/history", component: HomeHistoryReimbursementComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
- 
+  { path: "home/loan/add", component: LoanAddComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
+  { path: "home/loan/detail/:id", component: HomeLoanDetailComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
+  { path: "home/loan/history", component: HomeHistoryLoanComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
+  { path: "home/loan/history/log/:id", component: LoanDetailComponent, data: { active: "_home" },canActivate:[AuthGuard] },
+
 
   { path: "employee", component: EmployeeComponent, data: { active: "_masterData" }, canActivate:[AuthGuard] },
   { path: "employee/detail/:id", component: EmployeeDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
@@ -53,10 +63,7 @@ const routes: Routes = [
   { path: "payroll/detail/:id", component: PayrollDetailComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
   { path: "globalMasterData", component: GlobalMasterdataComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
   { path: "bpjs/setting", component: BpjsSettingComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
-
-
-
-
+ 
   { path: "timeManagement", component: TimeManagementComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
   { path: "timeManagement/edit/:id", component: TimeManagementEditComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
   { path: "timeManagement/reports", component: TimeManagementReportsComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
@@ -68,7 +75,9 @@ const routes: Routes = [
   { path: "reimbursement/request/:id", component: ReimbursementRequestComponent, data: { active: "_reimbursement" }, canActivate:[AuthGuard]},
 
   { path: "loan", component: LoanComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
-  { path: "loan/detail/:id", component: LoadDetailComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
+  { path: "loan/approveLine/:id", component: LoanApproveLineComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
+  { path: "loan/history", component: LoanHistoryComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
+  { path: "loan/detail/:id", component: LoanDetailComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
 
   { path: "payroll/pph21-setting", component: Pph21SettingComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll", component: PayrollComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },

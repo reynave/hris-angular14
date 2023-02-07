@@ -4,13 +4,13 @@ import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/service/config.service';
 
 
-
 @Component({
-  selector: 'app-loan',
-  templateUrl: './loan.component.html',
-  styleUrls: ['./loan.component.css']
+  selector: 'app-loan-history',
+  templateUrl: './loan-history.component.html',
+  styleUrls: ['./loan-history.component.css']
 })
-export class LoanComponent implements OnInit {
+export class LoanHistoryComponent implements OnInit {
+  
   dtOptions: ADTSettings = {};
   selectPersonal: any = [];
   constructor(
@@ -26,7 +26,7 @@ export class LoanComponent implements OnInit {
   httpGet() {
     this.dtOptions = {
       ajax: {
-        url: environment.api + 'loan/admin',
+        url: environment.api + 'loan/adminHistory',
         type: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export class LoanComponent implements OnInit {
           title: 'Detail',
           data: 'id',
           render: function (data: any, type: any, full: any) {
-            return '<a class="btn btn-sm btn-primary" href="#/loan/approveLine/' + data + '">Detail</a>';
+            return '<a class="btn btn-sm btn-primary" href="#/loan/detail/' + data + '">Detail</a>';
           }
         },
       ]

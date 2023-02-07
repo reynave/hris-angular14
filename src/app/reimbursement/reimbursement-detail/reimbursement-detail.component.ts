@@ -82,13 +82,7 @@ export class ReimbursementDetailComponent implements OnInit {
     this.http.post<any>(environment.api + "reimbursement/update/", body, {
       headers: this.configService.headers(),
     }).subscribe(
-      data => {
-        // if( this.approved == true){
-        //   history.back();
-        // }else{
-        //   console.log(data);
-        //   this.httpGet();
-        // }
+      data => { 
         history.back();
       },
       e => {

@@ -1,7 +1,7 @@
 <app-header></app-header>
 <nav class="navbar navbar-expand  bg-body-secondary" aria-label="Second navbar example">
     <div class="container-fluid">
-       
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
             aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,21 +13,15 @@
                     <a class="nav-link" aria-current="page"><b>Dashboard</b> </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" [routerLink]="[ '/home/reimbursement/history' ]">Reimbursement History </a>
+                    <a class="nav-link " aria-current="page"
+                        [routerLink]="[ '/home/reimbursement/history' ]">Reimbursement History </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link " aria-current="page" [routerLink]="[ '/home/loan/history' ]">Loan History </a>
                 </li>
             </ul>
-            <ul class="navbar-nav ">
-                <li class="nav-item dropdown">
-                    <a [routerLink]="[ '/home/reimbursement/add' ]" class="btn btn-sm btn-warning mx-1">Request Reimbursement  </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a [routerLink]="[ '/reimbursement/add' ]" class="btn btn-sm btn-warning mx-1">Request Loan  </a>
-                </li>
-            </ul>
+           
         </div>
     </div>
 </nav>
@@ -37,11 +31,15 @@
     <div class="row mb-4">
         <div class="col-12">
             <div class="border bg-white p-3 rounded shadow-sm">
-                <div class="mb-3">
-                    <h5>
-                         Request Reimbursement
-                    </h5>
+                <div class="row mb-3">
+                    <div class="col">
+                        <h5>  Request Reimbursement  </h5>
+                    </div>
+                    <div class="col text-end">
+                        <a [routerLink]="[ '/home/reimbursement/add' ]" class="btn btn-sm btn-success mx-1">REQUEST REIMBURSEMENT </a>
+                    </div>
                 </div>
+              
                 <table datatable [dtOptions]="dtOptionsReimbursement" class="row-border hover"></table>
             </div>
         </div>
@@ -50,10 +48,13 @@
     <div class="row">
         <div class="col-12">
             <div class="border bg-white p-3 rounded shadow-sm">
-                <div class="mb-3">
-                    <h5>
-                        Request Loan
-                    </h5>
+                <div class="row mb-3">
+                    <div class="col">
+                        <h5>  Request Loan  </h5>
+                    </div>
+                    <div class="col text-end">
+                        <a [routerLink]="[ '/home/loan/add' ]" class="btn btn-sm btn-success mx-1">REQUEST LOAN </a>
+                    </div>
                 </div>
                 <table datatable [dtOptions]="dtOptionsLoan" class="row-border hover"></table>
             </div>

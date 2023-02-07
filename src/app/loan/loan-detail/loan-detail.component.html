@@ -1,0 +1,129 @@
+<app-header></app-header>
+
+<br>
+<div class="wrapper">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <button type="button" class="btn btn-sm btn-outline-dark" (click)="back()">Back</button>
+            </div>
+            <div class="col-12 mb-3">
+
+                <div class="border shadow-sm bg-white p-2 rounded">
+
+
+                    <div class="modal-header mb-4">
+                        <h5 class="modal-title" id="modal-basic-title">Detail Loan (Approved) </h5>
+                        <button type="button" class="btn-close" aria-label="Close" (click)="back();"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-12">
+
+                                <div class="mb-3">
+                                    <label for="name">Employee </label>
+                                    <select class="form-control" disabled="disabled" class="form-control"
+                                        id="personalId" required [(ngModel)]="model.personalId" name="personalId"
+                                        #personalId="ngModel">
+                                        <option *ngFor="let x of selectPersonal" [value]="x.id"> {{x.id}} {{x.name}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+
+                                <div class="mb-3">
+                                    <label for="name">Amount </label>
+                                    <div class="form-control">{{model.amount}}</div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="installment">Installment </label>
+                                    <div class="form-control">{{model.installment}}</div>
+
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="name"> Effective Date </label>
+                                    <div class="form-control">{{model.effectiveDate}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="name">Description </label>
+                                    <div class="form-control">{{model.description}}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="name">Approved By </label>
+                                    <div class="form-control">{{model.description}}</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="name">Approved date </label>
+                                    <div class="form-control">{{model.description}}</div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-12">
+                <div class="border shadow-sm bg-white p-2 rounded">
+                    <h5 class="modal-title mb-3">Detail Loan (Approved) </h5>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Installment</th>
+                                <th>Payment Date</th>
+                                <th class="text-end">Payment Amount</th>
+                                <th class="text-end">Paid Date</th>
+                                <th class="text-end">Paid Amount</th>
+                                <th class="text-end">Balance</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let x of loanDetail ; let i = index">
+                                <td>{{x.installment}}</td>
+                                <td>{{x.paymentDate | date}}</td>
+                                <td class="text-end">{{x.paymentAmount | number}}</td>
+                                <td class="text-end">{{x.paidDate | date}}</td>
+                                <td class="text-end">{{x.paidAmount | number}}</td>
+                                <td class="text-end">{{x.balance | number}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
