@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.configService.getToken()){
-      this.router.navigate(['employee']);
+      this.router.navigate(['home']);
     } 
   }
 
