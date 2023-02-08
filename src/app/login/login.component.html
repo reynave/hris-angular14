@@ -1,6 +1,6 @@
 <div class="text-center">
     <main class="form-signin w-100 m-auto border shadow-sm bg-white rounded">
-        <form (ngSubmit)="onSubmit()" #myForm="ngForm" >
+        <form (ngSubmit)="onSubmit()" #myForm="ngForm" autocomplete="off" >
             <h1 class="display-1">HRIS</h1>
             <div class="my-2">
                 <strong>Please sign in</strong>
@@ -8,13 +8,13 @@
 
             <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required
-                    [(ngModel)]="model.email" name="email" #email="ngModel" email>
+                    [(ngModel)]="model.email" name="email" #email="ngModel" email autocomplete="false">
                 <label for="floatingInput">Email address</label>
 
             </div>
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required
-                    [(ngModel)]="model.passw" name="passw" #passw="ngModel">
+                    [(ngModel)]="model.passw" name="passw" #passw="ngModel" autocomplete="false">
                 <label for="floatingPassword">Password</label>
 
             </div>

@@ -136,11 +136,37 @@ export class PersonalDetailComponent implements OnInit {
     }
   }
 
+  updatePassword(){
+    const hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(this.model['password']));
+    const md5 = hash.toString(CryptoJS.enc.Hex);
+
+    this.passwordHash = md5;
+    const body = {
+      id: this.activatedRoute.snapshot.params['id'], 
+      passwordHash :this.passwordHash,
+    };
+    this.http.post<any>(environment.api + "personal/updatePassword", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+        console.log(data);
+        this.readonly = true;
+      },
+      e => {
+        console.log(e);
+      }
+    )
+  }
+
   fnSave() {
+    const hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(this.model['password']));
+    const md5 = hash.toString(CryptoJS.enc.Hex);
+
+    this.passwordHash = md5;
     const body = {
       id: this.activatedRoute.snapshot.params['id'],
       model: this.model,
-      passwordHash : this.passwordHash,
+      passwordHash :this.passwordHash,
     };
     this.http.post<any>(environment.api + "personal/fnSave", body, {
       headers: this.configService.headers(),

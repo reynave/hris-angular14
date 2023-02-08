@@ -26,6 +26,9 @@ import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.
 import { PayrollSettingComponent } from './payroll/payroll-setting/payroll-setting.component';
 import { PayrollComponent } from './payroll/payroll.component';
 import { Pph21SettingComponent } from './payroll/pph21-setting/pph21-setting.component';
+import { SalaryDetailReportComponent } from './payroll/salary/salary-detail-report/salary-detail-report.component';
+import { SalaryDetailComponent } from './payroll/salary/salary-detail/salary-detail.component';
+import { SalaryComponent } from './payroll/salary/salary.component';
 import { PersonalDetailComponent } from './personal/personal-detail/personal-detail.component';
 import { PersonalComponent } from './personal/personal.component';
 import { ReimbursementAddComponent } from './reimbursement/reimbursement-add/reimbursement-add.component';
@@ -81,8 +84,11 @@ const routes: Routes = [
 
   { path: "payroll/pph21-setting", component: Pph21SettingComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll", component: PayrollComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+  { path: "payroll/salary", component: SalaryComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+  { path: "payroll/salary/detail/:id", component: SalaryDetailComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+  { path: "payroll/salary/detail/report/:id", component: SalaryDetailReportComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
 
-  { path: "forbiden", component: ForbidenComponent, data: { active: "" },canActivate:[AuthGuard] },
+  { path: "forbiden", component: NotfoundComponent, data: { active: "" },canActivate:[AuthGuard] },
   { path: "nofound", component: NotfoundComponent, data: { active: "" }, },
   { path: "**", component: NotfoundComponent, data: { active: "404" } },
 ];

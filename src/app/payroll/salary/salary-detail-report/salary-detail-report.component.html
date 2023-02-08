@@ -1,0 +1,49 @@
+<app-header></app-header>
+<br>
+
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <h5>Report Salery</h5>
+                </div>
+               
+            </div>
+            <div class="col-6">
+                <button type="button" (click)="back()" class="btn btn-outline-dark btn-sm">Back</button>
+            </div>
+            <div class="col-6 text-end">
+                <button type="button"  class="btn btn-primary btn-sm mx-1">Publish</button>
+                <button type="button" (click)="fnPrint()" class="btn btn-success btn-sm">Print</button>
+            </div>
+
+            <div class="col-12 my-3">
+
+                <div class="border rounded shadow-sm bg-white p-2">
+                    <table class="table table-sm table-bordered mb-0">
+                        <tbody>
+                            <tr>
+                                <td><b>Ticket ID</b></td>
+                                <td>{{item.id}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Status Lock</b></td>
+                                <td>{{item.asLock}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <code>
+                        {{item | json}}
+                    </code>
+                    <div class="text-center">
+                        menunggu final formula data
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

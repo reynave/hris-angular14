@@ -42,14 +42,11 @@
                                                     class="text-danger">Generate</span></label></td>
                                         <td>
 
-                                            <input type="text" (keypress)="fnPassword()" [readOnly]="readonly"
+                                            <input type="text" (change)="fnPassword()" [readOnly]="readonly"
                                                 class="form-control" id="password" required [(ngModel)]="model.password"
                                                 name="password" #email="ngModel">
-                                            <!-- <div [hidden]="(email.valid || email.pristine)  "
-                                                class="text-danger small m-1">
-                                                <span [hidden]="readonly"> Email is required</span>
-                                            </div> -->
-                                            <div class="mt-1" [hidden]="!passwordHash"> Hash : {{passwordHash}}</div>
+                                                
+                                           <button (click)="updatePassword();" [hidden]="readonly" [disabled]="model.password.length < 6" class="btn btn-sm btn-warning mt-2">Changes Password</button>
                                         </td>
                                     </tr>
                                 </tbody>
