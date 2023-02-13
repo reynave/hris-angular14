@@ -51,7 +51,9 @@ import { LoanApproveLineComponent } from './loan/loan-approve-line/loan-approve-
 import { LoanHistoryComponent } from './loan/loan-history/loan-history.component';
 import { SalaryComponent } from './payroll/salary/salary.component';
 import { SalaryDetailComponent } from './payroll/salary/salary-detail/salary-detail.component';
-import { SalaryDetailReportComponent } from './payroll/salary/salary-detail-report/salary-detail-report.component'; 
+import { SalaryDetailReportComponent } from './payroll/salary/salary-detail-report/salary-detail-report.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { MaintenanceDetailComponent } from './maintenance/maintenance-detail/maintenance-detail.component'; 
 
 
 export const customCurrencyMaskConfig = {
@@ -93,7 +95,8 @@ export const customCurrencyMaskConfig = {
     EmployeeDetailComponent, ReloginComponent, GlobalMasterdataComponent, PayrollSettingComponent, 
     Pph21SettingComponent, BpjsSettingComponent, ReimbursementDatatablesComponent, HomeHistoryReimbursementComponent, 
     ReimbursementRequestComponent, LoanAddComponent, LoanDetailComponent, HomeHistoryLoanComponent, 
-    HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent, SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent,
+    HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent, 
+    SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, 
   ],
   imports: [
     BrowserModule,

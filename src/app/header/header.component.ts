@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
     _loan: 0,
     _payroll: 0,
     _home: 1,
+    _maintenance : 0,
   }
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -56,6 +57,7 @@ export class HeaderComponent implements OnInit {
         this.nav._payroll = this.module['module']['_payroll'];
         this.nav._reimbursement = this.module['module']['_reimbursement'];
         this.nav._timeManagement = this.module['module']['_timeManagement'];
+        this.nav._maintenance = this.module['module']['_maintenance'];
 
         if (parseInt(this.module['module'][this.active]) != 1 && this.active != '_home') {
           this.router.navigate(['forbiden']);

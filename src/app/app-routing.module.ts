@@ -19,7 +19,9 @@ import { LoanDetailComponent } from './loan/loan-detail/loan-detail.component';
 import { LoanHistoryComponent } from './loan/loan-history/loan-history.component';
 import { LoanComponent } from './loan/loan.component';
 import { LoginComponent } from './login/login.component';
-import { ReloginComponent } from './login/relogin/relogin.component';
+import { ReloginComponent } from './login/relogin/relogin.component';  
+import { MaintenanceDetailComponent } from './maintenance/maintenance-detail/maintenance-detail.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { OrganizationComponent } from './organization/organization.component';
 import { PayrollDetailComponent } from './payroll/payroll-detail/payroll-detail.component';
@@ -56,8 +58,11 @@ const routes: Routes = [
   { path: "home/loan/detail/:id", component: HomeLoanDetailComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
   { path: "home/loan/history", component: HomeHistoryLoanComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
   { path: "home/loan/history/log/:id", component: LoanDetailComponent, data: { active: "_home" },canActivate:[AuthGuard] },
-
-
+  
+  { path: "maintenance", component: MaintenanceComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
+  { path: "maintenance/:id", component: MaintenanceDetailComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
+   
+ 
   { path: "employee", component: EmployeeComponent, data: { active: "_masterData" }, canActivate:[AuthGuard] },
   { path: "employee/detail/:id", component: EmployeeDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
   { path: "organization", component: OrganizationComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
