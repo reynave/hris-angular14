@@ -1,42 +1,61 @@
-<app-header></app-header>
-<nav class="navbar navbar-expand  bg-body-secondary" aria-label="Second navbar example">
-    <div class="container-fluid">
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul> 
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
-            aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <nav class="navbar navbar-expand bg-white  shadow-sm mb-3">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarsExample02">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link"  [routerLink]="[ '/home' ]" aria-current="page"> Dashboard  </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page"
+                                    [routerLink]="[ '/home/reimbursement/history' ]"><b>Reimbursement History </b></a>
+                            </li>
 
-        <div class="collapse navbar-collapse" id="navbarsExample02">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" [routerLink]="[ '/home' ]">Dashboard </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " aria-current="page"
-                        [routerLink]="[ '/home/reimbursement/history' ]"><b>Reimbursement History</b> </a>
-                </li>
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" [routerLink]="[ '/home/loan/history' ]">Loan
+                                    History </a>
+                            </li>
+                        </ul>
 
-                <li class="nav-item">
-                    <a class="nav-link " aria-current="page" [routerLink]="[ '/home/loan/history' ]">Loan History </a>
-                </li>
-            </ul>
-           
-        </div>
-    </div>
-</nav>
-<br>
-<div class="container-fluid">
-    <div class="row mb-4"> 
-        <div class="col-12 mb-3">
-            <div class="border bg-white p-3 rounded shadow-sm">
-                <div class="mb-3">
-                    <h5>
-                         History Reimbursement
-                    </h5>
+                    </div>
                 </div>
-                <table datatable [dtOptions]="dtOptionsReimbursement" class="row-border hover"></table>
+            </nav>
+
+            <div class="container"> 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary">  History Reimbursement</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table datatable [dtOptions]="dtOptionsReimbursement" class="row-border hover"></table>
+                            </div>
+                        </div>
+                    </div>
+         
+                </div>
             </div>
         </div>
+
+    
     </div>
+
+
+   
 </div>

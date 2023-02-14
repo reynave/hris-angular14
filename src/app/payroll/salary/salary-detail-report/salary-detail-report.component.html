@@ -1,49 +1,68 @@
-<app-header></app-header>
-<br>
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
 
-<div class="wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div>
-                    <h5>Report Salery</h5>
-                </div>
-               
-            </div>
-            <div class="col-6">
-                <button type="button" (click)="back()" class="btn btn-outline-dark btn-sm">Back</button>
-            </div>
-            <div class="col-6 text-end">
-                <button type="button"  class="btn btn-primary btn-sm mx-1">Publish</button>
-                <button type="button" (click)="fnPrint()" class="btn btn-success btn-sm">Print</button>
-            </div>
+        <div id="content"> 
+            
+                <div class="container my-3">
+                    <div class="row">
+                        <div class="col-12 disable-printing">
+                            <button type="button" (click)="back()" class="btn btn-outline-dark btn-sm">Back</button>
 
-            <div class="col-12 my-3">
 
-                <div class="border rounded shadow-sm bg-white p-2">
-                    <table class="table table-sm table-bordered mb-0">
-                        <tbody>
-                            <tr>
-                                <td><b>Ticket ID</b></td>
-                                <td>{{item.id}}</td>
-                            </tr>
-                            <tr>
-                                <td><b>Status Lock</b></td>
-                                <td>{{item.asLock}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        </div>
+                      
 
-                    <code>
-                        {{item | json}}
-                    </code>
-                    <div class="text-center">
-                        menunggu final formula data
+                        <div class="col-12 my-3">
+
+
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="m-0 font-weight-bold text-primary"> REPORT SALERY </h6>
+                                        </div>
+                                        <div class="col text-end disable-printing">
+                                          
+                                            <button type="button" class="btn btn-primary btn-sm mx-1">Publish</button>
+                                            <button type="button" (click)="fnPrint()" class="btn btn-success btn-sm">Print</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+    
+                                    <table class="table table-sm table-bordered mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Ticket ID</b></td>
+                                                <td>{{item.id}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Status Lock</b></td>
+                                                <td>{{item.asLock}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+    
+                                    <code>
+                                        {{item | json}}
+                                    </code>
+                                    <div class="text-center">
+                                        menunggu final formula data
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            
+                        </div>
                     </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                </div> 
 
+        </div>
+
+    </div>
+
+</div>

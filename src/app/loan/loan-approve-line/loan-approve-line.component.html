@@ -1,127 +1,152 @@
-<app-header></app-header>
-<br>
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
 
-<div class="wrapper">
+        <!-- Main Content -->
+        <div id="content">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-
-                <div class="border shadow-sm bg-white p-2 rounded">
-
-                    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
-                        <div class="modal-header mb-4">
-                            <h4 class="modal-title" id="modal-basic-title">Detail Loan (Approve Line) </h4>
-                            <button type="button" class="btn-close" aria-label="Close" (click)="back();"></button>
+            <div class="container my-4">
+                <div class="row  justify-content-center">
+                    <div class="col-8">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary">DETAIL LOAN (APPROVE LINE) </h6>
+                                    </div>
+                                    <div class="col text-end">
+                                        <button type="button" class="btn-close" aria-label="Close" (click)="back();"></button>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="card-body">
+                                <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+        
+        
+                                    <div class="modal-body">
+        
+                                        <div class="row">
+                                            <div class="col-12">
+        
+                                                <div class="mb-3">
+                                                    <label for="name">Employee <span class="text-danger">*</span></label>
+                                                    <select class="form-control" disabled="disabled" class="form-control"
+                                                        id="personalId" required [(ngModel)]="model.personalId"
+                                                        name="personalId" #personalId="ngModel">
+                                                        <option *ngFor="let x of selectPersonal" [value]="x.id"> {{x.id}}
+                                                            {{x.name}}
+                                                        </option>
+                                                    </select>
+                                                    <div [hidden]="personalId.valid || personalId.pristine"
+                                                        class="text-danger small m-1">
+                                                        Employee Name is required
+                                                    </div>
+                                                </div>
+        
+                                            </div>
+                                        </div>
+        
+                                        <div class="row">
+                                            <div class="col">
+        
+                                                <div class="mb-3">
+                                                    <label for="name">Amount <span class="text-danger">*</span></label>
+                                                    <input currencyMask class="form-control" id="amount"
+                                                        [(ngModel)]="model.amount" name="amount" #amount="ngModel" required>
+                                                    <div [hidden]="amount.valid || amount.pristine"
+                                                        class="text-danger small m-1">
+                                                        Amount is required
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <div class="col">
+                                                <div class="mb-3">
+                                                    <label for="installment">Installment <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="number" class="form-control" id="installment"
+                                                        [(ngModel)]="model.installment" name="installment"
+                                                        #installment="ngModel" required>
+                                                    <div [hidden]="installment.valid || installment.pristine"
+                                                        class="text-danger small m-1">
+                                                        Installment is required
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <div class="col">
+                                                <div class="mb-3">
+                                                    <label for="name"> Request Effective Date <span
+                                                            class="text-danger">*</span></label>
+                                                    <div class="input-group">
+                                                        <input id="effectiveDate" class="form-control" placeholder="yyyy-mm-dd"
+                                                            name="effectiveDate" ngbDatepicker #dp="ngbDatepicker"
+                                                            [(ngModel)]="model.effectiveDate" required />
+                                                        <button class="btn btn-outline-secondary" (click)="dp.toggle()"
+                                                            type="button">
+                                                            <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                        <div class="row">
+        
+                                            <div class="col-12">
+                                                <div class="mb-3">
+                                                    <label for="name">Description </label>
+                                                    <textarea class="form-control" id="phone" [(ngModel)]="model.description"
+                                                        name="description" #description="ngModel"></textarea>
+                                                </div>
+                                            </div>
+        
+                                        </div>
+        
+        
+                                    </div>
+                                    <div class="my-3 ">
+        
+                                        <div class="row">
+                                            <div class="col">
+                                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                                    (click)="back();">Back</button>
+                                            </div>
+                                            <div class="col text-end">
+        
+                                                <div *ngIf="!loading">
+                                                    <button type="button" class="btn btn-danger btn-sm mx-sm-1"
+                                                        (click)="remove();">Remove</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm mx-1"
+                                                        [disabled]="!myForm.form.valid">Approve</button>
+                                                </div>
+        
+                                                <div *ngIf="loading">Loading...</div>
+        
+                                            </div>
+                                        </div>
+        
+        
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-
-                        <div class="modal-body">
-
-                            <div class="row">
-                                <div class="col-12">
-
-                                    <div class="mb-3">
-                                        <label for="name">Employee <span class="text-danger">*</span></label>
-                                        <select class="form-control" disabled="disabled" class="form-control" id="personalId" required
-                                            [(ngModel)]="model.personalId" name="personalId" #personalId="ngModel">
-                                            <option *ngFor="let x of selectPersonal" [value]="x.id"> {{x.id}} {{x.name}}
-                                            </option>
-                                        </select>
-                                        <div [hidden]="personalId.valid || personalId.pristine"
-                                            class="text-danger small m-1">
-                                            Employee Name is required
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-
-                                    <div class="mb-3">
-                                        <label for="name">Amount <span class="text-danger">*</span></label>
-                                        <input currencyMask class="form-control" id="amount" [(ngModel)]="model.amount"
-                                            name="amount" #amount="ngModel" required>
-                                        <div [hidden]="amount.valid || amount.pristine" class="text-danger small m-1">
-                                            Amount is required
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="installment">Installment <span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" id="installment"
-                                            [(ngModel)]="model.installment" name="installment" #installment="ngModel"
-                                            required>
-                                        <div [hidden]="installment.valid || installment.pristine"
-                                            class="text-danger small m-1">
-                                            Installment is required
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="name"> Request Effective Date <span
-                                                class="text-danger">*</span></label>
-                                        <div class="input-group">
-                                            <input id="effectiveDate" class="form-control" placeholder="yyyy-mm-dd"
-                                                name="effectiveDate" ngbDatepicker #dp="ngbDatepicker"
-                                                [(ngModel)]="model.effectiveDate" required />
-                                            <button class="btn btn-outline-secondary" (click)="dp.toggle()"
-                                                type="button">
-                                                <img src="./assets/img/icons8-calendar-48.png" height="20">
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-12">
-                                    <div class="mb-3">
-                                        <label for="name">Description </label>
-                                        <textarea class="form-control" id="phone" [(ngModel)]="model.description"
-                                            name="description" #description="ngModel"></textarea>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                        <div class="my-3 ">
-
-                            <div class="row">
-                                <div class="col">
-                                    <button type="button" class="btn btn-outline-dark btn-sm"
-                                        (click)="back();">Back</button>
-                                </div>
-                                <div class="col text-end">
-
-                                    <div *ngIf="!loading">
-                                        <button type="button" class="btn btn-danger btn-sm mx-sm-1"
-                                            (click)="remove();">Remove</button> 
-                                        <button type="submit" class="btn btn-primary btn-sm mx-1"
-                                            [disabled]="!myForm.form.valid">Approve</button>
-                                    </div>
-
-                                    <div *ngIf="loading">Loading...</div>
-
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </form>
+        
+        
+                    </div>
                 </div>
-
-
             </div>
         </div>
+
     </div>
 
 </div>
+
+
+
+
+
+ 

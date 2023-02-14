@@ -7,18 +7,21 @@
     z-index: 99;
 }
 
-body {
+/* body {
     margin-top: 55px;
-}
+} */
 
-.form-control {
+/* .form-control {
     background-color: rgb(244, 243, 243);
-}
+} */
 
-.wrapper {
+/* .wrapper {
     width: 800px;
     margin: 0 auto;
     margin-bottom: 50px;
+} */
+.sidebar .nav-item .nav-link {
+    padding: 5px 1rem;
 }
 
 @media print {
@@ -30,12 +33,20 @@ body {
     body {
         margin-top: 0px;
     }
+
+    .navbar-nav,
+    #accordionSidebar,
+    .disable-printing {
+        display: none; 
+    }
 }
 
-.footer{
+.footer {
     width: 100%;
     position: fixed;
     bottom: 0px;
     left: 0px;
     height: auto;
+    z-index: 99;
+    opacity: 0.9;
 }

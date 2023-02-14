@@ -1,71 +1,84 @@
-<app-header></app-header>
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <h4>Time Management</h4>
-        </div>
-        <div class="col-12">
-            <button type="button" class="btn btn-outline-dark btn-sm" (click)="back();">Back</button>
-        </div>
-    </div>
-</div>
-<div class="">
-    <div class="container">
-        <div class="row">
-            <div class="col-12  text-center ">
-                <h4 class="text-danger">Bulk Attendance Import from CSV/TXT </h4>
-                <small class="mb-4">ver 1.0</small>
-            </div>
-            <div class="col-12">
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                  
+                    <div class="col-12 my-3">
+                        <button type="button" class="btn btn-outline-dark btn-sm" (click)="back();">Back</button>
+                    </div>
+                </div>
+                <div class="row">
+                   
+                    <div class="col-12">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary">Bulk Attendance Import from CSV/TXT </h6>
+                                        <small class="mb-4">template ver 1.0</small>
+                                    </div>
+                                    <div class="col text-end">
+                                        <a [routerLink]="[ '/home/loan/add' ]" class="btn btn-sm btn-success mx-1">ADD
+                                            REQUEST
+                                            LOAN </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body"> 
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">
+                                                <h5> Upload File</h5>
+                                            </label>
+                                            <input type="file" class="form-control" (change)="onFileSelected($event)">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="text-center">{{httpNote}}</div>
+                                    </div>
 
-                <div class="border shadow-sm rounded p-4 bg-white">
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">
-                                    <h5> Upload File</h5>
-                                </label>
-                                <input type="file" class="form-control" (change)="onFileSelected($event)">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="text-center">{{httpNote}}</div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card shadow mb-3">
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Date</th>
+                                            <th>File Name</th>
+                                            <th>File Size (KB)</th>
+                                            <th>Note</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of items; let i = index">
+                                            <td> {{i+1}}</td>
+                                            <td> {{x['inputDate'] | date:'medium'}} </td>
+
+                                            <td>{{x['fileName']}} </td>
+                                            <td> {{x['fileSize']}} </td>
+                                            <td> {{x['note']}} </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-12 mt-4">
-                    <div class="border bg-white">
-                        <table class="table table-sm table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Date</th>
-                                    <th>File Name</th>
-                                    <th>File Size (KB)</th>
-                                    <th>Note</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let x of items; let i = index">
-                                    <td> {{i+1}}</td>
-                                    <td> {{x['inputDate'] | date:'medium'}} </td>
-
-                                    <td>{{x['fileName']}} </td>
-                                    <td> {{x['fileSize']}} </td>
-                                    <td> {{x['note']}} </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
+
             </div>
         </div>
-
     </div>
+
+</div>

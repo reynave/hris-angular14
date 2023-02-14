@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
       },
       e => {
         console.log(e);
-        //  this.router.navigate(['forbiden']);
+        //  this.roungter.navigate(['forbiden']);
       }
     )
   }

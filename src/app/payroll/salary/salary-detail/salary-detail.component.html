@@ -1,32 +1,58 @@
-<app-header></app-header>
-<br>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <h4> Employee Salery</h4>
-        </div>
-        <div class="col-6">
-            <a (click)="back();" class="btn btn-sm btn-outline-dark">Back</a>
-        </div>
-        <div class="col-6 text-end">
-            <a class="btn btn-sm btn-warning" (click)="open(content)">New Salary Report</a>
-        </div>
-        <div class="col-12 my-2">
-            <div class="border shadow-sm rounded p-2 bg-white mb-3">
-                <div class="mb-3">
-                    <b>Employee  Detail</b>
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+            <div class="container my-3">
+                <div class="row">
+
+                    <div class="col-12 mb-3">
+                        <a (click)="back();" class="btn btn-sm btn-outline-dark">Back</a>
+                    </div>
+
+                    <div class="col-12 my-2">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary"> DETAIL </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <b>Employee Detail</b>
+                                </div>
+                                <h4> {{personalData.name}}</h4>
+                                <h6> {{personalData.id}}</h6>
+                                
+                                <code>{{personalData | json}}</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="m-0 font-weight-bold text-primary"> SALERY DETAIL </h6>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <a class="btn btn-sm btn-primary " (click)="open(content)">NEW SALARY REPORT</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-                <code>{{personalData | json}}</code>
-            </div>
-        </div>
-        <div class="col-12 mb-3">
-            <div class="border shadow-sm rounded p-2 bg-white">
-                <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
             </div>
         </div>
     </div>
-</div>
 
+</div>
 
 <ng-template #content let-modal>
     <div class="modal-header">

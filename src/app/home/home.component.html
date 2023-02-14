@@ -1,63 +1,114 @@
-<app-header></app-header>
-<nav class="navbar navbar-expand  bg-body-secondary" aria-label="Second navbar example">
-    <div class="container-fluid">
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
-            aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-        <div class="collapse navbar-collapse" id="navbarsExample02">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page"><b>Dashboard</b> </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " aria-current="page"
-                        [routerLink]="[ '/home/reimbursement/history' ]">Reimbursement History </a>
-                </li>
+        <!-- Main Content -->
+        <div id="content">
 
-                <li class="nav-item">
-                    <a class="nav-link " aria-current="page" [routerLink]="[ '/home/loan/history' ]">Loan History </a>
-                </li>
-            </ul>
-           
-        </div>
-    </div>
-</nav>
+            <nav class="navbar navbar-expand bg-white  shadow-sm mb-3">
+                <div class="container">
 
-<br>
-<div class="container-fluid">
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="border bg-white p-3 rounded shadow-sm">
-                <div class="row mb-3">
-                    <div class="col">
-                        <h5>  Request Reimbursement  </h5>
-                    </div>
-                    <div class="col text-end">
-                        <a [routerLink]="[ '/home/reimbursement/add' ]" class="btn btn-sm btn-success mx-1">REQUEST REIMBURSEMENT </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarsExample02">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page"><b>Dashboard</b> </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page"
+                                    [routerLink]="[ '/home/reimbursement/history' ]">Reimbursement History </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" [routerLink]="[ '/home/loan/history' ]">Loan
+                                    History </a>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
-              
-                <table datatable [dtOptions]="dtOptionsReimbursement" class="row-border hover"></table>
-            </div>
-        </div>
-    </div>
+            </nav>
+ 
+            <!-- Begin Page Content -->
+            <div class="container"> 
+<!-- 
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h4 class="h3 mb-0 text-gray-800">Home</h4>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                </div> -->
 
-    <div class="row">
-        <div class="col-12">
-            <div class="border bg-white p-3 rounded shadow-sm">
                 <div class="row mb-3">
-                    <div class="col">
-                        <h5>  Request Loan  </h5>
-                    </div>
-                    <div class="col text-end">
-                        <a [routerLink]="[ '/home/loan/add' ]" class="btn btn-sm btn-success mx-1">REQUEST LOAN </a>
+                    <div class="col-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary">REQUEST REIMBURSEMENT </h6>
+                                    </div>
+                                    <div class="col text-end">
+                                        <a [routerLink]="[ '/home/reimbursement/add' ]"
+                                            class="btn btn-sm btn-success mx-1">ADD REQUEST REIMBURSEMENT </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                <table datatable [dtOptions]="dtOptionsReimbursement" class="table " id="dataTable">
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <table datatable [dtOptions]="dtOptionsLoan" class="row-border hover"></table>
+
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary"> REQUEST LOAN </h6>
+                                    </div>
+                                    <div class="col text-end">
+                                        <a [routerLink]="[ '/home/loan/add' ]" class="btn btn-sm btn-success mx-1">ADD
+                                            REQUEST
+                                            LOAN </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                <table datatable [dtOptions]="dtOptionsLoan" class="table " id="dataTable">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
             </div>
+            <!-- /.container-fluid -->
+
         </div>
+        <!-- End of Main Content -->
+
+
+
     </div>
+    <!-- End of Content Wrapper -->
+
 </div>
+<!-- End of Page Wrapper -->

@@ -1,37 +1,53 @@
-<app-header></app-header>
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h4>BPJS Setting</h4>
-        </div>
-        <div class="col-12">
-            <div class="border shadow-sm bg-white">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Label</th>
-                            <th width="150">Company %</th>
-                            <th width="150">Employee %</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let x of items">
-                            <td> <div class="form-control">{{x.id}}</div></td>
-                            <td><input type="text" class="form-control" [(ngModel)]="x.label" ></td>
-                            <td><input type="number" class="form-control" [(ngModel)]="x.company" ></td>
-                            <td><input type="number" class="form-control" [(ngModel)]="x.employee" ></td>
-                        </tr>
-                    </tbody> 
-                </table>
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <div class="container my-3">
+                <div class="row">
+                   
+                    <div class="col-12">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary"> BPJS SETTING </h6>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Label</th>
+                                            <th width="150">Company %</th>
+                                            <th width="150">Employee %</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of items">
+                                            <td>
+                                                <div class="form-control">{{x.id}}</div>
+                                            </td>
+                                            <td><input type="text" class="form-control" [(ngModel)]="x.label"></td>
+                                            <td><input type="number" class="form-control" [(ngModel)]="x.company"></td>
+                                            <td><input type="number" class="form-control" [(ngModel)]="x.employee"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<div class="footer bg-white border shadow-sm" >
+<div class="footer bg-white border shadow-sm">
     <div class="container">
         <div class="row">
             <div class="col-12">

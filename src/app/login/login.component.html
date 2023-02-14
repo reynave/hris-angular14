@@ -1,36 +1,66 @@
-<div class="text-center">
-    <main class="form-signin w-100 m-auto border shadow-sm bg-white rounded">
-        <form (ngSubmit)="onSubmit()" #myForm="ngForm" autocomplete="off" >
-            <h1 class="display-1">HRIS</h1>
-            <div class="my-2">
-                <strong>Please sign in</strong>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+
+
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block" style="background: url(./assets/img/login1.jpg);
+                        background-position: center;
+                        background-size: cover;"></div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h4 class="font-weight-bold text-primary mb-4">HR SERVICE MANAGEMENT</h4>
+                                </div>
+                                <form (ngSubmit)="onSubmit()" #myForm="ngForm" autocomplete="off">
+                                    <div class="form-group">
+
+                                        <input type="email" class="form-control form-control-user rounded-pill" id="floatingInput"
+                                            placeholder="name@example.com" required [(ngModel)]="model.email"
+                                            name="email" #email="ngModel" email autocomplete="false">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user rounded-pill"
+                                            id="floatingPassword" placeholder="Password" required
+                                            [(ngModel)]="model.passw" name="passw" #passw="ngModel"
+                                            autocomplete="false">
+                                    </div>
+                                    
+                                    <button class="btn btn-primary btn-user btn-block rounded-pill" [disabled]="!myForm.form.valid"
+                                        type="submit">Sign in</button>
+                                    <hr>
+                                    <div>
+                                        <small [hidden]="email.valid || email.pristine" class="text-danger"> Email is
+                                            required </small>
+                                    </div>
+                                    <div>
+                                        <small [hidden]="passw.valid || passw.pristine" class="text-danger"> Password is
+                                            required </small>
+                                    </div>
+
+                                    <div>{{note}}</div>
+
+                                </form>
+                              
+                                <div class="text-center">
+                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
             </div>
-
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required
-                    [(ngModel)]="model.email" name="email" #email="ngModel" email autocomplete="false">
-                <label for="floatingInput">Email address</label>
-
-            </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required
-                    [(ngModel)]="model.passw" name="passw" #passw="ngModel" autocomplete="false">
-                <label for="floatingPassword">Password</label>
-
-            </div>
-
-            <div>
-                <small [hidden]="email.valid || email.pristine" class="text-danger"> Email is required </small>
-            </div>
-            <div> 
-                <small [hidden]="passw.valid || passw.pristine" class="text-danger">  Password is required </small>
-            </div>
-
-            <div>{{note}}</div>
-
-             
-            <button class="w-100 btn btn-lg btn-primary" [disabled]="!myForm.form.valid" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
-        </form>
-    </main>
+        </div>
+    </div>
 </div>
+
+

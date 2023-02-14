@@ -1,36 +1,54 @@
-<app-header></app-header>
-<nav class="navbar navbar-expand  bg-body-secondary" aria-label="Second navbar example">
-  <div class="container-fluid">
+<div id="wrapper">
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <app-header></app-header>
+  </ul>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
-          aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarsExample02">
-          <ul class="navbar-nav me-auto">
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <nav class="navbar navbar-expand  bg-body-secondary" aria-label="Second navbar example">
+        <div class="container-fluid">
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
+            aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                  <a class="nav-link" aria-current="page" [routerLink]="[ '/loan' ]"><b>Request Loan </b> </a>
+                <a class="nav-link" aria-current="page" [routerLink]="[ '/loan' ]"><b>Request Loan </b> </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link " aria-current="page" [routerLink]="[ '/loan/history' ]">Loan History </a>
-              </li> 
-          </ul>
-         
+                <a class="nav-link " aria-current="page" [routerLink]="[ '/loan/history' ]">Loan History </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid ">
+        <div class="row ">
+
+
+          <div class="col-12">
+            <div class="card shadow my-3">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"> REQUEST LOAN </h6>
+              </div>
+              <div class="card-body"> 
+                  <table datatable [dtOptions]="dtOptions" class="table " id="dataTable"></table> 
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
-</nav>
-<br>
-<div class="container-fluid ">
-  <div class="row ">
-    <div class="col-6 my-2">
-      <h4>Request Loan</h4>
-    </div>
-  
-    <div class="col-12">
-      <div class="border shadow-sm rounded p-2 bg-white">
-        <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
-      </div>
+
     </div>
   </div>
+
 </div>

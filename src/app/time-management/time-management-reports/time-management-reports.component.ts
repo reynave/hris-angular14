@@ -16,10 +16,9 @@ export class TimeManagementReportsComponent implements OnInit {
   summary: any = [];
   offtime : any = [];
   timeManagementShift: any = [];
-  
+  calculation : boolean = true;
   model : any = [];
-  constructor(
-
+  constructor( 
     config: NgbModalConfig,
     private modalService: NgbModal,
     private router: Router,
@@ -35,12 +34,14 @@ export class TimeManagementReportsComponent implements OnInit {
   }
 
   httpGet() {
+    
     let str = new URLSearchParams(this.activeRouter.snapshot.queryParams).toString();
     this.http.get<any>(environment.api + "timeManagement/reports?" + str,{
       headers: this.configService.headers(),
     }).subscribe(
       data => {
         console.log(data);
+        this.calculation = false;
         this.summary = data['summary'];
         this.employee = data['employee'];
         this.items = data['items'];

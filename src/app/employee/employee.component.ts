@@ -60,7 +60,7 @@ export class EmployeeComponent implements OnInit {
           title: 'Employed ID',
           data: 'id',
           render: function (data: any, type: any, full: any) {
-            return '<a  href="#/employee/detail/' + data + '">' + data + '</a>';
+            return '<a  href="#/employee/detail/' + data + '?tab=">' + data + '</a>';
           }
         },
         {

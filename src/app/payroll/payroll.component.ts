@@ -12,8 +12,8 @@ import { ConfigService } from 'src/app/service/config.service';
 })
 export class PayrollComponent implements OnInit {
   dtOptions: ADTSettings = {};
-  thead : any =  [];
-  items : any = [];
+  thead: any = [];
+  items: any = [];
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -27,29 +27,31 @@ export class PayrollComponent implements OnInit {
   }
   ngOnInit(): void {
     this.httpGet();
-   this.datatables();
+    this.datatables();
   }
 
-  httpGet(){
-    this.http.get<any>(environment.api+"pph21/employee").subscribe(
-      data=>{ 
+  httpGet() {
+    this.http.get<any>(environment.api + "pph21/employee").subscribe(
+      data => {
         console.log(data);
         this.thead = data['thead'];
         this.items = data['data'];
-       
+
       }
     )
   }
-
+  back() {
+    history.back();
+  }
   datatables() {
 
     const formatter = new Intl.NumberFormat('en-US', {
-      style: 'decimal', 
+      style: 'decimal',
       // These options are needed to round to whole numbers if that's what you want.
       minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
       //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
     });
-    
+
 
     console.log(environment.api + 'pph21/employee/');
     this.dtOptions = {
@@ -60,13 +62,13 @@ export class PayrollComponent implements OnInit {
           'Content-Type': 'application/json',
           'Token': this.configService.varToken,
         },
-      }, 
+      },
       scrollX: true,
       ordering: false,
       columnDefs: [
-        { targets: [2,3,  5, 6, 7,8,9,10,11,12,13,14,15,16,17], className: 'dt-body-right', },
-        { targets: [2,3,  5, 6, 7,8,9,10,11,12,13,14,15,16,17], className: 'dt-head-right', width: "100px" }
-   
+        { targets: [2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], className: 'dt-body-right', },
+        { targets: [2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], className: 'dt-head-right', width: "100px" }
+
       ],
       columns: [
         {
@@ -82,110 +84,110 @@ export class PayrollComponent implements OnInit {
           data: 'salary',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'Tunjangan',
           data: 'tunjangan',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'PTKP',
-          data: 'taxPtkpStatus', 
+          data: 'taxPtkpStatus',
         },
         {
-          title: 'BPJS '+this.thead.bpsj,
+          title: 'BPJS ' + this.thead.bpsj,
           data: 'bpjs',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'JKK',
           data: 'jkk',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'jkm',
           data: 'jkm',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'BRUTO',
           data: 'bruto',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'By Jabatan',
           data: 'byJabatan',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'BPJS Kes',
           data: 'bpjsKes',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'JHT',
           data: 'jht',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'JP',
           data: 'jp',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'NETTO',
           data: 'netto',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'PTKP',
           data: 'ptkpAmount',
           render: function (data: any, type: any, full: any) {
             return formatter.format(data);
-         }
+          }
         },
         {
           title: 'PKP',
           data: 'pkp',
           render: function (data: any, type: any, full: any) {
-                return formatter.format(data);
-             }
+            return formatter.format(data);
+          }
         },
         {
           title: 'Pph21 Terutang setahun',
           data: 'pph21Year',
           render: function (data: any, type: any, full: any) {
-                return formatter.format(data);
-             }
+            return formatter.format(data);
+          }
         },
 
         {
           title: 'Pph21 Terutang sebulan',
           data: 'pph21Month',
           render: function (data: any, type: any, full: any) {
-                return formatter.format(data);
-             }
+            return formatter.format(data);
+          }
         },
         // {
         //   title: 'Detail',

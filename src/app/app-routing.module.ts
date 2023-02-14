@@ -38,6 +38,7 @@ import { ReimbursementDetailComponent } from './reimbursement/reimbursement-deta
 import { ReimbursementHistoryComponent } from './reimbursement/reimbursement-history/reimbursement-history.component';
 import { ReimbursementRequestComponent } from './reimbursement/reimbursement-request/reimbursement-request.component';
 import { ReimbursementComponent } from './reimbursement/reimbursement.component';
+import { TemplateComponent } from './template/template.component';
 import { TimeManagementEditComponent } from './time-management/time-management-edit/time-management-edit.component';
 import { TimeManagementImportComponent } from './time-management/time-management-import/time-management-import.component';
 import { TimeManagementReportsComponent } from './time-management/time-management-reports/time-management-reports.component';
@@ -45,7 +46,8 @@ import { TimeManagementComponent } from './time-management/time-management.compo
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "login" }, },
-
+  { path: "temp", component: TemplateComponent},
+ 
   { path: "login", component: LoginComponent, data: { active: "login" }, },
   { path: "login/relogin", component: ReloginComponent, data: { active: "login" }, },
 

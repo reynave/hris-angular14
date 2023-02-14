@@ -1,149 +1,153 @@
-<app-header></app-header>
+<div class="container my-3">
+    <div class="row  justify-content-center">
 
-<div class="container-fluid ">
-    <div class="row">
-
-        <div class="col-12 mt-2">
+        <div class="col-8 ">
             <button type="button" class="btn btn-outline-dark btn-sm" (click)="back();">Back</button>
         </div>
     </div>
 </div>
 <form (ngSubmit)="onSubmit()" #myForm="ngForm">
     <div class="wrapper">
-        <div class="container">
-            <div class="row">
+        <div class="container ">
+            <div class="row  justify-content-center">
 
-                <div class="col-12 ">
-                    <h4 class=" text-center mb-2">Detail Reimbursement</h4>
-                    <div class="border shadow-sm rounded p-4 bg-white">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Transaction ID</label>
-                                    <div class="form-control">{{item.id}}</div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
-                                    <div class="form-control">{{item.personalId}} {{item.name}}</div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label for="requestAmount" class="form-label">Request Amount <span
-                                            class="text-danger">*</span></label>
-                                    <input currencyMask class="form-control" id="requestAmount"
-                                        [(ngModel)]="model.requestAmount" name="requestAmount" #requestAmount="ngModel"
-                                        required>
-
-                                    <div [hidden]="requestAmount.valid || requestAmount.pristine"
-                                        class="text-danger small m-1">
-                                        Request Amount is required
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label for="requestDate" class="form-label">Request Date <span
-                                            class="text-danger">*</span></label>
-                                    <div class="input-group">
-
-                                        <input id="requestDate" class="form-control" placeholder="yyyy-mm-dd"
-                                            name="requestDate" ngbDatepicker #requestDate="ngbDatepicker"
-                                            [(ngModel)]="model.requestDate" />
-                                        <button class="btn btn-outline-secondary" (click)="requestDate.toggle()"
-                                            type="button">
-                                            <img src="./assets/img/icons8-calendar-48.png" height="20">
-                                        </button>
-                                    </div>
-                                </div>
+                <div class="col-8 ">
+                    <div class="card shadow mb-3">
+                    
+                        <div class="card-header py-3">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="m-0 font-weight-bold text-primary">DETAIL REIMBURSEMENT </h6>
+                                </div> 
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label for="reimbursementName" class="form-label">Reimbursement Name <span
-                                            class="text-danger">*</span></label>
-
-                                    <select class="form-control" [(ngModel)]="model.reimbursementNameId" required
-                                        name="reimbursementNameId" #reimbursementNameId="ngModel">
-                                        <option *ngFor="let x of reimbursementName" [value]="x.id">{{x.name}}</option>
-                                    </select>
-
-                                    <div [hidden]="reimbursementNameId.valid || reimbursementNameId.pristine"
-                                        class="text-danger small m-1">
-                                        Reimbursement Name is required
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Transaction ID</label>
+                                        <div class="form-control">{{item.id}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <div class="form-control">{{item.personalId}} {{item.name}}</div>
                                     </div>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="description" name="description"
-                                        [(ngModel)]="model.description"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="requestAmount" class="form-label">Request Amount <span
+                                                class="text-danger">*</span></label>
+                                        <input currencyMask class="form-control" id="requestAmount"
+                                            [(ngModel)]="model.requestAmount" name="requestAmount"
+                                            #requestAmount="ngModel" required>
+
+                                        <div [hidden]="requestAmount.valid || requestAmount.pristine"
+                                            class="text-danger small m-1">
+                                            Request Amount is required
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
- 
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="requestDate" class="form-label">Request Date <span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group">
 
-                        <div class="row g-2">
-                            <div class="col-12">
-                                <hr>
-                            </div>
-                            <div class="col-3">
-                                <div class="mb-3">
-                                    <label for="paidAmount" class="form-label"><strong>Paid Amount </strong></label>
-                                    <input currencyMask class="form-control" id="paidAmount"
-                                        [(ngModel)]="model.paidAmount" name="paidAmount" #paidAmount="ngModel">
-
-                                    <div class="text-end">
-                                        <a href="javascript:;" (click)="copyAmount();"><small>Copy from Request
-                                                Amount</small></a>
+                                            <input id="requestDate" class="form-control" placeholder="yyyy-mm-dd"
+                                                name="requestDate" ngbDatepicker #requestDate="ngbDatepicker"
+                                                [(ngModel)]="model.requestDate" />
+                                            <button class="btn btn-outline-secondary" (click)="requestDate.toggle()"
+                                                type="button">
+                                                <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="reimbursementName" class="form-label">Reimbursement Name <span
+                                                class="text-danger">*</span></label>
 
-                            <div class="col-5">
-                                <div class="mb-3" >
-                                    <label for="paidAmount" class="form-label"><strong>Approved Date </strong> </label>
-                                    <div class="form-control">{{item.approvedDate | date:'medium'}}, by
-                                        {{item.approvedBy}}</div>
+                                        <select class="form-control" [(ngModel)]="model.reimbursementNameId" required
+                                            name="reimbursementNameId" #reimbursementNameId="ngModel">
+                                            <option *ngFor="let x of reimbursementName" [value]="x.id">{{x.name}}
+                                            </option>
+                                        </select>
+
+                                        <div [hidden]="reimbursementNameId.valid || reimbursementNameId.pristine"
+                                            class="text-danger small m-1">
+                                            Reimbursement Name is required
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Description</label>
+                                        <textarea class="form-control" id="description" name="description"
+                                            [(ngModel)]="model.description"></textarea>
+                                    </div>
                                 </div>
-                                
                             </div>
-
-                            <div class="col-4">
-                                <div class="mb-3" >
-                                    <label for="paidAmount" class="form-label"><strong>Approved Status </strong> </label>
-                                    <select class="form-control" [(ngModel)]="model.approved" name="approved">
-
-                                        <option value="1">Approve</option>
-                                        <option value="4">Reject</option>
-                                    </select>
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <hr>
                                 </div>
-                                
+                                <div class="col-3">
+                                    <div class="mb-3">
+                                        <label for="paidAmount" class="form-label"><strong>Paid Amount </strong></label>
+                                        <input currencyMask class="form-control" id="paidAmount"
+                                            [(ngModel)]="model.paidAmount" name="paidAmount" #paidAmount="ngModel">
+
+                                        <div class="text-end">
+                                            <a href="javascript:;" (click)="copyAmount();"><small>Copy from Request
+                                                    Amount</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-5">
+                                    <div class="mb-3">
+                                        <label for="paidAmount" class="form-label"><strong>Approved Date </strong>
+                                        </label>
+                                        <div class="form-control">{{item.approvedDate | date:'medium'}}, by
+                                            {{item.approvedBy}}</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="paidAmount" class="form-label"><strong>Approved Status </strong>
+                                        </label>
+                                        <select class="form-control" [(ngModel)]="model.approved" name="approved">
+
+                                            <option value="1">Approve</option>
+                                            <option value="4">Reject</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row" [hidden]="!loading">
+                                <div class="col">
+                                    <button type="button" class="btn btn-outline-dark btn-sm mx-2"
+                                        (click)="back();">Back</button>
+                                </div>
+                                <div class="col text-end">
+
+                                    <button type="button" class="btn btn-danger btn-sm mx-2"
+                                        (click)="remove();">Remove</button>
+                                    <button type="submit" class="btn btn-primary btn-sm"
+                                        [disabled]="!myForm.form.valid">Update</button>
+                                </div>
                             </div>
                         </div>
-
-
-                        <div class="row" [hidden]="!loading">
-                            <div class="col">
-                                <button type="button" class="btn btn-outline-dark btn-sm mx-2"
-                                    (click)="back();">Back</button>
-                            </div>
-                            <div class="col text-end">
-
-                                <button type="button" class="btn btn-danger btn-sm mx-2"
-                                    (click)="remove();">Remove</button>
-                                <button type="submit" class="btn btn-primary btn-sm"
-                                    [disabled]="!myForm.form.valid">Update</button>
-                            </div>
-                        </div>
-
-
                     </div>
                 </div>
 

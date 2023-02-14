@@ -1,76 +1,102 @@
-<app-header></app-header>
-<br>
-<div class="container mb-5">
-    <div class="row">
-        <div class="col-6 mb-3">
-            <h4> Pph21 Setting </h4>
-        </div>
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
 
-        <div class="col-6 mb-3 text-end">
-            <button type="button" class="btn btn-sm btn-warning" [hidden]="!readonly"
-                (click)="fnEditable();">Ediable</button>
-        </div>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
 
-        <div class="col-12 mb-3">
-            <div class="border shadow-sm rounded p-2 bg-white">
-                <h5 class="my-3">Pph21 PTKP</h5>
-                <table class="table table-sm table border">
-                    <thead>
-                        <tr>
-                            <th width="100">Status</th>
-                            <th width="90"> Jumlah Anak </th>
-                            <th>Description</th>
-                            <th>Amount</th> 
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let x of ptkp; let i = index">
-                     
-                        <tr >
-                            <td> <div class="form-control">{{x.id}}</div></td> 
-                            <td><div class="form-control">{{x.jumlahAnak}}</div> </td> 
-                            <td><div class="form-control">{{x.label}}</div> </td> 
-                            <td><input type="text" currencyMask [disabled]="readonly" class="form-control" 
-                                [(ngModel)]="x.amount"  name="amount"></td> 
-                        </tr>
-                        <tr *ngIf="(i+1)%4 == 0">
-                            <td colspan="4">&nbsp;</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="container my-3">
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <h4 class="m-0 font-weight-bold text-primary"> PPH21 SETTING </h4>
+                    </div>
+
+                    <div class="col-6 mb-3 text-end">
+                        <button type="button" class="btn btn-sm btn-warning" [hidden]="!readonly"
+                            (click)="fnEditable();">Ediable</button>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">PPH21 PTKP</h6>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-sm table border">
+                                    <thead>
+                                        <tr>
+                                            <th width="100">Status</th>
+                                            <th width="90"> Jumlah Anak </th>
+                                            <th>Description</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngFor="let x of ptkp; let i = index">
+
+                                        <tr>
+                                            <td>
+                                                <div class="form-control">{{x.id}}</div>
+                                            </td>
+                                            <td>
+                                                <div class="form-control">{{x.jumlahAnak}}</div>
+                                            </td>
+                                            <td>
+                                                <div class="form-control">{{x.label}}</div>
+                                            </td>
+                                            <td><input type="text" currencyMask [disabled]="readonly"
+                                                    class="form-control" [(ngModel)]="x.amount" name="amount"></td>
+                                        </tr>
+                                        <tr *ngIf="(i+1)%4 == 0">
+                                            <td colspan="4">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">PAJAK</h6>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-sm table border">
+                                    <thead>
+                                        <tr>
+
+                                            <th class="text-end">Min Amount</th>
+                                            <th class="text-end">Max Amount</th>
+                                            <th width="140" class="text-end">Tax Percent (%)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of tarif_pajak">
+
+                                            <td><input type="text" [disabled]="readonly" currencyMask
+                                                    class="form-control " [(ngModel)]="x.minAmount" name="minAmount">
+                                            </td>
+                                            <td><input type="text" [disabled]="readonly" currencyMask
+                                                    class="form-control " [(ngModel)]="x.maxAmount" name="maxAmount">
+                                            </td>
+                                            <td><input type="number" [disabled]="readonly" class="form-control text-end"
+                                                    [(ngModel)]="x.taxPercent" name="taxPercent"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
         </div>
-
-        <div class="col-12 mb-3">
-
-            <div class="border shadow-sm rounded p-2 bg-white">
-                <h5 class="my-3">Pajak</h5> 
-                <table class="table table-sm table border">
-                    <thead>
-                        <tr>
-
-                            <th class="text-end">Min Amount</th>
-                            <th class="text-end">Max Amount</th>
-                            <th width="140" class="text-end">Tax Percent (%)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let x of tarif_pajak">
-
-                            <td><input type="text" [disabled]="readonly" currencyMask class="form-control "
-                                    [(ngModel)]="x.minAmount" name="minAmount"></td>
-                            <td><input type="text" [disabled]="readonly" currencyMask class="form-control "
-                                    [(ngModel)]="x.maxAmount" name="maxAmount"></td>
-                            <td><input type="number" [disabled]="readonly"  class="form-control text-end"
-                                    [(ngModel)]="x.taxPercent" name="taxPercent"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
     </div>
-</div>
 
+</div>
 <div class="footer bg-white border shadow-sm" [hidden]="readonly">
     <div class="container">
         <div class="row">

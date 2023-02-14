@@ -67,6 +67,8 @@ export class LoanHistoryComponent implements OnInit {
         {
           title: 'Detail',
           data: 'id',
+          searchable:false,
+          orderable : false,
           render: function (data: any, type: any, full: any) {
             return '<a class="btn btn-sm btn-primary" href="#/loan/detail/' + data + '">Detail</a>';
           }

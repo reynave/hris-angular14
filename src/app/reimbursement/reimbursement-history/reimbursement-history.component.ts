@@ -80,15 +80,15 @@ export class ReimbursementHistoryComponent implements OnInit {
         },
       
       
-        {
-          title: '',
-          data: 'id',
-          searchable : false,
-          orderable : false,
-          render: function (data: any, type: any, full: any) {
-            return `<a href="#/reimbursement/detail/${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
-          }
-        }, 
+        // {
+        //   title: '',
+        //   data: 'id',
+        //   searchable : false,
+        //   orderable : false,
+        //   render: function (data: any, type: any, full: any) {
+        //     return `<a href="#/reimbursement/detail/${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
+        //   }
+        // }, 
       ]
     };
   }

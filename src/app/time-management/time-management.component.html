@@ -1,59 +1,85 @@
-<app-header></app-header>
-<div class="wrapper">
-    <div class="container pt-4">
-        <div class="row ">
-            <div class="col-6 ">
-                <h4>Time Management </h4>
-            </div>
-            <div class="col-6 text-end">
-                <a [routerLink]="[ '/timeManagement/import' ]" class="{{styleBtn}}">Imports File</a> 
-            </div>
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
 
-            <div class="col-12">
-                <div class="border shadow-sm rounded p-4 bg-white mt-2">
 
-                    <div class="row">
-                        <div class="col">
-                            <label for="startDate"><b>Start Date</b></label>
-                            <div class="input-group">
-                                <input id="startDate" class="form-control" placeholder="yyyy-mm-dd" name="startDate"
-                                    ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="startDate" [maxDate]="today" />
-                                <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">
-                                    <img src="./assets/img/icons8-calendar-48.png" height="20">
-                                </button>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <div class="container mt-5">
+                <div class="row justify-content-around">
+                    
+                    <div class="col-6 ">
+
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary"> TIME MANAGEMENT</h6>
+                                    </div>
+                                    <div class="col text-end">
+                                        <a [routerLink]="[ '/timeManagement/import' ]" class="{{styleBtn}}">Imports File</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="card-body">
+                                
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="startDate"><b>Start Date</b></label>
+                                        <div class="input-group">
+                                            <input id="startDate" class="form-control" placeholder="yyyy-mm-dd"
+                                                name="startDate" ngbDatepicker #dp="ngbDatepicker"
+                                                [(ngModel)]="startDate" [maxDate]="today" />
+                                            <button class="btn btn-outline-secondary" (click)="dp.toggle()"
+                                                type="button">
+                                                <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                            </button>
+                                        </div>
+                                    </div>
 
-                        <div class="col">
-                            <label for="endDate"><b>End date</b></label>
-                            <div class="input-group">
-                                <input id="endDate" class="form-control" placeholder="yyyy-mm-dd" name="endDate"
-                                    ngbDatepicker #dpx="ngbDatepicker" [(ngModel)]="endDate" [maxDate]="today" />
-                                <button class="btn btn-outline-secondary" (click)="dpx.toggle()" type="button">
-                                    <img src="./assets/img/icons8-calendar-48.png" height="20">
-                                </button>
+                                    <div class="col">
+                                        <label for="endDate"><b>End date</b></label>
+                                        <div class="input-group">
+                                            <input id="endDate" class="form-control" placeholder="yyyy-mm-dd"
+                                                name="endDate" ngbDatepicker #dpx="ngbDatepicker" [(ngModel)]="endDate"
+                                                [maxDate]="today" />
+                                            <button class="btn btn-outline-secondary" (click)="dpx.toggle()"
+                                                type="button">
+                                                <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 ">
+                                        <div class="mt-3">
+                                            <label for="personal"><b>Employee</b></label>
+                                            <select class="form-control" [(ngModel)]="personalId">
+                                                <option *ngFor="let x of personalSelect" [value]="x.personalId">
+                                                    {{x.personalId}} {{x.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+ 
+                                <div class="row">
+                                    <div class="col-12 mt-3 d-grid">
+                                        <button type="button" class="btn btn-primary" [disabled]="!personalId"
+                                            (click)="fnNext();">Next</button>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
-
-                        <div class="col-12 ">
-                            <div class="mt-3">
-                                <label for="personal"><b>Employee</b></label>
-                                <select class="form-control" [(ngModel)]="personalId">
-                                    <option *ngFor="let x of personalSelect" [value]="x.personalId">
-                                        {{x.personalId}} {{x.name}}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-12 mt-3 d-grid"> 
-                            <button type="button" class="btn btn-primary" [disabled]="!personalId" (click)="fnNext();">Next</button>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+
 </div>
