@@ -1,0 +1,25 @@
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <div class="container ">
+                <div class="col-12">
+                    <div class="card shadow my-3">
+                        <div class="card-header py-3">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="m-0 font-weight-bold text-primary">SCHEDULE </h6>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

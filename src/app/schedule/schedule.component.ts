@@ -22,13 +22,12 @@ export class Model {
 
 }
 
-
 @Component({
-  selector: 'app-maintenance',
-  templateUrl: './maintenance.component.html',
-  styleUrls: ['./maintenance.component.css']
+  selector: 'app-schedule',
+  templateUrl: './schedule.component.html',
+  styleUrls: ['./schedule.component.css']
 })
-export class MaintenanceComponent implements OnInit {
+export class ScheduleComponent implements OnInit {
   dtOptions: ADTSettings = {}; 
   model: any = new Model(0, "", 0, "", "", "", "",1);
   equipment: any = [];
@@ -52,7 +51,7 @@ export class MaintenanceComponent implements OnInit {
   }
 
   httpGet() {
-    this.http.get<any>(environment.api + "maintenance/select", {
+    this.http.get<any>(environment.api + "maintenance/schedule", {
       headers: this.configService.headers(),
     }).subscribe(
       data => {
@@ -66,7 +65,7 @@ export class MaintenanceComponent implements OnInit {
   datatables() {
     this.dtOptions = {
       ajax: {
-        url: environment.api + 'maintenance',
+        url: environment.api + 'maintenance/schedule',
         type: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -75,28 +74,42 @@ export class MaintenanceComponent implements OnInit {
       },
       columns: [
         {
-          title: 'Equipment',
-          data: 'equipment',
+          title: 'Ticket ID',
+          data: 'id',
         },
-        {
+          {
           title: 'Category',
           data: 'category',
         },
         {
-          title: 'Purchase Date',
-          data: 'purchaseDate',
+          title: 'Equipment',
+          data: 'equipment',
         },
         {
-          title: 'Waranty Until',
-          data: 'warantyUntil',
+          title: 'Schedule',
+          data: 'scheduleDate',
         },
+
+        {
+          title: 'Supplier',
+          data: 'supplier',
+        },
+        {
+          title: 'Cost',
+          data: 'cost',
+        },
+        {
+          title: 'Note',
+          data: 'note',
+        },
+
         {
           title: 'Detail',
           data: 'id',
           searchable: false,
           orderable : false,
           render: function (data: any, type: any, full: any) {
-            return '<a class="btn btn-sm btn-outline-dark" href="#/maintenance/' + data + '">Detail</a>';
+            return '<a class="btn btn-sm btn-outline-dark" href="#/maintenance/' + full['maintenanceId'] + '">Detail</a>';
           }
         },
       ]
@@ -167,4 +180,5 @@ export class MaintenanceComponent implements OnInit {
     this.addTempCat(0);
    
   }
+
 }

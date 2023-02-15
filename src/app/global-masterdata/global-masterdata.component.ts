@@ -15,6 +15,9 @@ export class GlobalMasterdataComponent implements OnInit {
   reimbursement_name : any = [];
   time_management_shift : any = [];
   global_setting_jabatan : any = [];
+  
+  maintenance_category : any = [];
+  maintenance_equipment : any = [];
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -25,7 +28,6 @@ export class GlobalMasterdataComponent implements OnInit {
   ngOnInit(): void {
     this.httpGet();
   }
-
   httpGet() {
     this.http.get<any>(environment.api + "globalSetting", {
       headers: this.configService.headers(),
@@ -34,6 +36,10 @@ export class GlobalMasterdataComponent implements OnInit {
         this.global_setting_jabatan = data["global_setting_jabatan"];
         this.employment_joblevel = data['employment_joblevel'];
         this.reimbursement_name = data['reimbursement_name']; 
+
+        this.maintenance_category = data['maintenance_category']; 
+        this.maintenance_equipment = data['maintenance_equipment']; 
+
         this.employment_jobposition = data['employment_jobposition'].map(function(el : any){
            el['_masterData'] = el['_masterData'] == 1 ? true : false;
            el['_reimbursement'] = el['_reimbursement'] == 1 ? true : false;
@@ -85,6 +91,36 @@ export class GlobalMasterdataComponent implements OnInit {
       }
     )
   }
+
+
+
+  fnSave_maintenance_equipment() {
+    this.loading = true;
+    this.http.post<any>(environment.api + "globalSetting/fnSave_maintenance_equipment", this.maintenance_equipment, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      () => {
+        this.loading = false;
+        this.httpGet();
+      }
+    )
+  }
+  fnSave_maintenance_category() {
+    this.loading = true;
+    this.http.post<any>(environment.api + "globalSetting/fnSave_maintenance_category", this.maintenance_category, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      () => {
+        this.loading = false;
+        this.httpGet();
+      }
+    )
+  }
+
+
+
+
+
   fnSave_time_management_shift() {
     this.loading = true;
     this.http.post<any>(environment.api + "globalSetting/fnSave_time_management_shift", this.time_management_shift, {

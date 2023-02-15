@@ -47,6 +47,7 @@ export class MaintenanceDetailComponent implements OnInit {
   images : any = [];
   schedule: any = [];
   editable: boolean = false;
+  scheduleDetail : any = [];
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -66,6 +67,10 @@ export class MaintenanceDetailComponent implements OnInit {
         data => {
           this.images = data['images'];
           this.item = data['item'];
+
+       
+
+
           let warantyUntil = data['item']['warantyUntil'].split("-");
           let purchaseDate = data['item']['purchaseDate'].split("-");
 
@@ -170,24 +175,26 @@ export class MaintenanceDetailComponent implements OnInit {
 
   }
 
-  fnDoneTrans(x: any) {
-    if (confirm("Maintenance done ?")) {
+  fnDoneTrans() {
+    
       this.loading = true;
       const body = {
-        item: x,
+        item: this.scheduleDetail,
+        scheduleDetailDate : this.scheduleDetailDate,
+        id : this.id,
       }
       this.http.post<any>(environment.api + "maintenance/fnDoneTrans", body, {
         headers: this.configService.headers(),
       }).subscribe(
         data => {
           console.log(data);
+          this.modalService.dismissAll();
           this.httpGet();
         },
         e => {
           console.log(e);
         }
-      )
-    }
+      ) 
   }
 
   cancel() {
@@ -196,6 +203,19 @@ export class MaintenanceDetailComponent implements OnInit {
   }
 
   open(content: any) {
+    this.modalService.open(content, { size: 'md' });
+  } 
+  scheduleDetailDate : any = [];
+  openScheduleDetail(content: any, x : any) {
+    console.log(x);
+    this.scheduleDetail = x; 
+    let date = x['scheduleDate'].split("-");
+
+    this.scheduleDetailDate = {
+      year: parseInt(date['0']),
+      month: parseInt(date['1']),
+      day: parseInt(date['2']),
+    };
     this.modalService.open(content, { size: 'md' });
   } 
 

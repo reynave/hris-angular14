@@ -38,6 +38,7 @@ import { ReimbursementDetailComponent } from './reimbursement/reimbursement-deta
 import { ReimbursementHistoryComponent } from './reimbursement/reimbursement-history/reimbursement-history.component';
 import { ReimbursementRequestComponent } from './reimbursement/reimbursement-request/reimbursement-request.component';
 import { ReimbursementComponent } from './reimbursement/reimbursement.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 import { TemplateComponent } from './template/template.component';
 import { TimeManagementEditComponent } from './time-management/time-management-edit/time-management-edit.component';
 import { TimeManagementImportComponent } from './time-management/time-management-import/time-management-import.component';
@@ -63,7 +64,8 @@ const routes: Routes = [
   
   { path: "maintenance", component: MaintenanceComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
   { path: "maintenance/:id", component: MaintenanceDetailComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
-   
+  { path: "schedule", component: ScheduleComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
+ 
  
   { path: "employee", component: EmployeeComponent, data: { active: "_masterData" }, canActivate:[AuthGuard] },
   { path: "employee/detail/:id", component: EmployeeDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },

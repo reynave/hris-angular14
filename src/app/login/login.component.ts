@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-
+    this.note = "Loading..!";
     const hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(this.model['passw']));
     const md5 = hash.toString(CryptoJS.enc.Hex);
 
@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
       },
       e => {
         console.log(e);
+        this.note = "Error Server!";
       },
     );
 

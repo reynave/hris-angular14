@@ -25,7 +25,7 @@
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col">
-                                        <h6 class="m-0 font-weight-bold text-primary"> MAINTENANCE SHCEDULE </h6>
+                                        <h6 class="m-0 font-weight-bold text-primary"> SCHEDULE </h6>
                                     </div>
                                     <div class="col text-end"> 
                                         <button type="button" class="btn btn-sm btn-outline-dark"
@@ -40,6 +40,9 @@
                                         <tr>
                                             <th>Ticket ID</th>
                                             <th>Schedule Date</th>
+
+                                            <th>Supplier</th> 
+
                                             <th>Status</th>
                                             <th class="text-end">Cost</th>
                                             <th>Note</th>
@@ -50,15 +53,19 @@
                                     <tbody>
                                         <tr *ngFor="let x of schedule">
                                             <td>{{x.id}}</td>
-                                            <td>{{x.scheduleDate | date}}</td>
+                                            <td>{{x.scheduleDate}}</td>
+
+                                            <td>{{x.supplier}}</td> 
+                                            
                                             <td>{{x.statusName}}</td>
+
                                             <td class="text-end">Rp {{x.cost | number}}</td>
                                             <td>{{x.note}}</td>
-                                            <td><button type="button" class="btn btn-sm btn-danger mx-1"
+                                            <td><button type="button" class="btn btn-sm btn-danger mx-1" *ngIf="x.status != 100"
                                                     (click)="fnDeleteTrans(x);">Delete</button>
 
-                                                <button type="button" class="btn btn-sm btn-warning mx-1"
-                                                    [hidden]="x.status != 1" (click)="fnDoneTrans(x);">Done</button>
+                                                <button type="button" class="btn btn-sm btn-primary mx-1"
+                                                    [hidden]="x.status != 1" (click)="openScheduleDetail(openSchadule,x);">Done</button>
                                             </td>
 
                                         </tr>
@@ -73,7 +80,7 @@
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col">
-                                        <h6 class="m-0 font-weight-bold text-primary"> MAINTENANCE DETAIL </h6>
+                                        <h6 class="m-0 font-weight-bold text-primary"> DETAIL </h6>
                                     </div>
                                     <div class="col text-end">
                                         <button type="button" class="btn btn-sm btn-warning mx-1"
@@ -85,26 +92,26 @@
                             <div class="card-body">
                                 <div *ngIf="editable == false">
 
-                                    <div class="row">
+                                    <div class="row g-2">
 
                                         <div class="col-6">
-                                            <table class="table table-sm">
+                                            <table class="table table-sm border">
                                                 <tbody>
                                                     <tr>
-                                                        <td>ID</td>
+                                                        <td><b>ID</b></td>
                                                         <td>{{item.id}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Equipment</td>
+                                                        <td><b>Equipment</b></td>
                                                         <td>{{item.equipment}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Category</td>
+                                                        <td><b>Category</b></td>
                                                         <td>{{item.category}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Schedule</td>
-                                                        <td>{{item.schedule}}</td>
+                                                        <td><b>Schedule</b></td>
+                                                        <td>Every {{item.schedule}} Month</td>
                                                     </tr>
 
 
@@ -112,23 +119,23 @@
                                             </table>
                                         </div>
                                         <div class="col-6">
-                                            <table class="table table-sm">
+                                            <table class="table table-sm border">
                                                 <tbody>
 
                                                     <tr>
-                                                        <td>Purchase Date</td>
+                                                        <td><b>Purchase Date</b></td>
                                                         <td>{{item.purchaseDate}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Supplier</td>
+                                                        <td><b>Supplier</b></td>
                                                         <td>{{item.supplier}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Waranty Until</td>
+                                                        <td><b>Waranty Until</b></td>
                                                         <td>{{item.warantyUntil}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Location</td>
+                                                        <td><b>Location</b></td>
                                                         <td>{{model.location}}</td>
                                                     </tr>
 
@@ -351,7 +358,7 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="cost">supplier</label>
+                            <label for="cost">Supplier</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="supplier" required
                                     [(ngModel)]="transaction.supplier" name="supplier">
@@ -377,4 +384,78 @@
             <button type="submit" class="btn btn-success mx-1 btn-sm" [disabled]="!myTrans.form.valid">Submit</button>
         </div>
     </form>
+</ng-template>
+
+
+<ng-template #openSchadule let-modal>
+    <div class="modal-header">
+        <strong class="modal-title" id="modal-basic-title">SCHEDULE DETAIL</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body"> 
+
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="schedule">Ticket ID</label>
+                        <div  class="form-control">{{scheduleDetail.id}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="schedule">Schedule</label>
+                        <div class="input-group">
+                            <input id="dd" class="form-control" placeholder="yyyy-mm-dd"
+                                name="dd" ngbDatepicker [(ngModel)]="scheduleDetailDate"
+                                #dd="ngbDatepicker" required />
+                            <button class="btn btn-outline-secondary" (click)="dd.toggle()" type="button"><img
+                                    src="./assets/img/icons8-calendar-48.png" height="20"> </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="cost">Cost</label>
+                        <div class="input-group">
+                            <input type="text" currencyMask class="form-control" id="cost" required
+                                [(ngModel)]="scheduleDetail.cost" name="cost">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="cost">Supplier</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="supplier" required
+                                [(ngModel)]="scheduleDetail.supplier" name="supplier">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="note">Note</label>
+                        <textarea class="form-control" id="note" [(ngModel)]="scheduleDetail.note"
+                            name="note"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-outline-dark mx-1"   (click)="modal.dismiss('Cross click')">Cancel</button>
+        <button type="button" class="btn btn-sm btn-primary mx-1" (click)="fnDoneTrans();">Submit</button>
+        
+    </div>
 </ng-template>

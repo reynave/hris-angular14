@@ -54,7 +54,7 @@ export class ReimbursementComponent implements   OnInit  {
           title: 'Employed ID',
           data: 'personalId',
           render: function (data: any, type: any, full: any) {
-            return '<a  href="#/employment/detail/' + data + '">'+data+" "+full['name']+'</a>';
+            return '<a  href="#/employee/detail/' + data + '?tab=employment">'+data+" "+full['name']+'</a>';
           }
         }, 
         {

@@ -54,7 +54,8 @@ import { SalaryDetailComponent } from './payroll/salary/salary-detail/salary-det
 import { SalaryDetailReportComponent } from './payroll/salary/salary-detail-report/salary-detail-report.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { MaintenanceDetailComponent } from './maintenance/maintenance-detail/maintenance-detail.component';
-import { TemplateComponent } from './template/template.component'; 
+import { TemplateComponent } from './template/template.component';
+import { ScheduleComponent } from './schedule/schedule.component'; 
 
 
 export const customCurrencyMaskConfig = {
@@ -97,7 +98,7 @@ export const customCurrencyMaskConfig = {
     Pph21SettingComponent, BpjsSettingComponent, ReimbursementDatatablesComponent, HomeHistoryReimbursementComponent, 
     ReimbursementRequestComponent, LoanAddComponent, LoanDetailComponent, HomeHistoryLoanComponent, 
     HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent, 
-    SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, TemplateComponent, 
+    SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, TemplateComponent, ScheduleComponent, 
   ],
   imports: [
     BrowserModule,

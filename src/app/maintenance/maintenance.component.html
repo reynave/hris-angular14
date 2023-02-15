@@ -15,18 +15,15 @@
                                     <h6 class="m-0 font-weight-bold text-primary">MAINTENANCE </h6>
                                 </div>
                                 <div class="col text-end">
-                                    <a (click)="open(content)"class="btn btn-sm btn-success mx-1">ADD ITEM </a>
+                                    <a (click)="open(content)" class="btn btn-sm btn-success mx-1">ADD ITEM </a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-
                             <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -45,38 +42,86 @@
                 <div class="col-6">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="equipmentId">Equipment</label>
-                            <select class="form-control" id="equipmentId" required [(ngModel)]="model.equipmentId"
-                                name="equipmentId" #equipmentId="ngModel">
-                                <option [value]="x.id" *ngFor="let x of equipment"> {{x.name}} </option>
-                            </select>
-                            <div [hidden]="equipmentId.valid || equipmentId.pristine" class="alert alert-danger">
-                                Equipment is
-                                required </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="equipmentId">Equipment <span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col">
+                                    <div *ngIf="addEquipment!=true">
+                                        <div class="text-end"><a href="javascript:;"
+                                                (click)="fnAddEquipment();"><small>Add Equipment </small></a></div>
+                                    </div>
+                                    <div *ngIf="addEquipment==true">
+                                        <div class="text-end"><a href="javascript:;"
+                                                (click)="cancelEquipment();"><small>Cancel</small></a></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="addEquipment!=true">
+                                <select class="form-control" id="equipmentId" required [(ngModel)]="model.equipmentId"
+                                    name="equipmentId" #equipmentId="ngModel" (change)="addTempEq(0);">
+                                    <option [value]="x.id" *ngFor="let x of equipment"> {{x.name}} </option>
+                                </select>
+                                <div [hidden]="equipmentId.valid || equipmentId.pristine" class="alert alert-danger">
+                                    Equipment is required </div>
+                            </div>
+
+                            <div *ngIf="addEquipment==true">
+                                <input type="text" class="form-control" id="supplier" (change)="addTempEq(999999);"
+                                    [(ngModel)]="insertEquipment" name="supplier">
+                            </div>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="categoryId">Category </label>
-                            <select class="form-control" id="categoryId" required [(ngModel)]="model.categoryId"
-                                name="categoryId" #categoryId="ngModel">
-                                <option [value]="x.id" *ngFor="let x of category"> {{x.name}} </option>
-                            </select>
-                            <div [hidden]="categoryId.valid || categoryId.pristine" class="alert alert-danger"> Category
-                                is required </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="categoryId">Category <span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col">
+                                    <div *ngIf="addCategory!=true">
+                                        <div class="text-end">
+                                            <a href="javascript:;" (click)="fnAddCategory();"><small>Add Category
+                                                </small></a>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="addCategory==true">
+                                        <div class="text-end">
+                                            <a href="javascript:;" (click)="cancelCategory();"><small>Cancel </small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+
+                            <div *ngIf="addCategory!=true">
+                                <select class="form-control" id="categoryId" required [(ngModel)]="model.categoryId"
+                                    name="categoryId" #categoryId="ngModel">
+                                    <option [value]="x.id" *ngFor="let x of category"> {{x.name}} </option>
+                                </select>
+                                <div [hidden]="categoryId.valid || categoryId.pristine" class="alert alert-danger">
+                                    Category  is required </div>
+                            </div>
+
+                            <div *ngIf="addCategory==true">
+                                <input type="text" class="form-control" id="insertCategory" (change)="addTempCat(999999);" [(ngModel)]="insertCategory" name="insertCategory">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {{model | json}}
 
 
             <div class="row g-2">
                 <div class="col-4">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="schedule">Schedule</label>
+                            <label for="schedule">Schedule <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="number" class="form-control" id="schedule" [(ngModel)]="model.schedule"
                                     name="schedule">
@@ -88,7 +133,7 @@
                 <div class="col-4">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="purchaseDate">Purchase Date</label>
+                            <label for="purchaseDate">Purchase Date <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input id="purchaseDate" class="form-control" placeholder="yyyy-mm-dd"
                                     name="purchaseDate" ngbDatepicker [(ngModel)]="model.purchaseDate"
@@ -102,7 +147,7 @@
                 <div class="col-4">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="warantyUntil">Waranty Until</label>
+                            <label for="warantyUntil">Waranty Until <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input id="warantyUntil" class="form-control" placeholder="yyyy-mm-dd"
                                     name="warantyUntil" ngbDatepicker [(ngModel)]="model.warantyUntil"
@@ -147,5 +192,5 @@
             <button type="submit" class="btn btn-success mx-1 btn-sm" [disabled]="!heroForm.form.valid">Submit</button>
         </div>
     </form>
-    {{model | json}}
+  
 </ng-template>

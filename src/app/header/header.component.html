@@ -20,12 +20,22 @@
 
 <!-- Divider -->
 <hr class="sidebar-divider">
-
-
+ 
+<!-- Master Data -->
 <li class="nav-item" [ngClass]="{'active': active == '_maintenance'}" [hidden]="nav['_maintenance'] == '0'">
-  <a class="nav-link"  [routerLink]="[ '/maintenance' ]"> 
-    <span>Maintenance</span></a>
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#m1" aria-expanded="true"
+    aria-controls="m1"> 
+    <span>Maintenance</span>
+  </a>
+  <div id="m1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <a class="collapse-item" [routerLink]="[ '/maintenance' ]">Maintenance</a>
+      <a class="collapse-item" [routerLink]="[ '/schedule' ]">Schedule</a> 
+    </div>
+  </div>
 </li>
+ 
+ 
  
 <li class="nav-item" [ngClass]="{'active': active == '_timeManagement'}" [hidden]="nav['_timeManagement'] == '0'">
   <a class="nav-link"  [routerLink]="[ '/timeManagement' ]"> 
