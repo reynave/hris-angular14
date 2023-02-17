@@ -8,7 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class Model {
 
   constructor(
-    public equipmentId: number,
+    public equipment: string,
     public description: string,
     public categoryId: number,
     public purchaseDate: any,
@@ -39,15 +39,16 @@ export class Transaction {
 export class MaintenanceDetailComponent implements OnInit {
   loading: boolean = false;
   item: any = [];
-  model: any = new Model(0, "", 0, "", "", "", "", 1);
+  model: any = new Model("", "", 0, "", "", "", "", 1);
   transaction: any = new Transaction("0", "", "");
   equipment: any = [];
   category: any = [];
   id: string = "";
-  images : any = [];
+  images: any = [];
   schedule: any = [];
   editable: boolean = false;
-  scheduleDetail : any = [];
+  scheduleDetail: any = [];
+  nextSchedule: any = [];
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -67,16 +68,25 @@ export class MaintenanceDetailComponent implements OnInit {
         data => {
           this.images = data['images'];
           this.item = data['item'];
+          this.nextSchedule = data['nextSchedule'];
 
-       
+          if (data['nextSchedule']['nextScheduleDate']) {
+            let dateNextSchedule = data['nextSchedule']['nextScheduleDate'].split("-");
+ 
+            this.transaction['scheduleDate'] = {
+              year: parseInt(dateNextSchedule['0']),
+              month: parseInt(dateNextSchedule['1']),
+              day: parseInt(dateNextSchedule['2']),
+            };
 
-
+          }
           let warantyUntil = data['item']['warantyUntil'].split("-");
           let purchaseDate = data['item']['purchaseDate'].split("-");
 
 
           this.model['schedule'] = data['item']['schedule'];
-          this.model['equipmentId'] = data['item']['equipmentId'];
+          // this.model['equipmentId'] = data['item']['equipmentId'];
+          this.model['equipment'] = data['item']['equipment'];
           this.model['description'] = data['item']['description'];
           this.model['categoryId'] = data['item']['categoryId'];
           this.model['purchaseDate'] = data['item']['purchaseDate'];
@@ -124,6 +134,7 @@ export class MaintenanceDetailComponent implements OnInit {
       data => {
         console.log(data);
         this.editable = false;
+        this.httpGet();
       },
       e => {
         console.log(e);
@@ -171,30 +182,30 @@ export class MaintenanceDetailComponent implements OnInit {
     }
   }
 
-  fnRemoveImg(){
+  fnRemoveImg() {
 
   }
 
   fnDoneTrans() {
-    
-      this.loading = true;
-      const body = {
-        item: this.scheduleDetail,
-        scheduleDetailDate : this.scheduleDetailDate,
-        id : this.id,
+
+    this.loading = true;
+    const body = {
+      item: this.scheduleDetail,
+      scheduleDetailDate: this.scheduleDetailDate,
+      id: this.id,
+    }
+    this.http.post<any>(environment.api + "maintenance/fnDoneTrans", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+        console.log(data);
+        this.modalService.dismissAll();
+        this.httpGet();
+      },
+      e => {
+        console.log(e);
       }
-      this.http.post<any>(environment.api + "maintenance/fnDoneTrans", body, {
-        headers: this.configService.headers(),
-      }).subscribe(
-        data => {
-          console.log(data);
-          this.modalService.dismissAll();
-          this.httpGet();
-        },
-        e => {
-          console.log(e);
-        }
-      ) 
+    )
   }
 
   cancel() {
@@ -204,11 +215,11 @@ export class MaintenanceDetailComponent implements OnInit {
 
   open(content: any) {
     this.modalService.open(content, { size: 'md' });
-  } 
-  scheduleDetailDate : any = [];
-  openScheduleDetail(content: any, x : any) {
+  }
+  scheduleDetailDate: any = [];
+  openScheduleDetail(content: any, x: any) {
     console.log(x);
-    this.scheduleDetail = x; 
+    this.scheduleDetail = x;
     let date = x['scheduleDate'].split("-");
 
     this.scheduleDetailDate = {
@@ -217,10 +228,10 @@ export class MaintenanceDetailComponent implements OnInit {
       day: parseInt(date['2']),
     };
     this.modalService.open(content, { size: 'md' });
-  } 
+  }
 
-  img : string = "";
-  zoom(content: any, img:string) {
+  img: string = "";
+  zoom(content: any, img: string) {
     this.img = img;
     this.modalService.open(content, { size: 'lg' });
   }

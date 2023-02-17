@@ -27,10 +27,9 @@
                                     <div class="col">
                                         <h6 class="m-0 font-weight-bold text-primary"> SCHEDULE </h6>
                                     </div>
-                                    <div class="col text-end"> 
+                                    <div class="col text-end" *ngIf="nextSchedule.expired == false"> 
                                         <button type="button" class="btn btn-sm btn-outline-dark"
-                                            (click)="open(content);">Add
-                                            Schedule</button>
+                                            (click)="open(content);">Add First Schedule</button>
                                     </div>
                                 </div>
                             </div>
@@ -39,10 +38,8 @@
                                     <thead>
                                         <tr>
                                             <th>Ticket ID</th>
-                                            <th>Schedule Date</th>
-
-                                            <th>Supplier</th> 
-
+                                            <th>Schedule Date</th> 
+                                            <th>Supplier</th>  
                                             <th>Status</th>
                                             <th class="text-end">Cost</th>
                                             <th>Note</th>
@@ -152,7 +149,17 @@
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <div class="form-group">
-                                                    <label for="equipmentId">Equipment</label>
+
+
+                                                    <label for="equipment">Equipment <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control"  required id="equipment" 
+                                                    [(ngModel)]="model.equipment" name="equipment" #equipment="ngModel">
+                        
+                                                    <div [hidden]="equipment.valid || equipment.pristine" class="text-danger">
+                                                        Equipment  is required </div>
+
+
+                                                    <!-- <label for="equipmentId">Equipment</label>
                                                     <select class="form-control" id="equipmentId" required
                                                         [(ngModel)]="model.equipmentId" name="equipmentId"
                                                         #equipmentId="ngModel">
@@ -161,7 +168,7 @@
                                                     </select>
                                                     <div [hidden]="equipmentId.valid || equipmentId.pristine"
                                                         class="alert alert-danger"> Equipment is
-                                                        required </div>
+                                                        required </div> -->
                                                 </div>
                                             </div>
                                         </div>

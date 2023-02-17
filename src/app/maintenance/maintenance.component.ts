@@ -9,7 +9,7 @@ import {  Router } from '@angular/router';
 export class Model {
 
   constructor(
-    public equipmentId: number,
+    public equipment: string,
     public description: string,
     public categoryId: number,
     public purchaseDate: any,
@@ -30,7 +30,7 @@ export class Model {
 })
 export class MaintenanceComponent implements OnInit {
   dtOptions: ADTSettings = {}; 
-  model: any = new Model(0, "", 0, "", "", "", "",1);
+  model: any = new Model("", "", 0, "", "", "", "",1);
   equipment: any = [];
   category: any = [];
   addEquipment : boolean = false;
@@ -110,7 +110,7 @@ export class MaintenanceComponent implements OnInit {
   onSubmit() {
     const body = {
       item: this.model,
-      insertEquipment : this.insertEquipment,
+      //insertEquipment : this.insertEquipment,
       insertCategory : this.insertCategory
     }
 
