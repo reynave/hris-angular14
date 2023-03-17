@@ -1,4 +1,3 @@
- 
 <div class="border border-top-0 shadow-sm rounded p-3 bg-white">
     <div class="row">
         <div class="col-6">
@@ -6,12 +5,15 @@
         </div>
 
         <div class="col-6 mb-2 text-end">
+
             <span [hidden]="!loading" class="mx-3">Loading...</span>
             <button class="btn btn-primary btn-sm mx-1" [hidden]="readonly" type="button"
                 (click)="fnSave();">Save</button>
 
             <button class="btn btn-warning btn-sm mx-1" type="button" [hidden]="!readonly"
                 (click)="readonly=false">Editable</button>
+
+            <a [routerLink]="[ '/employee/contract/', personalId]" target="_blank" class="btn btn-sm btn-info  mx-1">Donwload Contact Template</a>
 
         </div>
         <div class="col-6">

@@ -15,6 +15,8 @@
                                     <h6 class="m-0 font-weight-bold text-primary">MAINTENANCE </h6>
                                 </div>
                                 <div class="col text-end">
+                                    <a [routerLink]="[ '/path' ]" class="btn  btn-sm mx-1" >Master Sprare Part</a> 
+                                    <a [routerLink]="[ '/path' ]" class="btn  btn-sm mx-1">Master Category</a> 
                                     <a (click)="open(content)" class="btn btn-sm btn-success mx-1">ADD ITEM </a>
                                 </div>
                             </div>
@@ -38,52 +40,20 @@
         </div>
 
         <div class="modal-body">
-            <div class="row">
+ 
+            <div class="row g-2">
                 <div class="col-6">
                     <div class="mb-3">
                         <div class="form-group">
-
                             <label for="equipment">Equipment <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control"  required id="equipment" 
-                            [(ngModel)]="model.equipment" name="equipment" #equipment="ngModel">
+                            <input type="text" class="form-control form-control-sm" required id="equipment"
+                                [(ngModel)]="model.equipment" name="equipment" #equipment="ngModel">
 
                             <div [hidden]="equipment.valid || equipment.pristine" class="text-danger">
-                                Equipment  is required </div>
-                                
-                            <!-- <div class="row">
-                                <div class="col">
-                                    <label for="equipmentId">Equipment <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="col">
-                                    <div *ngIf="addEquipment!=true">
-                                        <div class="text-end"><a href="javascript:;"
-                                                (click)="fnAddEquipment();"><small>Add Equipment </small></a></div>
-                                    </div>
-                                    <div *ngIf="addEquipment==true">
-                                        <div class="text-end"><a href="javascript:;"
-                                                (click)="cancelEquipment();"><small>Cancel</small></a></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div *ngIf="addEquipment!=true">
-                                <select class="form-control" id="equipmentId" required [(ngModel)]="model.equipmentId"
-                                    name="equipmentId" #equipmentId="ngModel" (change)="addTempEq(0);">
-                                    <option [value]="x.id" *ngFor="let x of equipment"> {{x.name}} </option>
-                                </select>
-                                <div [hidden]="equipmentId.valid || equipmentId.pristine" class="alert alert-danger">
-                                    Equipment is required </div>
-                            </div>
-
-                            <div *ngIf="addEquipment==true">
-                                <input type="text" class="form-control" id="supplier" (change)="addTempEq(999999);"
-                                    [(ngModel)]="insertEquipment" name="supplier">
-                            </div> -->
-
+                                Equipment is required </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-6">
+
                     <div class="mb-3">
                         <div class="form-group">
                             <div class="row">
@@ -99,99 +69,158 @@
                                     </div>
                                     <div *ngIf="addCategory==true">
                                         <div class="text-end">
-                                            <a href="javascript:;" (click)="cancelCategory();"><small>Cancel </small></a>
+                                            <a href="javascript:;" (click)="cancelCategory();"><small>Cancel
+                                                </small></a>
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
 
                             <div *ngIf="addCategory!=true">
-                                <select class="form-control" id="categoryId" required [(ngModel)]="model.categoryId"
-                                    name="categoryId" #categoryId="ngModel">
+                                <select class="form-control form-control-sm" id="categoryId" required
+                                    [(ngModel)]="model.categoryId" name="categoryId" #categoryId="ngModel">
                                     <option [value]="x.id" *ngFor="let x of category"> {{x.name}} </option>
                                 </select>
                                 <div [hidden]="categoryId.valid || categoryId.pristine" class="alert alert-danger">
-                                    Category  is required </div>
+                                    Category is required </div>
                             </div>
 
                             <div *ngIf="addCategory==true">
-                                <input type="text" class="form-control" id="insertCategory" (change)="addTempCat(999999);" [(ngModel)]="insertCategory" name="insertCategory">
+                                <input type="text" class="form-control form-control-sm" id="insertCategory"
+                                    (change)="addTempCat(999999);" [(ngModel)]="insertCategory" name="insertCategory">
                             </div>
                         </div>
                     </div>
+
+                    
+
+                    <div class="mb-3">
+                        <div class="form-group">
+
+                            <label for="brand">Brand</label>
+                            <input type="text" class="form-control form-control-sm"  id="brand"
+                                [(ngModel)]="model.brand" name="brand" #brand="ngModel">
+
+                            <!-- <div [hidden]="equipment.valid || equipment.pristine" class="text-danger">
+                                Equipment is required </div> -->
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+
+                            <label for="equipment">Serial Number </label>
+                            <input type="text" class="form-control form-control-sm"   id="serialNumber"
+                                [(ngModel)]="model.serialNumber" name="serialNumber" #serialNumber="ngModel"> 
+                            
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+
+                            <label for="equipment">Type  </label>
+                            <input type="text" class="form-control form-control-sm" required id="type"
+                                [(ngModel)]="model.type" name="type" #type="ngModel">
+
+                            <!-- <div [hidden]="equipment.valid || equipment.pristine" class="text-danger">
+                                Equipment is required </div> -->
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <select class="form-control form-control-sm" id="locationId" required
+                                [(ngModel)]="model.locationId" name="locationId" #locationId="ngModel">
+                                <option [value]="x.id" *ngFor="let x of location"> {{x.name}} </option>
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
 
-           
+                <div class="col-6">
 
+                    <div class="mb-3">
+                        <div class="form-group">
 
-            <div class="row g-2">
-                <div class="col-4">
+                            <label for="capacity ">Capacity</label>
+                            <input type="text" class="form-control form-control-sm" id="capacity "
+                                [(ngModel)]="model.capacity " name="capacity " #capacity="ngModel">
+
+                            <!-- <div [hidden]="capacity .valid || capacity .pristine" class="text-danger">
+                                Equipment is required </div> -->
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group"> 
+                            <label for="sparepart">Spare Part</label> 
+                            <select class="form-control form-control-sm" id="sparepartId" required
+                                [(ngModel)]="model.sparepartId" name="sparepartId" #sparepartId="ngModel">
+                                <option [value]="x.id" *ngFor="let x of sparepart"> {{x.name}} </option>
+                            </select> 
+                        </div>
+                    </div>
+
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="schedule">Schedule <span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <input type="number" class="form-control" id="schedule" [(ngModel)]="model.schedule"
-                                    name="schedule">
-                                <div class="btn btn-outline-secondary">Month </div>
+                                <input type="number" class="form-control form-control-sm" id="schedule"
+                                    [(ngModel)]="model.schedule" name="schedule">
+                                <div class="btn btn-outline-secondary btn-sm">Month </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-4">
+
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="purchaseDate">Purchase Date <span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <input id="purchaseDate" class="form-control" placeholder="yyyy-mm-dd"
+                                <input id="purchaseDate" class="form-control form-control-sm" placeholder="yyyy-mm-dd"
                                     name="purchaseDate" ngbDatepicker [(ngModel)]="model.purchaseDate"
                                     #dp="ngbDatepicker" required />
-                                <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button"><img
-                                        src="./assets/img/icons8-calendar-48.png" height="20"> </button>
+                                <button class="btn btn-outline-secondary btn-sm" (click)="dp.toggle()"
+                                    type="button"><img src="./assets/img/icons8-calendar-48.png" height="20"> </button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-4">
+ 
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="warantyUntil">Waranty Until <span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <input id="warantyUntil" class="form-control" placeholder="yyyy-mm-dd"
+                                <input id="warantyUntil" class="form-control form-control-sm" placeholder="yyyy-mm-dd"
                                     name="warantyUntil" ngbDatepicker [(ngModel)]="model.warantyUntil"
                                     #dp2="ngbDatepicker" required />
-                                <button class="btn btn-outline-secondary" (click)="dp2.toggle()" type="button"> <img
-                                        src="./assets/img/icons8-calendar-48.png" height="20"> </button>
+                                <button class="btn btn-outline-secondary btn-sm" (click)="dp2.toggle()" type="button">
+                                    <img src="./assets/img/icons8-calendar-48.png" height="20"> </button>
                             </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="supplier">Supplier</label>
+                            <input type="text" class="form-control form-control-sm" id="supplier"
+                                [(ngModel)]="model.supplier" name="supplier">
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control form-control-sm" id="description"
+                                [(ngModel)]="model.description" name="description"></textarea>
                         </div>
                     </div>
 
                 </div>
             </div>
-
-            <div class="mb-3">
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" id="description" [(ngModel)]="model.description"
-                        name="description"></textarea>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="form-group">
-                    <label for="supplier">Supplier</label>
-                    <input type="text" class="form-control" id="supplier" [(ngModel)]="model.supplier" name="supplier">
-                </div>
-            </div>
-            <div class="mb-3">
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <textarea class="form-control" id="location" [(ngModel)]="model.location"
-                        name="location"></textarea>
-                </div>
-            </div>
-
-
+  
         </div>
 
         <div class="modal-footer">
@@ -200,5 +229,5 @@
             <button type="submit" class="btn btn-success mx-1 btn-sm" [disabled]="!heroForm.form.valid">Submit</button>
         </div>
     </form>
-  
+
 </ng-template>

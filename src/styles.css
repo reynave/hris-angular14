@@ -23,7 +23,10 @@
 .sidebar .nav-item .nav-link {
     padding: 5px 1rem;
 }
-
+label{
+    font-size: 0.9rem;
+    line-height: 0.5rem;
+}
 @media print {
 
     .nav-fixed {
@@ -31,6 +34,7 @@
     }
 
     body {
+        background-color: #fff;
         margin-top: 0px;
     }
 

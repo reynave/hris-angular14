@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EmployeeContactComponent } from './employee/employee-contact/employee-contact.component';
 import { EmployeeDetailComponent } from './employee/employee-detail/employee-detail.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmploymentDetailComponent } from './employment/employment-detail/employment-detail.component';
@@ -69,6 +70,8 @@ const routes: Routes = [
  
   { path: "employee", component: EmployeeComponent, data: { active: "_masterData" }, canActivate:[AuthGuard] },
   { path: "employee/detail/:id", component: EmployeeDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
+  { path: "employee/contract/:id", component: EmployeeContactComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
+ 
   { path: "organization", component: OrganizationComponent, data: { active: "_masterData" }, canActivate:[AuthGuard]},
   { path: "personal/detail/:id", component: PersonalDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
   { path: "employment/detail/:id", component: EmploymentDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },

@@ -14,8 +14,13 @@ export class Model {
     public purchaseDate: any,
     public supplier: string,
     public warantyUntil: any,
-    public location: string,
+    public locationId: number,
     public schedule: number,
+    public capacity : string,
+    public sparepartId : number,
+    public brand : string,
+    public serialNumber : string, 
+    public type : string, 
 
   ) { }
 
@@ -31,6 +36,17 @@ export class Transaction {
 
 }
 
+export class Transfer {
+
+  constructor( 
+    public locationid: number,
+    public note: string,
+    public date: any
+  ) {  }
+
+}
+
+
 @Component({
   selector: 'app-maintenance-detail',
   templateUrl: './maintenance-detail.component.html',
@@ -39,8 +55,10 @@ export class Transaction {
 export class MaintenanceDetailComponent implements OnInit {
   loading: boolean = false;
   item: any = [];
-  model: any = new Model("", "", 0, "", "", "", "", 1);
+  model: any = new Model("", "", 0, "", "", "", 0,1,"",0,"","","");
   transaction: any = new Transaction("0", "", "");
+  transfer: any = new Transfer(0, "", "");
+  transferList : any = [];
   equipment: any = [];
   category: any = [];
   id: string = "";
@@ -49,6 +67,8 @@ export class MaintenanceDetailComponent implements OnInit {
   editable: boolean = false;
   scheduleDetail: any = [];
   nextSchedule: any = [];
+  sparepart : any = [];
+  location : any = [];
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -71,8 +91,7 @@ export class MaintenanceDetailComponent implements OnInit {
           this.nextSchedule = data['nextSchedule'];
 
           if (data['nextSchedule']['nextScheduleDate']) {
-            let dateNextSchedule = data['nextSchedule']['nextScheduleDate'].split("-");
- 
+            let dateNextSchedule = data['nextSchedule']['nextScheduleDate'].split("-"); 
             this.transaction['scheduleDate'] = {
               year: parseInt(dateNextSchedule['0']),
               month: parseInt(dateNextSchedule['1']),
@@ -82,17 +101,26 @@ export class MaintenanceDetailComponent implements OnInit {
           }
           let warantyUntil = data['item']['warantyUntil'].split("-");
           let purchaseDate = data['item']['purchaseDate'].split("-");
-
-
-          this.model['schedule'] = data['item']['schedule'];
-          // this.model['equipmentId'] = data['item']['equipmentId'];
+          this.transferList  = data['transfer_log'];
+          this.model['schedule'] = data['item']['schedule']; 
           this.model['equipment'] = data['item']['equipment'];
           this.model['description'] = data['item']['description'];
           this.model['categoryId'] = data['item']['categoryId'];
           this.model['purchaseDate'] = data['item']['purchaseDate'];
-          this.model['supplier'] = data['item']['supplier'];
+          this.model['supplier'] = data['item']['supplier']; 
+          this.model['locationId'] = data['item']['locationId'];
+          this.model['type'] = data['item']['typeItem']; 
+          this.model['serialNumber'] = data['item']['serialNumber'];
+          this.model['brand'] = data['item']['brand'];
+          this.model['capacity'] = data['item']['capacity'];
+          this.model['sparepartId'] = data['item']['sparepartId'];
+ 
+          this.transfer['locationId'] = data['item']['locationId'];
 
-          this.model['location'] = data['item']['location'];
+          this.equipment = data['equipment'];
+          this.category = data['category'];  
+          this.sparepart = data['sparepart']; 
+          this.location = data['location']; 
 
           this.model['warantyUntil'] = {
             year: parseInt(warantyUntil['0']),
@@ -234,5 +262,26 @@ export class MaintenanceDetailComponent implements OnInit {
   zoom(content: any, img: string) {
     this.img = img;
     this.modalService.open(content, { size: 'lg' });
+  }
+
+
+  onTransfer(){
+    this.loading = true;
+    const body = {
+      item: this.transfer, 
+      id: this.id,
+    }
+    this.http.post<any>(environment.api + "maintenance/onTransfer", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+        console.log(data);
+        this.modalService.dismissAll();
+        this.httpGet();
+      },
+      e => {
+        console.log(e);
+      }
+    )
   }
 }

@@ -15,8 +15,13 @@ export class Model {
     public purchaseDate: any,
     public supplier: string,
     public warantyUntil: any,
-    public location: string,
+    public locationId: number,
     public schedule: number,
+    public capacity : string,
+    public sparepartId : number,
+    public brand : string,
+    public serialNumber : string, 
+    public type : string, 
     
   ) { }
 
@@ -30,7 +35,7 @@ export class Model {
 })
 export class MaintenanceComponent implements OnInit {
   dtOptions: ADTSettings = {}; 
-  model: any = new Model("", "", 0, "", "", "", "",1);
+  model: any = new Model("", "", 0, "", "", "", 0,1,"",0,"","","");
   equipment: any = [];
   category: any = [];
   addEquipment : boolean = false;
@@ -38,7 +43,8 @@ export class MaintenanceComponent implements OnInit {
   
   addCategory : boolean =  false;
   insertCategory: string = "";
-
+  sparepart : any = [];
+  location : any = [];
   constructor(
     private configService: ConfigService,
     private modalService: NgbModal,
@@ -57,7 +63,10 @@ export class MaintenanceComponent implements OnInit {
     }).subscribe(
       data => {
         this.equipment = data['equipment'];
-        this.category = data['category']; 
+        this.category = data['category'];  
+        this.sparepart = data['sparepart']; 
+        this.location = data['location']; 
+
         console.log(data);
       }
     );
@@ -74,6 +83,7 @@ export class MaintenanceComponent implements OnInit {
         },
       },
       columns: [
+        
         {
           title: 'Equipment',
           data: 'equipment',
@@ -81,6 +91,10 @@ export class MaintenanceComponent implements OnInit {
         {
           title: 'Category',
           data: 'category',
+        },
+        {
+          title: 'Location',
+          data: 'location',
         },
         {
           title: 'Purchase Date',

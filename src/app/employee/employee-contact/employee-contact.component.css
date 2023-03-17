@@ -1,0 +1,33 @@
+.header {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section p {
+    margin: 0;
+}
+
+.signature {
+    margin-top: 40px;
+}
+
+.signature p {
+    margin: 0;
+}
+
+ol li{
+    margin-bottom: 1.5rem;
+}
