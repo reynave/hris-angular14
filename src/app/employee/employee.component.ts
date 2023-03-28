@@ -27,6 +27,8 @@ export class Model {
 })
 export class EmployeeComponent implements OnInit {
   dtOptions: ADTSettings = {};
+  dtOptions2: ADTSettings = {};
+  
   model: any = new Model("", "", "", "", "", { "year": 1990, "month": 1, "day": 1 });
   constructor(
     config: NgbModalConfig,
@@ -44,7 +46,49 @@ export class EmployeeComponent implements OnInit {
   }
 
   httpGet() {
+    this.dtOptions2 = {
+      //  ajax: environment.api + 'employee',
+      ajax: {
+        url: environment.api + 'employee/reminderExp',
+        type: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Token': this.configService.varToken,
+        },
+      },
+      columns: [
+        {
+          title: 'Employed ID',
+          data: 'id',
+          render: function (data: any, type: any, full: any) {
+            return '<a  href="#/employee/detail/' + data + '?tab=">' + data + '</a>';
+          }
+        },
+        {
+          title: 'Name',
+          data: 'name',
+        },
+       
+        {
+          title: 'Status',
+          data: 'employmentStatus',
+        },
+       
+        {
+          title: 'Join Start',
+          data: 'dateJoinStart',
+        },
+        {
+          title: 'Join End',
+          data: 'dateJoinEnd',
+        },
+        {
+          title: 'Expired until (day)',
+          data: 'expDate',
+        },
 
+      ]
+    };
     this.dtOptions = {
       //  ajax: environment.api + 'employee',
       ajax: {
