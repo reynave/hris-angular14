@@ -28,7 +28,7 @@ import { TimeManagementEditComponent } from './time-management/time-management-e
 import { ReimbursementAddComponent } from './reimbursement/reimbursement-add/reimbursement-add.component';
 import { ReimbursementDetailComponent } from './reimbursement/reimbursement-detail/reimbursement-detail.component';
 import { ReimbursementHistoryComponent } from './reimbursement/reimbursement-history/reimbursement-history.component';
- 
+
 import { TimeManagementReportsComponent } from './time-management/time-management-reports/time-management-reports.component';
 
 import { TimeManagementImportComponent } from './time-management/time-management-import/time-management-import.component';
@@ -43,7 +43,7 @@ import { ReimbursementDatatablesComponent } from './reimbursement/reimbursement-
 import { HomeHistoryReimbursementComponent } from './home/home-history-reimbursement/home-history-reimbursement.component';
 import { ReimbursementRequestComponent } from './reimbursement/reimbursement-request/reimbursement-request.component';
 import { LoanAddComponent } from './loan/loan-add/loan-add.component';
-import { LoanDetailComponent } from './loan/loan-detail/loan-detail.component'; 
+import { LoanDetailComponent } from './loan/loan-detail/loan-detail.component';
 import { HomeHistoryLoanComponent } from './home/home-history-loan/home-history-loan.component';
 import { HomeHistoryLoanLogComponent } from './home/home-history-loan/home-history-loan-log/home-history-loan-log.component';
 import { HomeLoanDetailComponent } from './home/home-loan-detail/home-loan-detail.component';
@@ -56,7 +56,8 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { MaintenanceDetailComponent } from './maintenance/maintenance-detail/maintenance-detail.component';
 import { TemplateComponent } from './template/template.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { EmployeeContactComponent } from './employee/employee-contact/employee-contact.component'; 
+import { EmployeeContactComponent } from './employee/employee-contact/employee-contact.component';
+import { MaintenanceMasterComponent } from './maintenance/maintenance-master/maintenance-master.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -92,14 +93,16 @@ export const customCurrencyMaskConfig = {
     EmployeeComponent,
     TimeManagementComponent,
     ReimbursementComponent,
-    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent, 
-    ReimbursementDetailComponent, ReimbursementHistoryComponent,  
-    TimeManagementReportsComponent, TimeManagementImportComponent, OrganizationComponent, 
-    EmployeeDetailComponent, ReloginComponent, GlobalMasterdataComponent, PayrollSettingComponent, 
-    Pph21SettingComponent, BpjsSettingComponent, ReimbursementDatatablesComponent, HomeHistoryReimbursementComponent, 
-    ReimbursementRequestComponent, LoanAddComponent, LoanDetailComponent, HomeHistoryLoanComponent, 
-    HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent, 
-    SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, TemplateComponent, ScheduleComponent, EmployeeContactComponent, 
+    LoanComponent, TimeManagementEditComponent, ReimbursementAddComponent,
+    ReimbursementDetailComponent, ReimbursementHistoryComponent,
+    TimeManagementReportsComponent, TimeManagementImportComponent, OrganizationComponent,
+    EmployeeDetailComponent, ReloginComponent, GlobalMasterdataComponent, PayrollSettingComponent,
+    Pph21SettingComponent, BpjsSettingComponent, ReimbursementDatatablesComponent, HomeHistoryReimbursementComponent,
+    ReimbursementRequestComponent, LoanAddComponent, LoanDetailComponent, HomeHistoryLoanComponent,
+    HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent,
+    SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, TemplateComponent, 
+    ScheduleComponent, EmployeeContactComponent, 
+    MaintenanceMasterComponent,
   ],
   imports: [
     BrowserModule,

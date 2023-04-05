@@ -14,28 +14,47 @@
         <div class="card-body">
           <table class="table table-sm table-bordered table-striped">
             <thead>
+              <Tr>
+                <th rowspan="2">ID</th>
+                <th rowspan="2">Name</th>
+                <th rowspan="2">Tax Salary</th>
+                <th rowspan="2">Tunjangan</th>
+                <th rowspan="2">PTKP</th>
+
+                <th class="text-center" colspan="3">Company</th> 
+                <th rowspan="2">BRUTO</th>
+                <th rowspan="2">By Jabatan </th>
+
+                <th class="text-center"  colspan="3">Employee </th> 
+                <th rowspan="2">NETTO </th>
+                <th rowspan="2">PTKP </th>
+
+                <th rowspan="2">PKP </th>
+                <th rowspan="2">Pph21 Terutang setahun </th>
+                <th rowspan="2">Pph21 Terutang sebulan</th>
+              </Tr>
               <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Tax Salary</th>
-                <th>Tunjangan</th>
-                <th>PTKP</th>
+                <!-- <th> </th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+                <th> </th> -->
 
-                <th>BPJS {{thead.companyBPSJ}}%</th>
-                <th>JKK {{thead.companyJKK}}%</th>
-                <th>JKM {{thead.companyJKM}}%</th>
-                <th>BRUTO</th>
-                <th>By Jabatan </th>
+                <th>BPJS <div><small>{{thead.companyBPSJ}}%</small></div></th>
+                <th>JKK <div><small>{{thead.companyJKK}}%</small></div></th>
+                <th>JKM <div><small>{{thead.companyJKM}}%</small></div></th>
+                <!-- <th> </th>
+                <th> </th> -->
 
-                <th>BPJS {{thead.employeeBPSJ}}%</th>
-                <th>JHT {{thead.employeeJHT}}%</th>
-                <th>JP {{thead.employeeJP}}%</th>
-                <th>NETTO </th>
-                <th>PTKP </th>
+                <th>BPJS <div><small>{{thead.employeeBPSJ}}%</small></div></th>
+                <th>JHT <div><small>{{thead.employeeJHT}}%</small></div></th>
+                <th>JP <div><small>{{thead.employeeJP}}%</small></div></th>
+                <!-- <th>  </th>
+                <th>  </th>
 
-                <th>PKP </th>
-                <th>Pph21 Terutang setahun </th>
-                <th>Pph21 Terutang sebulan</th>
+                <th>  </th>
+                <th>  </th>
+                <th> </th> -->
               </tr>
             </thead>
             <tbody>

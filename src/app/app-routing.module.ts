@@ -45,6 +45,7 @@ import { TimeManagementEditComponent } from './time-management/time-management-e
 import { TimeManagementImportComponent } from './time-management/time-management-import/time-management-import.component';
 import { TimeManagementReportsComponent } from './time-management/time-management-reports/time-management-reports.component';
 import { TimeManagementComponent } from './time-management/time-management.component';
+import { MaintenanceMasterComponent } from './maintenance/maintenance-master/maintenance-master.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "login" }, },
@@ -64,7 +65,10 @@ const routes: Routes = [
   { path: "home/loan/history/log/:id", component: LoanDetailComponent, data: { active: "_home" },canActivate:[AuthGuard] },
   
   { path: "maintenance", component: MaintenanceComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
+  { path: "maintenance/master", component: MaintenanceMasterComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
+ 
   { path: "maintenance/:id", component: MaintenanceDetailComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
+ 
   { path: "schedule", component: ScheduleComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
  
  

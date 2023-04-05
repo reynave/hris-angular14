@@ -270,40 +270,7 @@
 
 
 
-                    <div class="col-6">
-                        <div class="card shadow mb-3">
-                            <div class="card-header">
-                                <strong class=" text-primary"> MAINTENANCE EQUIPMENT  </strong>
-                            </div>
-                            <div class="card-body p-0">
-                                <table class="table ">
-                                    <tbody>
-                                        <tr *ngFor="let x of maintenance_equipment">
-                                            <td> <input type="text" class="form-control" [(ngModel)]="x.name"
-                                                    name="name">
-                                            </td>
-                                            <td width="30px"><button class="btn btn-sm btn-outline-dark"
-                                                    (click)="fnDelete('maintenance_equipment',x);"><img
-                                                        src="./assets/img/icons8-multiply-52.png" height="20"></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td class="text-end">
-                                                <button class="btn btn-sm btn-outline-dark mx-1"
-                                                    (click)="fnInsert('maintenance_equipment')">Add Item</button>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-success mx-1"
-                                                    (click)="fnSave_maintenance_equipment();">Save</button>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                   
 
 
                     <div class="col-6">

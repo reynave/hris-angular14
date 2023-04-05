@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-  
+
                     <div class="col-12 mt-3">
                         <div class="card shadow mb-3">
 
@@ -179,7 +179,7 @@
                                 </div>
 
                                 <form (ngSubmit)="onSubmit()" #heroForm="ngForm" *ngIf="editable == true">
-                                 
+
                                     <div class="row g-2">
                                         <div class="col-6">
                                             <div class="mb-3">
@@ -283,9 +283,9 @@
                                             <div class="mb-3">
                                                 <div class="form-group">
                                                     <label for="sparepart">Spare Part</label>
-                                                    <select class="form-control form-control-sm" id="sparepartId"
-                                                        required [(ngModel)]="model.sparepartId" name="sparepartId"
-                                                        #sparepartId="ngModel">
+                                                    <select class="form-control form-control-sm" [disabled]="true"
+                                                        id="sparepartId" required [(ngModel)]="model.sparepartId"
+                                                        name="sparepartId" #sparepartId="ngModel">
                                                         <option [value]="x.id" *ngFor="let x of sparepart"> {{x.name}}
                                                         </option>
                                                     </select>
@@ -371,12 +371,13 @@
                         </div>
                     </div>
 
+                    <!-- TRANSFER ITEM  LOCATION -->
                     <div class="col-12 mt-2">
                         <div class="card shadow mb-3">
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col">
-                                        <h6 class="m-0 font-weight-bold text-primary"> TRANSFER ITEM </h6>
+                                        <h6 class="m-0 font-weight-bold text-primary"> HISTORY LOCATION </h6>
                                     </div>
                                     <div class="col text-end">
                                         <button type="button" class="btn btn-sm btn-primary"
@@ -401,7 +402,47 @@
                                             <td> {{x.id}} </td>
                                             <td>{{x.scheduleDate}} </td>
                                             <td> {{x.location}} </td>
-                                           
+
+                                            <td>{{x.note}} </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TRANSFER SPERERPART -->
+                    <div class="col-12 mt-2">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary"> HISTORY TRANSFER SPARE PART </h6>
+                                    </div>
+                                    <div class="col text-end">
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                            (click)="open(modulSparePart);">Add Transfer Spare Part</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <table class="table table-sm border">
+                                    <thead>
+                                        <tr>
+                                            <th>Ticket ID</th>
+                                            <th>Used</th>
+                                            <th>Replace by</th>
+                                            <th>Note</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of sparepart_log ">
+                                            <td> {{x.id}} </td>
+                                            <td>[{{x.sparepartIdLog}}] {{x.sparepartIdLogName}}</td>
+                                            <td>[{{x.sparepartId}}] {{x.name}}</td>
                                             <td>{{x.note}} </td>
 
                                         </tr>
@@ -608,7 +649,7 @@
     </div>
     <form (ngSubmit)="onTransfer()" #transForm="ngForm">
         <div class="modal-body">
-           
+
             <div class="form-group">
                 <label for="name">New Location</label>
                 <select class="form-control" id="locationId" required [(ngModel)]="transfer.locationId"
@@ -622,7 +663,7 @@
 
 
             <div class="form-group">
-                <label for="name">Transfer Date Schadule</label> 
+                <label for="name">Transfer Date Schadule</label>
                 <div class="input-group">
                     <input id="bb" class="form-control" placeholder="yyyy-mm-dd" name="bb" ngbDatepicker
                         [(ngModel)]="transfer.date" #bb="ngbDatepicker" required />
@@ -633,10 +674,10 @@
 
 
             <div class="form-group">
-                <label for="name">Notes</label> 
+                <label for="name">Notes</label>
                 <div class="input-group">
-                    <input id="notes" class="form-control"  name="note"  [(ngModel)]="transfer.note"  />
-                     
+                    <input id="notes" class="form-control" name="note" [(ngModel)]="transfer.note" />
+
                 </div>
             </div>
 
@@ -647,6 +688,56 @@
             <button type="button" class="btn btn-sm btn-outline-dark mx-1"
                 (click)="modal.dismiss('Cross click')">Cancel</button>
             <button type="submit" class="btn btn-sm btn-primary mx-1" [disabled]="!transForm.form.valid">Submit</button>
+        </div>
+    </form>
+</ng-template>
+
+
+<ng-template #modulSparePart let-modal>
+    <div class="modal-header">
+        <strong class="modal-title" id="modal-basic-title">ADD TRANSFER ITEMS</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <form (ngSubmit)="onChangeSparePart()" #sparePartModelForm="ngForm">
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label for="name">Current Spare Part</label> 
+                <select class="form-control form-control-sm" [disabled]="true" id="sparepartId" required
+                    [(ngModel)]="model.sparepartId" name="sparepartId" #sparepartId="ngModel">
+                    <option [value]="x.id" *ngFor="let x of sparepart"> {{x.name}}
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="name">New Spare Part</label>
+                <select class="form-control" id="locationId" required [(ngModel)]="sparePartModel.sparePartId"
+                    name="sparePartId" #sparePartId="ngModel">
+                    <option *ngFor="let x of sparepart" [value]="x.id" [disabled]="x.used">{{x.id}} {{x.name}} {{x.used
+                        == true ? "(Used)":""}}</option>
+                </select>
+                <div [hidden]="sparePartId.valid || sparePartId.pristine" class="alert alert-danger">
+                    Spare Part ID is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Notes</label>
+                <div class="input-group">
+                    <input id="notes" class="form-control" name="note" [(ngModel)]="sparePartModel.note" />
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-outline-dark mx-1"
+                (click)="modal.dismiss('Cross click')">Cancel</button>
+            <button type="submit" class="btn btn-sm btn-primary mx-1"
+                [disabled]="!sparePartModelForm.form.valid">Submit</button>
         </div>
     </form>
 </ng-template>

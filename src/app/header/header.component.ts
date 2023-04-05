@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
       headers: this.configService.headers()
     }).subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
         const someObj : any =data;
         this.module = data;
         this.user = someObj['user'];

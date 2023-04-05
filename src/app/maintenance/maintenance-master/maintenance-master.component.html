@@ -1,0 +1,115 @@
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+
+            <div class="container my-3">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <h4 class="mb-3 font-weight-bold text-primary"> Master Data </h4>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="card shadow mb-3">
+                            <div class="card-header">
+                                <strong class=" text-primary"> MAINTENANCE CATEGORY </strong>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table ">
+                                    <tbody>
+                                        <tr *ngFor="let x of maintenance_category">
+                                            <td>
+                                                <div class="form-control">{{x.id}}</div>
+                                            </td>
+                                            <td> <input type="text" class="form-control" [(ngModel)]="x.name"
+                                                    name="name">
+                                            </td>
+                                            <td width="30px"><button class="btn btn-sm btn-outline-dark"
+                                                    (click)="fnDelete('maintenance_category',x);"><img
+                                                        src="./assets/img/icons8-multiply-52.png" height="20"></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-dark mx-1"
+                                                    (click)="fnInsert('maintenance_category')">Add Item</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-sm btn-success mx-1"
+                                                    (click)="fnSave_maintenance_category();">Save</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="card shadow mb-3">
+                            <div class="card-header">
+                                <strong class=" text-primary"> SPARE PART </strong>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table ">
+                                    <tbody>
+
+                                        <tr *ngFor="let x of maintenance_sparepart">
+                                            <td>
+                                                <div class="form-control">{{x.id}}</div>
+                                            </td>
+                                            <td> <input type="text" class="form-control" [(ngModel)]="x.name"
+                                                    name="name">
+                                            </td>
+                                            <td width="30px"><button class="btn btn-sm btn-outline-dark"
+                                                    (click)="fnDelete('maintenance_sparepart',x);"><img
+                                                        src="./assets/img/icons8-multiply-52.png" height="20"></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-dark mx-1"
+                                                    (click)="fnInsert('maintenance_sparepart')">Add Item</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-sm btn-success mx-1"
+                                                    (click)="fnSave_maintenance_sparepart();">Save</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="footer bg-white border shadow-sm" [hidden]="!loading">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 ">
+                <div class="text-center py-2">
+                    <b>Saving...</b>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

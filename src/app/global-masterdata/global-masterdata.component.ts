@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/service/config.service';
+
 @Component({
   selector: 'app-global-masterdata',
   templateUrl: './global-masterdata.component.html',

@@ -46,6 +46,15 @@ export class Transfer {
 
 }
 
+export class SparePartModel {
+
+  constructor( 
+    public sparePartId: number,
+    public note: string, 
+  ) {  }
+
+}
+
 
 @Component({
   selector: 'app-maintenance-detail',
@@ -55,6 +64,7 @@ export class Transfer {
 export class MaintenanceDetailComponent implements OnInit {
   loading: boolean = false;
   item: any = [];
+  sparePartModel : any = new SparePartModel(0,"");
   model: any = new Model("", "", 0, "", "", "", 0,1,"",0,"","","");
   transaction: any = new Transaction("0", "", "");
   transfer: any = new Transfer(0, "", "");
@@ -69,6 +79,7 @@ export class MaintenanceDetailComponent implements OnInit {
   nextSchedule: any = [];
   sparepart : any = [];
   location : any = [];
+  sparepart_log : any = [];
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -88,6 +99,8 @@ export class MaintenanceDetailComponent implements OnInit {
         data => {
           this.images = data['images'];
           this.item = data['item'];
+          this.sparepart_log = data['sparepart_log'];
+          
           this.nextSchedule = data['nextSchedule'];
 
           if (data['nextSchedule']['nextScheduleDate']) {
@@ -272,6 +285,26 @@ export class MaintenanceDetailComponent implements OnInit {
       id: this.id,
     }
     this.http.post<any>(environment.api + "maintenance/onTransfer", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+        console.log(data);
+        this.modalService.dismissAll();
+        this.httpGet();
+      },
+      e => {
+        console.log(e);
+      }
+    )
+  }
+
+  onChangeSparePart(){
+    this.loading = true;
+    const body = {
+      item: this.sparePartModel, 
+      id: this.id,
+    }
+    this.http.post<any>(environment.api + "maintenance/onChangeSparePart", body, {
       headers: this.configService.headers(),
     }).subscribe(
       data => {
