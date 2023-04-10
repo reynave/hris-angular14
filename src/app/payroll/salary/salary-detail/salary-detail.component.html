@@ -13,14 +13,14 @@
                         <a (click)="back();" class="btn btn-sm btn-outline-dark">Back</a>
                     </div>
 
-                   
+
                     <div class="col-12 mb-3">
                         <div class="card shadow mb-3">
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col-6">
                                         <h4> {{personalData.name}}</h4>
-                                        <h6> {{personalData.id}}</h6> 
+                                        <h6> {{personalData.id}}</h6>
                                     </div>
                                     <div class="col-6 text-end align-self-center">
                                         <a class="btn btn-sm btn-primary " (click)="open(content)">NEW SALARY REPORT</a>
@@ -43,50 +43,55 @@
 <ng-template #content let-modal>
     <div class="modal-header">
         <b class="modal-title" id="modal-basic-title">New Salery Report</b>
-        <button type="button" *ngIf="!loading" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        <button type="button" *ngIf="!loading" class="btn-close" aria-label="Close"
+            (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <form>
-            <div class="row g-2">
-                <div class="col-6">
-                    <div class="mb-3">
-                        <label for="dateOfBirth">Period Start </label>
-                        <div class="input-group">
-                            <input id="dateOfBirth" class="form-control" [(ngModel)]="periodStartDate"
-                                placeholder="yyyy-mm-dd" name="dp1" ngbDatepicker #dp1="ngbDatepicker" />
-                            <button class="btn btn-outline-secondary" (click)="dp1.toggle()" type="button"><img
-                                    src="./assets/img/icons8-calendar-48.png" height="20"></button>
-                        </div>
+        <div *ngIf="!loading">
+            <form>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="dateOfBirth">Period Start </label>
+                            <div class="input-group">
+                                <input id="dateOfBirth" class="form-control" [(ngModel)]="periodStartDate"
+                                    placeholder="yyyy-mm-dd" name="dp1" ngbDatepicker #dp1="ngbDatepicker" />
+                                <button class="btn btn-outline-secondary" (click)="dp1.toggle()" type="button"><img
+                                        src="./assets/img/icons8-calendar-48.png" height="20"></button>
+                            </div>
 
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="mb-3">
-                        <label for="dateOfBirth">Period End </label>
-                        <div class="input-group">
-                            <input id="dateOfBirth" class="form-control" [(ngModel)]="periodEndDate"
-                                placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker #dp2="ngbDatepicker" />
-                            <button class="btn btn-outline-secondary" (click)="dp2.toggle()" type="button"> <img
-                                    src="./assets/img/icons8-calendar-48.png" height="20"> </button>
                         </div>
                     </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="dateOfBirth">Period End </label>
+                            <div class="input-group">
+                                <input id="dateOfBirth" class="form-control" [(ngModel)]="periodEndDate"
+                                    placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker #dp2="ngbDatepicker" />
+                                <button class="btn btn-outline-secondary" (click)="dp2.toggle()" type="button"> <img
+                                        src="./assets/img/icons8-calendar-48.png" height="20"> </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-        </form>
+            </form>
+        </div>
+        <div class="text-center" *ngIf="loading">
+            <img src="./assets/img/loading3.gif" width="80%">
+        </div>
     </div>
+
     <div class="modal-footer">
         <div *ngIf="!loading">
             <button type="button" class="btn btn-sm btn-outline-dark mx-1"
                 (click)="modal.close('Save click')">Cancel</button>
             <button type="button" class="btn btn-sm btn-primary" (click)="fnGenerate();">Generate</button>
-
         </div>
 
         <div class="text-center" *ngIf="loading">
             Please Wait..
         </div>
-
 
     </div>
 </ng-template>

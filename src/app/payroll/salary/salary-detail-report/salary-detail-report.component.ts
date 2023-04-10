@@ -15,6 +15,7 @@ export class SalaryDetailReportComponent implements OnInit {
   items1 : any = [];
   items2 : any = [];
   items3 : any = [];
+  salary_time : any = [];
   saving: boolean = false;
   id : string= "";
   constructor(
@@ -37,6 +38,8 @@ export class SalaryDetailReportComponent implements OnInit {
         this.items1 = data['items1'];
         this.items2 = data['items2'];
         this.items3 = data['items3'];
+        this.salary_time = data['salary_time'];
+        
         console.log(data);
       }
     )

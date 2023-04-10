@@ -30,12 +30,10 @@
                                     <thead>
                                         <tr>
                                             <th>Ticket ID</th>
-                                            <th>Period Date</th>
-
+                                            <th>Period Date</th> 
                                             <th>Employe ID</th>
                                             <th>Name</th>
-                                            <th>Lock</th>
-
+                                            <th>Lock</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,8 +41,7 @@
                                             <td>{{item.id}}</td> 
                                             <td>{{item.periodStartDate | date}} -  {{item.periodEndDate | date}}</td>
                                             <td>{{item.personalId}}</td>
-                                            <td>{{item.name}}</td>
-                                            
+                                            <td>{{item.name}}</td> 
                                             <td>{{item.asLock}}</td>
 
                                         </tr>
@@ -63,17 +60,33 @@
                                 </div>
                             </div>
                             <div class="card-body"> 
-                                <table>
-                                    <tbody>
+                                <table class="table table-sm table-xs table-bordered  ">
+                                    <thead>
                                         <tr>
-                                            <td>2023-01-01</td>
-                                            <td>hour</td>
-                                            <td>Jobs</td>
-                                            <td>Check In</td>
-                                            <td>Check Out</td>
-                                            <td>Working hour</td>
-                                            <td>Late Minute</td> 
-                                            <td>Amount</td>  
+                                            <th>Date</th> 
+                                            <th>Shift</th> 
+                                            
+                                            <th>Jobs</th>
+
+                                            <th>Check In</th> 
+                                            <th>Check Out</th>
+                                            <th>Working Hour</th>
+                                            <th>Late</th>
+                                            <th class="text-end">Pinantly Fee</th>
+                                            <th>Reason</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of salary_time">
+                                            <td>{{x.date}}</td>
+                                            <td>{{x.hour}}</td>
+                                            <td>{{x.job}}</td>
+                                            <td>{{x.checkIn}}</td>
+                                            <td>{{x.checkOut}}</td>
+                                            <td>{{x.workingHour}}</td>
+                                            <td>{{x.late}}</td> 
+                                            <td class="text-end">{{x.amount | number}}</td>  
+                                            <td>{{x.note}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
