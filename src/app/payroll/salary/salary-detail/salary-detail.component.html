@@ -13,30 +13,16 @@
                         <a (click)="back();" class="btn btn-sm btn-outline-dark">Back</a>
                     </div>
 
-                    <div class="col-12 my-2">
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary"> DETAIL </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <b>Employee Detail</b>
-                                </div>
-                                <h4> {{personalData.name}}</h4>
-                                <h6> {{personalData.id}}</h6>
-                                
-                                <code>{{personalData | json}}</code>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <div class="col-12 mb-3">
                         <div class="card shadow mb-3">
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col-6">
-                                        <h6 class="m-0 font-weight-bold text-primary"> SALERY DETAIL </h6>
+                                        <h4> {{personalData.name}}</h4>
+                                        <h6> {{personalData.id}}</h6> 
                                     </div>
-                                    <div class="col-6 text-end">
+                                    <div class="col-6 text-end align-self-center">
                                         <a class="btn btn-sm btn-primary " (click)="open(content)">NEW SALARY REPORT</a>
                                     </div>
                                 </div>
@@ -57,7 +43,7 @@
 <ng-template #content let-modal>
     <div class="modal-header">
         <b class="modal-title" id="modal-basic-title">New Salery Report</b>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        <button type="button" *ngIf="!loading" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <form>
@@ -90,9 +76,17 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-outline-dark mx-1"
-            (click)="modal.close('Save click')">Cancel</button>
-        <button type="button" class="btn btn-sm btn-primary" (click)="fnGenerate();">Generate</button>
+        <div *ngIf="!loading">
+            <button type="button" class="btn btn-sm btn-outline-dark mx-1"
+                (click)="modal.close('Save click')">Cancel</button>
+            <button type="button" class="btn btn-sm btn-primary" (click)="fnGenerate();">Generate</button>
+
+        </div>
+
+        <div class="text-center" *ngIf="loading">
+            Please Wait..
+        </div>
+
 
     </div>
 </ng-template>

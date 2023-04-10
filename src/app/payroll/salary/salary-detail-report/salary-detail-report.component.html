@@ -4,65 +4,189 @@
     </ul>
     <div id="content-wrapper" class="d-flex flex-column">
 
-        <div id="content"> 
-            
-                <div class="container my-3">
-                    <div class="row">
-                        <div class="col-12 disable-printing">
-                            <button type="button" (click)="back()" class="btn btn-outline-dark btn-sm">Back</button>
+        <div id="content">
 
-
-                        </div>
-                      
-
-                        <div class="col-12 my-3">
-
-
-                            <div class="card shadow mb-3">
-                                <div class="card-header py-3">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="m-0 font-weight-bold text-primary"> REPORT SALERY </h6>
-                                        </div>
-                                        <div class="col text-end disable-printing">
-                                          
-                                            <button type="button" class="btn btn-primary btn-sm mx-1">Publish</button>
-                                            <button type="button" (click)="fnPrint()" class="btn btn-success btn-sm">Print</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-    
-                                    <table class="table table-sm table-bordered mb-0">
-                                        <tbody>
-                                            <tr>
-                                                <td><b>Ticket ID</b></td>
-                                                <td>{{item.id}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Status Lock</b></td>
-                                                <td>{{item.asLock}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-    
-                                    <code>
-                                        {{item | json}}
-                                    </code>
-                                    <div class="text-center">
-                                        menunggu final formula data
-                                    </div>
+            <div class="container my-3">
+                <div class="row">
+                    <div class="col-6 disable-printing">
+                        <button type="button" (click)="back()" class="btn btn-outline-dark btn-sm">Back</button>
+                    </div>
+                    <div class="col-6 disable-printing text-end">
+                         <button type="button" (click)="fnDelete();" class="btn btn-danger btn-sm">Delete</button>
+                    </div>
+ 
+                    <div class="col-12 my-3">
+ 
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary"> REPORT SALERY </h6>
+                                    </div> 
                                 </div>
                             </div>
+                            <div class="card-body"> 
+                                <table class="table table-sm ">
+                                    <thead>
+                                        <tr>
+                                            <th>Ticket ID</th>
+                                            <th>Period Date</th>
 
+                                            <th>Employe ID</th>
+                                            <th>Name</th>
+                                            <th>Lock</th>
 
-                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{item.id}}</td> 
+                                            <td>{{item.periodStartDate | date}} -  {{item.periodEndDate | date}}</td>
+                                            <td>{{item.personalId}}</td>
+                                            <td>{{item.name}}</td>
+                                            
+                                            <td>{{item.asLock}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                            </div>
+                          
                         </div>
+
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary"> PRESENCE REPORT </h6>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="card-body"> 
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>2023-01-01</td>
+                                            <td>hour</td>
+                                            <td>Jobs</td>
+                                            <td>Check In</td>
+                                            <td>Check Out</td>
+                                            <td>Working hour</td>
+                                            <td>Late Minute</td> 
+                                            <td>Amount</td>  
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                          
+                        </div>
+
+                        <div class="card shadow mb-3">
+                            <div class="card-body">
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="text-center">Tunjangan Tetap</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of items1">
+                                            <td width="50%">{{x.label}}</td>
+                                            <td>  
+                                                <input type="text"  class="form-control form-control-sm" currencyMask  [(ngModel)]="x.value">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td><b>TOTAL</b></td>
+                                            <td class="text-end"><b>Rp {{item.tunjanganTetap | number}}</b></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                           
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="text-center">Tunjangan Tidak Tetap</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of items2">
+                                            <td width="50%">{{x.label}}</td>
+                                            <td>  
+                                                <input type="text"  class="form-control form-control-sm" currencyMask  [(ngModel)]="x.value">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td><b>TOTAL</b></td>
+                                            <td class="text-end"><b>Rp {{item.tunjanganTidakTetap | number}}</b></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                             
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="text-center">Potongan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of items3">
+                                            <td width="50%">{{x.label}}</td>
+                                            <td>  
+                                                <input type="text"  class="form-control form-control-sm" currencyMask  [(ngModel)]="x.value">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td><b>TOTAL</b></td>
+                                            <td class="text-end"><b>Rp {{item.potongan | number}}</b></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                             
+                                <table class="table table-sm table-bordered">
+                                   
+                                    <tbody>
+                                        <tr>
+                                            <td width="50%"><b>TAKE HOME PAY</b></td>
+                                            <td class="text-end"><b>Rp {{item.takeHomePay | number}}</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
                     </div>
-                </div> 
+                </div>
+            </div>
 
         </div>
 
     </div>
 
 </div>
+
+<footer class="footer bg-white border-top shadow-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center py-2"  [hidden]="saving">
+                    <button type="button" class="btn btn-primary btn-sm mx-1">Publish</button>
+                    <button type="button" (click)="fnPrint()"  class="btn btn-success btn-sm mx-1">Print</button>
+                    <button type="button" (click)="fnUpdate()"  class="btn btn-warning btn-sm mx-1">Update</button>
+                    
+                </div>
+                <div class="text-center py-2"  [hidden]="!saving">
+                   Update!
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

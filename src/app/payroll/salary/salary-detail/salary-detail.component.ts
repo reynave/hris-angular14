@@ -20,7 +20,7 @@ export class SalaryDetailComponent implements OnInit {
   date: any = new Date();
   periodStartDate: any = { year: this.date.getFullYear(), month: this.date.getMonth(), day: this.dateStart }
   periodEndDate: any = { year: this.date.getFullYear(), month: this.date.getMonth() + 1, day: this.dateEnd }
-
+  loading: boolean = false;
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -46,16 +46,14 @@ export class SalaryDetailComponent implements OnInit {
     this.http.get<any>(environment.api + "salary/detail/" + this.personalId).subscribe(
       data => {
         console.log(data);
-        this.periodStartDate.day =data['periodStartDate'];
-
-        this.periodEndDate.day = data['periodEndDate']; 
+        this.periodStartDate.day = data['periodStartDate'];
+        this.periodEndDate.day = data['periodEndDate'];
         this.personalData = data['personalData'];
       }
     )
   }
 
   datatables() {
-
     this.dtOptions = {
       ajax: {
         url: environment.api + 'salary/datatables/' + this.personalId,
@@ -124,16 +122,71 @@ export class SalaryDetailComponent implements OnInit {
     };
   }
 
-  fnGenerate(){
+  fnGenerate() {
+    this.loading = true;
     const body = {
-      personalId : this.personalId,
-      periodStartDate :  this.periodStartDate,
-      periodEndDate : this.periodEndDate,
+      personalId: this.personalId,
+      periodStartDate: this.periodStartDate,
+      periodEndDate: this.periodEndDate,
     }
-    this.http.post<any>(environment.api+"salary/fnGenerate", body).subscribe(
-      data=>{
+    console.log(body);
+    console.log("Loading 1!");
+    let startDate = body['periodStartDate']['year'] + "-" + body['periodStartDate']['month'] + "-" + body['periodStartDate']['day'];
+    let endDate = body['periodEndDate']['year'] + "-" + body['periodEndDate']['month'] + "-" + body['periodEndDate']['day'];
+    let url = environment.api + "timeManagement/reports/?id=" + this.personalId + "&startDate=" + startDate + "&endDate=" + endDate;
+
+    console.log(url);
+    this.http.get<any>(url, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+        console.log("Loading 2!");
         console.log(data);
-        location.reload();
+
+        const master = {
+          personalId: this.personalId,
+          periodStartDate: this.periodStartDate,
+          periodEndDate: this.periodEndDate,
+          timeManagement: data['items']
+        }
+
+        this.http.post<any>(environment.api + "salary/fnGenerate", master).subscribe(
+          data => {
+            console.log(data);
+            if (!data['error']) { 
+              this.modalService.dismissAll();
+              this.router.navigate(['payroll/salary/detail/report/', data['id']]);
+            }
+          }
+        )
+
+
+      }
+    );
+  }
+
+
+  fnGenerateSAVE() {
+    const body = {
+      personalId: this.personalId,
+      periodStartDate: this.periodStartDate,
+      periodEndDate: this.periodEndDate,
+    }
+    this.http.post<any>(environment.api + "salary/fnGenerate", body).subscribe(
+      data => {
+        console.log("step 1");
+        console.log(data);
+
+        if (data['error'] == false) {
+          let url = environment.api + "timeManagement/saveReport/?id=" + this.personalId + "&startDate=" + data['startDate'] + "&endDate=" + data['endDate'];
+          this.http.get<any>(url).subscribe(
+            data => {
+              console.log("step 2");
+              console.log(data);
+              location.reload();
+            }
+          );
+        }
       }
     )
   }
