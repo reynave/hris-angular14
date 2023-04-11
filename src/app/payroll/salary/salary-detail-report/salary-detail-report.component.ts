@@ -40,7 +40,7 @@ export class SalaryDetailReportComponent implements OnInit {
         this.items3 = data['items3'];
         this.salary_time = data['salary_time'];
         
-        console.log(data);
+       // console.log(data);
       }
     )
   }
@@ -72,6 +72,7 @@ export class SalaryDetailReportComponent implements OnInit {
       items2 : this.items2,
       items3 : this.items3, 
       salaryId : this.id,
+      personalId : this.item['personalId'],
     }
     this.saving = true;
     this.http.post<any>(environment.api+"salary/saleryDetailUpdate/", body).subscribe(

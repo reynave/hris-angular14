@@ -62,6 +62,8 @@ export class TimeManagementReportsComponent implements OnInit {
   }
 
   fnUpdate(){
+    this.calculation = true;
+    this.modalService.dismissAll();
     const body = {
       item : this.model,
       id : this.model['id']
@@ -70,7 +72,7 @@ export class TimeManagementReportsComponent implements OnInit {
       headers : this.configService.headers(),
     }).subscribe(
       data=>{
-        this.modalService.dismissAll();
+       
         console.log(data);
         this.httpGet();
       }
