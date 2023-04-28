@@ -120,12 +120,15 @@ export class PayrollDetailComponent implements OnInit {
     const body = {
       id: this.activatedRoute.snapshot.params['id'],
       model: this.model,
+      salaryTunjangan :this.salaryTunjangan,
     };
+    console.log(body);
     this.http.post<any>(environment.api + "payroll/fnSave", body, {
       headers: this.configService.headers(),
     }).subscribe(
       data => {
         console.log(data);
+        this.modalService.dismissAll();
         this.readonly = true;
       },
       e => {

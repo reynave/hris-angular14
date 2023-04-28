@@ -14,7 +14,7 @@ import { ConfigService } from 'src/app/service/config.service';
 export class SalaryDetailComponent implements OnInit {
   dtOptions: ADTSettings = {};
   personalId: string = "";
-  personalData: any;
+  personalData: any = [];
   dateStart: number = 1;
   dateEnd: number = 1;
   date: any = new Date();
@@ -116,8 +116,8 @@ export class SalaryDetailComponent implements OnInit {
           render: function (data: any, type: any, full: any) {
             return '<a  href="#/payroll/salary/detail/report/' + data + '" class="btn btn-sm btn-primary py-0">Detail</a>';
           }
-        },
-
+        }, 
+        
       ]
     };
   }

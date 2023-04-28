@@ -72,10 +72,29 @@ export class SalaryDetailReportComponent implements OnInit {
       items2 : this.items2,
       items3 : this.items3, 
       salaryId : this.id,
+      personalId : this.item['personalId'], 
+      salary_time : this.salary_time
+    }
+    this.saving = true;
+    console.log(body);
+    this.http.post<any>(environment.api+"salary/saleryDetailUpdate/", body).subscribe(
+      data=>{
+        this.httpGet();
+        console.log(data);
+      }
+    )
+  }
+
+  fnCalculate(){ 
+    const body = {
+      items1 : this.items1,
+      items2 : this.items2,
+      items3 : this.items3, 
+      salaryId : this.id,
       personalId : this.item['personalId'],
     }
     this.saving = true;
-    this.http.post<any>(environment.api+"salary/saleryDetailUpdate/", body).subscribe(
+    this.http.post<any>(environment.api+"salary/fnCalculate/", body).subscribe(
       data=>{
         this.httpGet();
         console.log(data);

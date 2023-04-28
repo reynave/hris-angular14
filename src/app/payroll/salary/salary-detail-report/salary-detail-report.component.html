@@ -12,43 +12,43 @@
                         <button type="button" (click)="back()" class="btn btn-outline-dark btn-sm">Back</button>
                     </div>
                     <div class="col-6 disable-printing text-end">
-                         <button type="button" (click)="fnDelete();" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" (click)="fnDelete();" class="btn btn-danger btn-sm">Delete</button>
                     </div>
- 
+
                     <div class="col-12 my-3">
- 
+
                         <div class="card shadow mb-3">
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="m-0 font-weight-bold text-primary"> REPORT SALERY </h6>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-body"> 
+                            <div class="card-body">
                                 <table class="table table-sm ">
                                     <thead>
                                         <tr>
                                             <th>Ticket ID</th>
-                                            <th>Period Date</th> 
+                                            <th>Period Date</th>
                                             <th>Employe ID</th>
                                             <th>Name</th>
-                                            <th>Lock</th> 
+                                            <th>Lock</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{item.id}}</td> 
-                                            <td>{{item.periodStartDate | date}} -  {{item.periodEndDate | date}}</td>
+                                            <td>{{item.id}}</td>
+                                            <td>{{item.periodStartDate | date}} - {{item.periodEndDate | date}}</td>
                                             <td>{{item.personalId}}</td>
-                                            <td>{{item.name}}</td> 
+                                            <td>{{item.name}}</td>
                                             <td>{{item.asLock}}</td>
 
                                         </tr>
                                     </tbody>
-                                </table> 
+                                </table>
                             </div>
-                          
+
                         </div>
 
                         <div class="card shadow mb-3">
@@ -56,42 +56,56 @@
                                 <div class="row">
                                     <div class="col">
                                         <h6 class="m-0 font-weight-bold text-primary"> PRESENCE REPORT </h6>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-body"> 
-                                <table class="table table-sm table-xs table-bordered  ">
-                                    <thead>
-                                        <tr>
-                                            <th>Date</th> 
-                                            <th>Shift</th> 
-                                            
-                                            <th>Jobs</th>
+                            <div class="card-body">
+                                <div *ngIf="item.level > 0"> 
 
-                                            <th>Check In</th> 
-                                            <th>Check Out</th>
-                                            <th>Working Hour</th>
-                                            <th>Late</th>
-                                            <th class="text-end">Pinantly Fee</th>
-                                            <th>Reason</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let x of salary_time">
-                                            <td>{{x.date}}</td>
-                                            <td>{{x.hour}}</td>
-                                            <td>{{x.job}}</td>
-                                            <td>{{x.checkIn}}</td>
-                                            <td>{{x.checkOut}}</td>
-                                            <td>{{x.workingHour}}</td>
-                                            <td>{{x.late}}</td> 
-                                            <td class="text-end">{{x.amount | number}}</td>  
-                                            <td>{{x.note}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                    <table class="table table-sm table-xs table-bordered  ">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Shift</th>
+
+                                                <th>Jobs</th>
+
+                                                <th>Check In</th>
+                                                <th>Check Out</th>
+                                                <th>Working Hour</th>
+                                                <th>Late</th>
+                                                <th class="text-end">Pinantly Fee</th>
+                                                <th>Reason</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let x of salary_time">
+                                                <td>{{x.date}}</td>
+                                                <td>{{x.hour}}</td>
+                                                <td>{{x.job}}</td>
+                                                <td>{{x.checkIn}}</td>
+                                                <td>{{x.checkOut}}</td>
+                                                <td>{{x.workingHour}}</td>
+                                                <td>{{x.late}}</td>
+                                                <td class="text-end">
+                                                    <input type="text" [(ngModel)]="x.amount" currencyMask
+                                                        class="form-control form-control-sm">
+                                                </td>
+                                                <td>
+                                                    <input type="text" [(ngModel)]="x.note"
+                                                        class="form-control form-control-sm">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                                <div *ngIf="item.level == 0" class="text-center">
+                                    <button type="button" (click)="fnCalculate()" [hidden]="saving" class="btn btn-info  mx-1">Calculate with time</button>
+                                </div>
                             </div>
-                          
+
+
                         </div>
 
                         <div class="card shadow mb-3">
@@ -105,8 +119,9 @@
                                     <tbody>
                                         <tr *ngFor="let x of items1">
                                             <td width="50%">{{x.label}}</td>
-                                            <td>  
-                                                <input type="text"  class="form-control form-control-sm" currencyMask  [(ngModel)]="x.value">
+                                            <td>
+                                                <input type="text" class="form-control form-control-sm" currencyMask
+                                                    [(ngModel)]="x.value">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -117,7 +132,7 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                           
+
                                 <table class="table table-sm table-bordered">
                                     <thead>
                                         <tr>
@@ -127,8 +142,9 @@
                                     <tbody>
                                         <tr *ngFor="let x of items2">
                                             <td width="50%">{{x.label}}</td>
-                                            <td>  
-                                                <input type="text"  class="form-control form-control-sm" currencyMask  [(ngModel)]="x.value">
+                                            <td>
+                                                <input type="text" class="form-control form-control-sm" currencyMask
+                                                    [(ngModel)]="x.value">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -139,7 +155,7 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                             
+
                                 <table class="table table-sm table-bordered">
                                     <thead>
                                         <tr>
@@ -149,8 +165,9 @@
                                     <tbody>
                                         <tr *ngFor="let x of items3">
                                             <td width="50%">{{x.label}}</td>
-                                            <td>  
-                                                <input type="text"  class="form-control form-control-sm" currencyMask  [(ngModel)]="x.value">
+                                            <td>
+                                                <input type="text" class="form-control form-control-sm" currencyMask
+                                                    [(ngModel)]="x.value">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -161,9 +178,9 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                             
+
                                 <table class="table table-sm table-bordered">
-                                   
+
                                     <tbody>
                                         <tr>
                                             <td width="50%"><b>TAKE HOME PAY</b></td>
@@ -190,13 +207,20 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="text-center py-2"  [hidden]="saving">
-                    <button type="button" *ngIf="item.level > 0" class="btn btn-primary btn-sm mx-1">Publish</button>
-                    <button type="button"  *ngIf="item.level > 0"  (click)="fnPrint()"  class="btn btn-success btn-sm mx-1">Print</button>
-                    <button type="button" (click)="fnUpdate()"  class="btn btn-warning btn-sm mx-1">Calculate</button> 
+                <div class="text-center py-2" [hidden]="saving">
+                    <div *ngIf="item.level > 0">
+                        <button type="button" class="btn btn-primary btn-sm mx-1">Publish</button>
+                        <button type="button" (click)="fnPrint()" class="btn btn-success btn-sm mx-1">Print</button>
+                        <button type="button" (click)="fnUpdate()"
+                            class="btn btn-warning btn-sm mx-1">Re-calculate</button>
+                    </div>
+                    <div *ngIf="item.level == 0">
+                        <button type="button" (click)="fnCalculate()" class="btn btn-warning btn-sm mx-1">Calculate with
+                            time</button>
+                    </div>
                 </div>
-                <div class="text-center py-2"  [hidden]="!saving">
-                   Update!
+                <div class="text-center py-2" [hidden]="!saving">
+                    Updating..!
                 </div>
             </div>
         </div>
