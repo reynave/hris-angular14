@@ -50,6 +50,7 @@ export class SparePartModel {
 
   constructor( 
     public sparePartId: number,
+    public transferDate : any,
     public note: string, 
   ) {  }
 
@@ -64,7 +65,7 @@ export class SparePartModel {
 export class MaintenanceDetailComponent implements OnInit {
   loading: boolean = false;
   item: any = [];
-  sparePartModel : any = new SparePartModel(0,"");
+  sparePartModel : any = new SparePartModel(0,"","");
   model: any = new Model("", "", 0, "", "", "", 0,1,"",0,"","","");
   transaction: any = new Transaction("0", "", "");
   transfer: any = new Transfer(0, "", "");
@@ -317,4 +318,6 @@ export class MaintenanceDetailComponent implements OnInit {
       }
     )
   }
+
+  
 }

@@ -1,327 +1,337 @@
- 
- 
- 
-    <div class="row"> 
-        <div class="col-12">
-            <div class="border border-top-0 shadow-sm  p-3 bg-white">
-                <div class="row">
-                    <div class="col-6">
-                        <h5>Salary </h5>
+<div class="row">
+    <div class="col-12">
+        <div class="border border-top-0 shadow-sm  p-3 bg-white">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h5>Salary </h5>
+                </div>
+                <div class="col-6 mb-2 text-end">
+
+                    <button class="btn btn-primary btn-sm mx-1" [hidden]="readonly" type="button"
+                        (click)="fnSave();">Save</button>
+
+                    <button class="btn btn-warning btn-sm mx-1" type="button" [hidden]="!readonly"
+                        (click)="readonly=false">Editable</button>
+
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="border p-2">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>ID Employed</td>
+                                    <td><strong>{{item['personalId']}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Name</td>
+                                    <td><strong>{{item['personal']}}</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td><label for="bankName">Bank Name <span class="text-danger">*</span> </label>
+                                    </td>
+                                    <td><input type="text" [disabled]="readonly" class="form-control " id="bankName"
+                                            required [(ngModel)]="model.bankName" name="bankName" #bankName="ngModel">
+                                        <div *ngIf="!readonly" [hidden]="bankName.valid || bankName.pristine"
+                                            class="text-danger small m-1">
+                                            Bank Name is required
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="bankAccountNumber">Bank Account Number <span
+                                                class="text-danger">*</span> </label></td>
+                                    <td><input type="text" [disabled]="readonly" class="form-control "
+                                            id="bankAccountNumber" required [(ngModel)]="model.bankAccountNumber"
+                                            name="bankAccountNumber" #bankAccountNumber="ngModel">
+                                        <div *ngIf="!readonly"
+                                            [hidden]="bankAccountNumber.valid || bankAccountNumber.pristine"
+                                            class="text-danger small m-1">
+                                            Bank Accoun tNumber is required
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="bankAccountHolderName">Bank Account Holder Name<span
+                                                class="text-danger">*</span> </label></td>
+                                    <td><input type="text" [disabled]="readonly" class="form-control "
+                                            id="bankAccountHolderName" required
+                                            [(ngModel)]="model.bankAccountHolderName" name="bankAccountHolderName"
+                                            #bankAccountHolderName="ngModel">
+                                        <div *ngIf="!readonly"
+                                            [hidden]="bankAccountHolderName.valid || bankAccountHolderName.pristine"
+                                            class="text-danger small m-1">
+                                            Bank Account Holder Name is required
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-6 mb-2 text-end">
+                </div>
 
-                        <button class="btn btn-primary btn-sm mx-1" [hidden]="readonly" type="button"
-                            (click)="fnSave();">Save</button>
-            
-                        <button class="btn btn-warning btn-sm mx-1" type="button" [hidden]="!readonly"
-                            (click)="readonly=false">Editable</button>
-            
+                <div class="col-12 col-md-6">
+                    <div class="border p-2">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><label for="name">Salary Type <span class="text-danger">*</span> </label>
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="radio" id="M" name="saleryType" class="mx-2" value="M"
+                                                    [(ngModel)]="model.salaryType">
+                                                <label for="M">Monthly</label><br>
+                                            </div>
+                                            <div class="col">
+                                                <input type="radio" id="D" name="saleryType" class="mx-2" value="D"
+                                                    [(ngModel)]="model.salaryType">
+                                                <label for="D">Daily</label><br>
+                                            </div>
+                                            <div class="col">
+                                                <input type="radio" id="H" name="saleryType" class="mx-2" value="H"
+                                                    [(ngModel)]="model.salaryType">
+                                                <label for="H">Hourly</label><br>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="name">Basic Salary <span class="text-danger">*</span> </label>
+                                    </td>
+                                    <td><input currencyMask [disabled]="readonly" class="form-control " id="salary"
+                                            required [(ngModel)]="model.salary" name="salary" #salary="ngModel">
+                                        <div *ngIf="!readonly" [hidden]="salary.valid || salary.pristine"
+                                            class="text-danger small m-1">
+                                            Salary is required
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><label for="hourlyRate">Hourly Rate <span class="text-danger">*</span>
+                                        </label></td>
+                                    <td><input currencyMask [disabled]="readonly" class="form-control " id="hourlyRate"
+                                            required [(ngModel)]="model.hourlyRate" name="hourlyRate"
+                                            #hourlyRate="ngModel">
+                                        <div *ngIf="!readonly" [hidden]="hourlyRate.valid || hourlyRate.pristine"
+                                            class="text-danger small m-1">
+                                            hourly Rate is required
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="tunjangan">Tunjangan </label></td>
+                                    <td><input currencyMask [disabled]="readonly" class="form-control " id="tunjangan"
+                                            [(ngModel)]="model.tunjangan" name="tunjangan" #tunjangan="ngModel">
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-primary"  (click)="open(content)" >Tunjangan detail</button>
+                                    </td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-6">
-                        <div class="border p-2">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>ID Employed</td>
-                                        <td><strong>{{item['personalId']}}</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Name</td>
-                                        <td><strong>{{item['personal']}}</strong></td>
-                                    </tr>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
-                                    <tr>
-                                        <td><label for="bankName">Bank Name <span class="text-danger">*</span> </label>
-                                        </td>
-                                        <td><input type="text" [disabled]="readonly" class="form-control " id="bankName"
-                                                required [(ngModel)]="model.bankName" name="bankName"
-                                                #bankName="ngModel">
-                                            <div *ngIf="!readonly" [hidden]="bankName.valid || bankName.pristine"
-                                                class="text-danger small m-1">
-                                                Bank Name is required
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="bankAccountNumber">Bank Account Number <span
-                                                    class="text-danger">*</span> </label></td>
-                                        <td><input type="text" [disabled]="readonly" class="form-control "
-                                                id="bankAccountNumber" required [(ngModel)]="model.bankAccountNumber"
-                                                name="bankAccountNumber" #bankAccountNumber="ngModel">
-                                            <div *ngIf="!readonly" [hidden]="bankAccountNumber.valid || bankAccountNumber.pristine"
-                                                class="text-danger small m-1">
-                                                Bank Accoun tNumber is required
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="bankAccountHolderName">Bank Account Holder Name<span
-                                                    class="text-danger">*</span> </label></td>
-                                        <td><input type="text" [disabled]="readonly" class="form-control "
-                                                id="bankAccountHolderName" required
-                                                [(ngModel)]="model.bankAccountHolderName" name="bankAccountHolderName"
-                                                #bankAccountHolderName="ngModel">
-                                            <div *ngIf="!readonly" [hidden]="bankAccountHolderName.valid || bankAccountHolderName.pristine"
-                                                class="text-danger small m-1">
-                                                Bank Account Holder Name is required
-                                            </div>
-                                        </td>
-                                    </tr>
+    <div class="col-12 mt-4">
+        <div class="border shadow-sm rounded p-3 bg-white">
+            <div class="row">
+                <div class="col-12">
+                    <h5>Tax </h5>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="border p-2">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><label for="taxNpwp">NPWP </label>
+                                    </td>
+                                    <td><input type="text" [disabled]="readonly" class="form-control " id="taxNpwp"
+                                            [(ngModel)]="model.taxNpwp" name="taxNpwp" #taxNpwp="ngModel">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><label for="taxMethod">Tax Method </label>
+                                    </td>
+                                    <td><input type="text" [disabled]="readonly" class="form-control " id="taxMethod"
+                                            [(ngModel)]="model.taxMethod" name="taxMethod" #taxMethod="ngModel">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td> <label for="taxableDate">Taxable Date</label></td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input id="taxableDate" [disabled]="readonly" class="form-control"
+                                                placeholder="yyyy-mm-dd" name="taxableDate" ngbDatepicker
+                                                #taxableDate="ngbDatepicker" [(ngModel)]="model.taxableDate" />
+                                            <button class="btn btn-outline-secondary"
+                                                (click)="readonly == false ? taxableDate.toggle():false" type="button">
+                                                <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
 
 
-                                </tbody>
-                            </table>
-                        </div>
+                                <tr>
+                                    <td><label for="taxHolderName">Account Tax Holder Name </label>
+                                    </td>
+                                    <td><input id="taxHolderName" type="text" [disabled]="readonly"
+                                            class="form-control " id="taxHolderName" [(ngModel)]="model.taxHolderName"
+                                            name="taxHolderName" #taxHolderName="ngModel">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-6">
-                        <div class="border p-2">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td><label for="name">Salary Type <span class="text-danger">*</span> </label>
-                                        </td>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <input type="radio" id="M" name="saleryType" class="mx-2" value="M"
-                                                        [(ngModel)]="model.salaryType">
-                                                    <label for="M">Monthly</label><br>
-                                                </div>
-                                                <div class="col">
-                                                    <input type="radio" id="D" name="saleryType" class="mx-2" value="D"
-                                                        [(ngModel)]="model.salaryType">
-                                                    <label for="D">Daily</label><br>
-                                                </div>
-                                                <div class="col">
-                                                    <input type="radio" id="H" name="saleryType" class="mx-2" value="H"
-                                                        [(ngModel)]="model.salaryType">
-                                                    <label for="H">Hourly</label><br>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="name">Basic Salary <span class="text-danger">*</span> </label>
-                                        </td>
-                                        <td><input currencyMask [disabled]="readonly" class="form-control " id="salary"
-                                                required [(ngModel)]="model.salary" name="salary" #salary="ngModel">
-                                            <div *ngIf="!readonly" [hidden]="salary.valid || salary.pristine"
-                                                class="text-danger small m-1">
-                                                Salary is required
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><label for="hourlyRate">Hourly Rate <span class="text-danger">*</span>
-                                            </label></td>
-                                        <td><input currencyMask [disabled]="readonly" class="form-control "
-                                                id="hourlyRate" required [(ngModel)]="model.hourlyRate"
-                                                name="hourlyRate" #hourlyRate="ngModel">
-                                            <div *ngIf="!readonly" [hidden]="hourlyRate.valid || hourlyRate.pristine"
-                                                class="text-danger small m-1">
-                                                hourly Rate is required
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="tunjangan">Tunjangan </label></td>
-                                        <td><input currencyMask [disabled]="readonly" class="form-control "
-                                                id="tunjangan" [(ngModel)]="model.tunjangan" name="tunjangan"
-                                                #tunjangan="ngModel">
-
-                                        </td>
-                                    </tr>
-
-
-
-                                </tbody>
-                            </table>
-                        </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="border p-2">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><label for="taxPtkpStatus">PTKP Status </label>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" [(ngModel)]="model.taxPtkpStatus"
+                                            [disabled]="readonly">
+                                            <option *ngFor="let x of pph21_ptkp" [value]="x.id">{{x.id}} {{x.label}},
+                                                {{x.jumlahAnak}} Anak, Rp {{x.amount | number}} </option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="taxSalary">Tax Salary </label>
+                                    </td>
+                                    <td><input id="taxSalary" currencyMask [disabled]="readonly" class="form-control "
+                                            [(ngModel)]="model.taxSalary" name="taxSalary" #taxSalary="ngModel">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="EmploymentTaxStatus">Employment Tax Status </label>
+                                    </td>
+                                    <td><input id="EmploymentTaxStatus" type="text" [disabled]="readonly"
+                                            class="form-control " [(ngModel)]="model.EmploymentTaxStatus"
+                                            name="EmploymentTaxStatus" #EmploymentTaxStatus="ngModel">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="taxPktpAccountHolder">Tax PKTP Account Holder Name </label>
+                                    </td>
+                                    <td><input id="taxPktpAccountHolder" type="text" [disabled]="readonly"
+                                            class="form-control " [(ngModel)]="model.taxPktpAccountHolder"
+                                            name="taxPktpAccountHolder" #taxPktpAccountHolder="ngModel">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-12 mt-4">
-            <div class="border shadow-sm rounded p-3 bg-white">
-                <div class="row">
-                    <div class="col-12">
-                        <h5>Tax </h5>
-                    </div>
-                    <div class="col-6">
-                        <div class="border p-2">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td><label for="taxNpwp">NPWP </label>
-                                        </td>
-                                        <td><input type="text" [disabled]="readonly" class="form-control " id="taxNpwp"
-                                                [(ngModel)]="model.taxNpwp" name="taxNpwp" #taxNpwp="ngModel">
-                                        </td>
-                                    </tr>
+    <div class="col-12 my-4">
+        <div class="border shadow-sm rounded p-3 bg-white">
+            <div class="row">
+                <div class="col-12">
+                    <h5>BPJS </h5>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="border p-2">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><label for="bpsjTkNo">BPJS TK no </label>
+                                    </td>
+                                    <td><input type="text" [disabled]="readonly" class="form-control " id="bpsjTkNo"
+                                            [(ngModel)]="model.bpsjTkNo" name="bpsjTkNo" #bpsjTkNo="ngModel">
+                                    </td>
+                                </tr>
 
-                                    <tr>
-                                        <td><label for="taxMethod">Tax Method </label>
-                                        </td>
-                                        <td><input type="text" [disabled]="readonly" class="form-control "
-                                                id="taxMethod" [(ngModel)]="model.taxMethod" name="taxMethod"
-                                                #taxMethod="ngModel">
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td><label for="bpsjKesehatanNo">BPJS Kesehatan No </label>
+                                    </td>
+                                    <td><input type="text" [disabled]="readonly" class="form-control "
+                                            id="bpsjKesehatanNo" [(ngModel)]="model.bpsjKesehatanNo"
+                                            name="bpsjKesehatanNo" #bpsjKesehatanNo="ngModel">
+                                    </td>
+                                </tr>
 
-                                    <tr>
-                                        <td> <label for="taxableDate">Taxable Date</label></td>
-                                        <td>
-                                            <div class="input-group">
-                                                <input id="taxableDate" [disabled]="readonly" class="form-control"
-                                                    placeholder="yyyy-mm-dd" name="taxableDate" ngbDatepicker
-                                                    #taxableDate="ngbDatepicker" [(ngModel)]="model.taxableDate" />
-                                                <button class="btn btn-outline-secondary"
-                                                    (click)="readonly == false ? taxableDate.toggle():false"
-                                                    type="button">
-                                                    <img src="./assets/img/icons8-calendar-48.png" height="20">
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td> <label for="JhtCost">JHT Cost</label></td>
+                                    <td>
+                                        <div class="form-control text-end">
+                                          Rp  {{bpjs['jht'] | number}}
+                                        </div>
+                                    </td>
+                                </tr>
 
 
-                                    <tr>
-                                        <td><label for="taxHolderName">Account Tax Holder Name </label>
-                                        </td>
-                                        <td><input id="taxHolderName" type="text" [disabled]="readonly"
-                                                class="form-control " id="taxHolderName"
-                                                [(ngModel)]="model.taxHolderName" name="taxHolderName"
-                                                #taxHolderName="ngModel">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="border p-2">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td><label for="taxPtkpStatus">PTKP Status </label>
-                                        </td>
-                                        <td> 
-                                            <select class="form-control" [(ngModel)]="model.taxPtkpStatus" [disabled]="readonly">
-                                                <option *ngFor="let x of pph21_ptkp" [value]="x.id">{{x.id}}  {{x.label}},  {{x.jumlahAnak}} Anak, Rp {{x.amount | number}} </option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="taxSalary">Tax Salary </label>
-                                        </td>
-                                        <td><input id="taxSalary" currencyMask [disabled]="readonly"
-                                                class="form-control " [(ngModel)]="model.taxSalary" name="taxSalary"
-                                                #taxSalary="ngModel">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="EmploymentTaxStatus">Employment Tax Status </label>
-                                        </td>
-                                        <td><input id="EmploymentTaxStatus" type="text" [disabled]="readonly"
-                                                class="form-control " [(ngModel)]="model.EmploymentTaxStatus"
-                                                name="EmploymentTaxStatus" #EmploymentTaxStatus="ngModel">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="taxPktpAccountHolder">Tax PKTP Account Holder Name </label>
-                                        </td>
-                                        <td><input id="taxPktpAccountHolder" type="text" [disabled]="readonly"
-                                                class="form-control " [(ngModel)]="model.taxPktpAccountHolder"
-                                                name="taxPktpAccountHolder" #taxPktpAccountHolder="ngModel">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                <tr>
+                                    <td><label for="JaminanPensiunCost">Jaminan Pensiun Cost </label> </td>
+                                    <td>
+                                        <div class="form-control text-end">
+                                            Rp  {{bpjs['jp'] | number}}
+                                          </div> 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-12 my-4">
-            <div class="border shadow-sm rounded p-3 bg-white">
-                <div class="row">
-                    <div class="col-12">
-                        <h5>BPJS </h5>
-                    </div>
-                    <div class="col-6">
-                        <div class="border p-2">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td><label for="bpsjTkNo">BPJS TK no </label>
-                                        </td>
-                                        <td><input type="text" [disabled]="readonly" class="form-control " id="bpsjTkNo"
-                                                [(ngModel)]="model.bpsjTkNo" name="bpsjTkNo" #bpsjTkNo="ngModel">
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><label for="bpsjKesehatanNo">BPJS Kesehatan No </label>
-                                        </td>
-                                        <td><input type="text" [disabled]="readonly" class="form-control "
-                                                id="bpsjKesehatanNo" [(ngModel)]="model.bpsjKesehatanNo"
-                                                name="bpsjKesehatanNo" #bpsjKesehatanNo="ngModel">
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td> <label for="JhtCost">JHT Cost</label></td>
-                                        <td><input currencyMask [disabled]="readonly" class="form-control " id="JhtCost"
-                                                [(ngModel)]="model.JhtCost" name="JhtCost" #JhtCost="ngModel">
-                                        </td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td><label for="JaminanPensiunCost">Jaminan Pensiun Cost </label>
-                                        </td>
-                                        <td><input id="JaminanPensiunCost" currencyMask [disabled]="readonly"
-                                                class="form-control " id="JaminanPensiunCost"
-                                                [(ngModel)]="model.JaminanPensiunCost" name="JaminanPensiunCost"
-                                                #JaminanPensiunCost="ngModel">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="border p-2">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td><label for="bpjsTkDate">BPJS TK Date </label> </td>
-                                        <td>    <div class="input-group"> 
+         
+                <div class="col-12 col-md-6">
+                    <div class="border p-2">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><label for="bpjsTkDate">BPJS TK Date </label> </td>
+                                    <td>
+                                        <div class="input-group">
                                             <input id="bpjsTkDate" [disabled]="readonly" class="form-control"
                                                 placeholder="yyyy-mm-dd" name="bpjsTkDate" ngbDatepicker
                                                 #bpjsTkDate="ngbDatepicker" [(ngModel)]="model.bpjsTkDate" />
                                             <button class="btn btn-outline-secondary"
                                                 (click)="readonly == false ? bpjsTkDate.toggle():false" type="button">
                                                 <img src="./assets/img/icons8-calendar-48.png" height="20">
-                                            </button></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="bpjsKesehatanFamily">BPJS Kesehatan Family </label>
-                                        </td>
-                                        <td><input id="bpjsKesehatanFamily" currencyMask [disabled]="readonly"
-                                                class="form-control " [(ngModel)]="model.bpjsKesehatanFamily"
-                                                name="bpjsKesehatanFamily" #bpjsKesehatanFamily="ngModel">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="JaminanPensiunDate">Jaminan Pensiun Date</label>
-                                        </td>
-                                        <td>
-                                            <div class="input-group">
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="bpjsKesehatanFamily">BPJS Kesehatan Family </label>
+                                    </td>
+                                    <td> <div class="form-control text-end">
+                                        Rp  {{bpjs['kesehatan'] | number}}
+                                      </div> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="JaminanPensiunDate">Jaminan Pensiun Date</label>
+                                    </td>
+                                    <td>
+                                        <div class="input-group">
                                             <input id="JaminanPensiunDate" [disabled]="readonly" class="form-control"
                                                 placeholder="yyyy-mm-dd" name="JaminanPensiunDate" ngbDatepicker
                                                 #JaminanPensiunDate="ngbDatepicker"
@@ -331,19 +341,41 @@
                                                 type="button">
                                                 <img src="./assets/img/icons8-calendar-48.png" height="20">
                                             </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                    </td>
+                                </tr>
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
+
+
+
+</div>
  
-      
-
-    </div> 
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<strong class="modal-title">Data Value Tunjangan</strong>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+       
+		<table class="table table-sm">
+            <tr *ngFor="let x of salaryTunjangan">
+                <td>{{x.label}}</td>
+                <td>
+                    <input class="form-control form-control-sm" currencyMask [disabled]="readonly" [(ngModel)]="x.value">
+                </td>
+            </tr>
+        </table>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-primary" (click)="fnTunjanganSave();">Save</button>
+	</div>
+</ng-template>

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/service/config.service';
+import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class Model {
 
@@ -33,11 +34,14 @@ export class PayrollDetailComponent implements OnInit {
   pph21_ptkp : any = [];
   loading : boolean= false;
   id : string = "";
+  bpjs : any = [];
+  salaryTunjangan : any = [];
   constructor(
     private router: Router,
     private http: HttpClient,
     private configService: ConfigService,
     private activatedRoute: ActivatedRoute,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -54,9 +58,10 @@ export class PayrollDetailComponent implements OnInit {
         this.loading = false;  
         console.log(data); 
         this.item = data['item'][0];
-
+        
         console.log(data);  
         let item = data['item'][0];
+        this.salaryTunjangan = data['tunjangan'];
         this.pph21_ptkp = data['pph21_ptkp'];
         this.model['salary'] = item['salary'];  
         this.model['salaryType'] = item['salaryType'];  
@@ -100,6 +105,7 @@ export class PayrollDetailComponent implements OnInit {
           day: parseInt(taxableDate['2']),
         }; 
 
+        this.bpjs = data['bpjs'];
         this.readonly = true;
       },
       e => {
@@ -134,6 +140,11 @@ export class PayrollDetailComponent implements OnInit {
   }
 
    
+  open(content:any) {
+		this.modalService.open(content);
+	}
 
-
+  fnTunjanganSave(){
+    this.modalService.dismissAll();
+  }
 }

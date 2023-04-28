@@ -432,6 +432,7 @@
                                     <thead>
                                         <tr>
                                             <th>Ticket ID</th>
+                                            <th>Transfer Date</th>
                                             <th>Used</th>
                                             <th>Replace by</th>
                                             <th>Note</th>
@@ -440,7 +441,8 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let x of sparepart_log ">
-                                            <td> {{x.id}} </td>
+                                            <td>{{x.id}} </td>
+                                            <td>{{x.transferDate |date}} </td>
                                             <td>[{{x.sparepartIdLog}}] {{x.sparepartIdLogName}}</td>
                                             <td>[{{x.sparepartId}}] {{x.name}}</td>
                                             <td>{{x.note}} </td>
@@ -644,7 +646,7 @@
 
 <ng-template #modultransfer let-modal>
     <div class="modal-header">
-        <strong class="modal-title" id="modal-basic-title">ADD TRANSFER ITEMS</strong>
+        <strong class="modal-title" id="modal-basic-title">ADD TRANSFER LOCATION ITEM</strong>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <form (ngSubmit)="onTransfer()" #transForm="ngForm">
@@ -695,7 +697,7 @@
 
 <ng-template #modulSparePart let-modal>
     <div class="modal-header">
-        <strong class="modal-title" id="modal-basic-title">ADD TRANSFER ITEMS</strong>
+        <strong class="modal-title" id="modal-basic-title">ADD TRANSFER SPARE PART</strong>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <form (ngSubmit)="onChangeSparePart()" #sparePartModelForm="ngForm">
@@ -724,6 +726,16 @@
             </div>
 
             <div class="form-group">
+                <label for="name">Transfer Date Schadule</label>
+                <div class="input-group">
+                    <input id="bb" class="form-control" placeholder="yyyy-mm-dd" name="cc" ngbDatepicker
+                        [(ngModel)]="sparePartModel.transferDate" #cc="ngbDatepicker" required />
+                    <button class="btn btn-outline-secondary" (click)="cc.toggle()" type="button"><img
+                            src="./assets/img/icons8-calendar-48.png" height="20"> </button>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="name">Notes</label>
                 <div class="input-group">
                     <input id="notes" class="form-control" name="note" [(ngModel)]="sparePartModel.note" />
@@ -732,7 +744,7 @@
 
 
         </div>
-
+ 
         <div class="modal-footer">
             <button type="button" class="btn btn-sm btn-outline-dark mx-1"
                 (click)="modal.dismiss('Cross click')">Cancel</button>
