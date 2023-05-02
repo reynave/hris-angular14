@@ -1,0 +1,12 @@
+.alpha{
+    opacity: 0.3;
+}
+
+.ifDraft{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    z-index: 9999;
+}

@@ -54,6 +54,7 @@ export class SalaryDetailComponent implements OnInit {
   }
 
   datatables() {
+    let dollarUSLocale = Intl.NumberFormat('en-US');
     this.dtOptions = {
       ajax: {
         url: environment.api + 'salary/datatables/' + this.personalId,
@@ -66,38 +67,43 @@ export class SalaryDetailComponent implements OnInit {
       ordering: false,
       columns: [
         {
-          title: 'Period',
+          title: 'Period Start',
+          data: 'periodStartDate',
+        },
+        {
+          title: 'Period End',
           data: 'periodEndDate',
         },
 
         {
           title: 'Tunjangan Tetap',
-          data: 'id',
+          data: 'tunjanganTetap',
           render: function (data: any, type: any, full: any) {
-            return '<div class="text-end">0</div>';
+           
+            return '<div class="text-end">'+dollarUSLocale.format(data)+'</div>';
           }
         },
 
         {
           title: 'Tunjangan Tidak Tetap',
-          data: 'id',
+          data: 'tunjanganTidakTetap',
           render: function (data: any, type: any, full: any) {
-            return '<div class="text-end">0</div>';
+            return '<div class="text-end">'+dollarUSLocale.format(data)+'</div>';
           }
         },
 
         {
           title: 'Potongan',
-          data: 'id',
+          data: 'potongan',
           render: function (data: any, type: any, full: any) {
-            return '<div class="text-end">0</div>';
+            return '<div class="text-end">'+dollarUSLocale.format(data)+'</div>';
           }
         },
         {
           title: 'Take Home Pay',
-          data: 'id',
+          data: 'takeHomePay',
           render: function (data: any, type: any, full: any) {
-            return '<div class="text-end">0</div>';
+            return '<div class="text-end">'+dollarUSLocale.format(data)+'</div>';
           }
         },
         {
@@ -121,6 +127,7 @@ export class SalaryDetailComponent implements OnInit {
       ]
     };
   }
+  
 
   fnGenerate() {
     this.loading = true;

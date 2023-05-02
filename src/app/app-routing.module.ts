@@ -46,6 +46,7 @@ import { TimeManagementImportComponent } from './time-management/time-management
 import { TimeManagementReportsComponent } from './time-management/time-management-reports/time-management-reports.component';
 import { TimeManagementComponent } from './time-management/time-management.component';
 import { MaintenanceMasterComponent } from './maintenance/maintenance-master/maintenance-master.component';
+import { SalaryDetailPrintingComponent } from './payroll/salary/salary-detail-printing/salary-detail-printing.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "login" }, },
@@ -103,6 +104,7 @@ const routes: Routes = [
   { path: "payroll/salary", component: SalaryComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll/salary/detail/:id", component: SalaryDetailComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll/salary/detail/report/:id", component: SalaryDetailReportComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+  { path: "payroll/salary/detail/printing/:id", component: SalaryDetailPrintingComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
 
   { path: "forbiden", component: NotfoundComponent, data: { active: "" },canActivate:[AuthGuard] },
   { path: "nofound", component: NotfoundComponent, data: { active: "" }, },

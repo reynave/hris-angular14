@@ -1,0 +1,110 @@
+<div class="ifDraft" *ngIf="isDraft">
+    <div class="text-center">
+        <img src='http://localhost/app/hris/app/src/assets/img/draft.png' width="60%" class="alpha">
+
+        <img src='http://localhost/app/hris/app/src/assets/img/draft.png' width="60%" class="alpha"> 
+    </div>
+
+</div>
+
+<div class="container my-3" >
+    <div class="row">
+        <div class="col-12 my-3">
+
+            <div class="card  mb-3">
+                <div class="card-header">
+                    <strong class="card-title text-center">Tunjangan Tetap</strong>
+                </div>
+                <div class="card-body"> 
+                    <table class="table table-sm table-bordered">
+
+                        <tbody>
+                            <tr *ngFor="let x of items1">
+                                <td width="50%">{{x.label}}</td>
+                                <td>
+                                    <div class="text-end">
+                                        Rp {{x.value | number}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><b>TOTAL</b></td>
+                                <td class="text-end"><b>Rp {{item.tunjanganTetap | number}}</b></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="card  mb-3">
+                <div class="card-header">
+                    <strong class="card-title text-center"> Tunjangan Tidak Tetap</strong>
+                </div>
+                <div class="card-body"> 
+                    <table class="table table-sm table-bordered">
+
+                        <tbody>
+                            <tr *ngFor="let x of items2">
+                                <td width="50%">{{x.label}}</td>
+                                <td>
+                                    <div class="text-end">
+                                        Rp {{x.value | number}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><b>TOTAL</b></td>
+                                <td class="text-end"><b>Rp {{item.tunjanganTidakTetap | number}}</b></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="card  mb-3">
+                <div class="card-header">
+                    <strong class="card-title text-center">Potongan</strong>
+                </div>
+                <div class="card-body"> 
+                    <table class="table table-sm table-bordered">
+
+                        <tbody>
+                            <tr *ngFor="let x of items3">
+                                <td width="50%">{{x.label}}</td>
+                                <td>
+                                    <div class="text-end">
+                                        Rp {{x.value | number}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><b>TOTAL</b></td>
+                                <td class="text-end"><b>Rp {{item.potongan | number}}</b></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <table class="table table-sm table-bordered">
+
+                        <tbody>
+                            <tr>
+                                <td width="50%"><b>TAKE HOME PAY</b></td>
+                                <td class="text-end"><b>Rp {{item.takeHomePay | number}}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

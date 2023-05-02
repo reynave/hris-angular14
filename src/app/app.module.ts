@@ -58,6 +58,7 @@ import { TemplateComponent } from './template/template.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { EmployeeContactComponent } from './employee/employee-contact/employee-contact.component';
 import { MaintenanceMasterComponent } from './maintenance/maintenance-master/maintenance-master.component';
+import { SalaryDetailPrintingComponent } from './payroll/salary/salary-detail-printing/salary-detail-printing.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -102,7 +103,7 @@ export const customCurrencyMaskConfig = {
     HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent,
     SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, TemplateComponent, 
     ScheduleComponent, EmployeeContactComponent, 
-    MaintenanceMasterComponent,
+    MaintenanceMasterComponent, SalaryDetailPrintingComponent,
   ],
   imports: [
     BrowserModule,
