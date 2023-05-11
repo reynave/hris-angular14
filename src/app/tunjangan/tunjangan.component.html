@@ -1,0 +1,57 @@
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12 ">
+                <h4>Global Setting Tunjangan </h4>
+                <a (click)="back();" class="btn btn-sm btn-outline-dark">Back</a>
+            </div>
+
+
+            <div class="col-12">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>SORTING BY ID <i class="bi bi-lock"></i></th>
+                            <th> Label</th>
+                            <th class="text-end">Amount (IDR)</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <tr *ngFor="let x of items">
+                            <td>{{x.sorting}}</td>
+                            <td><input type="text" [(ngModel)]="x.label" class="form-control form-control-sm"></td>
+                            <td><input type="text" currencyMask [(ngModel)]="x.value" class="form-control form-control-sm"></td>
+                            <td>
+                                <button class="btn btn-danger btn-sm " *ngIf="x.status == '0' " (click)="fnDel(x.id);">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" [(ngModel)]="insert.sorting" class="form-control form-control-sm"></td>
+                            <td><input type="text" [(ngModel)]="insert.label" class="form-control form-control-sm"></td>
+                            <td><input type="text" currencyMask [(ngModel)]="insert.value" class="form-control form-control-sm"></td>
+                            <td>
+                              
+                            </td>
+                        </tr>
+                       
+                    </tbody>
+                    <tfoot>
+                        <Tr> 
+                            <td colspan="3" class="text-end">
+                                <button type="button" class="btn btn-warning btn-sm mx-1" (click)="fnUpdate()">Update</button>
+                                <button type="button" class="btn btn-primary btn-sm mx-1" (click)="fnAdd()">Add</button>
+                            </td>
+                        </Tr>
+                    </tfoot>
+                </table>
+            </div>
+ 
+        </div>
+
+    </div>
+
+
+</div>

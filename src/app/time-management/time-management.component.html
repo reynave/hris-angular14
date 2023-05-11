@@ -12,8 +12,65 @@
 
             <div class="container mt-5">
                 <div class="row justify-content-around">
-                    
-                    <div class="col-6 ">
+
+                    <div class="col-md-6 col- ">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-danger">POTONGAN KETERLAMBATAN</h6>
+                                    </div>
+                                    <div class="col text-end">
+                                        <a href="javascript:;" *ngIf="!showTable" (click)="showTable=true">Show</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body" [hidden]="!showTable">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Note</th>
+                                            <th>Late Minute</th>
+                                            <th>Pinalty Fee</th>
+                                            <th *ngIf="editable">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of potongan_keterlambatan">
+                                            <td>{{x.id}} </td>
+                                            <td>
+                                                <input type="text"  [(ngModel)]="x.note"   class="form-control form-control-sm" [disabled]="!editable">
+                                            </td>
+                                            <td> 
+                                                <input type="time" [(ngModel)]="x.lateMinute"   class="form-control form-control-sm" [disabled]="!editable">
+                                            </td>
+                                            <td>  
+                                                <input type="text" currencyMask [(ngModel)]="x.pinaltyFee"   class="form-control form-control-sm" [disabled]="!editable">
+                                            </td>
+                                            <td *ngIf="editable">
+                                                <button type="button"  class="btn btn-danger btn-sm" (click)="fnDeleteKeterlambatan(x.id);">Delete</button> 
+                                            </td> 
+                                        </tr>
+                                       
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="4" class="text-end">
+                                                <button type="button" *ngIf="!editable" (click)="editable=true"  class="btn btn-warning btn-sm mx-2">Editable</button> 
+                                                <button type="button" *ngIf="editable" (click)="editable=false" class="btn btn-light btn-sm mx-2">Finish Edit</button> 
+                                                <button type="button" *ngIf="editable"     class="btn btn-success btn-sm mx-2" (click)="fnUpdateKeterlambatan()">Update</button> 
+                                                  
+                                           
+                                                <button type="button"  *ngIf="editable"    class="btn btn-info btn-sm mx-2" (click)="fnAddKeterlambatan()">Add Pinalty Fee</button> 
+                                      
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+
 
                         <div class="card shadow mb-3">
                             <div class="card-header py-3">
@@ -22,12 +79,13 @@
                                         <h6 class="m-0 font-weight-bold text-primary"> TIME MANAGEMENT</h6>
                                     </div>
                                     <div class="col text-end">
-                                        <a [routerLink]="[ '/timeManagement/import' ]" class="{{styleBtn}}">Imports File</a>
+                                        <a [routerLink]="[ '/timeManagement/import' ]" class="{{styleBtn}}">Imports
+                                            File</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
-                                
+
                                 <div class="row">
                                     <div class="col">
                                         <label for="startDate"><b>Start Date</b></label>
@@ -65,7 +123,7 @@
                                         </div>
                                     </div>
                                 </div>
- 
+
                                 <div class="row">
                                     <div class="col-12 mt-3 d-grid">
                                         <button type="button" class="btn btn-primary" [disabled]="!personalId"

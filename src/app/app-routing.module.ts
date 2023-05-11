@@ -47,6 +47,7 @@ import { TimeManagementReportsComponent } from './time-management/time-managemen
 import { TimeManagementComponent } from './time-management/time-management.component';
 import { MaintenanceMasterComponent } from './maintenance/maintenance-master/maintenance-master.component';
 import { SalaryDetailPrintingComponent } from './payroll/salary/salary-detail-printing/salary-detail-printing.component';
+import { TunjanganComponent } from './tunjangan/tunjangan.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "login" }, },
@@ -98,6 +99,9 @@ const routes: Routes = [
   { path: "loan/approveLine/:id", component: LoanApproveLineComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
   { path: "loan/history", component: LoanHistoryComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
   { path: "loan/detail/:id", component: LoanDetailComponent, data: { active: "_loan" },canActivate:[AuthGuard] },
+
+  { path: "tunjangan", component: TunjanganComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+ 
 
   { path: "payroll/pph21-setting", component: Pph21SettingComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll", component: PayrollComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },

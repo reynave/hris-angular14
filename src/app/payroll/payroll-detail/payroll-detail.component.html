@@ -363,15 +363,19 @@
 <ng-template #content let-modal>
 	<div class="modal-header">
 		<strong class="modal-title">Data Value Tunjangan</strong>
+       
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-       
+        <div class="mx-1 mb-4"><a [routerLink]="[ '/tunjangan', ]" (click)="modal.dismiss('Cross click')">Global Master Tunjangan</a></div>
 		<table class="table table-sm">
             <tr *ngFor="let x of salaryTunjangan">
                 <td>{{x.label}}</td>
                 <td>
                     <input class="form-control form-control-sm" currencyMask [disabled]="readonly" [(ngModel)]="x.value">
+                </td>
+                <td>
+                    <a href="javascript:;" (click)="fnDeleteTunjangan(x.id);"  class="text-danger"><small>Remove  {{x.id}}</small></a> 
                 </td>
             </tr>
         </table>

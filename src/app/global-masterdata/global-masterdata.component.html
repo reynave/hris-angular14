@@ -81,6 +81,40 @@
                         </div>
                     </div>
 
+                  
+ 
+
+                    <div class="col-4 ">
+                        <div class="card shadow mb-3">
+                            <div class="card-header">
+                                <strong class=" text-primary"> GLOBAL SETTING </strong>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table ">
+                                    <tbody>
+                                        <tr *ngFor="let x of global_setting_jabatan">
+                                            <td>
+                                                <div class="form-control"> {{x.name}} </div>
+                                            <td> <input type="number" class="form-control text-end"
+                                                    [(ngModel)]="x.value" name="value"> </td>
+
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td class="text-end" colspan="2">
+
+
+                                                <button class="btn btn-sm btn-success mx-1"
+                                                    (click)="fnSave_global_setting_jabatan();">Save</button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
                     <div class="col-4">
                         <div class="card shadow mb-3">
                             <div class="card-header">
@@ -115,40 +149,6 @@
                             </div>
                         </div>
                     </div>
- 
-
-                    <div class="col-4 ">
-                        <div class="card shadow mb-3">
-                            <div class="card-header">
-                                <strong class=" text-primary"> JABATAN AMOUNT AND PERCENT SETTING </strong>
-                            </div>
-                            <div class="card-body p-0">
-                                <table class="table ">
-                                    <tbody>
-                                        <tr *ngFor="let x of global_setting_jabatan">
-                                            <td>
-                                                <div class="form-control"> {{x.name}} </div>
-                                            <td> <input type="number" class="form-control text-end"
-                                                    [(ngModel)]="x.value" name="value"> </td>
-
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td class="text-end" colspan="2">
-
-
-                                                <button class="btn btn-sm btn-success mx-1"
-                                                    (click)="fnSave_global_setting_jabatan();">Save</button>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
- 
 
                     <div class="col-4 ">
                         <div class="card shadow mb-3">
@@ -268,45 +268,8 @@
                         </div>
                     </div>
 
-
-
-                   
-
-
-                    <div class="col-6">
-                        <div class="card shadow mb-3">
-                            <div class="card-header">
-                                <strong class=" text-primary"> MAINTENANCE CATEGORY   </strong>
-                            </div>
-                            <div class="card-body p-0">
-                                <table class="table ">
-                                    <tbody>
-                                        <tr *ngFor="let x of maintenance_category">
-                                            <td> <input type="text" class="form-control" [(ngModel)]="x.name"
-                                                    name="name">
-                                            </td>
-                                            <td width="30px"><button class="btn btn-sm btn-outline-dark"
-                                                    (click)="fnDelete('maintenance_category',x);"><img
-                                                        src="./assets/img/icons8-multiply-52.png" height="20"></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td class="text-end">
-                                                <button class="btn btn-sm btn-outline-dark mx-1"
-                                                    (click)="fnInsert('maintenance_category')">Add Item</button>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-success mx-1"
-                                                    (click)="fnSave_maintenance_category();">Save</button>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+ 
+ 
 
                 </div>
             </div>

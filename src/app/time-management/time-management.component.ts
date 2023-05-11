@@ -16,6 +16,7 @@ export class TimeManagementComponent implements OnInit {
   dtOptions: ADTSettings = {};
   date: any = new Date();
   personalId: string = "";
+  potongan_keterlambatan : any = [];
   today: any = {
     year: parseInt(this.date.getFullYear()),
     month: parseInt(this.date.getMonth()) + 1,
@@ -29,6 +30,8 @@ export class TimeManagementComponent implements OnInit {
   };
   endDate: any = this.today;
   personalSelect: any = [];
+  editable : boolean = false;
+  showTable : boolean = false;
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -45,6 +48,7 @@ export class TimeManagementComponent implements OnInit {
   }
 
   httpGet() {
+ 
 
     this.dtOptions = {
       ajax: environment.api + 'timeManagement',
@@ -122,10 +126,52 @@ export class TimeManagementComponent implements OnInit {
     }).subscribe(
       data => {
         this.personalSelect = data['data'];
+        this.potongan_keterlambatan = data['potongan_keterlambatan'];
       }
     )
 
   }
+
+
+  fnUpdateKeterlambatan(){
+    const body = {
+      item : this.potongan_keterlambatan
+    }
+    console.log(body);
+    this.http.post<any>(environment.api + "timeManagement/fnUpdateKeterlambatan", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+         console.log(data);
+      }
+    )
+  }
+
+  fnDeleteKeterlambatan(id : string){
+    const body = {
+      id : id,
+    }
+    this.http.post<any>(environment.api + "timeManagement/fnDeleteKeterlambatan", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => { 
+         this.httpGet();
+      }
+    )
+  }
+  fnAddKeterlambatan(){
+    const body = {
+      id : true,
+    }
+    this.http.post<any>(environment.api + "timeManagement/fnAddKeterlambatan",body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => { 
+         this.httpGet();
+      }
+    )
+  }
+
 
   open(content: any) {
     this.modalService.open(content, { size: 'lg' });

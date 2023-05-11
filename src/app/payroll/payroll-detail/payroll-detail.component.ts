@@ -142,6 +142,23 @@ export class PayrollDetailComponent implements OnInit {
     history.back();
   }
 
+  fnDeleteTunjangan(id:string){
+    const body = {
+      id: id, 
+    };
+    console.log(body);
+    this.http.post<any>(environment.api + "payroll/fnDeleteTunjangan", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+        console.log(data); 
+        this.httpGet();
+      },
+      e => {
+        console.log(e);
+      }
+    )
+  }
    
   open(content:any) {
 		this.modalService.open(content);
