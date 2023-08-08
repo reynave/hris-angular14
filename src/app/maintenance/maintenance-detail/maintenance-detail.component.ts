@@ -165,6 +165,26 @@ export class MaintenanceDetailComponent implements OnInit {
     history.back();
   }
 
+  onDelete(){
+   if(confirm("Delete this item ?")){
+    const body = {
+      id: this.id,
+      item: this.model,
+    }
+    this.http.post<any>(environment.api + "maintenance/delete", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+        console.log(data);
+        this.editable = false;
+        history.back();
+      },
+      e => {
+        console.log(e);
+      }
+    )
+   }
+  }
   onSubmit() {
     const body = {
       id: this.id,
