@@ -25,3 +25,16 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## fix bugs ngx-currency in angular 14x
+In node_modules/ngx-currency/src/currency-mask.config.d.ts,
+```
+min?: number --> min?: number|null;
+
+max?: number --> max?: number|null;
+```
+Source https://stackoverflow.com/questions/72794173/types-of-property-min-are-incompatible-type-null-is-not-assignable-to-type
+
+
+
