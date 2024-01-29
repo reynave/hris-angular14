@@ -1,0 +1,213 @@
+<div class="border border-top-0 shadow-sm rounded rounded-top-0 py-3 bg-white">
+    <div class="row mb-5">
+        <div class="col-12">
+            <h4>Family Data</h4>
+        </div>
+        <div class="col-12">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Full Name</th>
+                        <th>Relationship</th>
+
+                        <th>Birth date</th>
+                        <th>No KTP</th>
+                        <th>Marital Status </th>
+
+                        <th>Gender</th>
+                        <th>Job</th>
+                        <th>Address</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of items; let i = index">
+                        <td> {{i+1}} </td>
+                        <td> {{x.name}} </td>
+                        <td> {{x.relationship_label}} </td>
+
+                        <td> {{x.dateOfBirth | date}} </td>
+                        <td> {{x.ktpId}} </td>
+                        <td> {{x.maritalStatus_label}} </td>
+
+                        <td> {{x.gender_label}} </td>
+                        <td> {{x.job}} </td>
+                        <td> {{x.address}} </td>
+                        <td> 
+                            <button type="button" (click)="open(modalFamily,x)" class="btn btn-sm btn-light py-0 mx-1">Edit</button> 
+                            <button type="button" (click)="fnDelete(x)" class="btn btn-sm btn-danger py-0 mx-1">Delete</button>
+                        
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12">
+            <div class="text-center">
+                <button type="button" class="btn btn-primary" (click)="open(modalFamily)">Add Family Data</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <h4>Emergency Contacts</h4>
+        </div>
+        <div class="col-12">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Full Name</th>
+                        <th>Relationship</th>
+ 
+                        <th>Phone</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of itemsEC; let i = index">
+                        <td> {{i+1}} </td>
+                        <td> {{x.name}} </td>
+                        <td> {{x.relationship_label}} </td> 
+                        <td> {{x.phone}} </td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+    </div>
+</div>
+
+
+<ng-template #modalFamily let-modal>
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+        <div class="modal-header">
+            <strong class="modal-title" id="modal-basic-title">Family Data</strong>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name"
+                                name="name" #name="ngModel">
+                            <div [hidden]="name.valid || name.pristine" class="text-danger">
+                                Full Name is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="relationship">Relationship</label>
+                            <select class="form-control" id="relationship" required [(ngModel)]="model.relationship"
+                                name="relationship" #relationship="ngModel">
+                                <option [value]="x.id" *ngFor="let x of selectRelationship">{{x.name}}</option> 
+                                
+                            </select>
+                            <div [hidden]="relationship.valid || relationship.pristine" class="text-danger">
+                                Relationship is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dateOfBirth">Date of birth</label>
+                        <div class="input-group">
+                            <input id="dateOfBirth" class="form-control" readonly [(ngModel)]="model.dateOfBirth"
+                                placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select class="form-control" id="gender" required [(ngModel)]="model.gender"
+                                name="gender" #gender="ngModel">  
+                                <option value="m">Male</option> 
+                                <option value="f">Female</option>  
+                            </select>
+                            <div [hidden]="gender.valid || gender.pristine" class="text-danger">
+                                Martial Status is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="maritalStatus">Marital Status</label>
+                            <select class="form-control" id="maritalStatus" required [(ngModel)]="model.maritalStatus"
+                                name="maritalStatus" #maritalStatus="ngModel">  
+                                <option [value]="x.id" *ngFor="let x of selectMaritalStatus">{{x.name}}</option> 
+                               
+                            </select>
+                            <div [hidden]="maritalStatus.valid || maritalStatus.pristine" class="text-danger">
+                                Martial Status is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="ktpId">No KTP</label>
+                            <input type="text" class="form-control" id="ktpId" [(ngModel)]="model.ktpId" name="ktpId"
+                                #ktpId="ngModel">
+                        </div>
+                    </div>
+                    
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="job">Job</label>
+                            <input type="text" class="form-control" id="job" [(ngModel)]="model.job" name="job"
+                                #job="ngModel">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea class="form-control" id="address" [(ngModel)]="model.address" name="address"
+                                #address="ngModel"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" id="phone" [(ngModel)]="model.phone" name="phone"
+                                #job="ngModel">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="phone">Set As Emergency Contact</label>
+                           <div>
+                            <input type="checkbox" id="asEmergencyContact" [(ngModel)]="model.asEmergencyContact" name="asEmergencyContact"
+                            #asEmergencyContact="ngModel"> <label class="mx-3" for="asEmergencyContact">Yes</label>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            {{model | json}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+
+            <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+        </div>
+    </form>
+</ng-template>

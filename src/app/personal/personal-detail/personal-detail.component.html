@@ -118,13 +118,12 @@
                                     [(ngModel)]="model.marital" name="marital" #marital="ngModel">
                                     <option *ngFor="let x of personal_marital" [value]="x.id"> {{x.name}}
                                     </option>
-                                </select>
-
+                                </select> 
                             </td>
                         </tr>
 
                         <tr>
-                            <td> Blood Type </td>
+                            <td> <label for="">Blood Type </label>  </td>
                             <td> <select class="form-control" id="blood" [disabled]="readonly" [(ngModel)]="model.blood"
                                     name="blood" #blood="ngModel">
                                     <option value=""> - </option>

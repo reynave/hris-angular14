@@ -61,6 +61,88 @@
                         </tr>
 
                         <tr>
+                            <td> <label>Job Position</label></td>
+                            <td><select class="form-control" [disabled]="readonly" id="jobPositionId"
+                                    [(ngModel)]="model.jobPositionId" name="jobPositionId" #jobPositionId="ngModel">
+                                    <option *ngFor="let x of jobPosition" [value]="x.id"> {{x.name}}
+                                    </option>
+                                </select> 
+                            </td>
+                        </tr> 
+
+                        <tr>
+                            <td><label>Employment Status</label></td>
+                            <td><select class="form-control" [disabled]="readonly" id="employmentStatusId"
+                                    [(ngModel)]="model.employmentStatusId" name="employmentStatusId"
+                                    #employmentStatusId="ngModel">
+                                    <option *ngFor="let x of employmentStatus" [value]="x.id">{{x.name}}
+                                    </option>
+                                </select> 
+                            </td>
+                        </tr>
+                     
+                        <tr>
+                            <td> <label for="dateJoinStart">Join Date</label></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <input id="dateJoinStart" required [disabled]="readonly" class="form-control"
+                                                placeholder="yyyy-mm-dd" name="dateJoinStart" ngbDatepicker
+                                                #dateJoinStart="ngbDatepicker" [(ngModel)]="model.dateJoinStart" />
+                                            <button class="btn btn-outline-secondary"
+                                                (click)="readonly == false ? dateJoinStart.toggle():false" type="button">
+                                                <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                            </button>
+                                        </div>
+        
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <input id="dateJoinEnd" [disabled]="readonly" class="form-control"
+                                                placeholder="yyyy-mm-dd" name="dateJoinEnd" ngbDatepicker
+                                                #dateJoinEnd="ngbDatepicker" [(ngModel)]="model.dateJoinEnd" />
+                                            <button class="btn btn-outline-secondary"
+                                                (click)="readonly == false ? dateJoinEnd.toggle():false" type="button">
+                                                <img src="./assets/img/icons8-calendar-48.png" height="20">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </td>
+                        </tr> 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="border p-2">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Approval Line</td>
+                            <td><select class="form-control" [disabled]="readonly" id="approvalLineId"
+                                    [(ngModel)]="model.approvalLineId" name="approvalLineId" #approvalLineId="ngModel">
+                                    <option *ngFor="let x of approvedLine" [value]="x.id">{{x.id}}
+                                        {{x.name}}</option>
+                                </select> 
+                            </td>
+                        </tr>
+                       
+
+                        <tr>
+                            <td>Job Level </td>
+                            <td><select class="form-control" [disabled]="readonly" id="jobLevelId"
+                                    [(ngModel)]="model.jobLevelId" name="jobLevelId" #jobLevelId="ngModel">
+                                    <option *ngFor="let x of jobLevel" [value]="x.id"> {{x.name}}</option>
+                                </select> 
+                            </td>
+                        </tr>
+                       
+   
+                        <tr>
                             <td> <label for="branchId">Branch ID<span class="text-danger">*</span></label> </td>
                             <td>
                                 <div [hidden]="!branch.length">
@@ -96,90 +178,6 @@
                                 </div>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td> <label for="dateJoinStart">Join Start</label></td>
-                            <td>
-                                <div class="input-group">
-                                    <input id="dateJoinStart" required [disabled]="readonly" class="form-control"
-                                        placeholder="yyyy-mm-dd" name="dateJoinStart" ngbDatepicker
-                                        #dateJoinStart="ngbDatepicker" [(ngModel)]="model.dateJoinStart" />
-                                    <button class="btn btn-outline-secondary"
-                                        (click)="readonly == false ? dateJoinStart.toggle():false" type="button">
-                                        <img src="./assets/img/icons8-calendar-48.png" height="20">
-                                    </button>
-                                </div>
-
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> <label for="dateJoinEnd">Join End</label></td>
-                            <td>
-                                <div class="input-group">
-                                    <input id="dateJoinEnd" [disabled]="readonly" class="form-control"
-                                        placeholder="yyyy-mm-dd" name="dateJoinEnd" ngbDatepicker
-                                        #dateJoinEnd="ngbDatepicker" [(ngModel)]="model.dateJoinEnd" />
-                                    <button class="btn btn-outline-secondary"
-                                        (click)="readonly == false ? dateJoinEnd.toggle():false" type="button">
-                                        <img src="./assets/img/icons8-calendar-48.png" height="20">
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="border p-2">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td>Approval Line</td>
-                            <td><select class="form-control" [disabled]="readonly" id="approvalLineId"
-                                    [(ngModel)]="model.approvalLineId" name="approvalLineId" #approvalLineId="ngModel">
-                                    <option *ngFor="let x of approvedLine" [value]="x.id">{{x.id}}
-                                        {{x.name}}</option>
-                                </select>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Employment Status</td>
-                            <td><select class="form-control" [disabled]="readonly" id="employmentStatusId"
-                                    [(ngModel)]="model.employmentStatusId" name="employmentStatusId"
-                                    #employmentStatusId="ngModel">
-                                    <option *ngFor="let x of employmentStatus" [value]="x.id">{{x.name}}
-                                    </option>
-                                </select>
-
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Job Level </td>
-                            <td><select class="form-control" [disabled]="readonly" id="jobLevelId"
-                                    [(ngModel)]="model.jobLevelId" name="jobLevelId" #jobLevelId="ngModel">
-                                    <option *ngFor="let x of jobLevel" [value]="x.id"> {{x.name}}</option>
-                                </select>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td> job Position</td>
-                            <td><select class="form-control" [disabled]="readonly" id="jobPositionId"
-                                    [(ngModel)]="model.jobPositionId" name="jobPositionId" #jobPositionId="ngModel">
-                                    <option *ngFor="let x of jobPosition" [value]="x.id"> {{x.name}}
-                                    </option>
-                                </select>
-
-                            </td>
-                        </tr>
-
-
-
 
                     </tbody>
                 </table>
