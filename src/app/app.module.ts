@@ -63,6 +63,7 @@ import { TunjanganComponent } from './tunjangan/tunjangan.component';
 import { FamilyInfoComponent } from './personal/family-info/family-info.component';
 import { EducationHistoryComponent } from './personal/education-history/education-history.component';
 import { HomeTimeManagementComponent } from './home/home-time-management/home-time-management.component';
+import { RequestHolidayComponent } from './home/request-holiday/request-holiday.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -107,7 +108,7 @@ export const customCurrencyMaskConfig = {
     HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent,
     SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, TemplateComponent, 
     ScheduleComponent, EmployeeContactComponent, 
-    MaintenanceMasterComponent, SalaryDetailPrintingComponent, TunjanganComponent, FamilyInfoComponent, EducationHistoryComponent, HomeTimeManagementComponent,
+    MaintenanceMasterComponent, SalaryDetailPrintingComponent, TunjanganComponent, FamilyInfoComponent, EducationHistoryComponent, HomeTimeManagementComponent, RequestHolidayComponent,
   ],
   imports: [
     BrowserModule,

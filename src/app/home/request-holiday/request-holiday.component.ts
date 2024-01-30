@@ -19,11 +19,11 @@ export class Hero {
   ) { }
 }
 @Component({
-  selector: 'app-home-time-management',
-  templateUrl: './home-time-management.component.html',
-  styleUrls: ['./home-time-management.component.css']
+  selector: 'app-request-holiday',
+  templateUrl: './request-holiday.component.html',
+  styleUrls: ['./request-holiday.component.css']
 })
-export class HomeTimeManagementComponent implements AfterViewInit, OnDestroy, OnInit {
+export class RequestHolidayComponent implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild(DataTableDirective, { static: false })
   dtElement: any;
   dtOptionsReimbursement: ADTSettings = {};

@@ -35,11 +35,11 @@
                          
 
                             <li class="nav-item">
-                                <a class="nav-link "  [routerLink]="[ '/home/timeManagement' ]"> Time Management </a>
+                                <a class="nav-link "  [routerLink]="[ '/home/requestHoliday' ]"> Request Holiday </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link " (click)="getHistoryPresence()"  > History Working Time </a>
-                            </li>
+                            </li> -->
                         </ul>
 
                     </div>
@@ -47,7 +47,23 @@
             </nav>
   
             <div class="container"> 
- 
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary">REQUEST HOLIDAY </h6>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="card-body"> 
+                                <table datatable [dtOptions]="dtOptionsReqestHoliday" class="table " id="dataTable"> </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
 
                 <div class="row mb-3">
                     <div class="col-12">

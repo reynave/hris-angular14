@@ -49,6 +49,7 @@ import { MaintenanceMasterComponent } from './maintenance/maintenance-master/mai
 import { SalaryDetailPrintingComponent } from './payroll/salary/salary-detail-printing/salary-detail-printing.component';
 import { TunjanganComponent } from './tunjangan/tunjangan.component';
 import { HomeTimeManagementComponent } from './home/home-time-management/home-time-management.component';
+import { RequestHolidayComponent } from './home/request-holiday/request-holiday.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "login" }, },
@@ -58,7 +59,7 @@ const routes: Routes = [
   { path: "login/relogin", component: ReloginComponent, data: { active: "login" }, },
 
   { path: "home", component: HomeComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
-  { path: "home/timeManagement", component: HomeTimeManagementComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
+  { path: "home/requestHoliday", component: RequestHolidayComponent, data: { active: "_home" }, canActivate:[AuthGuard]  },
 
   { path: "home/reimbursement/detail/:id", component: ReimbursementDetailComponent, data: { active: "_home" }, canActivate:[AuthGuard]},
   { path: "home/reimbursement/add", component: ReimbursementAddComponent, data: { active: "_home" },canActivate:[AuthGuard] },

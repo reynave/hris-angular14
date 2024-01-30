@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   dtOptionsReimbursement: ADTSettings = {};
   dtOptionsLoan: ADTSettings = {};
+  dtOptionsReqestHoliday: ADTSettings = {};
 
 
   constructor(
@@ -49,8 +50,7 @@ export class HomeComponent implements OnInit {
       columns: [
         {
           title: 'Ticket ID',
-          data: 'id',
-
+          data: 'id', 
         },
 
         {
@@ -73,8 +73,7 @@ export class HomeComponent implements OnInit {
           render: function (data: any, type: any, full: any) {
             return `<div class="text-end">${data}</div>`;
           }
-        },
-
+        }, 
 
         {
           title: '',
@@ -122,6 +121,45 @@ export class HomeComponent implements OnInit {
           title: 'Installment',
           data: 'installment', 
         },
+        {
+          title: '',
+          data: 'id',
+          searchable: false,
+          orderable: false,
+          render: function (data: any, type: any, full: any) {
+            return `<a href="#/home/loan/detail/${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
+          }
+        },
+        
+      ]
+    }; 
+    
+    this.dtOptionsReqestHoliday = {
+      ajax: {
+        url: environment.api + 'RequestHoliday/waitingApproved',
+        type: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Token': this.configService.varToken,
+        },
+        // success: function (data) {
+        //   console.log(data);
+        // }
+      },
+      columns: [
+        {
+          title: 'ID',
+          data: 'personalId',
+
+        },
+        {
+          title: 'Name',
+          data: 'name', 
+        },
+        {
+          title: 'Request Holiday',
+          data: 'totalDays', 
+        }, 
         {
           title: '',
           data: 'id',
