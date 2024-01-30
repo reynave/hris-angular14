@@ -1,1 +1,405 @@
-<p>education-history works!</p>
+<div class="border border-top-0 shadow-sm rounded rounded-top-0 py-3 bg-white">
+    <div class="row mb-5">
+        <div class="col-6">
+            <h4>Education History</h4>
+        </div>
+        <div class="col-6 text-end">
+            <button type="button" class="btn btn-primary btn-sm" (click)="openEducation(modalEducation)">Add New</button>
+        </div>
+        <div class="col-12">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Grade</th>
+                        <th>Institution</th>
+
+                        <th>Major</th>
+                        <th>Start Year</th>
+                        <th>End Year </th>
+ 
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of personal_education; let i = index">
+                        <td> {{i+1}} </td>
+                        <td> {{x.grade_label}} </td>
+                        <td> {{x.institution}} </td>
+
+                        <td> {{x.major}} </td>
+                        <td> {{x.startYear}} </td>
+                        <td> {{x.endYear}} </td> 
+                        <td class="text-end"> 
+                            <button type="button" (click)="openEducation(modalEducation,x)" class="btn btn-sm btn-light py-0 mx-1">Edit</button> 
+                            <button type="button" (click)="fnDeleteEducation(x)" class="btn btn-sm btn-danger py-0 mx-1">Delete</button>
+                        
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-6">
+            <h4>Informal Education History</h4>
+        </div>
+        <div class="col-6 text-end">
+            <button type="button" class="btn btn-primary btn-sm" (click)="openInformalEducation(modalInformalEducation)">Add New</button>
+        </div>
+        <div class="col-12">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Held By</th> 
+
+                        <th>Start Year</th>
+                        <th>End Year</th>
+                        <th>Fee</th>
+
+                        <th>Certificate</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of personal_informal_education; let i = index">
+                        <td> {{i+1}} </td>
+                        <td> {{x.name}} </td>
+                        <td> {{x.heldBy}} </td> 
+                        
+                        <td> {{x.startYear}} </td> 
+                        <td> {{x.endYear}} </td> 
+                        <td> {{x.fee}} </td> 
+
+                        <td> {{x.certificate == '1' ? "Yes": ''}} </td>
+                        <td class="text-end"> 
+                            <button type="button" (click)="openInformalEducation(modalInformalEducation,x)" class="btn btn-sm btn-light py-0 mx-1">Edit</button> 
+                            <button type="button" (click)="fnDeleteInformalEducation(x)" class="btn btn-sm btn-danger py-0 mx-1">Delete</button> 
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-6">
+            <h4>Working Experience</h4>
+        </div>
+        <div class="col-6 text-end">
+            <button type="button" class="btn btn-primary btn-sm" (click)="openExperience(modalExperience)">Add New</button>
+        </div>
+        <div class="col-12">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Company</th>
+                        <th>Position</th> 
+
+                        <th>Start Year</th>
+                        <th>End Year</th> 
+ 
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of personal_experience; let i = index">
+                        <td> {{i+1}} </td>
+                        <td> {{x.company}} </td>
+                        <td> {{x.position}} </td> 
+                        
+                        <td> {{x.startYear}} </td> 
+                        <td> {{x.endYear}} </td>   
+                        <td class="text-end"> 
+                            <button type="button" (click)="openExperience(modalExperience,x)" class="btn btn-sm btn-light py-0 mx-1">Edit</button> 
+                            <button type="button" (click)="fnDeleteExperience(x)" class="btn btn-sm btn-danger py-0 mx-1">Delete</button> 
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+    </div>
+</div>
+
+
+<ng-template #modalEducation let-modal>
+    <form (ngSubmit)="onSubmitEducations()" #heroForm="ngForm">
+        <div class="modal-header">
+            <strong class="modal-title" id="modal-basic-title">Education Detail</strong>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col">
+                    
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="grade">Grade</label>
+                            <select class="form-control" id="relationship" required [(ngModel)]="educations.grade"
+                                name="grade" #grade="ngModel">
+                                <option [value]="x.id" *ngFor="let x of selectGrade">{{x.name}}</option> 
+                                
+                            </select>
+                            <div [hidden]="grade.valid || grade.pristine" class="text-danger">
+                                Grade is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="institution">Institution</label>
+                            <input type="text" class="form-control" id="institution" required [(ngModel)]="educations.institution"
+                                name="institution" #institution="ngModel">
+                            <div [hidden]="institution.valid || institution.pristine" class="text-danger">
+                                Full institution is required
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="major">Majors</label>
+                            <input type="text" class="form-control" id="major" required [(ngModel)]="educations.major"
+                                name="major" #major="ngModel">
+                            <div [hidden]="major.valid || major.pristine" class="text-danger">
+                                Major is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="startYear">Start Year</label>
+                                    <input type="number" class="form-control" id="startYear" required [(ngModel)]="educations.startYear"
+                                        name="startYear" #startYear="ngModel">
+                                    <div [hidden]="startYear.valid || startYear.pristine" class="text-danger">
+                                        Start Year is required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="endYear">End Year</label>
+                                    <input type="number" class="form-control" id="endYear" required [(ngModel)]="educations.endYear"
+                                        name="endYear" #endYear="ngModel">
+                                    <div [hidden]="endYear.valid || endYear.pristine" class="text-danger">
+                                        End Year is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+
+                        
+                    </div>
+
+                   
+                </div>
+ 
+            </div>
+
+
+
+            {{educations | json}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+
+            <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #modalInformalEducation let-modal>
+    <form (ngSubmit)="onSubmitInformalEducations()" #heroForm2="ngForm">
+        <div class="modal-header">
+            <strong class="modal-title" id="modal-basic-title">Informal Education Detail</strong>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col">
+                    
+                     
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="nameIE">Name</label>
+                            <input type="text" class="form-control" id="nameIE" required [(ngModel)]="informalEducations.name"
+                                name="nameIE" #nameIE="ngModel">
+                            <div [hidden]="nameIE.valid || nameIE.pristine" class="text-danger">
+                             Name  is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="heldBy">Held By</label>
+                            <input type="text" class="form-control" id="heldBy" required [(ngModel)]="informalEducations.heldBy"
+                                name="heldBy" #heldBy="ngModel">
+                            <div [hidden]="heldBy.valid || heldBy.pristine" class="text-danger">
+                                heldBy is required
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                       <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="Fee">Fee</label>
+                                    <input type="text" class="form-control" id="fee" currencyMask  [(ngModel)]="informalEducations.fee"
+                                        name="fee" #fee="ngModel"> 
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="certificate">Certificate</label>
+                                    <div>
+                                        <input type="checkbox" id="certificate" [(ngModel)]="informalEducations.certificate"  name="certificate"
+                                        #certificate="ngModel"> 
+                                        <label class="mx-3" for="certificate">Yes</label>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="startYear">Start Year</label>
+                                    <div class="input-group">
+                                        <input id="startYear" class="form-control" readonly [(ngModel)]="informalEducations.startYear"
+                                            placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" />
+                                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="endYear">End Year</label>
+                                    <div class="input-group">
+                                        <input id="endYear" class="form-control" readonly [(ngModel)]="informalEducations.endYear"
+                                            placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker #dp2="ngbDatepicker" />
+                                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp2.toggle()" type="button"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+
+                        
+                    </div>
+
+                   
+                </div>
+ 
+            </div>
+
+
+
+            {{informalEducations | json}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+
+            <button type="submit" class="btn btn-success" [disabled]="!heroForm2.form.valid">Submit</button>
+        </div>
+    </form>
+</ng-template>
+
+
+<ng-template #modalExperience let-modal>
+    <form (ngSubmit)="onSubmitExperience()" #heroForm3="ngForm">
+        <div class="modal-header">
+            <strong class="modal-title" id="modal-basic-title">Experience Detail</strong>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col">
+                    
+                     
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" class="form-control" id="company" required [(ngModel)]="experience.company"
+                                name="company" #company="ngModel">
+                            <div [hidden]="company.valid || company.pristine" class="text-danger">
+                                Company  is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <input type="text" class="form-control" id="position" required [(ngModel)]="experience.position"
+                                name="position" #position="ngModel">
+                            <div [hidden]="position.valid || position.pristine" class="text-danger">
+                                Position  is required
+                            </div>
+                        </div>
+                    </div>
+ 
+
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="startYear">Start Year</label>
+                                    <div class="input-group">
+                                        <input id="startYear" class="form-control" readonly [(ngModel)]="experience.startYear"
+                                            placeholder="yyyy-mm-dd" name="dp11" ngbDatepicker #dp11="ngbDatepicker" />
+                                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp11.toggle()" type="button"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="endYear">End Year</label>
+                                    <div class="input-group">
+                                        <input id="endYear" class="form-control" readonly [(ngModel)]="experience.endYear"
+                                            placeholder="yyyy-mm-dd" name="dp12" ngbDatepicker #dp12="ngbDatepicker" />
+                                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp12.toggle()" type="button"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+
+                        
+                    </div>
+
+                   
+                </div>
+ 
+            </div>
+
+
+
+            {{experience | json}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+
+            <button type="submit" class="btn btn-success" [disabled]="!heroForm3.form.valid">Submit</button>
+        </div>
+    </form>
+</ng-template>

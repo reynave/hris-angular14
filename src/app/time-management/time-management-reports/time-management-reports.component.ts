@@ -66,8 +66,10 @@ export class TimeManagementReportsComponent implements OnInit {
     this.modalService.dismissAll();
     const body = {
       item : this.model,
-      id : this.model['id']
+      id : this.model['id'],
+   
     }
+    console.log(body);
     this.http.post<any>(environment.api+"timeManagement/fnUpdate", body, {
       headers : this.configService.headers(),
     }).subscribe(

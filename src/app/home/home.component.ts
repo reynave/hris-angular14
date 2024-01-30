@@ -137,5 +137,13 @@ export class HomeComponent implements OnInit {
   }
 
 
+  getHistoryPresence(){
+    const params = {
+      id :123,
+    };
+    this.router.navigate(['timeManagement/reports'],{queryParams:params});
+  }
+
+
 
 }

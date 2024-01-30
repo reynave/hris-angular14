@@ -25,6 +25,7 @@ export class Model {
     public address: string,
     public idx: string,
     public password: string,
+    public note: string,
 
   ) { }
 
@@ -35,7 +36,7 @@ export class Model {
   styleUrls: ['./personal-detail.component.css']
 })
 export class PersonalDetailComponent implements OnInit {
-  model: any = new Model("", "", "", "", "", "", "", "", "", 0, "", "", false, "", "","","");
+  model: any = new Model("", "", "", "", "", "", "", "", "", 0, "", "", false, "", "","","","");
   readonly: boolean = true;
   item: any = [];
   personal_religion: any = [];
@@ -99,6 +100,8 @@ export class PersonalDetailComponent implements OnInit {
         this.model['postalCode'] = data['item'][0]['postalCode'];
         this.model['address'] = data['item'][0]['address'];
         this.model['idx'] = data['item'][0]['idx'];
+        this.model['note'] = data['item'][0]['note'];
+        
 
         this.readonly = true;
       },

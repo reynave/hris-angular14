@@ -150,7 +150,7 @@
             </div>
         </div>
         <div class="col-6">
-            <div class="border p-2">
+            <div class="border p-2 mb-2">
                 <table class="table">
                     <tbody>
                         <tr>
@@ -241,6 +241,11 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="border p-2">
+                <label>Note</label> 
+                <textarea class="form-control" [(ngModel)]="model.note" rows="5" [readOnly]="readonly"></textarea>
             </div>
         </div>
     </div>
