@@ -50,6 +50,8 @@ import { SalaryDetailPrintingComponent } from './payroll/salary/salary-detail-pr
 import { TunjanganComponent } from './tunjangan/tunjangan.component';
 import { HomeTimeManagementComponent } from './home/home-time-management/home-time-management.component';
 import { RequestHolidayComponent } from './home/request-holiday/request-holiday.component';
+import { HolidayComponent } from './holiday/holiday.component';
+import { RequestHolidayDetailComponent } from './holiday/request-holiday-detail/request-holiday-detail.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "login" }, },
@@ -92,6 +94,8 @@ const routes: Routes = [
   { path: "timeManagement/edit/:id", component: TimeManagementEditComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
   { path: "timeManagement/reports", component: TimeManagementReportsComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
   { path: "timeManagement/import", component: TimeManagementImportComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
+  { path: "holiday", component: HolidayComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
+  { path: "holiday/requestHolidayDetail", component: RequestHolidayDetailComponent, data: { active: "_timeManagement" }, canActivate:[AuthGuard]},
 
   { path: "reimbursement", component: ReimbursementComponent, data: { active: "_reimbursement" }, canActivate:[AuthGuard]},
   { path: "reimbursement/add", component: ReimbursementAddComponent, data: { active: "_reimbursement" },canActivate:[AuthGuard] },

@@ -26,7 +26,7 @@
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#m1" aria-expanded="true"
     aria-controls="m1"> 
     <span>Maintenance</span>
-  </a>
+  </a>-
   <div id="m1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <a class="collapse-item" [routerLink]="[ '/maintenance' ]">Maintenance</a>
@@ -36,11 +36,35 @@
 </li>
  
  
- 
+
 <li class="nav-item" [ngClass]="{'active': active == '_timeManagement'}" [hidden]="nav['_timeManagement'] == '0'">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#m9009" aria-expanded="true"
+    aria-controls="m9009"> 
+    <span>Time Management</span>
+  </a>
+  <div id="m9009" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <a class="collapse-item" [routerLink]="[ '/timeManagement' ]">Absen</a>
+      <a class="collapse-item" [routerLink]="[ '/holiday' ]">List Request Holiday</a> 
+    </div>
+  </div>
+</li>
+ 
+
+
+ 
+<!-- <li class="nav-item" [ngClass]="{'active': active == '_timeManagement'}" [hidden]="nav['_timeManagement'] == '0'">
   <a class="nav-link"  [routerLink]="[ '/timeManagement' ]"> 
     <span>Time Management</span></a>
 </li>
+
+<li class="nav-item"   [hidden]="nav['_timeManagement'] == '0'">
+  <a class="nav-link"  [routerLink]="[ '/timeManagement' ]"> 
+    <span>Request Holiday</span></a>
+</li> -->
+
+
+
 
 <li class="nav-item" [ngClass]="{'active': active == '_reimbursement'}" [hidden]="nav['_reimbursement'] == '0'">
   <a class="nav-link"  [routerLink]="[ '/reimbursement' ]"> 

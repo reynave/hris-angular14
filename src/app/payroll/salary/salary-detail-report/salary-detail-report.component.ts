@@ -79,11 +79,10 @@ export class SalaryDetailReportComponent implements OnInit {
       salary_time: this.salary_time
     }
     this.saving = true;
-    console.log(body);
+    
     this.http.post<any>(environment.api + "salary/saleryDetailUpdate/", body).subscribe(
       data => {
-        this.httpGet();
-        console.log(data);
+        this.httpGet(); 
       }
     )
   }

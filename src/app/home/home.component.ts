@@ -157,7 +157,7 @@ export class HomeComponent implements OnInit {
           data: 'name', 
         },
         {
-          title: 'Request Holiday',
+          title: 'Request Days',
           data: 'totalDays', 
         }, 
         {

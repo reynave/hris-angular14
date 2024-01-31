@@ -22,6 +22,7 @@ export class TimeManagementComponent implements OnInit {
     month: parseInt(this.date.getMonth()) + 1,
     day: parseInt(this.date.getDate()),
   }
+  overtimeFee :number= 0;
 
   startDate: any = {
     year: parseInt((this.date).getFullYear()),
@@ -48,12 +49,8 @@ export class TimeManagementComponent implements OnInit {
   }
 
   httpGet() {
- 
-
     this.dtOptions = {
       ajax: environment.api + 'timeManagement',
-
-
       columns: [
 
         {
@@ -127,6 +124,7 @@ export class TimeManagementComponent implements OnInit {
       data => {
         this.personalSelect = data['data'];
         this.potongan_keterlambatan = data['potongan_keterlambatan'];
+        this.overtimeFee = data['overtimeFee']; 
       }
     )
 
@@ -135,7 +133,8 @@ export class TimeManagementComponent implements OnInit {
 
   fnUpdateKeterlambatan(){
     const body = {
-      item : this.potongan_keterlambatan
+      item : this.potongan_keterlambatan,
+      overtimeFee : this.overtimeFee
     }
     console.log(body);
     this.http.post<any>(environment.api + "timeManagement/fnUpdateKeterlambatan", body, {
@@ -171,8 +170,7 @@ export class TimeManagementComponent implements OnInit {
       }
     )
   }
-
-
+ 
   open(content: any) {
     this.modalService.open(content, { size: 'lg' });
   }

@@ -17,15 +17,32 @@
                         <div class="card mb-3">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col">
-                                        <h6 class="m-0 font-weight-bold text-danger">POTONGAN KETERLAMBATAN</h6>
+                                    <div class="col-8">
+                                        <h6 class="m-0 font-weight-bold ">OVERTIME & POTONGAN KETERLAMBATAN</h6>
                                     </div>
-                                    <div class="col text-end">
+                                    <div class="col-4 text-end">
                                         <a href="javascript:;" *ngIf="!showTable" (click)="showTable=true">Show</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body" [hidden]="!showTable">
+                                <div><b>OVERTIME FEE</b></div>
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td>
+                                            Overtime
+                                        </td>
+                                        <td>
+                                            <input type="text" currencyMask [(ngModel)]="overtimeFee" class="form-control form-control-sm"
+                                                [disabled]="!editable">  
+                                        </td>
+                                        <td>
+                                            per hour
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div><b>POTONGAN KETERLAMBATAN</b></div>
                                 <table class="table table-sm">
                                     <thead>
                                         <tr>
@@ -40,30 +57,39 @@
                                         <tr *ngFor="let x of potongan_keterlambatan">
                                             <td>{{x.id}} </td>
                                             <td>
-                                                <input type="text"  [(ngModel)]="x.note"   class="form-control form-control-sm" [disabled]="!editable">
+                                                <input type="text" [(ngModel)]="x.note"
+                                                    class="form-control form-control-sm" [disabled]="!editable">
                                             </td>
-                                            <td> 
-                                                <input type="time" [(ngModel)]="x.lateMinute"   class="form-control form-control-sm" [disabled]="!editable">
+                                            <td>
+                                                <input type="text" [(ngModel)]="x.lateMinute"
+                                                    class="form-control form-control-sm" [disabled]="!editable">
                                             </td>
-                                            <td>  
-                                                <input type="text" currencyMask [(ngModel)]="x.pinaltyFee"   class="form-control form-control-sm" [disabled]="!editable">
+                                            <td>
+                                                <input type="text" currencyMask [(ngModel)]="x.pinaltyFee"
+                                                    class="form-control form-control-sm" [disabled]="!editable">
                                             </td>
                                             <td *ngIf="editable">
-                                                <button type="button"  class="btn btn-danger btn-sm" (click)="fnDeleteKeterlambatan(x.id);">Delete</button> 
-                                            </td> 
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    (click)="fnDeleteKeterlambatan(x.id);">Delete</button>
+                                            </td>
                                         </tr>
-                                       
+
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="4" class="text-end">
-                                                <button type="button" *ngIf="!editable" (click)="editable=true"  class="btn btn-warning btn-sm mx-2">Editable</button> 
-                                                <button type="button" *ngIf="editable" (click)="editable=false" class="btn btn-light btn-sm mx-2">Finish Edit</button> 
-                                                <button type="button" *ngIf="editable"     class="btn btn-success btn-sm mx-2" (click)="fnUpdateKeterlambatan()">Update</button> 
-                                                  
-                                           
-                                                <button type="button"  *ngIf="editable"    class="btn btn-info btn-sm mx-2" (click)="fnAddKeterlambatan()">Add Pinalty Fee</button> 
-                                      
+                                                <button type="button" *ngIf="!editable" (click)="editable=true"
+                                                    class="btn btn-warning btn-sm mx-2">Editable</button>
+                                                <button type="button" *ngIf="editable" (click)="editable=false"
+                                                    class="btn btn-light btn-sm mx-2">Finish Edit</button>
+                                                <button type="button" *ngIf="editable"
+                                                    class="btn btn-success btn-sm mx-2"
+                                                    (click)="fnUpdateKeterlambatan()">Update</button>
+
+
+                                                <button type="button" *ngIf="editable" class="btn btn-info btn-sm mx-2"
+                                                    (click)="fnAddKeterlambatan()">Add Pinalty Fee</button>
+
                                             </td>
                                         </tr>
                                     </tfoot>

@@ -74,7 +74,10 @@
                                                 <th>Check Out</th>
                                                 <th>Working Hour</th>
                                                 <th>Late</th>
-                                                <th class="text-end">Pinantly Fee</th>
+                                                <th>Overtime</th>
+                                                <th class="text-end">Overtime Fee</th>
+                                                <th class="text-end">Pinalty Fee</th>
+                                                <th class="text-end">Gross Fee</th>
                                                 <th>Reason</th>
                                             </tr>
                                         </thead>
@@ -86,7 +89,16 @@
                                                 <td>{{x.checkIn}}</td>
                                                 <td>{{x.checkOut}}</td>
                                                 <td>{{x.workingHour}}</td>
-                                                <td>{{x.late}}</td>
+                                                <td>{{x.late != '00:00:00' ? x.late : ''}}</td>
+                                                <td>{{x.overtime != '00:00:00' ? x.overtime : '' }}</td>
+                                                <td class="text-end">
+                                                    <input type="text" [(ngModel)]="x.overtimeFee" currencyMask [disabled]="asLock"
+                                                        class="form-control form-control-sm">
+                                                </td>
+                                                <td class="text-end">
+                                                    <input type="text"  [(ngModel)]="x.pinaltyFee" currencyMask [disabled]="asLock"
+                                                        class="form-control form-control-sm text-danger">
+                                                </td>
                                                 <td class="text-end">
                                                     <input type="text" [(ngModel)]="x.amount" currencyMask [disabled]="asLock"
                                                         class="form-control form-control-sm">
@@ -101,7 +113,7 @@
                                     </table>
                                 </div>
                                 <div *ngIf="item.level == 0" class="text-center">
-                                    <button type="button" (click)="fnCalculate()" [hidden]="saving" class="btn btn-info  mx-1">Calculate with time</button>
+                                    <button type="button" (click)="fnCalculate()" [hidden]="saving" class="btn btn-primary  mx-1">Calculate with time</button>
                                 </div>
                             </div>
 
@@ -212,16 +224,15 @@
                     <span *ngIf="item.level > 0">
                         <button type="button" class="btn btn-primary btn-sm mx-1" *ngIf="!asLock" (click)="fnPublish()">Publish</button>
                         <a class="btn btn-success btn-sm mx-1" [routerLink]="[ '/payroll/salary/detail/printing', id ]" target="_blank">Print</a> 
-                        <button type="button" (click)="fnUpdate()" *ngIf="!asLock" class="btn btn-warning btn-sm mx-1">Re-calculate</button>
+                        <button type="button" (click)="fnUpdate()" *ngIf="!asLock" class="btn btn-warning btn-sm mx-1">Re-calculate Update</button>
                     </span>
-                    <span *ngIf="item.level == 0">
-                        <button type="button" (click)="fnCalculate()" class="btn btn-warning btn-sm mx-1">Calculate with
-                            time</button>
+                    <span>
+                        <button type="button" (click)="fnCalculate()"  *ngIf="!asLock" class="btn btn-warning btn-sm mx-1">Calculate with time (reset)</button>
                     </span>
                 </div>
                 <div class="text-center py-2" [hidden]="!saving">
                     Updating..!
-                </div>
+                </div>  
             </div>
         </div>
     </div>

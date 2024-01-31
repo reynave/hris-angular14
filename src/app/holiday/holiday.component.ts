@@ -19,19 +19,19 @@ export class Hero {
   ) { }
 }
 @Component({
-  selector: 'app-request-holiday',
-  templateUrl: './request-holiday.component.html',
-  styleUrls: ['./request-holiday.component.css']
+  selector: 'app-holiday',
+  templateUrl: './holiday.component.html',
+  styleUrls: ['./holiday.component.css']
 })
-export class RequestHolidayComponent implements AfterViewInit, OnDestroy, OnInit {
+export class HolidayComponent implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild(DataTableDirective, { static: false })
   dtElement: any;
-  dtOptionsReimbursement: ADTSettings = {};
-  dtOptionsLoan: ADTSettings = {};
+  dtOptionsRequestHoliday: ADTSettings = {};
+  dtOptionsHistoryHoliday: ADTSettings = {};
   dtTrigger: any = new Subject();
   model: any;
-  selectShift : any = [];
-  personal : any = [];
+  selectShift: any = [];
+  personal: any = [];
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -45,32 +45,33 @@ export class RequestHolidayComponent implements AfterViewInit, OnDestroy, OnInit
     config.keyboard = false;
   }
   newModel() {
-    this.model = new Hero("","", "", "", "");
+    this.model = new Hero("", "", "", "", "");
   }
   ngOnInit(): void {
     this.newModel();
-    this.httpGet();
+    this.httpdtOptionsRequestHoliday();
+    this.httpdtOptionsHistoryHoliday();
     this.httpSelect();
   }
 
-  httpSelect(){ 
-    this.http.get<any>(environment.api + "requestHoliday/select/" , 
-    { headers: this.configService.headers() }
+  httpSelect() {
+    this.http.get<any>(environment.api + "requestHoliday/select/",
+      { headers: this.configService.headers() }
     ).subscribe(
-      data=>{ 
+      data => {
         this.personal = data['personal'];
-        this.selectShift  =  data['selectShift']; 
+        this.selectShift = data['selectShift'];
       },
-      e=>{
+      e => {
         console.log(e);
       }
     )
   }
-  
-  httpGet() {
-    this.dtOptionsReimbursement = {
+
+  httpdtOptionsRequestHoliday() {
+    this.dtOptionsRequestHoliday = {
       ajax: {
-        url: environment.api + 'requestHoliday',
+        url: environment.api + 'requestHoliday/waitingApproved',
         type: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -79,74 +80,90 @@ export class RequestHolidayComponent implements AfterViewInit, OnDestroy, OnInit
       },
       columns: [
         {
-          title: 'Ticket ID',
-          data: 'id',
-
-        },
-
-        {
-          title: 'Request Date',
-          data: 'inputDate',
+          title: 'ID',
+          data: 'personalId',
 
         },
         {
-          title: 'Date',
-          data: 'date',
-        },
-
-        {
-          title: 'Approved',
-          data: 'approved',
-          render: function (data: any, type: any, full: any) {
-            let a = "Submit";
-            if (data == '1') {
-              a = 'Approved';
-            }
-            if (data == '-1') {
-              a = 'Rejected';
-            }
-            return a;
-          }
-        },
-        {
-          title: 'Approved By',
+          title: 'Name',
           data: 'name',
+
         },
         {
-          title: 'Approved Date',
-          data: 'approvedDate',
+          title: 'Requested Date',
+          data: 'inputDate', 
+        },
+        {
+          title: 'Total Days',
+          data: 'totalDays',
+        },
+   
+        {
+          title: '',
+          data: 'personalId',
+          searchable: false,
+          orderable: false,
           render: function (data: any, type: any, full: any) {
-            let a = '';
-            if (full['approved'] == '1') {
-              a = data;
-            }
-
-            return a;
+            return `<a href="#/holiday/requestHolidayDetail?id=${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
           }
         },
-        {
-          title: 'Note',
-          data: 'note',
-        },
-
-
-
-        // {
-        //   title: '',
-        //   data: 'id',
-        //   searchable: false,
-        //   orderable: false,
-        //   render: function (data: any, type: any, full: any) {
-        //     return `<a href="#/home/reimbursement/detail/${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
-        //   }
-        // },
       ]
     };
 
   }
 
+  httpdtOptionsHistoryHoliday(){
+    this.dtOptionsHistoryHoliday = {
+      ajax: {
+        url: environment.api + 'requestHoliday/historyRequestHoliday',
+        type: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Token': this.configService.varToken,
+        },
+      },
+      columns: [
+        {
+          title: 'ID',
+          data: 'personalId',
+
+        },
+        { 
+          title: 'Name',
+          data: 'personal', 
+        },
+        {
+          title: 'Shift Name',
+          data: 'shiftName', 
+        }, 
+        {
+          title: 'Date',
+          data: 'date', 
+        },
+        {
+          title: 'Note',
+          data: 'note', 
+        },
+        {
+          title: 'Approved',
+          data: 'approved', 
+          render: function (data: any, type: any, full: any) {
+            let a;
+            if(data == "1"){
+              a = 'Approved';
+            }
+            else if(data=='-1'){
+              a = 'Rejected';
+            }
+            return a;
+          }
+        },
+      ]
+    };
+  }
+
   addnew() {
-    this.httpGet();
+    this.httpdtOptionsRequestHoliday();
   }
 
   ngAfterViewInit(): void {
@@ -173,16 +190,16 @@ export class RequestHolidayComponent implements AfterViewInit, OnDestroy, OnInit
   }
 
   onSubmitModel() {
-    console.log(this.model); 
-    this.http.post<any>(environment.api + "requestHoliday/onSubmitModel/", this.model , 
-    { headers: this.configService.headers() }
+    console.log(this.model);
+    this.http.post<any>(environment.api + "requestHoliday/onSubmitModel/", this.model,
+      { headers: this.configService.headers() }
     ).subscribe(
-      data=>{ 
+      data => {
         console.log(data);
-        this.httpGet();
+        this.httpdtOptionsRequestHoliday();
         this.modalService.dismissAll();
       },
-      e=>{
+      e => {
         console.log(e);
       }
     )

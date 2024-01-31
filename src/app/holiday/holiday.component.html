@@ -1,0 +1,63 @@
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+ 
+            <div class="container">
+
+                <div class="row my-3">
+                    <!-- <div class="col-12 mb-2 text-end">
+                          <button type="button" class="btn btn-sm btn-primary" (click)="rerender()">reload</button>  
+                        <button type="button" class="btn btn-sm btn-primary" (click)="open(content)">Add New</button>
+
+                    </div> -->
+                    <div class="col-12">
+                        <div><strong>REQUEST HOLIDAY</strong></div>
+                        <div class="card shadow mb-4">
+
+                            <div class="card-body">
+                                <table datatable [dtOptions]="dtOptionsRequestHoliday" [dtTrigger]="dtTrigger"
+                                    class="table " id="dataTable"> </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <!-- <div class="col-12 mb-2 text-end">
+                          <button type="button" class="btn btn-sm btn-primary" (click)="rerender()">reload</button>  
+                        <button type="button" class="btn btn-sm btn-primary" (click)="open(content)">Add New</button>
+
+                    </div> -->
+                    <div class="col-12"> 
+                        <div><strong>HISTORY REQUESTED HOLIDAY</strong></div>
+                        <div class="card shadow mb-4"> 
+                            <div class="card-body">
+                                <table datatable [dtOptions]="dtOptionsHistoryHoliday" [dtTrigger]="dtTrigger"
+                                    class="table " id="dataTable"> </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+ 

@@ -1,14 +1,14 @@
- <div class="container-fluid pt-4 notPrinting">
+<div class="container-fluid pt-4 notPrinting">
     <div class="row ">
-        
-        <div class="col-3 "> 
-            <a class="btn btn-sm btn-outline-dark" (click)="back();">Back</a> 
+
+        <div class="col-3 ">
+            <a class="btn btn-sm btn-outline-dark" (click)="back();">Back</a>
         </div>
         <div class="col-6 text-center">
             <h4>Time Management </h4>
         </div>
-        <div class="col-3 text-end"> 
-            <a class="btn btn-sm btn-success" (click)="printing()">Print</a> 
+        <div class="col-3 text-end">
+            <a class="btn btn-sm btn-success" (click)="printing()">Print</a>
         </div>
     </div>
 </div>
@@ -17,7 +17,7 @@
 
     <div class="container-fluid" [hidden]="calculation">
 
-      
+
         <div class="row">
 
             <div class="col-6">
@@ -57,13 +57,13 @@
                     </tbody>
                 </table>
             </div>
-            
+
         </div>
 
         <div class="row">
             <div class="col-12">
                 <table class="border table table-bordered mt-3">
-                    <thead>
+                    <thead class="sticky-top bg-light border-bottom">
                         <tr>
                             <th>Hari</th>
                             <th>Tanggal</th>
@@ -84,20 +84,23 @@
                             <td>{{x.day}}</td>
                             <td>{{x.date | date:'dd-MM-Y'}}</td>
                             <td>{{x.hour}}</td>
-                            <td>{{x.job}} 
-                                <a href="javascript:;" (click)="open(content,x)" class="notPrinting mx-2"  >
+                            <td>
+                                {{x.job}}
+                                <a href="javascript:;" (click)="open(content,x)" class="notPrinting mx-2">
+                                    <img src="./assets/img/icons8-edit-48.png" height="15"></a>  
+                            </td>
+                            <td>{{!x.checkIn ? "":x.checkIn}}
+                                <a href="javascript:;" (click)="open(content,x)" [hidden]="!x.hour"
+                                    class="notPrinting mx-2">
                                     <img src="./assets/img/icons8-edit-48.png" height="15"></a>
                             </td>
-                            <td>{{!x.checkIn ? "":x.checkIn}} 
-                                <a href="javascript:;" (click)="open(content,x)" [hidden]="!x.hour" class="notPrinting mx-2">
-                                    <img src="./assets/img/icons8-edit-48.png" height="15"></a>
-                            </td>
- 
+
                             <td>{{!x.checkOut ? "":x.checkOut}}
 
                                 <span [hidden]="x.checkOut != '00:00' "><img
                                         src="./assets/img/icons8-exclamation-mark-48.png" height="20"></span>
-                                <a href="javascript:;"  (click)="open(content,x)" [hidden]="!x.hour" class="notPrinting mx-2">
+                                <a href="javascript:;" (click)="open(content,x)" [hidden]="!x.hour"
+                                    class="notPrinting mx-2">
                                     <img src="./assets/img/icons8-edit-48.png" height="15"></a>
 
                             </td>
@@ -123,11 +126,11 @@
             </div>
         </div>
 
-       
+
     </div>
 
     <div class="container" [hidden]="!calculation">
-        <div class="row" >
+        <div class="row">
             <div class="col-12 py-4 text-center">
                 <h5 class="mb-4">Proccesing data, dont close this window, just wait..</h5>
                 <img src="./assets/img/loading2.gif" width="300">
@@ -146,15 +149,15 @@
     </div>
 
     <div class="modal-body">
- 
+
         <div class="row">
             <div class="col-12">
                 <div class="mb-3">
                     <label for="name" class="form-label">Shift</label>
-                     <select name="shiftId" class="form-control" [(ngModel)]="model.shiftId">
+                    <select name="shiftId" class="form-control" [(ngModel)]="model.shiftId">
                         <option *ngFor="let x of timeManagementShift" [value]="x.id">{{x.name}}
                             ({{x.scheduleIn}} - {{x.scheduleOut}}) </option>
-                    </select>  
+                    </select>
                 </div>
             </div>
 
@@ -181,10 +184,10 @@
                     </select> 
                 </div>
             </div> -->
-            
+
 
         </div>
-         
+
 
     </div>
     <div class="modal-footer">

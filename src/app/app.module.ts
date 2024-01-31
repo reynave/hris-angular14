@@ -64,6 +64,8 @@ import { FamilyInfoComponent } from './personal/family-info/family-info.componen
 import { EducationHistoryComponent } from './personal/education-history/education-history.component';
 import { HomeTimeManagementComponent } from './home/home-time-management/home-time-management.component';
 import { RequestHolidayComponent } from './home/request-holiday/request-holiday.component';
+import { HolidayComponent } from './holiday/holiday.component';
+import { RequestHolidayDetailComponent } from './holiday/request-holiday-detail/request-holiday-detail.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -108,7 +110,7 @@ export const customCurrencyMaskConfig = {
     HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent,
     SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, TemplateComponent, 
     ScheduleComponent, EmployeeContactComponent, 
-    MaintenanceMasterComponent, SalaryDetailPrintingComponent, TunjanganComponent, FamilyInfoComponent, EducationHistoryComponent, HomeTimeManagementComponent, RequestHolidayComponent,
+    MaintenanceMasterComponent, SalaryDetailPrintingComponent, TunjanganComponent, FamilyInfoComponent, EducationHistoryComponent, HomeTimeManagementComponent, RequestHolidayComponent, HolidayComponent, RequestHolidayDetailComponent,
   ],
   imports: [
     BrowserModule,
