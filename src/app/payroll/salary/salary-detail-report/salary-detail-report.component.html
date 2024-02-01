@@ -85,9 +85,9 @@
                                             <tr *ngFor="let x of salary_time">
                                                 <td>{{x.date}}</td>
                                                 <td>{{x.hour}}</td>
-                                                <td>{{x.job}}</td>
-                                                <td>{{x.checkIn}}</td>
-                                                <td>{{x.checkOut}}</td>
+                                                <td><b>{{x.job}}</b></td>
+                                                <td>{{x.checkIn == '00:00:00' ? '' : x.checkIn}}</td>
+                                                <td>{{x.checkOut == '00:00:00' ? '' : x.checkOut}}</td>
                                                 <td>{{x.workingHour}}</td>
                                                 <td>{{x.late != '00:00:00' ? x.late : ''}}</td>
                                                 <td>{{x.overtime != '00:00:00' ? x.overtime : '' }}</td>

@@ -135,6 +135,10 @@ export class EmployeeComponent implements OnInit {
         {
           title: 'Join',
           data: 'dateJoinStart',
+        }, 
+        {
+          title: 'Total Cuti',
+          data: 'totalHoliday',
         },
 
       ]

@@ -179,8 +179,9 @@ export class RequestHolidayComponent implements AfterViewInit, OnDestroy, OnInit
     ).subscribe(
       data=>{ 
         console.log(data);
-        this.httpGet();
+       // this.httpGet();
         this.modalService.dismissAll();
+        location.reload();
       },
       e=>{
         console.log(e);
