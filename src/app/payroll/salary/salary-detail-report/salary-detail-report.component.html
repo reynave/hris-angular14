@@ -63,7 +63,7 @@
                                 <div *ngIf="item.level > 0"> 
 
                                     <table class="table table-sm table-xs table-bordered">
-                                        <thead>
+                                        <thead class="sticky-top">
                                             <tr>
                                                 <th>Date</th>
                                                 <th>Shift</th>
@@ -72,7 +72,7 @@
 
                                                 <th>Check In</th>
                                                 <th>Check Out</th>
-                                                <th>Working Hour</th>
+                                                <th>TOTAL Hour</th>
                                                 <th>Late</th>
                                                 <th>Overtime</th>
                                                 <th class="text-end">Overtime Fee</th>
@@ -92,15 +92,15 @@
                                                 <td>{{x.late != '00:00:00' ? x.late : ''}}</td>
                                                 <td>{{x.overtime != '00:00:00' ? x.overtime : '' }}</td>
                                                 <td class="text-end">
-                                                    <input type="text" [(ngModel)]="x.overtimeFee" currencyMask [disabled]="asLock"
+                                                    <input type="text" style="max-width: 90px;" [(ngModel)]="x.overtimeFee" currencyMask [disabled]="asLock"
                                                         class="form-control form-control-sm">
                                                 </td>
                                                 <td class="text-end">
-                                                    <input type="text"  [(ngModel)]="x.pinaltyFee" currencyMask [disabled]="asLock"
+                                                    <input type="text" style="max-width: 100px;" [(ngModel)]="x.pinaltyFee" currencyMask [disabled]="asLock"
                                                         class="form-control form-control-sm text-danger">
                                                 </td>
                                                 <td class="text-end">
-                                                    <input type="text" [(ngModel)]="x.amount" currencyMask [disabled]="asLock"
+                                                    <input type="text" style="max-width: 100px;" [(ngModel)]="x.amount" currencyMask [disabled]="asLock"
                                                         class="form-control form-control-sm">
                                                 </td>
                                                 <td>

@@ -112,14 +112,23 @@
                                 </tr> -->
 
                                 <tr>
-                                    <td><label for="hourlyRate">Hourly Rate <span class="text-danger">*</span>
+                                    <td><label for="hourlyRate">Hourly Rate for part time <span class="text-danger">*</span>
                                         </label></td>
                                     <td><input currencyMask [disabled]="readonly" class="form-control " id="hourlyRate"
-                                            required [(ngModel)]="model.hourlyRate" name="hourlyRate"
-                                            #hourlyRate="ngModel">
-                                        <div *ngIf="!readonly" [hidden]="hourlyRate.valid || hourlyRate.pristine"
+                                              [(ngModel)]="model.hourlyRate" name="hourlyRate"
+                                            #hourlyRate="ngModel"> 
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><label for="overtimeRate">Overtime Rate per Hhour <span class="text-danger">*</span>
+                                        </label></td>
+                                    <td><input currencyMask [disabled]="readonly" class="form-control " id="overtimeRate"
+                                            required [(ngModel)]="model.overtimeRate" name="overtimeRate"
+                                            #overtimeRate="ngModel">
+                                        <div *ngIf="!readonly" [hidden]="overtimeRate.valid || overtimeRate.pristine"
                                             class="text-danger small m-1">
-                                            hourly Rate is required
+                                            This is required
                                         </div>
                                     </td>
                                 </tr>

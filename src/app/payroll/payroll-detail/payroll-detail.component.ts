@@ -14,7 +14,9 @@ export class Model {
     public bankAccountNumber: string,
     public bankAccountHolderName: string,
     public hourlyRate: any,
-    public tunjangan: string,   
+    public tunjangan: string, 
+    public overtimeRate: string, 
+      
   ) { }
 
 }
@@ -24,7 +26,7 @@ export class Model {
   styleUrls: ['./payroll-detail.component.css']
 })
 export class PayrollDetailComponent implements OnInit {
-  model: any = new Model("", "", "", "", "", "", "",);
+  model: any = new Model("", "", "", "", "", "", "","0");
   readonly: boolean = true;
   item: any = [];
   personal_religion: any = [];
@@ -69,6 +71,8 @@ export class PayrollDetailComponent implements OnInit {
         this.model['bankAccountNumber'] = item['bankAccountNumber'];  
         this.model['bankAccountHolderName'] = item['bankAccountHolderName'];  
         this.model['hourlyRate'] = item['hourlyRate'];  
+        this.model['overtimeRate'] = item['overtimeRate'];  
+        
         this.model['tunjangan'] = item['tunjangan'];   
 
         this.model['taxNpwp'] = item['taxNpwp'];   
