@@ -367,6 +367,15 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
+        <div class="row">
+            <div class="col-12 text-end">
+                <button class="btn btn-primary btn-sm mx-1" [hidden]="readonly" type="button"
+                        (click)="fnSave();">Save</button>
+
+                    <button class="btn btn-warning btn-sm mx-1" type="button" [hidden]="!readonly"
+                        (click)="readonly=false">Editable</button>
+            </div>
+        </div>
         <div class="mx-1 mb-4"><a [routerLink]="[ '/tunjangan', ]" (click)="modal.dismiss('Cross click')">Global Master Tunjangan</a></div>
 		<table class="table table-sm">
             <tr *ngFor="let x of salaryTunjangan">
