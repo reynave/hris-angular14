@@ -92,7 +92,7 @@
                                                 <td>{{x.late != '00:00:00' ? x.late : ''}}</td>
                                                 <td>{{x.overtime != '00:00:00' ? x.overtime : '' }}</td>
                                                 <td class="text-end">
-                                                    <input type="text" style="max-width: 90px;" [(ngModel)]="x.overtimeFee" currencyMask [disabled]="asLock"
+                                                    <input type="text" style="max-width: 90px;"  [(ngModel)]="x.overtimeFee" currencyMask [disabled]="asLock"
                                                         class="form-control form-control-sm">
                                                 </td>
                                                 <td class="text-end">
@@ -223,11 +223,13 @@
                     <button type="button" (click)="back()" class="btn btn-outline-dark btn-sm  mx-1">Back</button>
                     <span *ngIf="item.level > 0">
                         <button type="button" class="btn btn-primary btn-sm mx-1" *ngIf="!asLock" (click)="fnPublish()">Publish</button>
+                        
                         <a class="btn btn-success btn-sm mx-1" [routerLink]="[ '/payroll/salary/detail/printing', id ]" target="_blank">Print</a> 
-                        <button type="button" (click)="fnUpdate()" *ngIf="!asLock" class="btn btn-warning btn-sm mx-1">Re-calculate Update</button>
+
+                        <button type="button" (click)="fnUpdate()" *ngIf="!asLock" class="btn btn-warning btn-sm mx-1">Update</button>
                     </span>
                     <span>
-                        <button type="button" (click)="fnCalculate()"  *ngIf="!asLock" class="btn btn-warning btn-sm mx-1">Calculate with time (reset)</button>
+                        <button type="button" (click)="fnCalculate()"  *ngIf="!asLock" class="btn btn-danger btn-sm mx-1">Calculate with time (reset)</button>
                     </span>
                 </div>
                 <div class="text-center py-2" [hidden]="!saving">

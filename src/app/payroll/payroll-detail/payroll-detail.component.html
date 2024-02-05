@@ -85,6 +85,19 @@
                                                 <input type="radio" id="M" name="saleryType" class="mx-2" value="M"
                                                     [(ngModel)]="model.salaryType">
                                                 <label for="M">Monthly</label><br>
+                                            </div> 
+                                            <div class="col">
+                                                <input type="radio" id="H" name="saleryType" class="mx-2" value="H"
+                                                    [(ngModel)]="model.salaryType">
+                                                <label for="H">Hourly (Part Time)</label><br>
+                                            </div>
+                                        </div> 
+
+                                        <!-- <div class="row">
+                                            <div class="col">
+                                                <input type="radio" id="M" name="saleryType" class="mx-2" value="M"
+                                                    [(ngModel)]="model.salaryType">
+                                                <label for="M">Monthly</label><br>
                                             </div>
                                             <div class="col">
                                                 <input type="radio" id="D" name="saleryType" class="mx-2" value="D"
@@ -96,7 +109,7 @@
                                                     [(ngModel)]="model.salaryType">
                                                 <label for="H">Hourly</label><br>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </td>
                                 </tr>
                                 <!-- <tr>
@@ -111,7 +124,7 @@
                                     </td>
                                 </tr> -->
 
-                                <tr>
+                                <tr *ngIf="model.salaryType == 'H'">
                                     <td><label for="hourlyRate">Hourly Rate for part time <span class="text-danger">*</span>
                                         </label></td>
                                     <td><input currencyMask [disabled]="readonly" class="form-control " id="hourlyRate"

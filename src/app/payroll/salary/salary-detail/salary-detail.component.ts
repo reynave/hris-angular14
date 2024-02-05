@@ -74,7 +74,19 @@ export class SalaryDetailComponent implements OnInit {
           title: 'Period End',
           data: 'periodEndDate',
         },
-
+        {
+          title: 'Salary Type',
+          data: 'salaryType',
+          render: function (data: any, type: any, full: any) {
+            let a;
+            if(data == 'H'){
+              a = "Hours (Part Time)";
+            }else{
+              a = "Monthly (Full Time)"
+            }
+            return a;
+          }
+        },
         {
           title: 'Tunjangan Tetap',
           data: 'tunjanganTetap',

@@ -122,7 +122,7 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>Approval Line</td>
+                            <td><label>Approval Line</label></td>
                             <td><select class="form-control" [disabled]="readonly" id="approvalLineId"
                                     [(ngModel)]="model.approvalLineId" name="approvalLineId" #approvalLineId="ngModel">
                                     <option *ngFor="let x of approvedLine" [value]="x.id">{{x.id}}
@@ -133,7 +133,7 @@
                        
 
                         <tr>
-                            <td>Job Level </td>
+                            <td><label>Job Level</label> </td>
                             <td><select class="form-control" [disabled]="readonly" id="jobLevelId"
                                     [(ngModel)]="model.jobLevelId" name="jobLevelId" #jobLevelId="ngModel">
                                     <option *ngFor="let x of jobLevel" [value]="x.id"> {{x.name}}</option>

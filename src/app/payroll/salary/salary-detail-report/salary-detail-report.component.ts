@@ -86,7 +86,9 @@ export class SalaryDetailReportComponent implements OnInit {
       }
     )
   }
-
+  updateRow( x : any){
+    console.log(x);
+  }
   fnCalculate() {
     const body = {
       items1: this.items1,

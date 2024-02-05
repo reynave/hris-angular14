@@ -50,10 +50,10 @@
                             <td><b>Tanggal Gabung</b></td>
                             <td>: {{employee.dateJoinStart | date:'dd-MM-Y'}} </td>
                         </tr>
-                        <!-- <tr>
-                            <td><b>Nama Departemen</b></td>
-                            <td></td>
-                        </tr> -->
+                         <tr>
+                            <td><b>Salary Type</b></td>
+                            <td>: {{salaryType}}</td>
+                        </tr>  
                     </tbody>
                 </table>
             </div>
@@ -104,9 +104,9 @@
                                     <img src="./assets/img/icons8-edit-48.png" height="15"></a>
 
                             </td>
-                            <td>{{x.late}}</td>
-                            <td>{{x.quickly}}</td>
-                            <td>{{x.overtime}}</td>
+                            <td><span [hidden]="salaryType=='H'">{{x.late}}</span> </td>
+                            <td><span [hidden]="salaryType=='H'">{{x.quickly}}</span></td>
+                            <td><span [hidden]="salaryType=='H'">{{x.overtime}}</span></td>
                             <td>{{x.workingHour}}</td>
                             <td>{{x.note}} </td>
                         </tr>
@@ -115,9 +115,9 @@
                         <tr>
                             <th></th>
                             <th colspan="5"> Jumlah </th>
-                            <th>{{summary['late']}}</th>
-                            <th>{{summary['quickly']}}</th>
-                            <th>{{summary['overtime']}}</th>
+                            <th><span [hidden]="salaryType=='H'"> {{summary['late']}}</span></th>
+                            <th><span [hidden]="salaryType=='H'"> {{summary['quickly']}}</span></th>
+                            <th><span [hidden]="salaryType=='H'"> {{summary['overtime']}}</span></th>
                             <th>{{summary['working']}}</th>
                             <th></th>
                         </tr>

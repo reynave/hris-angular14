@@ -18,6 +18,7 @@ export class TimeManagementReportsComponent implements OnInit {
   timeManagementShift: any = [];
   calculation : boolean = true;
   model : any = [];
+  salaryType : string = "";
   constructor( 
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -46,6 +47,7 @@ export class TimeManagementReportsComponent implements OnInit {
         this.employee = data['employee'];
         this.items = data['items'];
         this.timeManagementShift = data['timeManagementShift'];
+        this.salaryType = data['salaryType'];
       }
     )
   }
