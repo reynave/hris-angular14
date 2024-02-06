@@ -129,6 +129,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                     
                                         <tr *ngFor="let x of items1">
                                             <td width="50%">{{x.label}}</td>
                                             <td>
@@ -224,12 +225,12 @@
                     <span *ngIf="item.level > 0">
                         <button type="button" class="btn btn-primary btn-sm mx-1" *ngIf="!asLock" (click)="fnPublish()">Publish</button>
                         
-                        <a class="btn btn-success btn-sm mx-1" [routerLink]="[ '/payroll/salary/detail/printing', id ]" target="_blank">Print</a> 
+                        <a class="btn btn-success btn-sm mx-1" [routerLink]="[ '/payroll/salary/detail/printing', id ]" target="_blank" *ngIf="asLock">Print</a> 
 
                         <button type="button" (click)="fnUpdate()" *ngIf="!asLock" class="btn btn-warning btn-sm mx-1">Update</button>
                     </span>
                     <span>
-                        <button type="button" (click)="fnCalculate()"  *ngIf="!asLock" class="btn btn-danger btn-sm mx-1">Calculate with time (reset)</button>
+                        <button type="button" (click)="fnCalculate()"  *ngIf="!asLock" class="btn btn-danger btn-sm mx-1">Reset</button>
                     </span>
                 </div>
                 <div class="text-center py-2" [hidden]="!saving">
