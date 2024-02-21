@@ -11,6 +11,22 @@ import { ConfigService } from 'src/app/service/config.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  chartJsBar = 'bar';
+  data = {
+    labels: ["January", "February",  ],
+    datasets: [
+      {
+        label: "My First dataset",
+        data: [65, 35,],
+        borderColor: '#36A2EB',
+        backgroundColor: '#9BD0F5',
+      }
+    ]
+  };
+  options = {
+    responsive: true,
+    maintainAspectRatio: false
+  };
 
   dtOptionsReimbursement: ADTSettings = {};
   dtOptionsLoan: ADTSettings = {};
@@ -50,7 +66,7 @@ export class HomeComponent implements OnInit {
       columns: [
         {
           title: 'Ticket ID',
-          data: 'id', 
+          data: 'id',
         },
 
         {
@@ -73,7 +89,7 @@ export class HomeComponent implements OnInit {
           render: function (data: any, type: any, full: any) {
             return `<div class="text-end">${data}</div>`;
           }
-        }, 
+        },
 
         {
           title: '',
@@ -107,19 +123,19 @@ export class HomeComponent implements OnInit {
         },
         {
           title: 'Request Amount',
-          data: 'amount', 
+          data: 'amount',
         },
         {
           title: 'Description',
-          data: 'description', 
+          data: 'description',
         },
         {
           title: 'Request Effective Date',
-          data: 'effectiveDate', 
+          data: 'effectiveDate',
         },
         {
           title: 'Installment',
-          data: 'installment', 
+          data: 'installment',
         },
         {
           title: '',
@@ -130,10 +146,10 @@ export class HomeComponent implements OnInit {
             return `<a href="#/home/loan/detail/${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
           }
         },
-        
+
       ]
-    }; 
-    
+    };
+
     this.dtOptionsReqestHoliday = {
       ajax: {
         url: environment.api + 'RequestHoliday/waitingApproved',
@@ -154,12 +170,12 @@ export class HomeComponent implements OnInit {
         },
         {
           title: 'Name',
-          data: 'name', 
+          data: 'name',
         },
         {
           title: 'Request Days',
-          data: 'totalDays', 
-        }, 
+          data: 'totalDays',
+        },
         {
           title: '',
           data: 'id',
@@ -169,19 +185,21 @@ export class HomeComponent implements OnInit {
             return `<a href="#/home/loan/detail/${data}"><img src="./assets/img/icons8-edit-48.png" height="20"></a>`;
           }
         },
-        
+
       ]
     };
   }
 
 
-  getHistoryPresence(){
+  getHistoryPresence() {
     const params = {
-      id :123,
+      id: 123,
     };
-    this.router.navigate(['timeManagement/reports'],{queryParams:params});
+    this.router.navigate(['timeManagement/reports'], { queryParams: params });
   }
 
+
+ 
 
 
 }

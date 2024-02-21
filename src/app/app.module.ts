@@ -66,6 +66,7 @@ import { HomeTimeManagementComponent } from './home/home-time-management/home-ti
 import { RequestHolidayComponent } from './home/request-holiday/request-holiday.component';
 import { HolidayComponent } from './holiday/holiday.component';
 import { RequestHolidayDetailComponent } from './holiday/request-holiday-detail/request-holiday-detail.component';
+import { ChartModule } from 'angular2-chartjs';
 
 
 export const customCurrencyMaskConfig = {
@@ -120,7 +121,8 @@ export const customCurrencyMaskConfig = {
     FormsModule,
     HttpClientModule,
     DataTablesModule,
-    NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
+    ChartModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
