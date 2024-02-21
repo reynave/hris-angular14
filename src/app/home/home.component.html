@@ -47,39 +47,98 @@
             </nav>
   
             <div class="container"> 
-                <div class="row g-1 mb-3">
-                    <div class="col-3">
+                <div class="row g-2 mb-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <div class="row">
-                                    <div class="col">
-                                        <h6 class="m-0 font-weight-bold text-primary">Employment Status </h6>
-                                    </div> 
-                                </div>
+                            <div class="card-header"> 
+                                <h6 class="m-0 font-weight-bold text-primary">Employment Status </h6> 
                             </div>
                             <div class="card-body"> 
-                                 dsadfs
+                                <div class="mb-2 border shadow-sm" style="min-height: 30px;" >
+                                    <span class="bar" *ngFor="let x of employmentStatus ; let i = index"
+                                     [ngStyle]="{'background-color': colors[i], 'width':x.percent+'%' }"  title=" {{x.name}} {{x.percent | number}}%" >
+                                       
+                                    </span>
+                                    
+                                </div>
+                                 <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th  class="text-end">Qty</th>
+                                            <th  class="text-end">%</th>
+                                        </tr>    
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let x of employmentStatus ; let i = index">
+                                            <td><i class="bi bi-square-fill" [ngStyle]="{'color': colors[i] }"></i>   {{x.name}}</td>
+                                            <td  class="text-end"> {{x.qty | number}}</td>
+                                            <td class="text-end"> {{x.percent | number}}%</td> 
+                                        </tr>
+                                    </tbody>
+                                 </table>
                             </div>
                         </div> 
                         
                     </div>
-                    <div class="col-3">
-                        <strong>Lenght of Service</strong>
-                        <div>
-                            <chart type="bar" [data]="data" [options]="options"></chart>
-                        </div>
+                    <div class="col-12 col-md-6 col-lg-3">  
+                        <div class="card shadow mb-4">
+                            <div class="card-header"> 
+                                <h6 class="m-0 font-weight-bold text-primary">Lenght of Service</h6> 
+                            </div>
+                            <div class="card-body"> 
+                                <div>
+                                    <canvas id="#LenghtofService"  height="300">{{chart}}</canvas>
+                                </div> 
+                            </div>
+                        </div> 
                     </div>
-                    <div class="col-3">
-                        <strong>Job Level</strong>
-                        <div>
-                            asdf
-                        </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <div class="card-header"> 
+                                <h6 class="m-0 font-weight-bold text-primary">Jobs Position  </h6> 
+                            </div>
+                            <div class="card-body"> 
+                                <div class="mb-2 border shadow-sm" style="min-height: 30px;" >
+                                    <span class="bar" *ngFor="let x of employmentPosition ; let i = index"
+                                     [ngStyle]="{'background-color': colors[colors.length - i], 'width':x.percent+'%' }"  title=" {{x.name}} {{x.percent | number}}%" >
+                                       
+                                    </span>
+                                    
+                                </div>
+                                 <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th  class="text-end">Qty</th>
+                                            <th  class="text-end">%</th>
+                                        </tr>    
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let x of employmentPosition;let i = index">
+                                            <td><i class="bi bi-square-fill" [ngStyle]="{'color': colors[colors.length - i]}"></i>   {{x.name}}</td>
+                                            <td  class="text-end"> {{x.qty | number}}</td>
+                                            <td class="text-end"> {{x.percent | number}}%</td> 
+                                        </tr>
+                                    </tbody>
+                                 </table>
+                            </div>
+                        </div> 
+                        
                     </div>
-                    <div class="col-3">
-                        <strong>Gender Diversity</strong>
-                        <div>
-                            <chart type="doughnut" [data]="data" [options]="options"></chart>
-                        </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        
+                         <div class="card shadow mb-4">
+                            <div class="card-header"> 
+                                <h6 class="m-0 font-weight-bold text-primary">Gender Diversity</h6> 
+                            </div>
+                            <div class="card-body"> 
+                                <canvas id="#GenderDiversity"  height="300">{{chart}}</canvas>
+                            </div>
+                        </div> 
                     </div>
                 </div>
                 <div class="row mb-3">
