@@ -62,7 +62,10 @@
   <a class="nav-link"  [routerLink]="[ '/timeManagement' ]"> 
     <span>Request Holiday</span></a>
 </li> -->
-
+<li class="nav-item" [ngClass]="{'active': active == '_announcement'}" [hidden]="nav['_announcement'] == '0'">
+  <a class="nav-link"  [routerLink]="[ '/announcement' ]"> 
+    <span>Post Announcement</span></a>
+</li>
 
 
 
@@ -76,6 +79,16 @@
     <span>Loan</span></a>
 </li>
 
+<li class="nav-item" [ngClass]="{'active': active == '_invetory'}" [hidden]="nav['_invetory'] == '0'">
+  <a class="nav-link"  [routerLink]="[ '/invetory' ]"> 
+    <span>Invetory</span></a>
+</li>
+
+<li class="nav-item" [ngClass]="{'active': active == '_sp'}" [hidden]="nav['_sp'] == '0'">
+  <a class="nav-link"  [routerLink]="[ '/sp' ]"> 
+    <span>Surat Peringatan</span></a>
+</li>
+
 <!-- Master Data -->
 <li class="nav-item" [ngClass]="{'active': active == '_masterData'}" [hidden]="nav['_masterData'] == '0'">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
@@ -84,11 +97,14 @@
   </a>
   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
+      <a class="collapse-item" [routerLink]="[ '/invetory' ]">Invetory</a>
+      
       <a class="collapse-item" [routerLink]="[ '/employee' ]">Employee</a>
       <a class="collapse-item" [routerLink]="[ '/organization' ]">Organization and Branch</a>
       <a class="collapse-item" [routerLink]="[ '/globalMasterData' ]">Global Master Data</a>
       <a class="collapse-item" [routerLink]="[ '/bpjs/setting' ]">BPJS Setting</a>
       <a class="collapse-item" [routerLink]="[ '/tunjangan' ]">Global Setting Tunjangan</a>
+
       
     </div>
   </div>

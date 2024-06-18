@@ -52,6 +52,10 @@ import { HomeTimeManagementComponent } from './home/home-time-management/home-ti
 import { RequestHolidayComponent } from './home/request-holiday/request-holiday.component';
 import { HolidayComponent } from './holiday/holiday.component';
 import { RequestHolidayDetailComponent } from './holiday/request-holiday-detail/request-holiday-detail.component';
+import { AnnouncementComponent } from './announcement/announcement.component';
+import { InvetoryComponent } from './invetory/invetory.component';
+import { SpComponent } from './sp/sp.component';
+import { SpDetailComponent } from './sp/sp-detail/sp-detail.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "login" }, },
@@ -77,8 +81,16 @@ const routes: Routes = [
   { path: "maintenance/:id", component: MaintenanceDetailComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
  
   { path: "schedule", component: ScheduleComponent, data: { active: "_maintenance" },canActivate:[AuthGuard] },
+  { path: "announcement", component: AnnouncementComponent, data: { active: "_announcement" },canActivate:[AuthGuard] },
  
  
+  { path: "invetory", component: InvetoryComponent , data: { active: "_invetory" }, canActivate:[AuthGuard] },
+  { path: "invetory/detail", component: InvetoryComponent , data: { active: "_invetory" }, canActivate:[AuthGuard] },
+ 
+  { path: "sp", component: SpComponent , data: { active: "_sp" }, canActivate:[AuthGuard] },
+  { path: "sp/detail", component: SpDetailComponent , data: { active: "_sp" }, canActivate:[AuthGuard] },
+ 
+
   { path: "employee", component: EmployeeComponent, data: { active: "_masterData" }, canActivate:[AuthGuard] },
   { path: "employee/detail/:id", component: EmployeeDetailComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },
   { path: "employee/contract/:id", component: EmployeeContactComponent, data: { active: "_masterData" },canActivate:[AuthGuard] },

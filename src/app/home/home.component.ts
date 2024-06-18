@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   dtOptionsReimbursement: ADTSettings = {};
   dtOptionsLoan: ADTSettings = {};
   dtOptionsReqestHoliday: ADTSettings = {};
-
+  announcement : any = [];
   employmentStatus: any = [];
   employmentPosition: any = [];
   gender: any = [];
@@ -54,12 +54,15 @@ export class HomeComponent implements OnInit {
   }
   genderData : any = [];
   colors : any = [];
+  dtOptions2: ADTSettings = {};
+  
   dashboard() {
     this.http.get<any>(environment.api + "home/index", {
       headers: this.configService.headers(),
     }).subscribe(
       data => {
         console.log(data);
+        this.announcement = data['announcement'];
         this.employmentStatus = data['employmentStatus'];
         this.employmentPosition = data['employmentPosition'];
         this.gender = data['gender'];
@@ -265,9 +268,52 @@ export class HomeComponent implements OnInit {
 
       ]
     };
+
+    this.dtOptions2 = {
+      //  ajax: environment.api + 'employee',
+      ajax: {
+        url: environment.api + 'employee/reminderExp',
+        type: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Token': this.configService.varToken,
+        },
+      },
+      columns: [
+        {
+          title: 'Employed ID',
+          data: 'id',
+          render: function (data: any, type: any, full: any) {
+            return '<a  href="#/employee/detail/' + data + '?tab=">' + data + '</a>';
+          }
+        },
+        {
+          title: 'Name',
+          data: 'name',
+        },
+       
+        {
+          title: 'Status',
+          data: 'employmentStatus',
+        },
+       
+        {
+          title: 'Join Start',
+          data: 'dateJoinStart',
+        },
+        {
+          title: 'Join End',
+          data: 'dateJoinEnd',
+        },
+        {
+          title: 'Expired until (day)',
+          data: 'expDate',
+        },
+
+      ]
+    };
   }
-
-
+ 
   getHistoryPresence() {
     const params = {
       id: 123,

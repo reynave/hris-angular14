@@ -67,6 +67,11 @@ import { RequestHolidayComponent } from './home/request-holiday/request-holiday.
 import { HolidayComponent } from './holiday/holiday.component';
 import { RequestHolidayDetailComponent } from './holiday/request-holiday-detail/request-holiday-detail.component';
 import { ChartModule } from 'angular2-chartjs';
+import { AnnouncementComponent } from './announcement/announcement.component';
+import { NgxEditorModule } from 'ngx-editor';
+import { InvetoryComponent } from './invetory/invetory.component';
+import { SpComponent } from './sp/sp.component';
+import { SpDetailComponent } from './sp/sp-detail/sp-detail.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -111,7 +116,7 @@ export const customCurrencyMaskConfig = {
     HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent,
     SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, TemplateComponent, 
     ScheduleComponent, EmployeeContactComponent, 
-    MaintenanceMasterComponent, SalaryDetailPrintingComponent, TunjanganComponent, FamilyInfoComponent, EducationHistoryComponent, HomeTimeManagementComponent, RequestHolidayComponent, HolidayComponent, RequestHolidayDetailComponent,
+    MaintenanceMasterComponent, SalaryDetailPrintingComponent, TunjanganComponent, FamilyInfoComponent, EducationHistoryComponent, HomeTimeManagementComponent, RequestHolidayComponent, HolidayComponent, RequestHolidayDetailComponent, AnnouncementComponent, InvetoryComponent, SpComponent, SpDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -122,7 +127,8 @@ export const customCurrencyMaskConfig = {
     HttpClientModule,
     DataTablesModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
-    ChartModule 
+    ChartModule,
+    NgxEditorModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

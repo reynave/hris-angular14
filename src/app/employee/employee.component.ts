@@ -115,10 +115,7 @@ export class EmployeeComponent implements OnInit {
           title: 'Branch',
           data: 'branch',
         },
-        {
-          title: 'Organization',
-          data: 'organization',
-        },
+        
         {
           title: 'Position',
           data: 'jobPosition',

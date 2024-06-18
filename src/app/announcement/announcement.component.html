@@ -1,0 +1,77 @@
+<div id="wrapper">
+   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <app-header></app-header>
+   </ul>
+   <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+
+         <div class="container my-3">
+            <div class="row">
+
+               <div class="col-12">
+                  <div class="card shadow mb-3">
+                     <div class="card-header py-3">
+                        <div class="row">
+                           <div class="col">
+                              <h6 class="m-0 font-weight-bold text-primary"> POST ANNOUNCEMENT</h6>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="">
+                        <table class="table table-sm">
+                           <thead>
+                              <tr>
+                                 <th width="100">Create Date</th>
+                                 <th width="100">End Date</th>
+                                 <th>Note</th>
+                                 <th></th>
+
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr *ngFor="let x of items; let i = index">
+                                 <td>
+                                    <input type="date" class="form-control form-control-sm" [(ngModel)]="x.createDate"
+                                       name="createDate">
+                                 </td>
+                                 <td>
+                                    <input type="date" class="form-control form-control-sm" [(ngModel)]="x.endDate"
+                                       name="endDate">
+                                 </td>
+
+                                 <td>
+                                    <!-- <textarea class="form-control form-control-sm" [(ngModel)]="x.note"  name="note"></textarea> -->
+                                    <div class="NgxEditor__Wrapper" style="height: 150px;">
+                                       <ngx-editor-menu [editor]="editors[i]"></ngx-editor-menu>
+                                       <ngx-editor (ngModelChange)="x.note = $event" [editor]="editors[i]"
+                                          [ngModel]="x.note" [disabled]="false" [placeholder]="'Type here...'">
+                                       </ngx-editor>
+                                    </div>
+                                 </td>
+
+                                 <td>  
+                                    <button class="btn btn-sm" (click)="fnDelete(x);"><i class="bi bi-trash3-fill"></i></button>
+                                 </td>
+
+                              </tr>
+                           </tbody>
+                           <tfoot>
+                              <tr>
+                                 <td colspan="3" class="text-end">
+                                    <button class="btn btn-sm btn-light mx-1" (click)="addRow()">Add Row</button>
+                                    <button class="btn btn-sm btn-primary" (click)="onUpdate()">Update</button>
+                                 </td>
+                                 <td></td>
+                              </tr>
+                           </tfoot>
+                        </table>
+
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>

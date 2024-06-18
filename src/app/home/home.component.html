@@ -48,6 +48,14 @@
   
             <div class="container"> 
                 <div class="row g-2 mb-3">
+                    <div class="col-12" [hidden]="announcement.length < 1">
+                        <div class="alert alert-danger">
+                            <div><strong>ANNOUNCEMENT</strong></div>
+                            <div *ngFor="let x of announcement">
+                                <span [innerHTML]="x.note"></span> 
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card shadow mb-4">
                             <div class="card-header"> 
@@ -79,8 +87,7 @@
                                     </tbody>
                                  </table>
                             </div>
-                        </div> 
-                        
+                        </div>  
                     </div>
                     <div class="col-12 col-md-6 col-lg-3">  
                         <div class="card shadow mb-4">
@@ -142,7 +149,21 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                   
+                   <div class="col-12">
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="m-0 font-weight-bold text-danger"> CONTRACT VALIDITY PERIOD REMINDER</h6>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="card-body"> 
+                            <table datatable [dtOptions]="dtOptions2" class="table " id="dataTable">
+                            </table>
+                        </div>
+                    </div>
+                   </div>
                      
                     <div class="col-12">
                         <div class="card shadow mb-4">
