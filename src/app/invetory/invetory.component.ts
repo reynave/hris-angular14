@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Editor } from 'ngx-editor';
+import { Component,   OnInit } from '@angular/core'; 
 import { ConfigService } from '../service/config.service';
 import { environment } from 'src/environments/environment';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { InvetoryDetailComponent } from './invetory-detail/invetory-detail.component';
 
 @Component({
   selector: 'app-invetory',
@@ -14,6 +15,7 @@ export class InvetoryComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private configService: ConfigService, 
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -45,5 +47,7 @@ export class InvetoryComponent implements OnInit {
   onUpdate(){
 
   }
+
+  
 
 }

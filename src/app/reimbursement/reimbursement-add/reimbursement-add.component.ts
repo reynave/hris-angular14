@@ -64,6 +64,7 @@ export class ReimbursementAddComponent implements OnInit {
     this.loading = true;
     const body = {
       item : this.model,
+      upload_data : this.upload_data,
     }
     this.http.post<any>(environment.api+"reimbursement/insert/",body,{
       headers : this.configService.headers(),
@@ -80,5 +81,37 @@ export class ReimbursementAddComponent implements OnInit {
 
       }
     )
+  }
+  
+
+  fileName = '';
+  httpNote: string = "";  
+  upload_data : any = [];
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.httpNote = "Upload..";
+      this.loading = true;
+      this.fileName = file.name;
+      const formData = new FormData();
+      formData.append("item", file);
+      formData.append("token", "2661ef6c07b945d4&");
+     
+      //formData.append("token", this.configService.getToken()); 
+      this.http.post<any>(environment.api + "upload/uploadReimbursement", formData).subscribe(
+        data => {
+          this.loading = false;
+          console.log(data); 
+          if(data['error'] == false) {
+            this.upload_data = data['data']['upload_data'];
+          }
+      
+          this.httpNote = ""; 
+        },
+        e => {
+          this.httpNote = "Upload error!";
+          console.log(e)
+        });
+    }
   }
 }

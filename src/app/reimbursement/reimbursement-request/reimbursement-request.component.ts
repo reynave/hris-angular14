@@ -31,6 +31,7 @@ export class ReimbursementRequestComponent implements OnInit {
   reimbursementName: any = []; 
   item : any = [];
   approved : boolean = false;
+  api : string = environment.api;
   constructor(
     private router: Router,
     private http: HttpClient,

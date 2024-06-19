@@ -1,0 +1,159 @@
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+
+            <div class="container my-3">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary"> Inventaris</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=""> 
+                                <div class="row">
+                                    <div class="col-6">
+                                        <table class="table table-sm border mb-3">
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Item Name</strong></td>
+                                                    <td>{{header.name}}</td>
+                                                   
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Qty</strong></td>
+                                                    <td>{{header.qty}}</td> 
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Rent</strong></td>
+                                                    <td>{{ items.length}}</td> 
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Avaiable</strong></td>
+                                                    <td>{{header.qty - items.length}}</td> 
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table> 
+                                    </div>
+                                </div>
+
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th> 
+                                            <th>Name</th>
+                                            <th>Note</th>
+                                            <th>Tgl Peminjaman</th>
+                                            <th>Tgl Pengembalian</th>
+                                            <th class="text-center">Return</th> 
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of items; let i = index">
+                                            <td> {{i+1}}</td>
+                                             
+                                            <td> {{x.name}}</td>
+                                            <td> {{x.note}}</td>
+
+                                            <td> {{x.loanDate | date }}</td>
+                                            <td> {{x.returnDate | date}}</td> 
+                                            <td  class="text-center">
+                                                <a class="btn btn-sm" (click)="remove(x)"><i class="bi bi-archive"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    
+                                </table>
+
+                            </div>
+                            <div class="card-footer text-end">
+                                <button class="btn btn-sm btn-primary mx-1"
+                                (click)="open(content)">Add</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <strong class="modal-title">Profile update</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+        <div class="modal-body">
+
+            {{model | json}}
+            <div class="row g-1">
+                <div class="col-8">
+                    <div class="mb-3">
+                        <label>Personal Name</label>
+                        <select class="form-control form-control-sm" [(ngModel)]="model.personalId" name="personalId">
+                            <option [value]="x.id" *ngFor="let x of personal">{{x.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label>Qty</label>
+                        <input type="number" class="form-control form-control-sm" [(ngModel)]="model.qty" name="qty">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label>Note</label>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="model.note" name="note">
+            </div>
+
+
+
+            <div class="row g-1">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="dateOfBirth">Loan Date</label>
+                        <div class="input-group">
+                            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="model.loanDate" name="loanDate" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="dateOfBirth">Return Date</label>
+                        <div class="input-group">
+                            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                ngbDatepicker #dp2="ngbDatepicker" [(ngModel)]="model.returnDate" name="returnDate" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp2.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+
+            <button type="submit" class="btn btn-outline-dark" [disabled]="!heroForm.form.valid">Submit</button>
+        </div>
+    </form>
+</ng-template>

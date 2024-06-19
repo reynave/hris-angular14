@@ -56,6 +56,7 @@ import { AnnouncementComponent } from './announcement/announcement.component';
 import { InvetoryComponent } from './invetory/invetory.component';
 import { SpComponent } from './sp/sp.component';
 import { SpDetailComponent } from './sp/sp-detail/sp-detail.component';
+import { InvetoryDetailComponent } from './invetory/invetory-detail/invetory-detail.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "login" }, },
@@ -85,7 +86,7 @@ const routes: Routes = [
  
  
   { path: "invetory", component: InvetoryComponent , data: { active: "_invetory" }, canActivate:[AuthGuard] },
-  { path: "invetory/detail", component: InvetoryComponent , data: { active: "_invetory" }, canActivate:[AuthGuard] },
+  { path: "invetory/detail", component: InvetoryDetailComponent , data: { active: "_invetory" }, canActivate:[AuthGuard] },
  
   { path: "sp", component: SpComponent , data: { active: "_sp" }, canActivate:[AuthGuard] },
   { path: "sp/detail", component: SpDetailComponent , data: { active: "_sp" }, canActivate:[AuthGuard] },

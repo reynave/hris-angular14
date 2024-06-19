@@ -92,6 +92,14 @@
                                         <textarea class="form-control" id="description" name="description"
                                             [(ngModel)]="model.description"></textarea>
                                     </div>
+
+                                    
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">File upload</label>
+                                        <div>
+                                            <a [href]="api+'uploads/reimbursement/'+item.uploadFile" target="_blank"  >{{item.uploadFile}}</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row g-2">
@@ -105,8 +113,7 @@
                                             [(ngModel)]="model.paidAmount" name="paidAmount" #paidAmount="ngModel">
 
                                         <div class="text-end">
-                                            <a href="javascript:;" (click)="copyAmount();"><small>Copy from Request
-                                                    Amount</small></a>
+                                            <a href="javascript:;" (click)="copyAmount();"><small>Copy from Amount</small></a>
                                         </div>
                                     </div>
                                 </div>
@@ -157,5 +164,4 @@
 
     </div>
 </form>
-
-{{model | json}}
+ 

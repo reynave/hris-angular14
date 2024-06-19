@@ -72,6 +72,8 @@ import { NgxEditorModule } from 'ngx-editor';
 import { InvetoryComponent } from './invetory/invetory.component';
 import { SpComponent } from './sp/sp.component';
 import { SpDetailComponent } from './sp/sp-detail/sp-detail.component';
+import { InvetoryDetailComponent } from './invetory/invetory-detail/invetory-detail.component';
+import { InvetoryDetailPersonalComponent } from './invetory/invetory-detail-personal/invetory-detail-personal.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -116,7 +118,7 @@ export const customCurrencyMaskConfig = {
     HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent,
     SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, TemplateComponent, 
     ScheduleComponent, EmployeeContactComponent, 
-    MaintenanceMasterComponent, SalaryDetailPrintingComponent, TunjanganComponent, FamilyInfoComponent, EducationHistoryComponent, HomeTimeManagementComponent, RequestHolidayComponent, HolidayComponent, RequestHolidayDetailComponent, AnnouncementComponent, InvetoryComponent, SpComponent, SpDetailComponent,
+    MaintenanceMasterComponent, SalaryDetailPrintingComponent, TunjanganComponent, FamilyInfoComponent, EducationHistoryComponent, HomeTimeManagementComponent, RequestHolidayComponent, HolidayComponent, RequestHolidayDetailComponent, AnnouncementComponent, InvetoryComponent, SpComponent, SpDetailComponent, InvetoryDetailComponent, InvetoryDetailPersonalComponent,
   ],
   imports: [
     BrowserModule,

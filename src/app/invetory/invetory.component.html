@@ -13,7 +13,7 @@
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col">
-                                        <h6 class="m-0 font-weight-bold text-primary"> POST ANNOUNCEMENT</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary"> Inventaris</h6>
                                     </div>
                                 </div>
                             </div>
@@ -24,39 +24,31 @@
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Qty</th>
+                                            <th>Stock</th>
                                             <th>Rent</th>
-                                            <th></th>
-
+                                            
+                                            <th ></th> 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let x of items; let i = index">
-                                            <td>{{i+1}}</td>
-                                            <td>  
-                                                {{x.name}}
-                                            </td>
-                                            <td>
-                                                {{x.qty}}
-                                            </td>
+                                            <td> {{i+1}}</td>
+                                            <td> {{x.name}}</td>
+                                            <td> {{x.qty}}</td>
 
+                                            <td> {{x.stock}} </td>
+                                            <td> {{x.rent}} </td> 
+                                          
                                             <td>
-                                                {{x.qty}}
+                                                <a class="btn btn-sm" [routerLink]="[ '/invetory/detail' ]" [queryParams]="{id:x.id}"><i class="bi bi-plus-square-fill"></i></a> 
                                             </td>
-
-                                            <td>
-                                                <button class="btn btn-sm" (click)="fnDelete(x);"><i
-                                                        class="bi bi-trash3-fill"></i></button>
-                                            </td>
-
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="5" class="text-end">
-                                                <button class="btn btn-sm btn-light mx-1" (click)="addRow()">Add
-                                                    Row</button>
-                                                <button class="btn btn-sm btn-primary"
-                                                    (click)="onUpdate()">Update</button>
+                                                <button class="btn btn-sm btn-light mx-1" (click)="addRow()">Add  Row</button>
+                                                <button class="btn btn-sm btn-primary"  (click)="onUpdate()">Update</button>
                                             </td>
                                             <td></td>
                                         </tr>

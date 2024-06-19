@@ -10,149 +10,190 @@
         <div id="content">
 
             <form (ngSubmit)="onSubmit()" #myForm="ngForm">
-
-                <div class="container ">
-                    <div class="row">
-                        <div class="col-12 my-2">
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)="back();">Back</button>
+                <div class="row g-1">
+                    <div class="col-12 ">
+                        <div class="p-3">
+                            <button type="button" class="btn btn-outline-dark btn-sm"  (click)="back();">Back</button>
+                        </div> 
+                    </div>
+                    <div class="col-12  my-3" [hidden]="newData.length < 1">
+                        <div class="border shadow-sm rounded p-4 bg-white">
+                            <div class="mb-4">
+                                <h5 class="text-primary text-center">Latest New Reimbursement Request</h5>
+                            </div>
+                            <table class="table table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction ID</th>
+                                        <th>Employee</th>
+                                        <th>Reimbursement Name</th>
+                                        <th class="text-end">Request Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let x of newData">
+                                        <td>{{x.id}}</td>
+                                        <td>{{x.personalId}} {{x.name}} </td>
+                                        <td>{{x.reimbursement}}</td>
+                                        <td class="text-end">Rp {{x.requestAmount | number}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12  my-3" [hidden]="newData.length < 1">
-                            <div class="border shadow-sm rounded p-4 bg-white">
-                                <div class="mb-4">
-                                    <h5 class="text-primary text-center">Latest New Reimbursement Request</h5>
+                    <div class="col-12 col-md-6">
+                        <div class="container "> 
+                            <div class="row">
+                               
+                                <div class="col-12 ">
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6 class="m-0 font-weight-bold text-primary"> ADD REIMBURSEMENT
+                                                        REQUEST
+                                                    </h6>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="name" class="form-label">Name <span
+                                                                class="text-danger">*</span></label>
+                                                        <select class="form-control" [(ngModel)]="model.personalId"
+                                                            name="personalId" #personalId="ngModel" required>
+                                                            <option *ngFor="let x of personal" [value]="x.id">{{x.id}}
+                                                                {{x.name}}
+                                                            </option>
+                                                        </select>
+                                                        <div [hidden]="personalId.valid || personalId.pristine"
+                                                            class="text-danger small m-1">
+                                                            Requested is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label for="requestAmount" class="form-label">Request Amount
+                                                            <span class="text-danger">*</span></label>
+                                                        <input currencyMask class="form-control" id="requestAmount"
+                                                            [(ngModel)]="model.requestAmount" name="requestAmount"
+                                                            #requestAmount="ngModel" required>
+
+                                                        <div [hidden]="requestAmount.valid || requestAmount.pristine"
+                                                            class="text-danger small m-1">
+                                                            Request Amount is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label for="requestDate" class="form-label">Request Date <span
+                                                                class="text-danger">*</span></label>
+                                                        <div class="input-group">
+
+                                                            <input id="requestDate" class="form-control"
+                                                                placeholder="yyyy-mm-dd" name="requestDate"
+                                                                ngbDatepicker #requestDate="ngbDatepicker"
+                                                                [(ngModel)]="model.requestDate" />
+                                                            <button class="btn btn-outline-secondary"
+                                                                (click)="requestDate.toggle()" type="button">
+                                                                <img src="./assets/img/icons8-calendar-48.png"
+                                                                    height="20">
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label for="reimbursementName" class="form-label">Reimbursement
+                                                            Name
+                                                            <span class="text-danger">*</span></label>
+
+                                                        <select class="form-control"
+                                                            [(ngModel)]="model.reimbursementNameId" required
+                                                            name="reimbursementNameId" #reimbursementNameId="ngModel">
+                                                            <option *ngFor="let x of reimbursementName" [value]="x.id">
+                                                                {{x.name}}
+                                                            </option>
+                                                        </select>
+
+                                                        <div [hidden]="reimbursementNameId.valid || reimbursementNameId.pristine"
+                                                            class="text-danger small m-1">
+                                                            Reimbursement Name is required
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="description" class="form-label">Description</label>
+                                                        <textarea class="form-control" id="description"
+                                                            name="description"
+                                                            [(ngModel)]="model.description"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col text-end" [hidden]="loading">
+                                                    <button type="button" class="btn btn-outline-dark btn-sm mx-2"
+                                                        (click)="back();">Back</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm"
+                                                        [disabled]="!myForm.form.valid">Submit</button>
+                                                </div>
+                                                <div class="col text-end" [hidden]="!loading">
+                                                    Loading...
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <table class="table table-sm table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Transaction ID</th>
-                                            <th>Employee</th>
-                                            <th>Reimbursement Name</th>
-                                            <th class="text-end">Request Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let x of newData">
-                                            <td>{{x.id}}</td>
-                                            <td>{{x.personalId}} {{x.name}} </td>
-                                            <td>{{x.reimbursement}}</td>
-                                            <td class="text-end">Rp {{x.requestAmount | number}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+
                             </div>
                         </div>
-                        <div class="col-12 ">
-                            <div class="card shadow mb-3">
-                                <div class="card-header py-3">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h6 class="m-0 font-weight-bold text-primary"> ADD REIMBURSEMENT REQUEST
-                                            </h6>
-                                        </div>
+                    </div>
 
-                                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary"> ADD REIMBURSEMENT
+                                            REQUEST
+                                        </h6>
+                                    </div> 
                                 </div>
-
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="mb-3">
-                                                <label for="name" class="form-label">Name <span
-                                                        class="text-danger">*</span></label>
-                                                <select class="form-control" [(ngModel)]="model.personalId"
-                                                    name="personalId" #personalId="ngModel" required>
-                                                    <option *ngFor="let x of personal" [value]="x.id">{{x.id}}
-                                                        {{x.name}}
-                                                    </option>
-                                                </select>
-                                                <div [hidden]="personalId.valid || personalId.pristine"
-                                                    class="text-danger small m-1">
-                                                    Requested is required
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label for="requestAmount" class="form-label">Request Amount <span
-                                                        class="text-danger">*</span></label>
-                                                <input currencyMask class="form-control" id="requestAmount"
-                                                    [(ngModel)]="model.requestAmount" name="requestAmount"
-                                                    #requestAmount="ngModel" required>
-
-                                                <div [hidden]="requestAmount.valid || requestAmount.pristine"
-                                                    class="text-danger small m-1">
-                                                    Request Amount is required
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label for="requestDate" class="form-label">Request Date <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="input-group">
-
-                                                    <input id="requestDate" class="form-control"
-                                                        placeholder="yyyy-mm-dd" name="requestDate" ngbDatepicker
-                                                        #requestDate="ngbDatepicker" [(ngModel)]="model.requestDate" />
-                                                    <button class="btn btn-outline-secondary"
-                                                        (click)="requestDate.toggle()" type="button">
-                                                        <img src="./assets/img/icons8-calendar-48.png" height="20">
-                                                    </button>
-                                                </div>
-                                            </div>
+                            </div> 
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">
+                                                <h5> Upload File</h5>
+                                            </label>
+                                            <input type="file" class="form-control" (change)="onFileSelected($event)">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label for="reimbursementName" class="form-label">Reimbursement Name
-                                                    <span class="text-danger">*</span></label>
-
-                                                <select class="form-control" [(ngModel)]="model.reimbursementNameId"
-                                                    required name="reimbursementNameId" #reimbursementNameId="ngModel">
-                                                    <option *ngFor="let x of reimbursementName" [value]="x.id">
-                                                        {{x.name}}
-                                                    </option>
-                                                </select>
-
-                                                <div [hidden]="reimbursementNameId.valid || reimbursementNameId.pristine"
-                                                    class="text-danger small m-1">
-                                                    Reimbursement Name is required
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="description" class="form-label">Description</label>
-                                                <textarea class="form-control" id="description" name="description"
-                                                    [(ngModel)]="model.description"></textarea>
-                                            </div>
-                                        </div>
+                                    <div class="col-12">
+                                        {{upload_data | json}}
+                                        <div class="text-center">{{httpNote}}</div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col text-end" [hidden]="loading">
-                                            <button type="button" class="btn btn-outline-dark btn-sm mx-2"
-                                                (click)="back();">Back</button>
-                                            <button type="submit" class="btn btn-primary btn-sm"
-                                                [disabled]="!myForm.form.valid">Submit</button>
-                                        </div>
-                                        <div class="col text-end" [hidden]="!loading">
-                                            Loading...
-                                        </div>
-                                    </div>
-
 
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </form>
