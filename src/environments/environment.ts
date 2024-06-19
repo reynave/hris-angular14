@@ -6,7 +6,7 @@ export const environment = {
   production: false,
  // api : 'http://128.199.94.89/api/index.php/',
   api : 'http://localhost/app/hris/hris-api/', 
-  ver : '1.3101'
+  ver: require('../../package.json').version,
 };
 
 /*
