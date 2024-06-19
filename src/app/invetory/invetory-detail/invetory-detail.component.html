@@ -29,7 +29,16 @@
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Qty</strong></td>
-                                                    <td>{{header.qty}}</td> 
+                                                    <td>
+                                                        <div class="row g-1">
+                                                            <div class="col-8">
+                                                                <input type="number" class="form-control" [(ngModel)]="header.qty" name="qty">
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <button type="submit" (click)="updateHeader();" class="btn btn-primary">Update</button>
+                                                            </div>
+                                                        </div>
+                                                    </td> 
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Rent</strong></td>
@@ -75,9 +84,15 @@
                                 </table>
 
                             </div>
-                            <div class="card-footer text-end">
-                                <button class="btn btn-sm btn-primary mx-1"
-                                (click)="open(content)">Add</button>
+                            <div class="card-footer ">
+                              <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-sm btn-dark mx-1" (click)="back()">Back</button>
+                                </div>
+                                <div class="col text-end">
+                                    <button class="btn btn-sm btn-primary mx-1"  (click)="open(content)">Add</button>
+                                </div>
+                              </div>
                             </div>
                         </div>
 

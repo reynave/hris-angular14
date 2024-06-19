@@ -79,6 +79,29 @@ export class InvetoryDetailComponent implements OnInit {
     }
   }
 
+  updateHeader(){
+    if(confirm("Update Qty")){
+      const body = { 
+        inventoryId : this.id, 
+        header : this.header
+      }
+      this.http.post<any>(environment.api+"inventory/updateHeader", body, {
+        headers:this.configService.headers(), 
+      }).subscribe(
+        data=>{
+          console.log(data);
+        //  this.httpGet();
+        },
+        error=>{
+          console.log(error);
+        },
+      )
+    }
+  }
+
+  back(){
+    history.back();
+  }
   open(content: any) {
 		this.modalService.open(content);
 	}

@@ -12,6 +12,10 @@ import { InvetoryDetailComponent } from './invetory-detail/invetory-detail.compo
 })
 export class InvetoryComponent implements OnInit {
   items :any = [];
+  newItem : any = {
+    name : "",
+    qty : 1,
+  }
   constructor(
     private http: HttpClient,
     private configService: ConfigService, 
@@ -40,12 +44,26 @@ export class InvetoryComponent implements OnInit {
 
   }
 
-  addRow(){
+  open(content: any) {
+		this.modalService.open(content);
+	}
 
-  }
-
-  onUpdate(){
-
+  onSubmit(){
+    this.http.post<any>(environment.api+"inventory/newItem", this.newItem,{
+      headers:this.configService.headers(),
+    }).subscribe(
+      data=>{
+        console.log(data);
+        this.httpGet();
+        this.modalService.dismissAll();
+        this.newItem['name']="";
+        this.newItem['qty']=1;
+        
+      },
+      error=>{
+        console.log(error);
+      },
+    )
   }
 
   

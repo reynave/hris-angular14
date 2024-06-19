@@ -24,10 +24,10 @@
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Qty</th>
-                                            <th>Stock</th>
-                                            <th>Rent</th>
-                                            
-                                            <th ></th> 
+                                            <th>Avaiable</th>
+                                            <th>Loaned</th>
+
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -35,26 +35,26 @@
                                             <td> {{i+1}}</td>
                                             <td> {{x.name}}</td>
                                             <td> {{x.qty}}</td>
+                                            <td> {{x.avaiable}} </td>
+                                            <td> {{x.loaned}} </td>
 
-                                            <td> {{x.stock}} </td>
-                                            <td> {{x.rent}} </td> 
-                                          
+
                                             <td>
-                                                <a class="btn btn-sm" [routerLink]="[ '/invetory/detail' ]" [queryParams]="{id:x.id}"><i class="bi bi-plus-square-fill"></i></a> 
+                                                <a class="btn btn-sm" [routerLink]="[ '/invetory/detail' ]"
+                                                    [queryParams]="{id:x.id}"><i class="bi bi-plus-square-fill"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="5" class="text-end">
-                                                <button class="btn btn-sm btn-light mx-1" (click)="addRow()">Add  Row</button>
-                                                <button class="btn btn-sm btn-primary"  (click)="onUpdate()">Update</button>
-                                            </td>
-                                            <td></td>
-                                        </tr>
-                                    </tfoot>
+
                                 </table>
 
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="text-end">
+                                    <button class="btn btn-sm btn-light mx-1" (click)="open(content)">Add Item</button>
+                                    
+                                </div>
                             </div>
                         </div>
 
@@ -64,3 +64,35 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+				<label for="dateOfBirth">Item Name</label>
+				<div class="input-group">
+					 <input type="text" class="form-control" [(ngModel)]="newItem.name" name="name">
+				</div>
+			</div>
+
+            <div class="mb-3">
+				<label for="dateOfBirth">Qty</label>
+				<div class="input-group">
+					 <input type="number" class="form-control"  [(ngModel)]="newItem.qty" name="qty">
+				</div>
+			</div>
+		</form>
+        
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+
+        <button type="button" class="btn btn-outline-dark" [disabled]="newItem.name == '' " (click)="onSubmit()">Submit</button>
+	</div>
+</ng-template>
