@@ -30,6 +30,10 @@
                                             <th>Loan</th>
                                             <th>Payroll</th>
                                             <th>maintenance</th>
+                                            <th>announcement</th>
+                                            <th>invetory</th>
+                                            <th>surat peringatan</th>
+                                       
 
                                             <th></th>
                                         </tr>
@@ -57,32 +61,44 @@
                                                     name="_maintenance">
                                             </td>
 
+                                            <td class="text-center"> <input type="checkbox" [(ngModel)]="x._announcement"
+                                                    name="_announcement">
+                                            </td>
+                                            <td class="text-center"> <input type="checkbox" [(ngModel)]="x._invetory"
+                                                    name="_invetory">
+                                            </td>
+                                            <td class="text-center"> <input type="checkbox" [(ngModel)]="x._sp"
+                                                    name="_sp">
+                                            </td>
+
+
                                             <td width="30px"><button class="btn btn-sm btn-outline-dark"
                                                     (click)="fnDelete('employment_jobposition',x);"><img
                                                         src="./assets/img/icons8-multiply-52.png" height="20"></button>
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td class="text-end" colspan="7">
-                                                <button class="btn btn-sm btn-outline-dark mx-1"
-                                                    (click)="fnInsert('employment_jobposition')">Add Item</button>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-success mx-1"
-                                                    (click)="fnSave_employment_jobposition();">Save</button>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                     
+                                </table> 
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="text-end">
+                                    
+                                    <button class="btn btn-sm btn-outline-dark mx-1"
+                                        (click)="fnInsert('employment_jobposition')">Add Item</button>
+                                
+                                    <button class="btn btn-sm btn-success mx-1"
+                                        (click)="fnSave_employment_jobposition();">Save</button>
+                                
+                            </div>
                             </div>
 
                         </div>
                     </div>
 
-                  
- 
+
+
 
                     <div class="col-4 ">
                         <div class="card shadow mb-3">
@@ -248,7 +264,7 @@
                                     <tfoot>
                                         <tr>
                                             <td colspan="2">
-                                            
+
                                             </td>
                                             <td class="text-end" colspan="9">
 
@@ -263,13 +279,14 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                               <div class="px-3"> <b> <small class="text-danger">ID tidak bisa diubah lagi!</small></b></div>
+                                <div class="px-3"> <b> <small class="text-danger">ID tidak bisa diubah lagi!</small></b>
+                                </div>
                             </div>
                         </div>
                     </div>
 
- 
- 
+
+
 
                 </div>
             </div>

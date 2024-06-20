@@ -162,6 +162,21 @@ export class HolidayComponent implements AfterViewInit, OnDestroy, OnInit {
     };
   }
 
+  fnResetAll(){
+    if(confirm("Reset holiday ? ") ){
+      this.http.post<any>(environment.api + "requestHoliday/fnResetAll/", this.model,
+        { headers: this.configService.headers() }
+      ).subscribe(
+        data => {
+          console.log(data);
+          location.reload();
+        },
+        e => {
+          console.log(e);
+        }
+      )
+    }
+  }
   addnew() {
     this.httpdtOptionsRequestHoliday();
   }

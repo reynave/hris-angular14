@@ -30,14 +30,23 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-6">
+                        <div><strong>HISTORY REQUESTED HOLIDAY</strong></div>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="button" class="btn btn-sm btn-warning" (click)="fnResetAll();">Reset Holiday for all</button>
+                    </div>
+                </div>
                 <div class="row my-3">
                     <!-- <div class="col-12 mb-2 text-end">
                           <button type="button" class="btn btn-sm btn-primary" (click)="rerender()">reload</button>  
                         <button type="button" class="btn btn-sm btn-primary" (click)="open(content)">Add New</button>
 
                     </div> -->
+                  
                     <div class="col-12"> 
-                        <div><strong>HISTORY REQUESTED HOLIDAY</strong></div>
+                        
                         <div class="card shadow mb-4"> 
                             <div class="card-body">
                                 <table datatable [dtOptions]="dtOptionsHistoryHoliday" [dtTrigger]="dtTrigger"

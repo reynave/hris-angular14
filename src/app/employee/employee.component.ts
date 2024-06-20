@@ -134,8 +134,8 @@ export class EmployeeComponent implements OnInit {
           data: 'dateJoinStart',
         }, 
         {
-          title: 'Total Cuti',
-          data: 'totalHoliday',
+          title: 'Sisa Cuti',
+          data: 'sisaCuti',
         },
 
       ]

@@ -47,6 +47,11 @@ export class GlobalMasterdataComponent implements OnInit {
            el['_timeManagement'] = el['_timeManagement'] == 1 ? true : false;
            el['_loan'] = el['_loan'] == 1 ? true : false;
            el['_payroll'] = el['_payroll'] == 1 ? true : false;  
+
+           el['_announcement'] = el['_announcement'] == 1 ? true : false;  
+           el['_invetory'] = el['_invetory'] == 1 ? true : false;  
+           el['_sp'] = el['_sp'] == 1 ? true : false;  
+
           return el;
         });
         this.time_management_shift = data['time_management_shift'].map(function(el : any){

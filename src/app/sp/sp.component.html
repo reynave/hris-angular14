@@ -1,1 +1,57 @@
-<p>sp works!</p>
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+
+            <div class="container my-3">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="m-0 font-weight-bold text-primary"> Surat Peringantan</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Qty</th> 
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of items; let i = index">
+                                            <td> {{i+1}}</td>
+                                            <td> {{x.name}}</td>
+                                            <td> {{x.qty }}</td> 
+                                            <td>
+                                                <a class="btn btn-sm btn-warning py-0" [routerLink]="[ '/sp/detail' ]"
+                                                    [queryParams]="{id:x.id}">Detail</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                            
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+ 

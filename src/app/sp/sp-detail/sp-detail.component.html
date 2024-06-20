@@ -1,1 +1,81 @@
-<p>sp-detail works!</p>
+<div id="wrapper">
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <app-header></app-header>
+  </ul>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+
+      <div class="container my-3">
+        <div class="row">
+
+          <div class="col-12">
+            <div class="card shadow mb-3">
+              <div class="card-header py-3">
+                <div class="row">
+                  <div class="col-12">
+                    <h6 class="m-0 font-weight-bold text-primary mb-1"> Surat Peringantan</h6>
+                   <strong> {{personal.name}}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Note</th>
+                      <th>File</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let x of items; let i = index">
+                      <td> {{i+1}}</td>
+                      <td> <input type="text" [disabled]="!editable" class="form-control form-control-sm"
+                          [(ngModel)]="x.note" name="note"></td>
+                      <td>
+
+                        <div [hidden]="editable">
+                          <a [href]="api+'uploads/sp/'+x.uploadFile" target="_blank"> {{x.uploadFile }}</a>
+                        </div>
+                        <div [hidden]="!editable">
+                          <div class="mb-1" *ngIf="x.uploadFile != '' "><small>{{x.uploadFile }}</small></div>
+                          <input type="file" class="form-control form-control-sm" (change)="onFileSelected($event, x)">
+                        </div> 
+                      </td>
+
+                      <td>
+                        <a class="btn btn-sm btn-danger" (click)="remove(x);">Remove</a>
+                      </td>
+                    </tr>
+                  </tbody>
+
+                </table>
+
+              </div>
+              <div class="card-footer">
+               <div class="row">
+                <div class="col-6">
+                  <button type="button" class="btn btn-sm btn-light border" (click)="back();">Back</button>
+                </div>
+                <div class="col-6">
+                  <div class="text-end">
+                    <button type="button" class="btn btn-sm btn-warning" (click)="onAddRow()">Add</button>
+                    <a class="btn btn-sm btn-light mx-1 border" [hidden]="editable" (click)="editable=true">Edit</a>
+                    <a class="btn btn-sm btn-primary mx-1" [hidden]="!editable" (click)="onUpdate()">Update</a>
+  
+  
+                  </div>
+                </div>
+               </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
