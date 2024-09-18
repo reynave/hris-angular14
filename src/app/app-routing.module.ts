@@ -57,6 +57,7 @@ import { InvetoryComponent } from './invetory/invetory.component';
 import { SpComponent } from './sp/sp.component';
 import { SpDetailComponent } from './sp/sp-detail/sp-detail.component';
 import { InvetoryDetailComponent } from './invetory/invetory-detail/invetory-detail.component';
+import { SaleryUploadComponent } from './payroll/salary/salery-upload/salery-upload.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "login" }, },
@@ -129,6 +130,7 @@ const routes: Routes = [
   { path: "payroll/salary/detail/:id", component: SalaryDetailComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll/salary/detail/report/:id", component: SalaryDetailReportComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll/salary/detail/printing/:id", component: SalaryDetailPrintingComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+  { path: "payroll/salary/upload", component: SaleryUploadComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
 
   { path: "forbiden", component: NotfoundComponent, data: { active: "" },canActivate:[AuthGuard] },
   { path: "nofound", component: NotfoundComponent, data: { active: "" }, },
