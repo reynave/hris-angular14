@@ -58,6 +58,9 @@ import { SpComponent } from './sp/sp.component';
 import { SpDetailComponent } from './sp/sp-detail/sp-detail.component';
 import { InvetoryDetailComponent } from './invetory/invetory-detail/invetory-detail.component';
 import { SaleryUploadComponent } from './payroll/salary/salery-upload/salery-upload.component';
+import { SaleryDetailFixComponent } from './payroll/salary/salery-detail-fix/salery-detail-fix.component';
+import { SdfDetailComponent } from './payroll/salary/salery-detail-fix/sdf-detail/sdf-detail.component';
+import { PayrollFixComponent } from './payroll/payroll-fix/payroll-fix.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "login" }, },
@@ -126,8 +129,15 @@ const routes: Routes = [
 
   { path: "payroll/pph21-setting", component: Pph21SettingComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll", component: PayrollComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+  { path: "payroll/fix", component: PayrollFixComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+ 
   { path: "payroll/salary", component: SalaryComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll/salary/detail/:id", component: SalaryDetailComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+
+
+  { path: "payroll/salary/detailFix/:id", component: SaleryDetailFixComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+  { path: "payroll/salary/detailFix/:id/detail", component: SdfDetailComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
+  
   { path: "payroll/salary/detail/report/:id", component: SalaryDetailReportComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll/salary/detail/printing/:id", component: SalaryDetailPrintingComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },
   { path: "payroll/salary/upload", component: SaleryUploadComponent, data: { active: "_payroll" },canActivate:[AuthGuard] },

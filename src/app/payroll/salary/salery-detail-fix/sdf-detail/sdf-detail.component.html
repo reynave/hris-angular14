@@ -1,0 +1,41 @@
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <app-header></app-header>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+            <div class="container my-3">
+                <div class="row">
+
+                    <div class="col-12 mb-3">
+                        <a (click)="back();" class="btn btn-sm btn-outline-dark">Back</a>
+                    </div>
+
+
+                    <div class="col-12 mb-3">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5> {{personalData.name}}'s Salery Detail from POS</h5>
+                                        <h6> {{personalData.id}} - {{uploadId}}</h6>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+ 

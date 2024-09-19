@@ -18,7 +18,9 @@
                                         <h6 class="m-0 font-weight-bold text-primary"> EMPLOYEE SALERY </h6>
                                     </div>
                                     <div class="col-6 text-end">
-                                        <a [routerLink]="[ '/payroll/salary/upload' ]" class="btn btn-sm btn-primary">Upload Xlsx superkidz</a> 
+                                        <a (click)="open(modalReport);" class="btn btn-sm btn-dark mx-1">Report </a>
+                                        <a [routerLink]="[ '/payroll/salary/upload' ]"
+                                            class="btn btn-sm btn-primary">Upload Xlsx </a>
                                     </div>
                                 </div>
                             </div>
@@ -36,3 +38,56 @@
     </div>
 
 </div>
+
+
+<ng-template #modalReport let-modal>
+
+    <div class="modal-header">
+        <strong class="modal-title" id="modal-basic-title">Select Period Salery</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+
+    <div class="modal-body">
+
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label>Branch ID</label>
+                <select class="form-control" [(ngModel)]="report.branchId">
+                    <option [value]="x.branchId" *ngFor="let x of selectBranch">{{x.branchId}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label>Start Date</label>
+                <div class="input-group">
+                    <input id="startDate" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
+                        #dp="ngbDatepicker" [(ngModel)]="report.startDate" />
+                    <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">
+                        <img src="./assets/img/icons8-calendar-48.png" height="20">
+                    </button>
+                </div>
+            </div>
+            <div class="col-6">
+                <label>End Date</label>
+                <div class="input-group">
+                    <input id="endDate" class="form-control" placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker
+                        #dp2="ngbDatepicker" [(ngModel)]="report.endDate" [minDate]="report.startDate"/>
+                    <button class="btn btn-outline-secondary" (click)="dp2.toggle()" type="button">
+                        <img src="./assets/img/icons8-calendar-48.png" height="20">
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark btn-sm mx-1" (click)="modal.close('Save click')">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm mx-1" [disabled]="report.branchId == '' " (click)="goToReport()">Go Report</button>
+
+    </div>
+
+</ng-template>

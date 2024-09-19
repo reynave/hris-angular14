@@ -1,0 +1,47 @@
+<div class="container-fluid my-3">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <button type="button" (click)="back()" class="btn btn-outline-dark btn-sm">Back</button>
+  
+  
+      </div>
+  
+      <div class="col-12">
+        <div class="card shadow mb-3">
+          <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary"> Report Salery, Brand ID : {{branchId}}, Date {{startDate | date}} until {{endDate | date}} </h5>
+          </div>
+          <div class="card-body">
+            <table class="table table-sm ">
+              <thead>
+                <Tr>
+                  <th>No</th> 
+                  <th>ID</th> 
+                  <th>Name</th>
+                  <th class="text-end">Total</th>
+                  <th class="text-end">Tax</th>
+                  <th class="text-end">Loan</th>
+                  <th class="text-end">BPJS</th>
+                  <th class="text-end">Grand Total</th> 
+                  
+                </Tr>
+               
+              </thead>
+              <tbody>
+                <tr *ngFor="let x of items; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{x.personalId}}</td>
+                  <td>{{x.name}}</td> 
+                  <td class="text-end"> {{x.total |number}} </td>
+                  <td class="text-end"> {{x.tax |number}} </td> 
+                  <td class="text-end"> {{x.load |number}}</td>
+                  <td class="text-end"> {{x.bpjs |number}} </td> 
+                  <td class="text-end"> {{x.grandTotal |number}} </td> 
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

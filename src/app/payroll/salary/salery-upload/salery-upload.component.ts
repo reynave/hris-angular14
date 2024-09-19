@@ -11,6 +11,7 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./salery-upload.component.css']
 })
 export class SaleryUploadComponent implements OnInit {
+
   file: File | null = null;
   sheetNames: string[] = [];
   selectedSheetName: string | null = null;
@@ -19,11 +20,12 @@ export class SaleryUploadComponent implements OnInit {
   switch_expression: string = "";
   selectAccount: any = [];
   onSubmitDisable: boolean = true;
+  uploadId: string = '';
   constructor(
     private http: HttpClient,
-    private configService: ConfigService,   
+    private configService: ConfigService,
   ) { }
-//sudo mv -f print_profit_sharing_hris.php /var/www/html/RestServiceSKidz
+  //sudo mv -f print_profit_sharing_hris.php /var/www/html/RestServiceSKidz
 
   ngOnInit(): void {
   }
@@ -54,7 +56,7 @@ export class SaleryUploadComponent implements OnInit {
       this.sheetData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
       let i = 0;
 
-     
+
       this.sheetData[0].forEach((el: any) => {
         const temp = {
           index: i,
@@ -70,24 +72,69 @@ export class SaleryUploadComponent implements OnInit {
     reader.readAsArrayBuffer(this.file);
     this.switch_expression = "step1";
   }
-
-  onSubmit(){
-    const body= {
-      items : this.sheetData
+  uploadItem: any = [];
+  findUploadId() {
+    const body = {
+      uploadId: this.uploadId
     }
 
-    this.http.post<any>(environment.api+"SalaryFix/onSubmit",body,{
+    this.http.get<any>(environment.api + "SalaryFix/findUploadId", {
       headers: this.configService.headers(),
+      params: body,
     }).subscribe(
-      data=>{
+      data => {
         console.log(data);
+        this.uploadItem = data['data'];
       },
-      error=>{
-        console.log(error);
+      error => {
+        console.error(error);
       }
     )
   }
-  back(){
+
+  onDelete(uploadId: string) {
+    if (confirm("Delete this " + uploadId + "? ")) {
+
+      const body = {
+        uploadId: uploadId
+      }
+
+      this.http.post<any>(environment.api + "SalaryFix/onDelete", body, {
+        headers: this.configService.headers(),
+      }).subscribe(
+        data => {
+          console.log(data);
+          this.findUploadId();
+        },
+        error => {
+          console.error(error);
+          alert("onDelete error");
+        }
+      )
+    }
+  }
+
+
+  onSubmit() {
+    const body = {
+      items: this.sheetData
+    }
+
+    this.http.post<any>(environment.api + "SalaryFix/onSubmit", body, {
+      headers: this.configService.headers(),
+    }).subscribe(
+      data => {
+        console.log(data);
+        alert("Upload success");
+        history.back();
+      },
+      error => {
+        console.error(error);
+        alert("Upload error");
+      }
+    )
+  }
+  back() {
     history.back();
   }
 }

@@ -75,6 +75,9 @@ import { SpDetailComponent } from './sp/sp-detail/sp-detail.component';
 import { InvetoryDetailComponent } from './invetory/invetory-detail/invetory-detail.component';
 import { InvetoryDetailPersonalComponent } from './invetory/invetory-detail-personal/invetory-detail-personal.component';
 import { SaleryUploadComponent } from './payroll/salary/salery-upload/salery-upload.component';
+import { SaleryDetailFixComponent } from './payroll/salary/salery-detail-fix/salery-detail-fix.component';
+import { SdfDetailComponent } from './payroll/salary/salery-detail-fix/sdf-detail/sdf-detail.component';
+import { PayrollFixComponent } from './payroll/payroll-fix/payroll-fix.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -119,7 +122,7 @@ export const customCurrencyMaskConfig = {
     HomeHistoryLoanLogComponent, HomeLoanDetailComponent, LoanApproveLineComponent, LoanHistoryComponent,
     SalaryComponent, SalaryDetailComponent, SalaryDetailReportComponent, MaintenanceComponent, MaintenanceDetailComponent, TemplateComponent, 
     ScheduleComponent, EmployeeContactComponent, 
-    MaintenanceMasterComponent, SalaryDetailPrintingComponent, TunjanganComponent, FamilyInfoComponent, EducationHistoryComponent, HomeTimeManagementComponent, RequestHolidayComponent, HolidayComponent, RequestHolidayDetailComponent, AnnouncementComponent, InvetoryComponent, SpComponent, SpDetailComponent, InvetoryDetailComponent, InvetoryDetailPersonalComponent, SaleryUploadComponent,
+    MaintenanceMasterComponent, SalaryDetailPrintingComponent, TunjanganComponent, FamilyInfoComponent, EducationHistoryComponent, HomeTimeManagementComponent, RequestHolidayComponent, HolidayComponent, RequestHolidayDetailComponent, AnnouncementComponent, InvetoryComponent, SpComponent, SpDetailComponent, InvetoryDetailComponent, InvetoryDetailPersonalComponent, SaleryUploadComponent, SaleryDetailFixComponent, SdfDetailComponent, PayrollFixComponent,
   ],
   imports: [
     BrowserModule,
