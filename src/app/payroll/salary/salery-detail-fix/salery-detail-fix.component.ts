@@ -57,7 +57,7 @@ export class SaleryDetailFixComponent implements OnInit {
     let dollarUSLocale = Intl.NumberFormat('en-US');
     this.dtOptions = {
       ajax: {
-        url: environment.api + 'SalaryFix/datatables/' + this.personalId,
+        url: environment.api + 'SalaryFix/datatables/?id=' + this.personalId,
         type: "GET",
         headers: {
           'Content-Type': 'application/json',

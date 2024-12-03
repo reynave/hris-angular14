@@ -66,22 +66,15 @@ export class SalaryComponent implements OnInit {
           data: 'branch',
         },
         {
-          title: 'Organization',
-          data: 'organization',
+          title: 'Branch ID',
+          data: 'branchId',
         },
         {
           title: 'Position',
           data: 'jobPosition',
         },
-        {
-          title: 'Level',
-          data: 'jobLevel',
-        },
-
-        {
-          title: 'Status',
-          data: 'empyStatus',
-        },
+      
+ 
         {
           title: 'Detail',
           data: 'id',

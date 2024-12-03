@@ -11,11 +11,14 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./salery-upload.component.css']
 })
 export class SaleryUploadComponent implements OnInit {
-
+  isNaN: Function = Number.isNaN;
   file: File | null = null;
   sheetNames: string[] = [];
   selectedSheetName: string | null = null;
   sheetData: any[] = [];
+  dataSalery: any[] = [];
+  headerSalery: any[] = [];
+
   sheetHeader: any = [];
   switch_expression: string = "";
   selectAccount: any = [];
@@ -66,12 +69,32 @@ export class SaleryUploadComponent implements OnInit {
         i++;
         this.sheetHeader.push(temp);
       });
-      console.log(this.sheetHeader, this.sheetData);
+      this.headerSalery = [];
+      for (let n = 0; n < 2; n++) {
+        var el = this.sheetData[n];
+        this.headerSalery.push([el[0], el[1],  el[2],  el[3],  el[4], el[5], el[6],el[7],el[8],el[9],el[10],el[11],'code' ] );   
+      }
+
+      this.dataSalery = [];
+      for (let n = 2; n < this.sheetData.length; n++) {
+        var el = this.sheetData[n];  
+           
+        if(String(el[0]) !=  'undefined' ){ 
+          this.dataSalery.push([el[0], el[1],  el[2],  el[3],  el[4], el[5], el[6],el[7],el[8],el[9],el[10],el[11] ] );  
+        } 
+       
+      }
+
+
+      console.log(this.sheetData[0]);
+      console.log(this.dataSalery);
+
     };
 
     reader.readAsArrayBuffer(this.file);
     this.switch_expression = "step1";
   }
+
   uploadItem: any = [];
   findUploadId() {
     const body = {
@@ -117,7 +140,8 @@ export class SaleryUploadComponent implements OnInit {
 
   onSubmit() {
     const body = {
-      items: this.sheetData
+      items: this.dataSalery,
+      headerSalery : this.headerSalery
     }
 
     this.http.post<any>(environment.api + "SalaryFix/onSubmit", body, {
