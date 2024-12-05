@@ -74,26 +74,18 @@ export class SaleryDetailFixComponent implements OnInit {
           data: 'branchId',
         },
         {
-          title: 'Start Date',
-          data: 'startDate',
-        },
-        {
-          title: 'End Date',
-          data: 'endDate',
-        },
+          title: 'Period',
+          data: 'period',
+        }, 
         {
           title: 'Grand Total',
           data: 'grandTotal',
           orderable: false,
           render: function (data: any, type: any, full: any) {
-            return '<div class="text-end">' + dollarUSLocale.format(data) + '</div>';
+            return dollarUSLocale.format(data);
           }
         },
-        {
-          title: 'Upload ID',
-          data: 'uploadId',
-          orderable: false,
-        },
+       
         {
           title: 'Detail',
           data: 'personalId',
@@ -101,8 +93,8 @@ export class SaleryDetailFixComponent implements OnInit {
           orderable: false,
           render: function (data: any, type: any, full: any) {
 
-            let params = "uploadId=" + full['uploadId'];
-            return '<a  href="#/payroll/salary/detailFix/' + data + '/detail?' + params + '" class="btn btn-sm btn-primary py-0">Detail</a>';
+            let params = "branchId="+full['branchId']+ "&year=" + full['year']+"&month="+full['month'];
+            return '<a  href="#/payroll/salary/detailFix/' + full['personalId'] + '/detail?' + params + '" class="btn btn-sm btn-primary py-0">Detail</a>';
           }
         },
       ]

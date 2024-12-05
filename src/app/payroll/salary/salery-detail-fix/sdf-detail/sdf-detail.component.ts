@@ -14,8 +14,12 @@ import { ConfigService } from 'src/app/service/config.service';
 export class SdfDetailComponent implements OnInit {
   dtOptions: ADTSettings = {};
   personalId: string = "";
+  month: string = "";
+  year: string = "";
+  
   personalData: any = [];
   uploadId: string =''; 
+
   date: any = new Date(); 
   loading: boolean = false;
   constructor(
@@ -32,7 +36,8 @@ export class SdfDetailComponent implements OnInit {
   }
   ngOnInit(): void {
     this.personalId = this.activeRouter.snapshot.params['id'];
-    this.uploadId = this.activeRouter.snapshot.queryParams['uploadId']; 
+    this.month = this.activeRouter.snapshot.queryParams['month']; 
+    this.year = this.activeRouter.snapshot.queryParams['year']; 
     
     this.datatables();
     this.httpGet();
@@ -62,36 +67,31 @@ export class SdfDetailComponent implements OnInit {
           'Token': this.configService.varToken,
         },
         data : {
-          id : this.personalId,
-          uploadId : this.activeRouter.snapshot.queryParams['uploadId'],  
+          id : this.personalId, 
+          month : this.activeRouter.snapshot.queryParams['month'],  
+          year : this.activeRouter.snapshot.queryParams['year'],  
+          branchId : this.activeRouter.snapshot.queryParams['branchId'],  
           
         }
       },
       ordering: false,
       columnDefs: [ 
-        { className: "dt-head-right", targets: [5,6,7,8,9,10] },
+     //   { className: "dt-head-right", targets: [5,6,7,8,9,10] },
       ],
       columns: [
         {
-          title: 'Branch ID',
-          data: 'branchId',
+          title: 'Ttreatment Date',
+          data: 'treatmentDate',
         },
         {
-          title: 'Start Date',
-          data: 'startDate',
-        },
-        {
-          title: 'End Date',
-          data: 'endDate',
+          title: 'Treatment Time',
+          data: 'treatmentTime',
         },
         {
           title: 'Position',
           data: 'position',
         },
-        {
-          title: 'Qty',
-          data: 'qty',
-        },
+     
         {
           title: 'Rate Per Hours',
           data: 'ratePerHours',
@@ -99,35 +99,28 @@ export class SdfDetailComponent implements OnInit {
             return '<div class="text-end">'+dollarUSLocale.format(data)+'</div>';
           }
         },
+         
         {
-          title: 'Total',
-          data: 'total',
+          title: 'BPJS',
+          data: 'bpjs',
           render: function (data: any, type: any, full: any) {
             return '<div class="text-end">'+dollarUSLocale.format(data)+'</div>';
           }
         },
         {
-          title: 'Tax',
+          title: 'LOAN',
+          data: 'loan',
+          render: function (data: any, type: any, full: any) {
+            return '<div class="text-end">'+dollarUSLocale.format(data)+'</div>';
+          }
+        },
+        {
+          title: 'TAX',
           data: 'tax',
           render: function (data: any, type: any, full: any) {
             return '<div class="text-end">'+dollarUSLocale.format(data)+'</div>';
           }
         },
-        {
-          title: 'Loan',
-          data: 'loan',
-          render: function (data: any, type: any, full: any) {
-            return '<div class="text-end">'+dollarUSLocale.format(data)+'</div>';
-          }
-        },
-        {
-          title: 'Loan',
-          data: 'loan',
-          render: function (data: any, type: any, full: any) {
-            return '<div class="text-end">'+dollarUSLocale.format(data)+'</div>';
-          }
-        },
-
         {
           title: 'Grand Total',
           data: 'grandTotal',

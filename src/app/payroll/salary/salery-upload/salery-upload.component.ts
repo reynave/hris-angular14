@@ -72,7 +72,7 @@ export class SaleryUploadComponent implements OnInit {
       this.headerSalery = [];
       for (let n = 0; n < 2; n++) {
         var el = this.sheetData[n];
-        this.headerSalery.push([el[0], el[1],  el[2],  el[3],  el[4], el[5], el[6],el[7],el[8],el[10],el[11] ] );   
+        this.headerSalery.push([el[0], el[1],  el[2],  el[3],  el[4], el[5], el[6],el[7],el[8],el[10],el[13],el[14], el[15],  ] );   
       }
 
       this.dataSalery = [];
@@ -80,7 +80,7 @@ export class SaleryUploadComponent implements OnInit {
         var el = this.sheetData[n];  
            
         if(String(el[0]) !=  'undefined' ){ 
-          this.dataSalery.push([el[0], el[1],  el[2],  el[3],  el[4], el[5], el[6],el[7],el[8],el[10],el[11] ] );  
+          this.dataSalery.push([el[0], el[1],  el[2],  el[3],  el[4], el[5], el[6],el[7],el[8],el[10],el[13],el[14], el[15], ] );  
         } 
        
       }
