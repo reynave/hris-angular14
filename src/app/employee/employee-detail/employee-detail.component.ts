@@ -43,11 +43,7 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   tab(val: string) {
-    this.switch_expression = val;
-    this.router.navigate([],{
-      relativeTo: this.activatedRoute,
-      queryParams: { tab: val }, 
-    });
+    this.switch_expression = val; 
   }
   back() {
     history.back();

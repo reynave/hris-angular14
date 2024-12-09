@@ -18,15 +18,56 @@
                         <div class="card shadow mb-3">
                             <div class="card-header py-3">
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-11">
                                         <h5> {{personalData.name}}'s Salery Detail from POS</h5>
-                                        <h6> {{personalData.id}} - {{uploadId}}</h6>
+                                        <h6> {{personalData.id}} </h6>
                                     </div>
-                                  
+                                  <div class="col-1 text-end">
+                                    <button type="button" class="btn btn-sm btn-danger" (click)="deleteAll();">Delete</button>
+                                  </div>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
+                                <!-- <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
+                                 -->
+                                 
+                                 <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Date & Time</th>
+                                            <th>Patient Name</th>
+                                            <th>position</th>
+                                            <th>ratePerHours</th>
+                                            <th>tax</th>
+                                            <th>loan</th>
+                                            <th>bpjs</th>
+                                            <th>total</th>
+                                            <th>grandTotal</th>
+                                            <th>Input Date</th>
+                                            <th>uploadId</th>
+                                            <th><input type="checkbox" [checked]="checkAll" (change)="updateAll();"></th> 
+                                           
+                                        </tr>
+                                    </thead>
+                                   <tbody>
+                                    <tr *ngFor="let x of items ; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{x.treatmentDate | date}} {{x.treatmentTime}}</td>
+                                        <td>{{x.patientName}}</td>
+                                        <td>{{x.position}}</td>
+                                        <td>{{x.ratePerHours | number}}</td>
+                                        <td>{{x.tax | number}}</td>
+                                        <td>{{x.loan | number}}</td>
+                                        <td>{{x.bpjs | number}}</td>
+                                        <td>{{x.total | number}}</td>
+                                        <td>{{x.grandTotal | number}}</td>
+                                        <td>{{x.inputDate}}</td>
+                                        <td>{{x.uploadId}}</td>
+                                        <td><input type="checkbox" [checked]="x.checkbox" (change)="updateCheckbox(x.checkbox, i)" > </td> 
+                                    </tr>
+                                   </tbody>
+                                 </table>
                             </div>
 
                         </div>

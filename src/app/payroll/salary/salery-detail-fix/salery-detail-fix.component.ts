@@ -69,6 +69,7 @@ export class SaleryDetailFixComponent implements OnInit {
         { className: "dt-head-right", targets: [3] },
       ],
       columns: [
+       
         {
           title: 'Branch ID',
           data: 'branchId',
@@ -76,6 +77,10 @@ export class SaleryDetailFixComponent implements OnInit {
         {
           title: 'Period',
           data: 'period',
+        }, 
+        {
+          title: 'Qty',
+          data: 'qty',
         }, 
         {
           title: 'Grand Total',
